@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Helmet } from "react-helmet";
-import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import React, {Component} from "react";
+import {Helmet} from "react-helmet";
+import {connect} from "react-redux";
+import {Link, Redirect} from "react-router-dom";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 import SimpleReactValidator from "simple-react-validator";
 
 import Breadcrumb from "../common/breadcrumb";
-import { removeFromWishlist } from "../../actions/index";
-import { getCartTotal } from "../../services";
+import {removeFromWishlist} from "../../actions/indexO";
+import {getCartTotal} from "../../services";
 
 class checkOut extends Component {
   constructor(props) {
@@ -84,7 +84,7 @@ class checkOut extends Component {
   };
 
   render() {
-    const { cartItems, symbol, total } = this.props;
+    const {cartItems, symbol, total} = this.props;
 
     // Paypal Integration
     const onSuccess = (payment) => {
@@ -489,4 +489,4 @@ const mapStateToProps = (state) => ({
   total: getCartTotal(state.cartList.cart),
 });
 
-export default connect(mapStateToProps, { removeFromWishlist })(checkOut);
+export default connect(mapStateToProps, {removeFromWishlist})(checkOut);

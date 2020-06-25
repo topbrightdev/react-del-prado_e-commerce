@@ -9,7 +9,7 @@ import "./index.scss";
 // Import custom components
 import store from "./store";
 import translations from "./constants/translations";
-import {getAllProducts, getAllCategories} from "./actions/indexF";
+import {getAllProducts, getAllCategories} from "./actions/indexO";
 import Landing from "./components/landing";
 
 // Layouts
@@ -82,7 +82,7 @@ import MasonaryGridCols from "./components/features/portfolio/masonary-grid-cols
 class Root extends React.Component {
   render() {
     store.dispatch(getAllProducts());
-
+    store.dispatch(getAllCategories());
     return (
       <Provider store={store}>
         <IntlProvider translations={translations} locale="en">

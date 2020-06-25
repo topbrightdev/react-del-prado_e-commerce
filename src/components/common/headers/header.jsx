@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { IntlActions } from "react-redux-multilingual";
+import React, {Component} from "react";
+import {Link, NavLink} from "react-router-dom";
+import {IntlActions} from "react-redux-multilingual";
 import Pace from "react-pace-progress";
 
 // Import custom components
@@ -10,8 +10,8 @@ import SideBar from "./common/sidebar";
 import CartContainer from "../../../containers/CartContainer";
 import TopBar from "./common/topbar";
 import LogoImage from "./common/logo";
-import { changeCurrency } from "../../../actions/index";
-import { connect } from "react-redux";
+import {changeCurrency} from "../../../actions/indexO";
+import {connect} from "react-redux";
 
 class HeaderTwo extends Component {
   constructor(props) {
@@ -73,10 +73,10 @@ class HeaderTwo extends Component {
   }
 
   load = () => {
-    this.setState({ isLoading: true });
+    this.setState({isLoading: true});
     fetch().then(() => {
       // deal with data fetched
-      this.setState({ isLoading: false });
+      this.setState({isLoading: false});
     });
   };
 
@@ -254,4 +254,4 @@ class HeaderTwo extends Component {
   }
 }
 
-export default connect(null, { changeCurrency })(HeaderTwo);
+export default connect(null, {changeCurrency})(HeaderTwo);

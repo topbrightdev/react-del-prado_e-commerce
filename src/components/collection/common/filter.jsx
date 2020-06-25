@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
-import { SlideToggle } from "react-slide-toggle";
+import {SlideToggle} from "react-slide-toggle";
 
-import { getBrands, getColors, getMinMaxPrice } from "../../../services";
-import { filterBrand, filterColor, filterPrice } from "../../../actions/index";
+import {getBrands, getColors, getMinMaxPrice} from "../../../services";
+import {filterBrand, filterColor, filterPrice} from "../../../actions/indexO";
 
 class Filter extends Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class Filter extends Component {
           </span>
         </div>
         <SlideToggle>
-          {({ onToggle, setCollapsibleElement }) => (
+          {({onToggle, setCollapsibleElement}) => (
             <div className="collection-collapse-block">
               <h3 className="collapse-block-title" onClick={onToggle}>
                 brand
@@ -92,7 +92,7 @@ class Filter extends Component {
 
         {/*color filter start here*/}
         <SlideToggle>
-          {({ onToggle, setCollapsibleElement }) => (
+          {({onToggle, setCollapsibleElement}) => (
             <div className="collection-collapse-block">
               <h3 className="collapse-block-title" onClick={onToggle}>
                 colors
@@ -121,7 +121,7 @@ class Filter extends Component {
         </SlideToggle>
         {/*price filter start here */}
         <SlideToggle>
-          {({ onToggle, setCollapsibleElement }) => (
+          {({onToggle, setCollapsibleElement}) => (
             <div className="collection-collapse-block open">
               <h3 className="collapse-block-title" onClick={onToggle}>
                 price
@@ -136,7 +136,7 @@ class Filter extends Component {
                       maxValue={this.props.prices.max}
                       minValue={this.props.prices.min}
                       value={this.props.filters.value}
-                      onChange={(value) => this.props.filterPrice({ value })}
+                      onChange={(value) => this.props.filterPrice({value})}
                     />
                   </div>
                 </div>

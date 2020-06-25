@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { getTotal, getCartProducts } from "../../reducers/index";
-import { addToCart, addToWishlist, addToCompare } from "../../actions/index";
-import { getVisibleproducts } from "../../services/index";
+import {getTotal, getCartProducts} from "../../reducers/index";
+import {addToCart, addToWishlist, addToCompare} from "../../actions/indexO";
+import {getVisibleproducts} from "../../services/index";
 import ProductListItem from "./common/product-list-item";
 import Breadcrumb from "../common/breadcrumb";
 
@@ -25,7 +25,7 @@ class CollectionFullWidth extends Component {
 
   fetchMoreItems = () => {
     if (this.state.limit >= this.props.products.length) {
-      this.setState({ hasMoreItems: false });
+      this.setState({hasMoreItems: false});
       return;
     }
     // a fake async api call

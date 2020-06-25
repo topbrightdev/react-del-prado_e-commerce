@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { filterSort } from "../../../actions/index";
-import { getVisibleproducts } from "../../../services";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {filterSort} from "../../../actions/indexO";
+import {getVisibleproducts} from "../../../services";
 
 class FilterBar extends Component {
   //List Layout View
@@ -130,4 +130,4 @@ const mapStateToProps = (state) => ({
   filters: state.filters,
 });
 
-export default connect(mapStateToProps, { filterSort })(FilterBar);
+export default connect(mapStateToProps, {filterSort})(FilterBar);

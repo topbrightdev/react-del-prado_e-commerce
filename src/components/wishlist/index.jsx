@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 import Breadcrumb from "../common/breadcrumb";
 import {
   addToCartAndRemoveWishlist,
   removeFromWishlist,
-} from "../../actions/index";
+} from "../../actions/indexO";
 
 class wishList extends Component {
   changeQty = (e) => {
-    this.setState({ quantity: parseInt(e.target.value) });
+    this.setState({quantity: parseInt(e.target.value)});
   };
 
   render() {
-    const { Items, symbol } = this.props;
+    const {Items, symbol} = this.props;
 
     return (
       <div>

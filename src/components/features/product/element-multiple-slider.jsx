@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Slider from "react-slick";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
 // import Custom Components
 import Breadcrumb from "../../common/breadcrumb";
@@ -10,7 +10,7 @@ import {
   getNewProducts,
   getVisibleproducts,
 } from "../../../services";
-import { addToCart, addToCompare, addToWishlist } from "../../../actions/index";
+import {addToCart, addToCompare, addToWishlist} from "../../../actions/indexO";
 import ProductStyleTwo from "./common/product-style-two";
 
 class ElementMultipleSlider extends Component {

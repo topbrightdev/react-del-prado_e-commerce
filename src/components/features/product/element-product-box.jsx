@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 import Slider from "react-slick";
 
 // import Custom Components
 import Breadcrumb from "../../common/breadcrumb";
 import ProductStyleOne from "./common/product-style-one";
-import { getVisibleproducts } from "../../../services";
-import { addToCart, addToCompare, addToWishlist } from "../../../actions/index";
-import { Product4, Product5 } from "../../../services/script";
+import {getVisibleproducts} from "../../../services";
+import {addToCart, addToCompare, addToWishlist} from "../../../actions/indexO";
+import {Product4, Product5} from "../../../services/script";
 import ProductStyleTwo from "./common/product-style-two";
 import ProductStyleThree from "./common/product-style-three";
 import ProductStyleFour from "./common/product-style-four";

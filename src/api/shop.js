@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { useContext } from "react";
+import React, {Component} from "react";
+import {useContext} from "react";
 import _products from "./data.json";
 
 const wooConfig = require("./wooConfig");
@@ -69,8 +69,8 @@ var addresses = [
 const getProducts = () => {
   console.log("get products");
   return WooCommerce.getAsync(`products?per_page=30`)
-    .then(res => res.toJSON().body)
-    .then(json => {
+    .then((res) => res.toJSON().body)
+    .then((json) => {
       var data = json;
       Object.json1 = JSON.parse(data);
       var items = Object.json1;
@@ -92,7 +92,7 @@ const getProducts = () => {
         }) => {
           var img;
           var newImages = [];
-          images.map(data => {
+          images.map((data) => {
             img = data.src;
             newImages.push(img);
           });
@@ -125,7 +125,7 @@ const getProducts = () => {
       );
       return products;
     })
-    .catch(error => {
+    .catch((error) => {
       return error;
     });
 };
@@ -133,9 +133,8 @@ const getProducts = () => {
 const getCategories = (parent, level) => {
   console.log("getting");
   return WooCommerce.getAsync(
-    `products?per_page=30`
-    //   `products/categories?hide_empty=false&per_page=100${parent}`
-  ).then(res => {
+    `products/categories?hide_empty=false&per_page=100${parent}`
+  ).then((res) => {
     console.log(res);
     if (res) {
       var data = res.toJSON().body;
@@ -147,7 +146,7 @@ const getCategories = (parent, level) => {
         if (items[0].id != undefined) {
           pos = 0;
 
-          items.map(({ id, name, parent }) => {
+          items.map(({id, name, parent}) => {
             const newCategory = {
               id: id,
               name: name,
@@ -183,7 +182,7 @@ const getCategoryTree = async () => {
     console.log("Category tree");
 
     await getCategories(root, level)
-      .then(res => {
+      .then((res) => {
         console.log(res);
         tree.children[0] = res;
 
@@ -191,14 +190,14 @@ const getCategoryTree = async () => {
           level++;
           var i = 0;
 
-          res.map(async m => {
+          res.map(async (m) => {
             // With m.id I request and what I get goes into
             // m.children
             if (m) {
               if (m.id) {
                 root = Str + `${m.id}`;
 
-                await getCategories(root, level).then(res => {
+                await getCategories(root, level).then((res) => {
                   console.log(res);
                   if (res) {
                     if (tree.children) {
@@ -208,7 +207,7 @@ const getCategoryTree = async () => {
                             console.log(addresses);
 
                             var arrayPos = 0;
-                            addresses.map(addr => {
+                            addresses.map((addr) => {
                               if (addr.id === m.id) {
                                 arrayPos = addr.position;
                               }
@@ -237,7 +236,7 @@ const getCategoryTree = async () => {
         console.log(tree);
         return tree;
       })
-      .catch(error => {
+      .catch((error) => {
         return error;
       });
   }

@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 import CartPage from "../components/common/headers/common/cart-header";
-import { removeFromCart } from "../actions/index";
-import { getCartTotal } from "../services";
+import {removeFromCart} from "../actions/indexO";
+import {getCartTotal} from "../services";
 
-const CartContainer = ({ cartList, total, symbol, removeFromCart }) => (
+const CartContainer = ({cartList, total, symbol, removeFromCart}) => (
   <li className="onhover-div mobile-cart">
     {" "}
     <div className="cart-qty-cls"> {cartList.length} </div>{" "}

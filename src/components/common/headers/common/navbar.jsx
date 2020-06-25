@@ -1,39 +1,39 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { withTranslate } from "react-redux-multilingual";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
+import {withTranslate} from "react-redux-multilingual";
+import {connect} from "react-redux";
 
 //import { getCategories } from "../../../../services/index";
 import {
   addToCart,
   addToWishlist,
   addToCompare,
-} from "../../../../actions/indexF";
+} from "../../../../actions/indexO";
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      navClose: { right: "0px" },
+      navClose: {right: "0px"},
     };
   }
 
   componentWillMount() {
     if (window.innerWidth < 750) {
-      this.setState({ navClose: { right: "-410px" } });
+      this.setState({navClose: {right: "-410px"}});
     }
     if (window.innerWidth < 1199) {
-      this.setState({ navClose: { right: "-300px" } });
+      this.setState({navClose: {right: "-300px"}});
     }
   }
 
   openNav() {
     console.log("open");
-    this.setState({ navClose: { right: "0px" } });
+    this.setState({navClose: {right: "0px"}});
   }
   closeNav() {
-    this.setState({ navClose: { right: "-410px" } });
+    this.setState({navClose: {right: "-410px"}});
   }
 
   onMouseEnterHandler() {
@@ -80,7 +80,7 @@ class NavBar extends Component {
   };
 
   render() {
-    const { translate } = this.props;
+    const {translate} = this.props;
     return (
       <div>
         <div className="main-navbar">

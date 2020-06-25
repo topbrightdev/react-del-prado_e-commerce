@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Slider from "react-slick";
 import "../common/index.scss";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
 // import custom Components
 import RelatedProduct from "../common/related-product";
 import Breadcrumb from "../common/breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
-import { addToCart, addToCartUnsafe, addToWishlist } from "../../actions/index";
+import {addToCart, addToCartUnsafe, addToWishlist} from "../../actions/indexO";
 import ImageZoom from "./common/product/image-zoom";
 import SmallImages from "./common/product/small-image";
 
@@ -24,9 +24,9 @@ class LeftImage extends Component {
 
   componentWillMount() {
     if (window.innerWidth > 576) {
-      this.setState({ vertical: true });
+      this.setState({vertical: true});
     } else {
-      this.setState({ vertical: false });
+      this.setState({vertical: false});
     }
   }
 

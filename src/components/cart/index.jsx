@@ -1,15 +1,11 @@
-import React, { Component } from "react";
-import { Helmet } from "react-helmet";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, {Component} from "react";
+import {Helmet} from "react-helmet";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 import Breadcrumb from "../common/breadcrumb";
-import { getCartTotal } from "../../services";
-import {
-  removeFromCart,
-  incrementQty,
-  decrementQty,
-} from "../../actions/index";
+import {getCartTotal} from "../../services";
+import {removeFromCart, incrementQty, decrementQty} from "../../actions/indexO";
 
 class cartComponent extends Component {
   constructor(props) {
@@ -17,7 +13,7 @@ class cartComponent extends Component {
   }
 
   render() {
-    const { cartItems, symbol, total } = this.props;
+    const {cartItems, symbol, total} = this.props;
     return (
       <div>
         {/*SEO Support*/}

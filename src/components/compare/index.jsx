@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import Slider from "react-slick";
 
 import Breadcrumb from "../common/breadcrumb";
-import { removeFromCompare, addToCart } from "../../actions/index";
+import {removeFromCompare, addToCart} from "../../actions/indexO";
 
 class Compare extends Component {
   changeQty = (e) => {
-    this.setState({ quantity: parseInt(e.target.value) });
+    this.setState({quantity: parseInt(e.target.value)});
   };
 
   render() {
@@ -44,7 +44,7 @@ class Compare extends Component {
       ],
     };
 
-    const { Items, symbol, addToCart, removeFromCompare } = this.props;
+    const {Items, symbol, addToCart, removeFromCompare} = this.props;
 
     return (
       <div>
@@ -180,6 +180,6 @@ const mapStateToProps = (state) => ({
   symbol: state.data.symbol,
 });
 
-export default connect(mapStateToProps, { removeFromCompare, addToCart })(
+export default connect(mapStateToProps, {removeFromCompare, addToCart})(
   Compare
 );

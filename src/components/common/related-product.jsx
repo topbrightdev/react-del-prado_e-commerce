@@ -1,21 +1,15 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Slider from "react-slick";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
-import { getBestSeller } from "../../services";
-import { addToCart, addToWishlist, addToCompare } from "../../actions/index";
+import {getBestSeller} from "../../services";
+import {addToCart, addToWishlist, addToCompare} from "../../actions/indexO";
 import ProductItem from "../layouts/common/product-item";
 
 class RelatedProduct extends Component {
   render() {
-    const {
-      items,
-      symbol,
-      addToCart,
-      addToWishlist,
-      addToCompare,
-    } = this.props;
+    const {items, symbol, addToCart, addToWishlist, addToCompare} = this.props;
 
     return (
       <section className="section-b-space">

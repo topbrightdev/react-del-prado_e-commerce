@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { getTotal, getCartProducts } from "../../../reducers";
-import { addToCart, addToWishlist, addToCompare } from "../../../actions/index";
-import { getVisibleproducts } from "../../../services/index";
+import {getTotal, getCartProducts} from "../../../reducers";
+import {addToCart, addToWishlist, addToCompare} from "../../../actions/indexO";
+import {getVisibleproducts} from "../../../services/index";
 import ProductListItem from "./product-list-item";
 
 class ProductListing extends Component {
   constructor(props) {
     super(props);
-    this.state = { limit: 5, hasMoreItems: true };
+    this.state = {limit: 5, hasMoreItems: true};
   }
 
   componentWillMount() {
@@ -24,7 +24,7 @@ class ProductListing extends Component {
 
   fetchMoreItems = () => {
     if (this.state.limit >= this.props.products.length) {
-      this.setState({ hasMoreItems: false });
+      this.setState({hasMoreItems: false});
       return;
     }
     // a fake async api call

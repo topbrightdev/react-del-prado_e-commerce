@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
-import { getTopCollection, getTrendingCollection } from "../../../services";
-import { Product4 } from "../../../services/script";
+import {getTopCollection, getTrendingCollection} from "../../../services";
+import {Product4} from "../../../services/script";
 import {
   addToCart,
   addToWishlist,
@@ -12,7 +12,7 @@ import {
   incrementQty,
   decrementQty,
   removeFromCart,
-} from "../../../actions/indexF";
+} from "../../../actions/indexO";
 import ProductItem from "../common/special-product-item";
 
 class Tranding extends Component {

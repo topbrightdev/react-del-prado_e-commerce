@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
-import { getSingleItem, getSpecialCollection } from "../../../services/index";
+import {getSingleItem, getSpecialCollection} from "../../../services/index";
 import {
   addToCart,
   addToWishlist,
@@ -11,7 +11,7 @@ import {
   incrementQty,
   decrementQty,
   removeFromCart,
-} from "../../../actions/indexF";
+} from "../../../actions/indexO";
 import ProductItem from "./special-product-item";
 
 class Special extends Component {

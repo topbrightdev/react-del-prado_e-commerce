@@ -1,0 +1,29 @@
+{
+  "name": "react-magnific-popup",
+  "version": "0.0.0",
+  "description": "ReactMagnificPopup",
+  "main": "dist/react-magnific-popup.min.js",
+  "homepage": "https://github.com/bodunadebiyi/react-magnific-popup",
+  "authors": [
+    "Adebiyi Bodunde"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "react",
+    "react-component"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".editorconfig",
+    ".gitignore",
+    "package.json",
+    "src",
+    "node_modules",
+    "example",
+    "test"
+  ]
+}

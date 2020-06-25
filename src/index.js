@@ -102,7 +102,7 @@ class Root extends React.Component {
                     component={CollectionLeftSidebar}
                   />
                   <Route
-                    path={`${process.env.PUBLIC_URL}/no-sidebar/collection/`}
+                    path={`${process.env.PUBLIC_URL}/no-sidebar/collection`}
                     component={CollectionNoSidebar}
                   />
                   <Route

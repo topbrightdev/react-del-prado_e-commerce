@@ -14,11 +14,10 @@ import {Slider6, Slider4} from "../../../services/script";
  */
 
 class ElementCategory extends Component {
-  newTo = (e) => {
-    console.log(e);
+  newTo = (key) => {
     return {
       pathname: `${process.env.PUBLIC_URL}/no-sidebar/collection/`,
-      category: "carne",
+      category: key,
     };
   };
 
@@ -39,11 +38,9 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <a
-                      href={`${process.env.PUBLIC_URL}/no-sidebar/collection/`}
-                    >
+                    <Link to={this.newTo("carne")}>
                       <h2>carne</h2>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -57,9 +54,9 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <a href="#">
+                    <Link to={this.newTo("pescado")}>
                       <h2>pescado</h2>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -73,9 +70,9 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <a href="#">
+                    <Link to={this.newTo("panaderia")}>
                       <h2>panaderia</h2>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -91,9 +88,9 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <a href="#">
+                    <Link to={this.newTo("frutas")}>
                       <h2>frutas y verduras</h2>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -107,9 +104,9 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <a href="#">
+                    <Link to={this.newTo("platos")}>
                       <h2>platos precocinados</h2>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -123,9 +120,9 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <a href="#">
+                    <Link to={this.newTo("bebidas")}>
                       <h2>bebidas</h2>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

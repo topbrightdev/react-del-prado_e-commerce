@@ -42,11 +42,9 @@ export const receiveCategoryTree = (categoryTree) => ({
 });
 
 export const getAllCategories = () => (dispatch) => {
-  console.log(dispatch);
   dispatch(fetchCategoryTreeBegin());
   shop.getCategoryTree().then((categoryTree) => {
     if (categoryTree) {
-      console.log(categoryTree);
       dispatch(receiveCategoryTree(categoryTree));
       return categoryTree;
     }

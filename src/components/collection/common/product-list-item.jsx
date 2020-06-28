@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
 import Modal from "react-responsive-modal";
 
 class ProductListItem extends Component {
@@ -15,33 +15,33 @@ class ProductListItem extends Component {
   }
 
   onOpenModal = () => {
-    this.setState({ open: true });
+    this.setState({open: true});
   };
 
   onCloseModal = () => {
-    this.setState({ open: false });
+    this.setState({open: false});
   };
 
   onClickHandle(img) {
-    this.setState({ image: img });
+    this.setState({image: img});
   }
 
   minusQty = () => {
     if (this.state.quantity > 1) {
-      this.setState({ stock: "InStock" });
-      this.setState({ quantity: this.state.quantity - 1 });
+      this.setState({stock: "InStock"});
+      this.setState({quantity: this.state.quantity - 1});
     }
   };
 
   plusQty = () => {
     if (this.props.product.stock >= this.state.quantity) {
-      this.setState({ quantity: this.state.quantity + 1 });
+      this.setState({quantity: this.state.quantity + 1});
     } else {
-      this.setState({ stock: "Out of Stock !" });
+      this.setState({stock: "Out of Stock !"});
     }
   };
   changeQty = (e) => {
-    this.setState({ quantity: parseInt(e.target.value) });
+    this.setState({quantity: parseInt(e.target.value)});
   };
 
   render() {
@@ -53,7 +53,7 @@ class ProductListItem extends Component {
       onAddToCompareClicked,
     } = this.props;
 
-    const { open } = this.state;
+    const {open} = this.state;
 
     let RatingStars = [];
     for (var i = 0; i < product.rating; i++) {
@@ -88,14 +88,16 @@ class ProductListItem extends Component {
               <i className="fa fa-shopping-cart" aria-hidden="true"></i>
             </button>
             <a
-              href="javascript:void(0)"
+              // href="javascript:void(0)"
+              dangerouslySetInnerHTML={undefined}
               title="Add to Wishlist"
               onClick={onAddToWishlistClicked}
             >
               <i className="fa fa-heart" aria-hidden="true"></i>
             </a>
             <a
-              href="javascript:void(0)"
+              //  href="javascript:void(0)"
+              dangerouslySetInnerHTML={undefined}
               data-toggle="modal"
               data-target="#quick-view"
               title="Quick View"
@@ -120,7 +122,11 @@ class ProductListItem extends Component {
                   }`}
                   key={i}
                 >
-                  <a href="javascript:void(0)" title="Add to Wishlist">
+                  <a
+                    // href="javascript:void(0)"
+                    dangerouslySetInnerHTML={undefined}
+                    title="Add to Wishlist"
+                  >
                     <img
                       src={`${vari.images}`}
                       onClick={() => this.onClickHandle(vari.images)}

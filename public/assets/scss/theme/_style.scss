@@ -45,8 +45,6 @@
 /* 26. Menu CSS */
 /* 27. Responsive CSS */
 
-
-
 /*=====================
     1.General CSS start
 ==========================*/
@@ -171,7 +169,7 @@ button {
 }
 
 .green {
-  background-color: #7ee768;
+  background-color: #96d627;
 }
 
 .orange {
@@ -200,7 +198,12 @@ section,
 }
 
 .margin-t-10 {
-  margin-top: 10% !important
+  margin-top: 10% !important;
+}
+
+.ma-lr {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 hr.style1 {
@@ -212,7 +215,6 @@ hr.style1 {
 }
 
 .no-arrow {
-
   .slick-next,
   .slick-prev {
     display: none !important;
@@ -342,11 +344,13 @@ del {
       }
     }
 
-    .pixelstrap>li>a,
-    .pixelstrap>li>a:hover,
-    .pixelstrap>li>a:active {}
+    .pixelstrap > li > a,
+    .pixelstrap > li > a:hover,
+    .pixelstrap > li > a:active {
+    }
 
-    .onhover-div {}
+    .onhover-div {
+    }
 
     .top-header {
       display: none;
@@ -540,7 +544,6 @@ del {
   background-repeat: no-repeat;
 }
 
-
 /*=====================
     1.1.Button CSS start
 ==========================*/
@@ -554,10 +557,10 @@ button {
   font-size: 14px;
   font-weight: 700;
   border-radius: 0;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 
   &:hover {
-    transition: .3s ease-in-out;
+    transition: 0.3s ease-in-out;
   }
 
   &:focus {
@@ -570,7 +573,11 @@ button {
   color: $white !important;
   letter-spacing: 0.05em;
   border: 2px solid $theme-deafult;
-  background-image: -webkit-linear-gradient(30deg, $theme-deafult 50%, transparent 50%);
+  background-image: -webkit-linear-gradient(
+    30deg,
+    $theme-deafult 50%,
+    transparent 50%
+  );
   background-image: linear-gradient(30deg, $theme-deafult 50%, transparent 50%);
   background-size: 540px;
   background-repeat: no-repeat;
@@ -585,7 +592,11 @@ button {
   }
 
   &.black-btn {
-    background-image: -webkit-linear-gradient(30deg, $dark-font 50%, transparent 50%);
+    background-image: -webkit-linear-gradient(
+      30deg,
+      $dark-font 50%,
+      transparent 50%
+    );
     background-image: linear-gradient(30deg, $dark-font 50%, transparent 50%);
     border: 2px solid $dark-font;
   }
@@ -612,7 +623,7 @@ button {
     right: 50%;
     bottom: 0;
     opacity: 0;
-    content: '';
+    content: "";
     background-color: $theme-deafult;
     z-index: -2;
   }
@@ -641,12 +652,19 @@ button {
 
 button {
   &.btn {
-
     &.btn-solid,
     &.btn-outline {
       &:active {
-        background-image: -webkit-linear-gradient(30deg, $theme-deafult 50%, transparent 50%);
-        background-image: linear-gradient(30deg, $theme-deafult 50%, transparent 50%);
+        background-image: -webkit-linear-gradient(
+          30deg,
+          $theme-deafult 50%,
+          transparent 50%
+        );
+        background-image: linear-gradient(
+          30deg,
+          $theme-deafult 50%,
+          transparent 50%
+        );
         color: $white;
         background: $theme-deafult;
       }
@@ -664,7 +682,6 @@ button {
   background-color: $theme-deafult;
   color: $white;
 }
-
 
 /*=====================
     1.2.Title CSS start
@@ -710,7 +727,12 @@ button {
     hr[role="tournament6"] {
       border: 0px solid;
       height: 1px;
-      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba($theme-deafult, 0.75), rgba(0, 0, 0, 0));
+      background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0),
+        rgba($theme-deafult, 0.75),
+        rgba(0, 0, 0, 0)
+      );
       display: block;
       width: 25%;
       margin: 15px auto 30px auto;
@@ -849,7 +871,6 @@ button {
     }
 
     span {
-
       &:after,
       &:before {
         position: absolute;
@@ -877,7 +898,6 @@ button {
   margin-top: -5px;
 }
 
-
 /*=====================
     1.3.Brand logo CSS start
     ==========================*/
@@ -891,7 +911,7 @@ button {
   img {
     filter: grayscale(100%);
     opacity: 0.5;
-    transition: .5s ease;
+    transition: 0.5s ease;
     margin: 0 auto;
 
     &:focus {
@@ -901,25 +921,22 @@ button {
     &:hover {
       filter: grayscale(0);
       opacity: 1;
-      transition: .5s ease;
+      transition: 0.5s ease;
     }
   }
 }
-
 
 /*=====================
     2.Header CSS start
 ==========================*/
 header {
   background-color: $white;
-
 }
 
 .container-topbar {
   max-width: 95vw !important;
   margin-left: auto;
   margin-right: auto;
-
 }
 
 .container-navbar {
@@ -1000,7 +1017,6 @@ header {
     right: 0;
     padding: 0;
     border-radius: 0 !important;
-
   }
 
   &:hover {
@@ -1022,7 +1038,7 @@ header {
   left: 0;
   background-color: lighten($white, 5%);
 
-  >div {
+  > div {
     height: 100%;
     width: 100%;
     display: flex;
@@ -1341,7 +1357,7 @@ header {
 
     &.around-border {
       .navbar {
-        >a {
+        > a {
           border: 2px solid lighten($theme-deafult, 35%);
           padding: 11px 10px 6px;
         }
@@ -1353,7 +1369,7 @@ header {
         padding-right: 0;
         padding-left: 45px;
 
-        >a {
+        > a {
           padding: 0;
         }
 
@@ -1597,13 +1613,11 @@ header {
   }
 }
 
-
 /*=====================
     3.Home slider CSS start
 ==========================*/
 .home-slider,
 .center-slider {
-
   .slick-prev,
   .slick-next {
     opacity: 0;
@@ -1647,17 +1661,13 @@ header {
     background-position: right !important;
     height: 75vh !important;
 
-
     @for $i from 1 through 56 {
       &.home#{$i} {
         // background-image:url("#{$assetspath}/home-banner/#{$i}.jpg");
-        background-image:url("#{$assetspath}/vegetables/theme/#{$i}.jpeg");
-
+        background-image: url("#{$assetspath}/vegetables/theme/#{$i}.jpeg");
       }
     }
   }
-
-
 
   .container {
     min-width: 90vw !important;
@@ -1670,7 +1680,6 @@ header {
     margin-left: auto;
     margin-right: auto;
   }
-
 
   .slider-contain {
     width: 100%;
@@ -1728,7 +1737,6 @@ header {
   }
 
   &:hover {
-
     .slick-prev,
     .slick-next {
       opacity: 1;
@@ -1754,8 +1762,6 @@ header {
   .slider-contain {
     padding: 0 100px;
   }
-
-
 }
 
 .center-slider {
@@ -1767,11 +1773,9 @@ header {
   margin-top: 10vh;
 }
 
-
 .home-slider {
   &.text-white {
     .slider-contain {
-
       h1,
       h4 {
         color: $white;
@@ -1900,7 +1904,7 @@ header {
   }
 
   .home-banner {
-    >div {
+    > div {
       img {
         width: 100%;
       }
@@ -1918,7 +1922,6 @@ header {
   margin-top: -105px;
   background: transparent;
 
-
   .absolute-bg {
     background-color: white;
     position: relative;
@@ -1927,7 +1930,6 @@ header {
     z-index: 4;
   }
 }
-
 
 /*=====================
     4.Instagram CSS start
@@ -1942,12 +1944,12 @@ header {
   }
 
   .overlay {
-    transition: .5s ease;
+    transition: 0.5s ease;
     opacity: 0;
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: rgba($theme-deafult, .5);
+    background-color: rgba($theme-deafult, 0.5);
     top: 0;
     text-align: center;
     display: flex;
@@ -1964,12 +1966,11 @@ header {
   &:hover {
     .overlay {
       opacity: 1;
-      transition: .5s ease;
+      transition: 0.5s ease;
       transform: scale(1) rotate(0deg);
     }
   }
 }
-
 
 /*=====================
     5.Blog CSS start
@@ -1993,7 +1994,7 @@ header {
     background: $theme-deafult;
     width: 25%;
     position: absolute;
-    content: '';
+    content: "";
     opacity: 0;
     -webkit-transition: all 0.3s steps(4);
     transition: all 0.3s steps(4);
@@ -2013,13 +2014,12 @@ header {
   }
 
   span {
-
     &:before,
     &:after {
       background: $theme-deafult;
       width: 25%;
       position: absolute;
-      content: '';
+      content: "";
       opacity: 0;
       -webkit-transition: all 0.3s steps(4);
       transition: all 0.3s steps(4);
@@ -2040,7 +2040,6 @@ header {
   }
 
   &:hover {
-
     &:before,
     &:after {
       bottom: 0;
@@ -2048,7 +2047,6 @@ header {
     }
 
     span {
-
       &:before,
       &:after {
         bottom: 0;
@@ -2102,7 +2100,6 @@ header {
   }
 }
 
-
 /*=====================
     6.Service CSS start
 ==========================*/
@@ -2121,7 +2118,7 @@ header {
   }
 
   .mw-100 {
-    min-width: 100%
+    min-width: 100%;
   }
 
   .media {
@@ -2151,7 +2148,7 @@ header {
     margin-bottom: 0;
   }
 
-  +.service-block {
+  + .service-block {
     border-left: 1px solid lighten($black, 86.5%);
   }
 
@@ -2206,7 +2203,6 @@ header {
   }
 }
 
-
 /*=====================
     7.About CSS start
 ==========================*/
@@ -2218,7 +2214,6 @@ header {
     margin-bottom: 50px;
   }
 }
-
 
 /*=====================
     8.Banner Timer CSS start
@@ -2276,10 +2271,8 @@ header {
       padding-left: 22px;
       display: inline;
     }
-
   }
 }
-
 
 /*=====================
     9.Category CSS start
@@ -2376,12 +2369,11 @@ header {
           display: inline-block;
           padding: 20px 35px;
           margin-bottom: 0;
-          box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.40);
+          box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.4);
           transition: 0.5s ease;
         }
       }
     }
-
   }
 }
 
@@ -2467,7 +2459,11 @@ header {
       }
 
       .category-btn {
-        background-image: linear-gradient(30deg, $dark-font 50%, transparent 50%);
+        background-image: linear-gradient(
+          30deg,
+          $dark-font 50%,
+          transparent 50%
+        );
         border: 2px solid $dark-font;
         transition: all 0.5s ease;
       }
@@ -2511,7 +2507,7 @@ header {
 
 .category-m {
   .slick-slide {
-    >div {
+    > div {
       margin: 0 20px;
     }
   }
@@ -2525,8 +2521,7 @@ header {
     padding-bottom: 40px;
     position: relative;
 
-    >div {
-
+    > div {
       &:after,
       &:before {
         content: "";
@@ -2578,8 +2573,7 @@ header {
         width: 100%;
       }
 
-      >div {
-
+      > div {
         &:after,
         &:before {
           transition-delay: 0.2s;
@@ -2659,7 +2653,6 @@ header {
   }
 }
 
-
 /*=====================
     10.Product Box CSS start
 ==========================*/
@@ -2684,7 +2677,6 @@ header {
     .img-wrapper {
       border-radius: 5px 5px 0 0;
     }
-
 
     .product-detail {
       text-align: center;
@@ -2810,7 +2802,7 @@ header {
 
 .product-m {
   .slick-slide {
-    >div {
+    > div {
       margin: 0 10px;
     }
   }
@@ -2835,7 +2827,7 @@ header {
     max-width: calc(25% - 30px);
     margin: 0 15px 30px;
 
-    &:nth-last-child(-n+4) {
+    &:nth-last-child(-n + 4) {
       margin: 0 15px 0;
     }
   }
@@ -2889,12 +2881,12 @@ header {
     margin-bottom: 30px;
 
     img {
-      transition: all .4s ease;
+      transition: all 0.4s ease;
     }
 
     .overlay-background {
       transform: scale(0);
-      transition: all .4s ease;
+      transition: all 0.4s ease;
 
       i {
         position: absolute;
@@ -2918,7 +2910,7 @@ header {
     &:hover {
       img {
         transform: scale(1.2) rotate(2deg);
-        transition: all .4s ease;
+        transition: all 0.4s ease;
       }
 
       .overlay-background {
@@ -3274,7 +3266,6 @@ header {
     transition: all 0.5s ease;
 
     a {
-
       [class^="icon-"],
       [class*=" icon-"] {
         display: inline-block;
@@ -3683,7 +3674,6 @@ header {
 
 .game-product {
   .theme-tab {
-
     .tab-title,
     .tab-title2 {
       .current {
@@ -3754,7 +3744,6 @@ header {
   }
 }
 
-
 /*=====================
     11.Theme tab CSS start
 ==========================*/
@@ -3762,7 +3751,6 @@ header {
   background: unset !important;
   border-color: transparent !important;
   color: $theme-deafult !important;
-  ;
   border-radius: 0 !important;
 
   .nav-link {
@@ -3792,7 +3780,6 @@ header {
     display: block;
 
     &[style="display: block;"] {
-
       .product-box,
       .tab-box {
         animation: zoomIn 300ms ease-in-out;
@@ -3949,7 +3936,6 @@ header {
   }
 }
 
-
 /*=====================
     12.Banner CSS start
 ==========================*/
@@ -3964,7 +3950,7 @@ header {
 
   @for $i from 1 through 28 {
     &.parallax-banner#{$i} {
-      background-image:url("#{$assetspath}/parallax/#{$i}.jpg");
+      background-image: url("#{$assetspath}/parallax/#{$i}.jpg");
     }
   }
 
@@ -4022,7 +4008,6 @@ header {
   }
 
   .banner-contain {
-
     .btn-solid,
     .btn-outline {
       margin-top: 20px;
@@ -4075,7 +4060,6 @@ header {
     }
   }
 }
-
 
 /*=====================
     13.Collection Banner CSS start
@@ -4262,7 +4246,6 @@ header {
   }
 }
 
-
 /*=====================
     14.Product-box slider CSS start
 ==========================*/
@@ -4412,7 +4395,7 @@ header {
       padding: 15px 15px 15px 0;
     }
 
-    >div {
+    > div {
       .media {
         &:last-child {
           .media-body {
@@ -4557,7 +4540,7 @@ header {
           }
         }
 
-        +.product-box2 {
+        + .product-box2 {
           border-top: 1px solid $border-grey;
         }
 
@@ -4638,7 +4621,6 @@ header {
     .modal-body {
       padding: 0;
     }
-
   }
 }
 
@@ -4649,7 +4631,24 @@ header {
     .modal-content {
       .modal-body {
         padding: 15px;
-        background-image: linear-gradient(135deg, $theme-deafult 5.77%, $white 5.77%, $white 25%, $grey01 25%, $grey01 30.77%, $white 30.77%, $white 50%, $theme-deafult 50%, $theme-deafult 55.77%, $white 55.77%, $white 75%, $grey01 75%, $grey01 80.77%, $white 80.77%, $white 100%);
+        background-image: linear-gradient(
+          135deg,
+          $theme-deafult 5.77%,
+          $white 5.77%,
+          $white 25%,
+          $grey01 25%,
+          $grey01 30.77%,
+          $white 30.77%,
+          $white 50%,
+          $theme-deafult 50%,
+          $theme-deafult 55.77%,
+          $white 55.77%,
+          $white 75%,
+          $grey01 75%,
+          $grey01 80.77%,
+          $white 80.77%,
+          $white 100%
+        );
         background-size: 36.77px 36.77px;
 
         @for $i from 1 through 15 {
@@ -4851,7 +4850,6 @@ header {
   }
 }
 
-
 /*=====================
     16.look-book demo CSS start
 ==========================*/
@@ -4859,7 +4857,7 @@ header {
   padding: 25px;
 
   .lookbook-img {
-    >div {
+    > div {
       &:last-child {
         img {
           margin-top: 25px;
@@ -4868,7 +4866,6 @@ header {
     }
   }
 }
-
 
 /*=====================
     17.1.lookbook CSS start
@@ -5058,7 +5055,6 @@ header {
   }
 }
 
-
 /*=====================
     17.2. Beauty Demo css
 ==========================*/
@@ -5155,7 +5151,6 @@ header {
   }
 }
 
-
 /*=====================
     17.3. Electronics Demo CSS
 ==========================*/
@@ -5200,7 +5195,6 @@ header {
     background-position: 0 500px;
   }
 }
-
 
 /*=====================
       17.4.pets demo CSS start
@@ -5374,7 +5368,6 @@ header {
   }
 
   .banner-contain {
-
     h4,
     h3,
     p {
@@ -5512,7 +5505,6 @@ footer {
   }
 }
 
-
 /*=====================
    17.5. Metro layout  CSS start
 ==========================*/
@@ -5647,7 +5639,6 @@ footer {
   }
 }
 
-
 /*=====================
    17.6. GYM layout  CSS start
 ==========================*/
@@ -5700,7 +5691,11 @@ footer {
 
   .instagram-box {
     .overlay {
-      background: linear-gradient(-180deg, rgba($gradient1, 0.8) 0%, rgba($gradient2, 0.8) 99%);
+      background: linear-gradient(
+        -180deg,
+        rgba($gradient1, 0.8) 0%,
+        rgba($gradient2, 0.8) 99%
+      );
     }
   }
 }
@@ -5784,7 +5779,7 @@ footer {
   }
 
   .partition-cls {
-    >div {
+    > div {
       &:nth-child(-n + 4) {
         margin-bottom: 30px;
       }
@@ -5806,7 +5801,6 @@ footer {
 .gym-banner {
   .collection-banner {
     .contain-banner {
-
       h4,
       h2 {
         color: $white;
@@ -5854,7 +5848,6 @@ footer {
       }
     }
   }
-
 }
 
 .tap-top {
@@ -5944,8 +5937,8 @@ footer {
   }
 
   .sm-horizontal {
-    >li {
-      >a {
+    > li {
+      > a {
         padding-top: 20px;
         padding-bottom: 20px;
         color: $white;
@@ -5978,7 +5971,7 @@ footer {
     padding-top: 20px;
     padding-bottom: 20px;
 
-    >div {
+    > div {
       img {
         filter: brightness(54);
       }
@@ -6035,7 +6028,6 @@ footer {
   }
 }
 
-
 /*=====================
   17.7  extra layout CSS start
 ==========================*/
@@ -6045,7 +6037,6 @@ footer {
     background-color: $white;
 
     .header-dropdown {
-
       .mobile-wishlist,
       .mobile-account {
         img {
@@ -6063,7 +6054,7 @@ footer {
     padding-top: 15px;
     padding-bottom: 15px;
 
-    >div {
+    > div {
       img {
         width: 20px;
         height: auto;
@@ -6088,8 +6079,8 @@ footer {
     }
 
     .pixelstrap {
-      >li {
-        >a {
+      > li {
+        > a {
           padding: 10px 0 20px 0;
 
           &:hover,
@@ -6191,7 +6182,6 @@ footer {
       }
 
       .leftside_setting {
-
         .language,
         .currency {
           display: flex;
@@ -6263,7 +6253,7 @@ footer {
 
     .menu-right {
       .header-dropdown {
-        >li {
+        > li {
           img {
             width: 20px;
             height: auto;
@@ -6273,7 +6263,7 @@ footer {
 
       .icon-nav {
         .onhover-div {
-          >img {
+          > img {
             width: 20px;
             height: auto;
           }
@@ -6387,7 +6377,6 @@ footer {
     padding-right: 30px;
   }
 
-
   .top-header {
     background-color: transparent;
 
@@ -6395,8 +6384,6 @@ footer {
       background-color: $theme-deafult;
       width: 50vw;
     }
-
-
 
     .header-contact {
       padding: 10px 0;
@@ -6430,10 +6417,8 @@ footer {
   }
 
   .logo-menu-part {
-
     background-color: #fff;
     border-bottom: 2px solid $theme-deafult;
-
   }
 
   .main-menu {
@@ -6450,8 +6435,8 @@ footer {
   }
 
   .sm-horizontal {
-    >li {
-      >a {
+    > li {
+      > a {
         padding-top: 25px;
         padding-bottom: 25px;
 
@@ -6496,7 +6481,6 @@ footer {
     .home-slider {
       .home {
         .slider-contain {
-
           h4,
           h1 {
             color: $white;
@@ -6539,7 +6523,6 @@ footer {
   }
 
   .tools-grey {
-
     .slick-prev,
     .slick-next {
       transform: scale(1.5);
@@ -6765,7 +6748,7 @@ footer {
     span {
       font-size: 10px;
       font-weight: bold;
-      color: #FFF;
+      color: #fff;
       text-transform: uppercase;
       text-align: center;
       line-height: 20px;
@@ -6811,7 +6794,6 @@ footer {
       background-color: white;
       border: none;
       box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
-
     }
   }
 }
@@ -6860,7 +6842,6 @@ footer {
       }
 
       .contact-list {
-
         li,
         i {
           color: $grey8;
@@ -7069,7 +7050,7 @@ footer {
   .detail_section {
     text-align: center;
 
-    >div {
+    > div {
       box-shadow: -1px 2px 5px 1px #ececec;
       padding: 45px 25px;
       background-color: white;
@@ -7104,7 +7085,7 @@ footer {
     .sub-footer {
       background-color: transparent;
 
-      >.container {
+      > .container {
         border-top: 1px solid $white;
       }
 
@@ -7153,7 +7134,7 @@ footer {
   }
 }
 
-#toast-container>div {
+#toast-container > div {
   opacity: 1;
 }
 
@@ -7164,21 +7145,20 @@ footer {
 }
 
 .toast-success {
-  background-color: #51A351 !important;
+  background-color: #51a351 !important;
 }
 
 .toast-error {
-  background-color: #BD362F !important;
+  background-color: #bd362f !important;
 }
 
 .toast-info {
-  background-color: #2F96B4 !important;
+  background-color: #2f96b4 !important;
 }
 
 .toast-warning {
-  background-color: #F89406 !important;
+  background-color: #f89406 !important;
 }
-
 
 /*=====================
     18.Flying Cart CSS start
@@ -7219,7 +7199,6 @@ footer {
     }
   }
 }
-
 
 /*=====================
     19.footer CSS start
@@ -7537,7 +7516,6 @@ footer {
     p {
       color: $grey-font;
     }
-
   }
 
   &.darker-subfooter {
@@ -7705,7 +7683,6 @@ footer {
   }
 
   &.section-light {
-
     h2,
     h4 {
       color: $dark-font;
@@ -7812,7 +7789,7 @@ footer {
     border-radius: 50%;
 
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       border-radius: 50%;
       top: 50%;
@@ -7846,7 +7823,6 @@ footer {
   }
 }
 
-
 /*=====================
     21.Tab to top CSS start
 ==========================*/
@@ -7871,7 +7847,6 @@ footer {
     bottom: 130px;
   }
 }
-
 
 /*=====================
     22.theme setting box CSS start
@@ -7954,7 +7929,7 @@ footer {
   top: calc(38vh + 220px);
   width: 190px;
   z-index: 1;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 
   .settings-header {
     background: #f3f3f3;
@@ -7995,7 +7970,8 @@ footer {
       z-index: -1;
       text-decoration: none;
       background-color: rgb(249, 249, 249);
-      box-shadow: -5.985px -0.419px 30px 0 rgba(0, 0, 0, .08), inset -2px 0 10px 0 rgba(0, 0, 0, .04);
+      box-shadow: -5.985px -0.419px 30px 0 rgba(0, 0, 0, 0.08),
+        inset -2px 0 10px 0 rgba(0, 0, 0, 0.04);
       top: -80px;
       color: $black;
 
@@ -8256,7 +8232,8 @@ footer {
       }
     }
 
-    .btn_multi {}
+    .btn_multi {
+    }
   }
 
   .overlay {
@@ -8302,7 +8279,7 @@ footer {
       display: block;
     }
 
-    >div {
+    > div {
       text-decoration: none;
       color: black;
 
@@ -8316,7 +8293,7 @@ footer {
 
         @for $i from 1 through 70 {
           &.demo#{$i} {
-            background-image:url("#{$assetspath}/landing-page/demo/#{$i}.jpg");
+            background-image: url("#{$assetspath}/landing-page/demo/#{$i}.jpg");
           }
         }
       }
@@ -8349,7 +8326,6 @@ footer {
               color: white;
             }
           }
-
         }
       }
     }
@@ -8413,7 +8389,7 @@ footer {
   top: 35%;
   width: 190px;
   z-index: 1;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 
   .settings-header {
     background: #f3f3f3;
@@ -8510,7 +8486,6 @@ footer {
     background-color: white;
   }
 }
-
 
 /*=====================
   23.Inner pages CSS start
@@ -8859,7 +8834,7 @@ footer {
 
         .custom-control-input {
           &:checked {
-            ~.custom-control-label {
+            ~ .custom-control-label {
               &:after {
                 background-image: url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path fill='%23000' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/></svg>");
               }
@@ -9224,6 +9199,7 @@ footer {
         }
       }
     }
+    min-width: 100%;
 
     .product-five {
       flex: 0 0 20%;
@@ -9607,7 +9583,6 @@ footer {
       height: 100%;
       border: none;
     }
-
   }
 
   .contact-right {
@@ -9679,7 +9654,6 @@ footer {
       margin-bottom: 30px;
       height: inherit;
     }
-
   }
 
   .form-control {
@@ -9731,7 +9705,7 @@ footer {
 .wishlist-section {
   .table {
     tbody {
-      &+tbody {
+      & + tbody {
         border-top: none;
       }
     }
@@ -9740,7 +9714,7 @@ footer {
   .cart-buttons {
     padding-top: 35px;
 
-    >div {
+    > div {
       &:last-child {
         text-align: right;
         padding-right: 59px;
@@ -9909,7 +9883,7 @@ footer {
       margin-bottom: 15px;
 
       li {
-        &+li {
+        & + li {
           padding-left: 15px;
           margin-left: 15px;
           border-left: 1px solid $round-border;
@@ -9919,7 +9893,7 @@ footer {
   }
 
   .blog-advance {
-    >div {
+    > div {
       &:last-child {
         p {
           &:last-child {
@@ -10052,7 +10026,7 @@ footer {
             }
           }
 
-          &+li {
+          & + li {
             margin-top: 30px;
           }
         }
@@ -10075,7 +10049,7 @@ footer {
             }
           }
 
-          &+li {
+          & + li {
             margin-top: 30px;
           }
 
@@ -10085,7 +10059,7 @@ footer {
         }
       }
 
-      &+.theme-card {
+      & + .theme-card {
         margin-top: 30px;
       }
     }
@@ -10136,7 +10110,7 @@ footer {
             padding-right: 3px;
           }
 
-          &+li {
+          & + li {
             padding-left: 15px;
             margin-left: 15px;
             border-left: 1px solid #dddddd;
@@ -10153,7 +10127,7 @@ footer {
   height: 300px;
   background-repeat: no-repeat;
   margin: 0 auto;
-  background-image:url("#{$assetspath}/loader.gif");
+  background-image: url("#{$assetspath}/loader.gif");
   background-size: cover;
 }
 
@@ -10226,14 +10200,13 @@ footer {
   }
 
   .slick-slide {
-    >div {
+    > div {
       display: flex;
       margin-bottom: 5px;
     }
   }
 
   &:hover {
-
     .slick-prev,
     .slick-next {
       opacity: 1;
@@ -10269,7 +10242,7 @@ footer {
     padding: 0 15px 15px;
     padding-bottom: 0;
 
-    >div {
+    > div {
       display: flex;
       margin: 15px 15px 0 15px;
       border: 1px solid $round-border;
@@ -10277,7 +10250,7 @@ footer {
     }
 
     &.slick-current {
-      >div {
+      > div {
         border-color: $font-grey;
         transition: all 0.5s ease;
       }
@@ -10297,7 +10270,7 @@ footer {
 .rtl-slider-right-nav {
   .slick-slide {
     &:first-child {
-      >div {
+      > div {
         margin-top: 0;
       }
     }
@@ -10319,7 +10292,7 @@ footer {
 
 .image-scroll {
   div {
-    >div {
+    > div {
       padding-bottom: 20px;
 
       &:last-child {
@@ -10663,7 +10636,6 @@ footer {
 }
 
 .vertical-tab {
-
   &.tab-product,
   .product-full-tab {
     .nav-material {
@@ -11026,7 +10998,6 @@ footer {
     }
 
     input {
-
       &[type="text"],
       &[type="email"],
       &[type="password"],
@@ -11342,7 +11313,7 @@ footer {
       }
 
       &:before {
-        content: '\f105';
+        content: "\f105";
         display: inline-block;
         font-family: FontAwesome;
         font-style: normal;
@@ -11433,7 +11404,7 @@ footer {
         color: #333;
       }
 
-      >a {
+      > a {
         position: absolute;
         right: 0;
         top: 12px;
@@ -11786,7 +11757,7 @@ footer {
   }
 
   .slick-slide {
-    >div {
+    > div {
       border: 1px solid #ddd;
       border-left: none;
     }
@@ -11805,7 +11776,6 @@ body.rtl {
 }
 
 .rtl {
-
   h1,
   h2,
   h3,
@@ -11845,7 +11815,6 @@ body.rtl {
   .title2,
   .title3,
   .title4 {
-
     h1,
     h2,
     h3,
@@ -11881,7 +11850,6 @@ body.rtl {
   }
 
   .effect-cls {
-
     &:before,
     &:after {
       right: 0;
@@ -11927,7 +11895,7 @@ body.rtl {
 
   .offer-slider {
     .slick-slide {
-      >div {
+      > div {
         direction: rtl;
       }
     }
@@ -11976,7 +11944,6 @@ body.rtl {
   .absolute_banner {
     .collection-banner {
       .absolute-contain {
-
         h3,
         h4 {
           text-align: center;
@@ -11988,7 +11955,6 @@ body.rtl {
   .absolute-product {
     .product-box {
       .product-detail {
-
         .rating,
         h4,
         h6,
@@ -12079,7 +12045,6 @@ body.rtl {
   .gym-product {
     .product-box {
       .product-detail {
-
         h6,
         h4 {
           text-align: center;
@@ -12089,7 +12054,7 @@ body.rtl {
   }
 
   .search-overlay {
-    >div {
+    > div {
       .closebtn {
         right: unset;
         left: 25px;
@@ -12100,7 +12065,6 @@ body.rtl {
   .home-slider,
   .center-slider {
     .text-center {
-
       p,
       h1,
       h2,
@@ -12113,7 +12077,6 @@ body.rtl {
     }
 
     .text-left {
-
       p,
       h1,
       h2,
@@ -12126,7 +12089,6 @@ body.rtl {
     }
 
     .text-right {
-
       p,
       h1,
       h2,
@@ -12151,7 +12113,6 @@ body.rtl {
     }
 
     .slider-contain {
-
       h1,
       h2,
       h3,
@@ -12211,7 +12172,6 @@ body.rtl {
     }
 
     .product-info {
-
       h4,
       h6 {
         text-align: center;
@@ -12363,14 +12323,13 @@ body.rtl {
       margin-right: 0;
     }
 
-    +.service-block {
+    + .service-block {
       border-right: 1px solid lighten($black, 86.5%);
       border-left: none;
     }
   }
 
   .service-block1 {
-
     h4,
     p {
       text-align: center;
@@ -12378,7 +12337,6 @@ body.rtl {
   }
 
   .blog-details {
-
     h4,
     h6 {
       text-align: center;
@@ -12446,7 +12404,6 @@ body.rtl {
 
     &.text-center {
       .contain-banner {
-
         h1,
         h2,
         h3,
@@ -12460,7 +12417,6 @@ body.rtl {
 
     &.text-left {
       .contain-banner {
-
         h1,
         h2,
         h3,
@@ -12474,7 +12430,6 @@ body.rtl {
 
     &.text-right {
       .contain-banner {
-
         h1,
         h2,
         h3,
@@ -12502,7 +12457,6 @@ body.rtl {
 
   .full-banner {
     .banner-contain {
-
       .btn-solid,
       .btn-outline {
         //float: right;
@@ -12541,7 +12495,6 @@ body.rtl {
 
     &.text-center {
       .banner-contain {
-
         h2,
         h3,
         h4 {
@@ -12552,7 +12505,6 @@ body.rtl {
 
     &.text-left {
       .banner-contain {
-
         h2,
         h3,
         h4 {
@@ -12563,7 +12515,6 @@ body.rtl {
 
     &.text-right {
       .banner-contain {
-
         h2,
         h3,
         h4 {
@@ -12629,7 +12580,7 @@ body.rtl {
         }
 
         .slick-slide {
-          >div {
+          > div {
             direction: rtl;
           }
         }
@@ -12764,7 +12715,6 @@ body.rtl {
       .table {
         tbody {
           tr {
-
             th,
             td {
               text-align: right;
@@ -12790,10 +12740,8 @@ body.rtl {
   }
 
   .product-wrap {
-
     .product-detail,
     .product-info {
-
       .rating,
       h4,
       h6,
@@ -12810,7 +12758,7 @@ body.rtl {
   }
 
   .breadcrumb-item {
-    +.breadcrumb-item {
+    + .breadcrumb-item {
       padding-right: 0.5rem;
       padding-left: 0;
 
@@ -12902,7 +12850,6 @@ body.rtl {
       .slick-track {
         .slick-slide {
           .media {
-
             h5,
             h6 {
               text-align: center;
@@ -12968,7 +12915,7 @@ body.rtl {
           text-align: right;
 
           li {
-            +li {
+            + li {
               padding-right: 15px;
               margin-right: 15px;
               border-right: 1px solid $round-border;
@@ -12988,7 +12935,7 @@ body.rtl {
         text-align: right;
 
         li {
-          +li {
+          + li {
             padding-right: 15px;
             margin-right: 15px;
             border-right: 1px solid $round-border;
@@ -13017,7 +12964,6 @@ body.rtl {
 
     .blog-contact {
       .theme-form {
-
         label,
         .btn-solid,
         .btn-outline {
@@ -13032,7 +12978,6 @@ body.rtl {
     tbody {
       tr {
         td {
-
           h2,
           p {
             text-align: center;
@@ -13054,7 +12999,7 @@ body.rtl {
     }
 
     .cart-buttons {
-      >div {
+      > div {
         &:last-child {
           text-align: left;
           padding-left: 59px;
@@ -13062,7 +13007,6 @@ body.rtl {
         }
 
         &:first-child {
-
           .btn-solid,
           .btn-outline {
             float: right;
@@ -13296,7 +13240,6 @@ body.rtl {
     }
 
     &.product-form-box {
-
       h4,
       h3,
       h6 {
@@ -13376,7 +13319,6 @@ body.rtl {
   .collection {
     .collection-block {
       .collection-content {
-
         h3,
         h4,
         p {
@@ -13601,7 +13543,7 @@ body.rtl {
   }
 
   .search-overlay {
-    >div {
+    > div {
       .overlay-content {
         button {
           right: unset;
@@ -13659,10 +13601,8 @@ body.rtl {
   }
 
   .footer-theme2 {
-
     .footer-block,
     .footer-title {
-
       h4,
       h2 {
         text-align: center;
@@ -13719,7 +13659,6 @@ body.rtl {
 
   .rtl-text {
     .product-right {
-
       .color-variant,
       .size-box,
       .product-buttons,
@@ -13804,7 +13743,6 @@ body.rtl {
   }
 
   .error-section {
-
     h1,
     h2 {
       text-align: center;
@@ -13814,7 +13752,7 @@ body.rtl {
   .dashboard {
     .box {
       .box-title {
-        >a {
+        > a {
           right: unset;
           left: 0;
         }
@@ -13827,7 +13765,6 @@ body.rtl {
   }
 
   .success-text {
-
     h2,
     p {
       text-align: center;
@@ -13849,7 +13786,6 @@ body.rtl {
   }
 
   .delivery-sec {
-
     h2,
     h3 {
       text-align: center;
@@ -13876,7 +13812,6 @@ body.rtl {
                 #upsell_product {
                   .product-box {
                     .product-detail {
-
                       h6,
                       h4 {
                         text-align: center;
@@ -13974,7 +13909,6 @@ body.rtl {
   }
 
   .game-product {
-
     .product-box,
     .product-wrap {
       .product-detail {
@@ -13991,7 +13925,6 @@ body.rtl {
   }
 
   .j-box {
-
     .product-box,
     .product-wrap {
       .cart-info {
@@ -14014,7 +13947,7 @@ body.rtl {
 
   .product-m {
     .slick-slide {
-      >div {
+      > div {
         direction: rtl;
       }
     }
@@ -14059,7 +13992,6 @@ body.rtl {
   //}
   .detail-cannabis {
     .detail_section {
-
       h4,
       p {
         text-align: center;
@@ -14146,7 +14078,7 @@ body.rtl {
           .modal-body {
             .demo-section {
               .demo-effects {
-                >div {
+                > div {
                   .demo-text {
                     h4 {
                       text-align: center;
@@ -14161,7 +14093,6 @@ body.rtl {
     }
   }
 }
-
 
 /*=====================
     25.Dark CSS start
@@ -14263,7 +14194,6 @@ body {
 
     &.header-5 {
       .pixelstrap {
-
         a,
         &:hover,
         &:active {
@@ -14304,7 +14234,7 @@ body {
       transition: all 0.3s ease;
 
       .logo-menu-part {
-        >.container {
+        > .container {
           background-color: $dark-body;
           transition: all 0.3s ease;
           border-color: $dark-border;
@@ -14321,7 +14251,7 @@ body {
       .main-menu {
         .menu-right {
           .header-dropdown {
-            >li {
+            > li {
               img {
                 filter: invert(100);
               }
@@ -14331,7 +14261,7 @@ body {
       }
 
       .onhover-div {
-        >div {
+        > div {
           img {
             filter: invert(100);
           }
@@ -14350,8 +14280,8 @@ body {
         }
 
         .pixelstrap {
-          >li {
-            >a {
+          > li {
+            > a {
               background-color: $dark-top;
               transition: all 0.3s ease;
             }
@@ -14389,7 +14319,6 @@ body {
 
   .main-navbar {
     .nav-menu {
-
       // background-color: $dark-body;
       .back-btn {
         .mobile-back {
@@ -14397,8 +14326,8 @@ body {
         }
       }
 
-      >li {
-        >a {
+      > li {
+        > a {
           color: $white-1;
         }
 
@@ -14507,7 +14436,6 @@ body {
   }
 
   .pixelstrap {
-
     .home-menu,
     .feature-menu,
     .category-menu,
@@ -14518,7 +14446,7 @@ body {
   }
 
   .onhover-div {
-    >div {
+    > div {
       img {
         filter: brightness(100);
       }
@@ -14799,7 +14727,7 @@ body {
   }
 
   .service-block {
-    +.service-block {
+    + .service-block {
       border-color: $dark-border;
     }
   }
@@ -14807,7 +14735,7 @@ body {
   .pixelstrap {
     &.light-font-menu {
       li {
-        >a {
+        > a {
           color: $white-1;
         }
       }
@@ -14815,7 +14743,6 @@ body {
   }
 
   .theme-tab {
-
     .tab-title,
     .tab-title2 {
       a {
@@ -14848,7 +14775,6 @@ body {
 
   .product-box,
   .product-wrap {
-
     .product-detail,
     .product-info {
       h4 {
@@ -14954,7 +14880,7 @@ body {
       border-color: $dark-border;
 
       li {
-        +li {
+        + li {
           border-color: $dark-border;
         }
       }
@@ -15021,7 +14947,7 @@ body {
 
   .table {
     tbody {
-      +tbody {
+      + tbody {
         border-color: $dark-border;
       }
     }
@@ -15055,7 +14981,6 @@ body {
 
       .product-filter-content,
       .popup-filter {
-
         .search-count,
         .sidebar-popup {
           border-color: $dark-border;
@@ -15193,7 +15118,6 @@ body {
       }
 
       input {
-
         &[type="text"],
         &[type="email"],
         &[type="password"],
@@ -15285,7 +15209,6 @@ body {
   }
 
   .table {
-
     th,
     td {
       border-color: $dark-border;
@@ -15355,7 +15278,7 @@ body {
     }
 
     .slick-slide {
-      >div {
+      > div {
         border-color: $dark-border;
       }
 
@@ -15521,7 +15444,7 @@ body {
     .theme-card {
       .offer-slider {
         .product-box2 {
-          +.product-box2 {
+          + .product-box2 {
             border-top: none;
           }
         }
@@ -15739,7 +15662,6 @@ body {
     }
 
     .authentication-right {
-
       h6,
       p {
         color: $white-5;
@@ -15844,7 +15766,7 @@ body {
       }
 
       .sub-footer {
-        >.container {
+        > .container {
           border-color: $dark-border;
         }
       }
@@ -16053,7 +15975,6 @@ body {
   .tab-product,
   .product-full-tab {
     .theme-form {
-
       input,
       textarea {
         border-color: $dark-border;
@@ -16305,7 +16226,6 @@ body {
 
     .typo-content {
       &.heading_content {
-
         h1,
         h2,
         h3,
@@ -16437,7 +16357,6 @@ body {
     tbody {
       tr {
         td {
-
           a,
           p {
             color: $dark-link;
@@ -16478,7 +16397,7 @@ body {
         transition: all 0.3s ease;
 
         &:nth-child(even) {
-          background-color: rgba($dark-top, 0.70);
+          background-color: rgba($dark-top, 0.7);
           transition: all 0.3s ease;
         }
 
@@ -16498,7 +16417,7 @@ body {
 
   .detail-cannabis {
     .detail_section {
-      >div {
+      > div {
         background-color: $dark-body;
         transition: all 0.3s ease;
         box-shadow: none;
@@ -16522,7 +16441,24 @@ body {
     .modal-dialog {
       .modal-content {
         .modal-body {
-          background-image: linear-gradient(135deg, $theme-deafult 5.77%, $dark-top 5.77%, $dark-top 25%, $white-1 25%, $white-1 30.77%, $dark-top 30.77%, $dark-top 50%, $theme-deafult 50%, $theme-deafult 55.77%, $dark-top 55.77%, $dark-top 75%, $white-1 75%, $white-1 80.77%, $dark-top 80.77%, $dark-top 100%);
+          background-image: linear-gradient(
+            135deg,
+            $theme-deafult 5.77%,
+            $dark-top 5.77%,
+            $dark-top 25%,
+            $white-1 25%,
+            $white-1 30.77%,
+            $dark-top 30.77%,
+            $dark-top 50%,
+            $theme-deafult 50%,
+            $theme-deafult 55.77%,
+            $dark-top 55.77%,
+            $dark-top 75%,
+            $white-1 75%,
+            $white-1 80.77%,
+            $dark-top 80.77%,
+            $dark-top 100%
+          );
 
           .modal-bg {
             background-color: $dark-body;
@@ -16559,7 +16495,7 @@ body {
 
             .demo-section {
               .demo-effects {
-                >div {
+                > div {
                   .layout-container {
                     box-shadow: none;
                   }
@@ -16687,7 +16623,6 @@ body {
   }
 
   .effect-cls {
-
     &:before,
     &:after {
       filter: invert(100);
@@ -16740,7 +16675,6 @@ body {
   }
 }
 
-
 /*=====================
     18.Portfoilio CSS start
 ==========================*/
@@ -16786,12 +16720,12 @@ body {
     margin-bottom: 30px;
 
     img {
-      transition: all .4s ease;
+      transition: all 0.4s ease;
     }
 
     .overlay-background {
       transform: scale(0);
-      transition: all .4s ease;
+      transition: all 0.4s ease;
 
       i {
         position: absolute;
@@ -16815,7 +16749,7 @@ body {
     &:hover {
       img {
         transform: scale(1.2) rotate(2deg);
-        transition: all .4s ease;
+        transition: all 0.4s ease;
       }
 
       .overlay-background {
@@ -16985,10 +16919,10 @@ body {
 
     ul {
       &.filter {
-        >li {
+        > li {
           padding: 0 25px;
 
-          >a {
+          > a {
             color: $theme-deafult;
             font-size: 20px;
             line-height: 40px;
@@ -17013,14 +16947,14 @@ body {
             color: #ddd;
             font-size: 20px;
             display: inline-block;
-            margin: 0 5px
+            margin: 0 5px;
           }
         }
       }
     }
 
     .filter {
-      >li {
+      > li {
         padding: 0;
         margin: 0;
       }
@@ -17127,7 +17061,7 @@ body {
 }
 
 /* Style your items */
-.my-masonry-grid_column>div {
+.my-masonry-grid_column > div {
   /* change div to reference your elements you put in <Masonry> */
   margin-bottom: 30px;
 }

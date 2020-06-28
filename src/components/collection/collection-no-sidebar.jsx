@@ -7,6 +7,7 @@ import "../common/index.scss";
 import ProductListing from "./common/product-listing";
 import Breadcrumb from "../common/breadcrumb";
 import FilterBar from "./common/filter-bar";
+import {getAllProducts} from "../../actions/indexO";
 
 class CollectionNoSideBar extends Component {
   constructor(props) {
@@ -23,17 +24,30 @@ class CollectionNoSideBar extends Component {
     });
   }
 
-  componentWillMount() {
-    if (this.props.location.category) {
+  componentDidMount() {
+    if (this.props.location.category !== this.state.category) {
       const category = this.props.location.category;
-      console.log(category);
-      this.setState({...category});
+      this.setState(() => {
+        return {category: category};
+      });
+      //  this.setState({...category});
     }
   }
+
+  componentDidUpdate() {
+    if (this.props.location.category !== this.state.category) {
+      const category = this.props.location.category;
+      this.setState(() => {
+        return {category: category};
+      });
+      //  this.setState({...category});
+    }
+  }
+
   render() {
-    return (
+    return this.state.category ? (
       <div>
-        <Breadcrumb title={"Collection"} />
+        <Breadcrumb title={"Productos/" + `${this.state.category}`} />
 
         {/*Section Start*/}
         <section className="section-b-space">
@@ -74,6 +88,7 @@ class CollectionNoSideBar extends Component {
                                 <div className="row">
                                   <ProductListing
                                     colSize={this.state.layoutColumns}
+                                    category={this.state.category}
                                   />
                                 </div>
                               </div>
@@ -90,7 +105,7 @@ class CollectionNoSideBar extends Component {
         </section>
         {/*Section End*/}
       </div>
-    );
+    ) : null;
   }
 }
 

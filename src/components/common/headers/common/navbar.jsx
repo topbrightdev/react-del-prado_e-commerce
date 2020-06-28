@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {withTranslate} from "react-redux-multilingual";
 import {connect} from "react-redux";
 
-//import { getCategories } from "../../../../services/index";
+import {getCategories} from "../../../../services/index";
 import {
   addToCart,
   addToWishlist,
@@ -16,8 +16,17 @@ class NavBar extends Component {
 
     this.state = {
       navClose: {right: "0px"},
+      addresses: null,
+      loaded: null,
     };
   }
+
+  newTo = (key) => {
+    return {
+      pathname: `${process.env.PUBLIC_URL}/no-sidebar/collection/`,
+      category: key,
+    };
+  };
 
   componentWillMount() {
     if (window.innerWidth < 750) {
@@ -25,6 +34,17 @@ class NavBar extends Component {
     }
     if (window.innerWidth < 1199) {
       this.setState({navClose: {right: "-300px"}});
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.categoryTree.length > 24 && !this.state.loaded) {
+      this.setState(() => {
+        return {
+          addresses: this.props.categoryTree,
+          loaded: "Works!!",
+        };
+      });
     }
   }
 
@@ -79,8 +99,45 @@ class NavBar extends Component {
     }
   };
 
+  // if the menu item doesn't have any child, this method simply returns a clickable menu item that redirects to any location and if there is no child this method uses recursion to go until the last level of children and then returns the item by the first condition.
+  handlerTree(translate, category) {
+    const addresses = this.state.addresses;
+    var parentId = null;
+    var cats = [];
+    var subCats = null;
+    if (addresses) {
+      addresses.map((addr) => {
+        if (addr.name === category) {
+          parentId = addr.id;
+        }
+      });
+
+      addresses.map((addr) => {
+        if (addr.parent === parentId) {
+          cats.push(addr.name);
+        }
+      });
+      var i = 0;
+    } else {
+      return null;
+    }
+
+    if (cats) {
+      return cats.map((res) => {
+        return (
+          <li key={res}>
+            <Link to={this.newTo(res)}>{res}</Link>
+          </li>
+        );
+        i++;
+      });
+    }
+  }
+
   render() {
-    const {translate} = this.props;
+    const {translate, data2} = this.props;
+    const loaded = this.state.loaded;
+
     return (
       <div>
         <div className="main-navbar">
@@ -96,130 +153,70 @@ class NavBar extends Component {
                 </div>
               </li>
               <li>
-                <Link
-                  to="#"
-                  className="nav-link"
-                  onClick={(e) => this.handleSubmenu(e)}
-                >
+                <Link to={this.newTo("Meat")} className="nav-link">
                   {translate("meat")}
                   <span className="sub-arrow"></span>
                 </Link>
-                <ul className="nav-submenu">
-                  <li>
-                    <Link to={`${process.env.PUBLIC_URL}/fashion`}>
-                      {translate("fashion")}
-                    </Link>
-                  </li>
-                </ul>
+                {loaded ? (
+                  <ul className="nav-submenu">
+                    {this.handlerTree(translate, "Meat")}
+                  </ul>
+                ) : null}
               </li>
               <li>
-                <Link
-                  to="#"
-                  className="nav-link"
-                  onClick={(e) => this.handleSubmenu(e)}
-                >
+                <Link to={this.newTo("Fish")} className="nav-link">
                   {translate("fish")}
                   <span className="sub-arrow"></span>
                 </Link>
-                <ul className="nav-submenu">
-                  <li>
-                    <Link
-                      to={`${process.env.PUBLIC_URL}/left-sidebar/collection`}
-                    >
-                      {translate("category_left_sidebar")}
-                    </Link>
-                  </li>
-                </ul>
+                {loaded ? (
+                  <ul className="nav-submenu">
+                    {this.handlerTree(translate, "Fish")}
+                  </ul>
+                ) : null}
               </li>
               <li>
-                <Link
-                  to="#"
-                  className="nav-link"
-                  onClick={(e) => this.handleSubmenu(e)}
-                >
+                <Link to={this.newTo("Bread")} className="nav-link">
                   {translate("bakery")}
                   <span className="sub-arrow"></span>
                 </Link>
-                <ul className="nav-submenu">
-                  <li>
-                    <Link
-                      to={`${process.env.PUBLIC_URL}/left-sidebar/product/1`}
-                    >
-                      {translate("left_sidebar")}
-                    </Link>
-                  </li>
-                </ul>
+                {loaded ? (
+                  <ul className="nav-submenu">
+                    {this.handlerTree(translate, "Bread")}
+                  </ul>
+                ) : null}
               </li>
-              <li className="mega-menu">
-                <Link
-                  to="#"
-                  className="dropdown"
-                  onClick={(e) => this.handleSubmenu(e)}
-                >
+              <li>
+                <Link to={this.newTo("Meal")} className="nav-link">
                   {translate("dishes")}
                   <span className="sub-arrow"></span>
                 </Link>
-                <div className="mega-menu-container">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col mega-box">
-                        <div className="link-section">
-                          <div className="menu-title">
-                            <h5 onClick={(e) => this.handleMegaSubmenu(e)}>
-                              {translate("portfolio")}
-                              <span className="sub-arrow"></span>
-                            </h5>
-                          </div>
-                          <div className="menu-content">
-                            <ul>
-                              <li>
-                                <Link
-                                  to={`${process.env.PUBLIC_URL}/features/portfolio-grid/2`}
-                                >
-                                  {translate("portfolio_grid_2")}
-                                </Link>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {loaded ? (
+                  <ul className="nav-submenu">
+                    {this.handlerTree(translate, "Meal")}
+                  </ul>
+                ) : null}
               </li>
               <li>
-                <Link
-                  to="#"
-                  className="nav-link"
-                  onClick={(e) => this.handleSubmenu(e)}
-                >
+                <Link to={this.newTo("Drinks")} className="nav-link">
                   {translate("drinks")}
                   <span className="sub-arrow"></span>
                 </Link>
-                <ul className="nav-submenu">
-                  <li>
-                    <Link to={`${process.env.PUBLIC_URL}/pages/about-us`}>
-                      {translate("about_us")}
-                    </Link>
-                  </li>
-                </ul>
+                {loaded ? (
+                  <ul className="nav-submenu">
+                    {this.handlerTree(translate, "Drinks")}
+                  </ul>
+                ) : null}
               </li>
               <li>
-                <Link
-                  to="#"
-                  className="nav-link"
-                  onClick={(e) => this.handleSubmenu(e)}
-                >
+                <Link to={this.newTo("FruitsVegetables")} className="nav-link">
                   {translate("fruits_vegetables")}
                   <span className="sub-arrow"></span>
                 </Link>
-                <ul className="nav-submenu">
-                  <li>
-                    <Link to={`${process.env.PUBLIC_URL}/blog/blog-page`}>
-                      {translate("blog_left_sidebar")}
-                    </Link>
-                  </li>
-                </ul>
+                {loaded ? (
+                  <ul className="nav-submenu">
+                    {this.handlerTree(translate, "FruitsVegetables")}
+                  </ul>
+                ) : null}
               </li>
             </ul>
           </div>
@@ -228,14 +225,13 @@ class NavBar extends Component {
     );
   }
 }
-/*
+
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    categoryTree: getCategories(state),
+    categoryTree: getCategories(state.data2.categoryTree),
     symbol: state.data.symbol,
   };
 };
-*/
-//export default connect(mapStateToProps)(withTranslate(NavBar));
-export default withTranslate(NavBar);
+
+export default connect(mapStateToProps)(withTranslate(NavBar));
+//export default withTranslate(NavBar);

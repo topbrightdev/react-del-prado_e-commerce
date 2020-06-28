@@ -38,7 +38,7 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <Link to={this.newTo("carne")}>
+                    <Link to={this.newTo("Meat")}>
                       <h2>carne</h2>
                     </Link>
                   </div>
@@ -54,7 +54,7 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <Link to={this.newTo("pescado")}>
+                    <Link to={this.newTo("Fish")}>
                       <h2>pescado</h2>
                     </Link>
                   </div>
@@ -70,7 +70,7 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <Link to={this.newTo("panaderia")}>
+                    <Link to={this.newTo("Bread")}>
                       <h2>panaderia</h2>
                     </Link>
                   </div>
@@ -88,7 +88,7 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <Link to={this.newTo("frutas")}>
+                    <Link to={this.newTo("FruitsVegetables")}>
                       <h2>frutas y verduras</h2>
                     </Link>
                   </div>
@@ -104,7 +104,7 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <Link to={this.newTo("platos")}>
+                    <Link to={this.newTo("Meal")}>
                       <h2>platos precocinados</h2>
                     </Link>
                   </div>
@@ -120,7 +120,7 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <Link to={this.newTo("bebidas")}>
+                    <Link to={this.newTo("Drinks")}>
                       <h2>bebidas</h2>
                     </Link>
                   </div>

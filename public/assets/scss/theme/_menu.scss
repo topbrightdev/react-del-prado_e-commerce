@@ -2,29 +2,48 @@
     27.Menu css start
 ==========================*/
 
-@mixin round_corner($amount, $chainable: 'ul > li:last-child > ', $level: 4, $chain_prefix: '> li:last-child > ', $chain: '', $selector: '') {
+@mixin round_corner(
+  $amount,
+  $chainable: "ul > li:last-child > ",
+  $level: 4,
+  $chain_prefix: "> li:last-child > ",
+  $chain: "",
+  $selector: ""
+) {
   $chain: $chain_prefix;
-  $selector: $chain + 'a, ' + $chain + '*:not(ul) a, ' + $chain + 'ul';
+  $selector: $chain + "a, " + $chain + "*:not(ul) a, " + $chain + "ul";
   @for $i from 1 through $level {
     $chain: $chain + $chainable;
-    $selector: $selector + ',
-' + $chain + ' a, ' + $chain + '*:not(ul) a, ' + $chain + ' ul';
+    $selector: $selector +
+      ",
+" +
+      $chain +
+      " a, " +
+      $chain +
+      "*:not(ul) a, " +
+      $chain +
+      " ul";
   }
   #{$selector} {
     border-radius: 0 0 0 0;
   }
   $chain: $chain_prefix;
-  $selector: $chain + 'a.highlighted, ' + $chain + '*:not(ul) a.highlighted';
+  $selector: $chain + "a.highlighted, " + $chain + "*:not(ul) a.highlighted";
   @for $i from 1 through $level {
     $chain: $chain + $chainable;
-    $selector: $selector + ',
-' + $chain + ' a.highlighted, ' + $chain + '*:not(ul) a.highlighted';
+    $selector: $selector +
+      ",
+" +
+      $chain +
+      " a.highlighted, " +
+      $chain +
+      "*:not(ul) a.highlighted";
   }
   #{$selector} {
     border-radius: 0;
   }
 }
-@mixin sub_items($amount, $chainable: 'ul ', $level: 4, $chain: '') {
+@mixin sub_items($amount, $chainable: "ul ", $level: 4, $chain: "") {
   @for $i from 1 through $level {
     $chain: $chain + $chainable;
     #{$chain} a,
@@ -117,119 +136,127 @@
 // :: 1.1. Colors
 // ----------------------------------------------------------
 
-
-$theme-deafult-dark:									darken($theme-deafult, 5%) !default;
-$theme-deafult-light:									lighten($theme-deafult, 30%) !default;
-$theme-deafult__white:										#fff !default;
-$theme-deafult__gray:											darken($theme-deafult__white, 34%) !default;
-$dark :	#333333;
-$theme-deafult__text-shadow:									rgba(0, 0, 0, 0.2) !default;
+$theme-deafult-dark: darken($theme-deafult, 5%) !default;
+$theme-deafult-light: lighten($theme-deafult, 30%) !default;
+$theme-deafult__white: #fff !default;
+$theme-deafult__gray: darken($theme-deafult__white, 34%) !default;
+$dark: #333333;
+$theme-deafult__text-shadow: rgba(0, 0, 0, 0.2) !default;
 
 // ----------------------------------------------------------
 // :: 1.2. Typography
 // ----------------------------------------------------------
-$theme-deafult__font-size-base:								14px !default;
-$theme-deafult__font-size-small:								16px !default;
-$theme-deafult__line-height:									23px !default;
+$theme-deafult__font-size-base: 14px !default;
+$theme-deafult__font-size-small: 16px !default;
+$theme-deafult__line-height: 23px !default;
 
 // ----------------------------------------------------------
 // :: 1.3. Borders
 // ----------------------------------------------------------
-$theme-deafult__border-width:									1px !default;
-$theme-deafult__border-radius-base:							8px !default;
-$theme-deafult__border-radius-small:							4px !default;
+$theme-deafult__border-width: 1px !default;
+$theme-deafult__border-radius-base: 8px !default;
+$theme-deafult__border-radius-small: 4px !default;
 
 // ----------------------------------------------------------
 // :: 1.4. Collapsible main menu
 // ----------------------------------------------------------
 // Menu box
-$theme-deafult__collapsible-bg:								transparent !default;
-$theme-deafult__collapsible-border-radius:					$theme-deafult__border-radius-base !default;
+$theme-deafult__collapsible-bg: transparent !default;
+$theme-deafult__collapsible-border-radius: $theme-deafult__border-radius-base !default;
 
 // Items
-$theme-deafult__collapsible-item-color:						$theme-deafult__white !default;
-$theme-deafult__collapsible-item-bg:							$theme-deafult !default;
-$theme-deafult__collapsible-item-current-color:				$theme-deafult__white !default;
-$theme-deafult__collapsible-item-current-bg:					$theme-deafult !default;
-$theme-deafult__collapsible-item-disabled-color:				lighten($theme-deafult, 30%) !default;
-$theme-deafult__collapsible-item-padding-vertical:			10px !default;
-$theme-deafult__collapsible-item-padding-horizontal:			20px !default;
+$theme-deafult__collapsible-item-color: $theme-deafult__white !default;
+$theme-deafult__collapsible-item-bg: $theme-deafult !default;
+$theme-deafult__collapsible-item-current-color: $theme-deafult__white !default;
+$theme-deafult__collapsible-item-current-bg: $theme-deafult !default;
+$theme-deafult__collapsible-item-disabled-color: lighten(
+  $theme-deafult,
+  30%
+) !default;
+$theme-deafult__collapsible-item-padding-vertical: 10px !default;
+$theme-deafult__collapsible-item-padding-horizontal: 20px !default;
 
 // Toggle button (sub menu indicators)
-$theme-deafult__collapsible-toggle-bg:						rgba(0, 0, 0, 0.1) !default;
+$theme-deafult__collapsible-toggle-bg: rgba(0, 0, 0, 0.1) !default;
 
 // ----------------------------------------------------------
 // :: 1.5. Collapsible sub menus
 // ----------------------------------------------------------
 
 // Menu box
-$theme-deafult__collapsible-sub-bg:							$theme-deafult__white !default;
+$theme-deafult__collapsible-sub-bg: $theme-deafult__white !default;
 
 // Items
-$theme-deafult__collapsible-sub-item-color:					$theme-deafult-dark !default;
-$theme-deafult__collapsible-sub-item-bg:						transparent !default;
-$theme-deafult__collapsible-sub-item-current-color:			$theme-deafult__white !default;
-$theme-deafult__collapsible-sub-item-current-bg:				$theme-deafult !default;
-$theme-deafult__collapsible-sub-item-disabled-color:			darken($theme-deafult__white, 30%) !default;
+$theme-deafult__collapsible-sub-item-color: $theme-deafult-dark !default;
+$theme-deafult__collapsible-sub-item-bg: transparent !default;
+$theme-deafult__collapsible-sub-item-current-color: $theme-deafult__white !default;
+$theme-deafult__collapsible-sub-item-current-bg: $theme-deafult !default;
+$theme-deafult__collapsible-sub-item-disabled-color: darken(
+  $theme-deafult__white,
+  30%
+) !default;
 
 // Items separators
-$theme-deafult__collapsible-sub-separators-color:				rgba(0, 0, 0, 0.05) !default;
+$theme-deafult__collapsible-sub-separators-color: rgba(0, 0, 0, 0.05) !default;
 
 // Items text indentation for deeper levels
-$theme-deafult__collapsible-sub-item-indentation:				8px !default;
+$theme-deafult__collapsible-sub-item-indentation: 8px !default;
 
 // ----------------------------------------------------------
 // :: 1.6. Desktop main menu
 // ----------------------------------------------------------
 
 // Items separators
-$theme-deafult__desktop-separators-size:						1px !default;
-$theme-deafult__desktop-separators-color:						darken($theme-deafult, 5%) !default;
+$theme-deafult__desktop-separators-size: 1px !default;
+$theme-deafult__desktop-separators-color: darken($theme-deafult, 5%) !default;
 
 // Sub menu indicators
-$theme-deafult__desktop-arrow-size:							5px !default;		// border-width
-$theme-deafult__desktop-arrow-color:							$theme-deafult-light !default;
-
+$theme-deafult__desktop-arrow-size: 5px !default; // border-width
+$theme-deafult__desktop-arrow-color: $theme-deafult-light !default;
 
 // Vertical items
-$theme-deafult__desktop-vertical-item-padding-vertical:		9px !default;
-$theme-deafult__desktop-vertical-item-padding-horizontal:		23px !default;
+$theme-deafult__desktop-vertical-item-padding-vertical: 9px !default;
+$theme-deafult__desktop-vertical-item-padding-horizontal: 23px !default;
 
 // ----------------------------------------------------------
 // :: 1.7. Desktop sub menus
 // ----------------------------------------------------------
 
 // Menu box
-$theme-deafult__desktop-sub-bg:								$theme-deafult__white !default;
-$theme-deafult__desktop-sub-border-color:						$theme-deafult__gray !default;
-$theme-deafult__desktop-sub-border-radius:					$theme-deafult__border-radius-small !default;
-$theme-deafult__desktop-sub-padding-vertical:					7px !default;
-$theme-deafult__desktop-sub-padding-horizontal:				0 !default;
+$theme-deafult__desktop-sub-bg: $theme-deafult__white !default;
+$theme-deafult__desktop-sub-border-color: $theme-deafult__gray !default;
+$theme-deafult__desktop-sub-border-radius: $theme-deafult__border-radius-small !default;
+$theme-deafult__desktop-sub-padding-vertical: 7px !default;
+$theme-deafult__desktop-sub-padding-horizontal: 0 !default;
 
 // Items
-$theme-deafult__desktop-sub-item-color:						$theme-deafult-dark !default;
-$theme-deafult__desktop-sub-item-bg:							transparent !default;
-$theme-deafult__desktop-sub-item-hover-color:					$theme-deafult__white !default;
-$theme-deafult__desktop-sub-item-hover-bg:					$theme-deafult !default;
-$theme-deafult__desktop-sub-item-current-color:				$theme-deafult__white !default;
-$theme-deafult__desktop-sub-item-current-bg:					$theme-deafult !default;
-$theme-deafult__desktop-sub-item-disabled-color:				darken($theme-deafult__white, 30%) !default;
-$theme-deafult__desktop-sub-item-padding-vertical:			9px !default;
-$theme-deafult__desktop-sub-item-padding-horizontal:			23px !default;
+$theme-deafult__desktop-sub-item-color: $theme-deafult-dark !default;
+$theme-deafult__desktop-sub-item-bg: transparent !default;
+$theme-deafult__desktop-sub-item-hover-color: $theme-deafult__white !default;
+$theme-deafult__desktop-sub-item-hover-bg: $theme-deafult !default;
+$theme-deafult__desktop-sub-item-current-color: $theme-deafult__white !default;
+$theme-deafult__desktop-sub-item-current-bg: $theme-deafult !default;
+$theme-deafult__desktop-sub-item-disabled-color: darken(
+  $theme-deafult__white,
+  30%
+) !default;
+$theme-deafult__desktop-sub-item-padding-vertical: 9px !default;
+$theme-deafult__desktop-sub-item-padding-horizontal: 23px !default;
 
 // ----------------------------------------------------------
 // desktop mode
 // ----------------------------------------------------------
 
 // calc item height and sub menus toggle button size
-$theme-deafult__item-height: $theme-deafult__line-height + $theme-deafult__collapsible-item-padding-vertical * 2;
+$theme-deafult__item-height: $theme-deafult__line-height +
+  $theme-deafult__collapsible-item-padding-vertical * 2;
 // set toggle button size to 80% of item height
 $theme-deafult__toggle-size: floor($theme-deafult__item-height * 0.8);
 $theme-deafult__toggle-spacing: floor($theme-deafult__item-height * 0.1);
 
-header{
-  .main-navbar{
-    .nav-menu{
+header {
+  .main-navbar {
+    .nav-menu {
       display: inline-block;
       list-style: none;
       margin: 0;
@@ -237,11 +264,11 @@ header{
       line-height: normal;
       direction: ltr;
       text-align: left;
-      > li{
+      > li {
         position: relative;
         float: left;
         display: block;
-        > a{
+        > a {
           display: block;
           padding-right: 45px;
           color: #222222;
@@ -255,7 +282,7 @@ header{
           padding-left: 0;
           letter-spacing: 0.07em;
           position: relative;
-          .sub-arrow{
+          .sub-arrow {
             position: absolute;
             top: 50%;
             margin-top: -17px;
@@ -268,26 +295,26 @@ header{
             text-align: center;
             text-shadow: none;
             border-radius: 4px;
-            &:before{
+            &:before {
               content: "\f107";
               font-family: $font-awesome;
               position: absolute;
             }
           }
         }
-        .nav-submenu{
+        .nav-submenu {
           position: absolute;
           left: 0;
           z-index: 4;
           box-shadow: 0 0 1px 0 #ebebeb;
           padding: 15px 0px 15px 0px;
           background: white;
-          li{
+          li {
             border: 0;
             float: none;
             position: relative;
             display: block;
-            a{
+            a {
               border: 0 !important;
               background: transparent;
               color: #222222;
@@ -299,17 +326,17 @@ header{
               display: block;
               letter-spacing: 0.07em;
               line-height: 1.9;
-              &:before{
+              &:before {
                 position: absolute;
                 bottom: 0;
                 content: "";
                 height: 2px;
                 width: 0;
-                background-color: #ff4c3b;
+                background-color: #96d627;
                 -webkit-transition: 0.5s ease;
                 transition: 0.5s ease;
               }
-              .sub-arrow{
+              .sub-arrow {
                 position: absolute;
                 top: 50%;
                 margin-top: -17px;
@@ -322,14 +349,14 @@ header{
                 text-align: center;
                 text-shadow: none;
                 border-radius: 4px;
-                &:before{
+                &:before {
                   content: "\f105";
                   font-family: $font-awesome;
                   position: absolute;
                 }
               }
             }
-            .nav-sub-childmenu{
+            .nav-sub-childmenu {
               position: absolute;
               width: 200px;
               right: -200px;
@@ -341,7 +368,7 @@ header{
             }
           }
         }
-        .mega-menu-container{
+        .mega-menu-container {
           position: absolute;
           left: 0;
           z-index: 4;
@@ -349,29 +376,29 @@ header{
           padding: 30px;
           background: white;
           width: 100%;
-          .mega-box{
+          .mega-box {
             width: 20%;
-            .link-section{
-              .menu-title{
-                h5{
+            .link-section {
+              .menu-title {
+                h5 {
                   font-weight: 700;
                   text-transform: capitalize;
                   font-size: 14px;
                 }
               }
-              .menu-content{
+              .menu-content {
                 box-shadow: none;
                 background-color: transparent;
                 position: relative;
                 display: block;
                 padding: 0;
-                ul{
-                  li{
+                ul {
+                  li {
                     border: 0;
                     float: none;
                     position: relative;
                     display: block;
-                    a{
+                    a {
                       border: 0 !important;
                       background: transparent;
                       color: #222222;
@@ -384,7 +411,7 @@ header{
                       letter-spacing: 0.07em;
                       line-height: 1.9;
                       position: relative;
-                      &:before{
+                      &:before {
                         position: absolute;
                         bottom: 0;
                         content: "";
@@ -401,178 +428,178 @@ header{
             }
           }
         }
-        &:hover{
-          > a{
+        &:hover {
+          > a {
             color: $theme-deafult;
           }
         }
-        &.mega-menu{
+        &.mega-menu {
           position: unset;
         }
       }
     }
   }
   .sidenav {
-  height: 100vh;
-  width:300px;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: -300px;
-  background-color: $white;
-  transition:all 0.5s ease;
-  .sidebar-back {
-    padding: 20px;
-    font-size: 18px;
-    color: $dark-font;
-    font-weight: 700;
-    text-transform: uppercase;
-    border-bottom: 1px solid $grey3;
-    margin-bottom: 0px;
-    cursor: pointer;
-  }
-  nav{
-    background-color: $white;
-    z-index: 9;
-    position: relative;
     height: 100vh;
-    top: 0;
-    // overflow-y: auto;
-  }
-  &.open-side {
-    left: 0;
-    transition:all 0.5s ease;
-    .sidebar-overlay {
-      opacity:0.8;
-      visibility: visible;
-    }
-  }
-  .sidebar-overlay {
-    visibility: hidden;
-    opacity: 0;
-    background-color: #212331;
+    width: 300px;
     position: fixed;
-    z-index: 6;
+    z-index: 9999;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    -o-transition: all 1s;
-    -webkit-transition: all 1s;
-    transition: all 1s;
-  }
-  .closebtn {
-    position: absolute;
-    top: 0;
-    font-size: 36px;
-    margin-left: 50px;
-    margin-top: 50px;
-    color: $grey-font;
-  }
-  .sidebar-menu{
-    background-color: #ffffff;
-    display: block;
-    margin: 0;
-    padding: 0;
-    direction: ltr;
-    text-align: left;
-    li{
+    left: -300px;
+    background-color: $white;
+    transition: all 0.5s ease;
+    .sidebar-back {
+      padding: 20px;
+      font-size: 18px;
+      color: $dark-font;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-bottom: 1px solid $grey3;
+      margin-bottom: 0px;
+      cursor: pointer;
+    }
+    nav {
+      background-color: $white;
+      z-index: 9;
       position: relative;
+      height: 100vh;
+      top: 0;
+      // overflow-y: auto;
+    }
+    &.open-side {
+      left: 0;
+      transition: all 0.5s ease;
+      .sidebar-overlay {
+        opacity: 0.8;
+        visibility: visible;
+      }
+    }
+    .sidebar-overlay {
+      visibility: hidden;
+      opacity: 0;
+      background-color: #212331;
+      position: fixed;
+      z-index: 6;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -o-transition: all 1s;
+      -webkit-transition: all 1s;
+      transition: all 1s;
+    }
+    .closebtn {
+      position: absolute;
+      top: 0;
+      font-size: 36px;
+      margin-left: 50px;
+      margin-top: 50px;
+      color: $grey-font;
+    }
+    .sidebar-menu {
+      background-color: #ffffff;
       display: block;
       margin: 0;
       padding: 0;
       direction: ltr;
       text-align: left;
-      float: none;
-      a{
-        padding: 10px 50px 20px 40px;
+      li {
         position: relative;
-        color: #222222;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 23px;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.07em;
         display: block;
-      }
-      ul{
-        position: absolute;
-        width: 200px;
-        left: 100%;
-        top: 0;
-        padding: 15px 0px;
-        display: none;
-        background-color: #fff;
-        li {
-          a {
-            padding: 5px 35px;
-            &:active,
-            &:focus,
-            &.highlighted{
+        margin: 0;
+        padding: 0;
+        direction: ltr;
+        text-align: left;
+        float: none;
+        a {
+          padding: 10px 50px 20px 40px;
+          position: relative;
+          color: #222222;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 23px;
+          text-decoration: none;
+          text-transform: uppercase;
+          letter-spacing: 0.07em;
+          display: block;
+        }
+        ul {
+          position: absolute;
+          width: 200px;
+          left: 100%;
+          top: 0;
+          padding: 15px 0px;
+          display: none;
+          background-color: #fff;
+          li {
+            a {
               padding: 5px 35px;
+              &:active,
+              &:focus,
+              &.highlighted {
+                padding: 5px 35px;
+              }
             }
           }
         }
-      }
-      .mega-menu{
-        position: absolute;
-        left: 100%;
-        width: 815px !important;
-        padding: 15px 30px 25px !important;
-        background-color: #ffffff;
-        box-shadow: 0 0 1px 0 #ebebeb;
-        li{
-          ul{
-            position: relative;
-            width: 100%;
-            left: inherit;
+        .mega-menu {
+          position: absolute;
+          left: 100%;
+          width: 815px !important;
+          padding: 15px 30px 25px !important;
+          background-color: #ffffff;
+          box-shadow: 0 0 1px 0 #ebebeb;
+          li {
+            ul {
+              position: relative;
+              width: 100%;
+              left: inherit;
+            }
           }
         }
       }
     }
-  }
-  .pixelstrap {
-    li {
-      a {
-        padding: 10px 50px 20px 40px;
-      }
-      ul {
-        li {
-          a {
-            padding: 5px 35px;
-            &:active,
-            &:focus,
-            &.highlighted{
+    .pixelstrap {
+      li {
+        a {
+          padding: 10px 50px 20px 40px;
+        }
+        ul {
+          li {
+            a {
               padding: 5px 35px;
+              &:active,
+              &:focus,
+              &.highlighted {
+                padding: 5px 35px;
+              }
             }
           }
         }
-      }
-      .clothing-menu {
-        li {
-          a {
-            padding: 5px 0 !important;
-            &:focus {
-              font-size: 14px;
-            }
-            &:hover {
-              font-size: 14px;
-              padding: 5px 0;
-            }
-            &:focus,
-            &:hover {
+        .clothing-menu {
+          li {
+            a {
               padding: 5px 0 !important;
+              &:focus {
+                font-size: 14px;
+              }
+              &:hover {
+                font-size: 14px;
+                padding: 5px 0;
+              }
+              &:focus,
+              &:hover {
+                padding: 5px 0 !important;
+              }
             }
           }
         }
       }
     }
   }
-  }
-  .layout3-menu{
-    .main-navbar{
-      .nav-menu{
+  .layout3-menu {
+    .main-navbar {
+      .nav-menu {
         display: inline-block;
         list-style: none;
         margin: 0;
@@ -580,11 +607,11 @@ header{
         line-height: normal;
         direction: ltr;
         text-align: left;
-        > li{
+        > li {
           position: relative;
           float: left;
           display: block;
-          > a{
+          > a {
             text-transform: capitalize;
             padding-right: 34px;
             letter-spacing: 0.04em;
@@ -600,11 +627,11 @@ header{
 .toggle-nav {
   position: relative;
   padding-top: 40px;
-  padding-bottom:40px;
+  padding-bottom: 40px;
   cursor: pointer;
   i {
     font-size: 24px;
-    color:lighten($theme-deafult, 5%);
+    color: lighten($theme-deafult, 5%);
   }
 }
 .mega-menu-banner {
@@ -625,7 +652,7 @@ header{
   position: relative;
   span {
     position: absolute;
-    top:-5px;
+    top: -5px;
     right: -10px;
     color: $theme-deafult;
     font-size: 12px;
@@ -681,7 +708,8 @@ header{
       width: $theme-deafult__toggle-size;
       height: $theme-deafult__toggle-size;
       overflow: hidden;
-      font: bold #{$theme-deafult__font-size-small}/#{$theme-deafult__toggle-size} monospace !important;
+      font: bold #{$theme-deafult__font-size-small}/#{$theme-deafult__toggle-size}
+        monospace !important;
       text-align: center;
       text-shadow: none;
       border-radius: $theme-deafult__border-radius-small;
@@ -736,7 +764,8 @@ header{
   .icon-trend {
     color: $theme-deafult;
   }
-  .full-mega-menu, .clothing-menu {
+  .full-mega-menu,
+  .clothing-menu {
     max-width: inherit !important;
     padding: 30px 0 15px;
     a {
@@ -836,7 +865,7 @@ header{
     }
   }
 }
-.pixelstrap li{
+.pixelstrap li {
   a {
     position: relative;
   }
@@ -844,7 +873,7 @@ header{
     position: absolute;
     background-color: $theme-deafult;
     padding: 2px 7px;
-    color:$white;
+    color: $white;
     top: 20px;
     text-transform: uppercase;
     font-size: 9px;
@@ -880,9 +909,9 @@ header{
           a {
             position: relative;
             &:hover,
-            &:focus{
-              padding-top: 3px ;
-              padding-bottom: 3px ;
+            &:focus {
+              padding-top: 3px;
+              padding-bottom: 3px;
             }
           }
         }
@@ -928,7 +957,7 @@ header{
   .pixelstrap {
     li {
       .lable-nav {
-        left:unset;
+        left: unset;
       }
     }
   }
@@ -941,7 +970,7 @@ header{
               span {
                 img {
                   right: unset;
-                  left:-120px;
+                  left: -120px;
                 }
               }
             }
@@ -954,20 +983,20 @@ header{
 
 // Responsive menu css start //
 @media (min-width: 1200px) {
-  .responsive-btn{
+  .responsive-btn {
     display: none;
   }
   header {
     .main-navbar {
       .nav-menu {
         > li {
-          .nav-submenu{
+          .nav-submenu {
             width: 200px;
             display: none;
-            li{
-              a{ 
-                &:hover{
-                  &:before{
+            li {
+              a {
+                &:hover {
+                  &:before {
                     width: 50px;
                     height: 2px;
                     -webkit-transition: 0.5s ease;
@@ -975,26 +1004,26 @@ header{
                   }
                 }
               }
-              .nav-sub-childmenu{
+              .nav-sub-childmenu {
                 display: none;
               }
-              &:hover{
-                .nav-sub-childmenu{
+              &:hover {
+                .nav-sub-childmenu {
                   display: block;
                 }
               }
             }
           }
-          .mega-menu-container{
+          .mega-menu-container {
             display: none;
             .mega-box {
               .link-section {
                 .menu-content {
                   ul {
                     li {
-                      a{
-                        &:hover{
-                          &:before{
+                      a {
+                        &:hover {
+                          &:before {
                             width: 50px;
                             height: 2px;
                             -webkit-transition: 0.5s ease;
@@ -1008,11 +1037,11 @@ header{
               }
             }
           }
-          &:hover{
-            .nav-submenu{
+          &:hover {
+            .nav-submenu {
               display: block;
             }
-            .mega-menu-container{
+            .mega-menu-container {
               display: block;
             }
           }
@@ -1020,10 +1049,10 @@ header{
       }
     }
     .sidenav {
-      .sidebar-menu{
-        li{
-          a{
-            .sub-arrow{
+      .sidebar-menu {
+        li {
+          a {
+            .sub-arrow {
               position: absolute;
               top: 50%;
               margin-top: -22px;
@@ -1036,20 +1065,20 @@ header{
               text-align: center;
               text-shadow: none;
               border-radius: 4px;
-              &:before{
+              &:before {
                 content: "\f105";
                 font-family: FontAwesome;
                 position: absolute;
               }
             }
           }
-          > ul{
+          > ul {
             display: none;
             li {
               a {
                 padding: 5px 35px;
                 text-transform: capitalize;
-                &:before{
+                &:before {
                   position: absolute;
                   bottom: 0;
                   content: "";
@@ -1059,50 +1088,50 @@ header{
                   -webkit-transition: 0.5s ease;
                   transition: 0.5s ease;
                 }
-                &:hover{
-                  &:before{
+                &:hover {
+                  &:before {
                     width: 50px;
                     height: 2px;
                     -webkit-transition: 0.5s ease;
                     transition: 0.5s ease;
                   }
                 }
-                .sub-arrow{
+                .sub-arrow {
                   margin-top: -17px;
                 }
               }
             }
           }
-          &:hover{
-            > ul{
+          &:hover {
+            > ul {
               display: block;
             }
           }
-          .mega-menu{
+          .mega-menu {
             position: absolute;
             left: 100%;
             width: 815px !important;
             padding: 15px 30px 25px !important;
             background-color: #ffffff;
             box-shadow: 0 0 1px 0 #ebebeb;
-            li{
-              .link-section{
-                h5{
+            li {
+              .link-section {
+                h5 {
                   font-weight: 700;
                   text-transform: capitalize;
                   font-size: 14px;
                   margin-top: 15px;
                 }
-                ul{
+                ul {
                   position: relative;
                   width: 100%;
                   left: inherit;
                   display: block;
                   padding: 0;
-                  li{
-                    a{
+                  li {
+                    a {
                       padding: 5px 0;
-                      &:before{
+                      &:before {
                         position: absolute;
                         bottom: 0;
                         content: "";
@@ -1112,8 +1141,8 @@ header{
                         -webkit-transition: 0.5s ease;
                         transition: 0.5s ease;
                       }
-                      &:hover{
-                        &:before{
+                      &:hover {
+                        &:before {
                           width: 50px;
                           height: 2px;
                           -webkit-transition: 0.5s ease;
@@ -1124,7 +1153,7 @@ header{
                   }
                 }
               }
-              .mega-menu-banner{
+              .mega-menu-banner {
                 padding: 0;
               }
             }
@@ -1142,7 +1171,7 @@ header{
                 padding: 5px 35px;
                 &:active,
                 &:focus,
-                &.highlighted{
+                &.highlighted {
                   padding: 5px 35px;
                 }
               }
@@ -1186,22 +1215,37 @@ header{
       }
     }
   }
-  .mobile-back  {
+  .mobile-back {
     display: none !important;
   }
-  .pixelstrap ul{position:absolute;width:16em !important;}
-  .pixelstrap li{
-    position: relative;
-    float:left;
+  .pixelstrap ul {
+    position: absolute;
+    width: 16em !important;
   }
-  .pixelstrap.sm-rtl li{float:right;}
-  .pixelstrap ul li,.pixelstrap.sm-rtl ul li,.pixelstrap.sm-vertical li{float:none;}
-  .pixelstrap a{white-space:nowrap;}
-  .pixelstrap ul a,.pixelstrap.sm-vertical a{white-space:normal;}
-  .pixelstrap .sm-nowrap > li > a,.pixelstrap .sm-nowrap > li > :not(ul) a{
-    white-space:nowrap;
-    &.highlighted{
-      white-space:nowrap;
+  .pixelstrap li {
+    position: relative;
+    float: left;
+  }
+  .pixelstrap.sm-rtl li {
+    float: right;
+  }
+  .pixelstrap ul li,
+  .pixelstrap.sm-rtl ul li,
+  .pixelstrap.sm-vertical li {
+    float: none;
+  }
+  .pixelstrap a {
+    white-space: nowrap;
+  }
+  .pixelstrap ul a,
+  .pixelstrap.sm-vertical a {
+    white-space: normal;
+  }
+  .pixelstrap .sm-nowrap > li > a,
+  .pixelstrap .sm-nowrap > li > :not(ul) a {
+    white-space: nowrap;
+    &.highlighted {
+      white-space: nowrap;
     }
   }
   // Main menu box
@@ -1220,9 +1264,9 @@ header{
   }
   .pixelstrap {
     ul {
-      -webkit-box-shadow: 0 0 1px 0 rgba(235,235,235,1);
-      -moz-box-shadow: 0 0 1px 0 rgba(235,235,235,1);
-      box-shadow: 0 0 1px 0 rgba(235,235,235,1);
+      -webkit-box-shadow: 0 0 1px 0 rgba(235, 235, 235, 1);
+      -moz-box-shadow: 0 0 1px 0 rgba(235, 235, 235, 1);
+      box-shadow: 0 0 1px 0 rgba(235, 235, 235, 1);
     }
     .mega {
       position: unset !important;
@@ -1233,10 +1277,11 @@ header{
         }
       }
     }
-    .full-mega-menu, .clothing-menu {
-      -webkit-box-shadow: 0 0 1px 0 rgba(235,235,235,1);
-      -moz-box-shadow: 0 0 1px 0 rgba(235,235,235,1);
-      box-shadow: 0 0 1px 0 rgba(235,235,235,1);
+    .full-mega-menu,
+    .clothing-menu {
+      -webkit-box-shadow: 0 0 1px 0 rgba(235, 235, 235, 1);
+      -moz-box-shadow: 0 0 1px 0 rgba(235, 235, 235, 1);
+      box-shadow: 0 0 1px 0 rgba(235, 235, 235, 1);
       a {
         padding: 0;
         position: relative;
@@ -1283,7 +1328,6 @@ header{
 
       ul {
         background: white;
-
       }
       a {
         position: relative;
@@ -1291,7 +1335,7 @@ header{
           position: absolute;
           bottom: 0;
           content: "";
-          height:2px;
+          height: 2px;
           width: 0;
           background-color: $theme-deafult;
           transition: 0.5s ease;
@@ -1349,12 +1393,14 @@ header{
       overflow: hidden;
       border-width: 8px; // tweak size of the arrow
       border-style: dashed dashed solid dashed;
-      border-color: transparent transparent $theme-deafult__desktop-sub-item-color transparent;
+      border-color: transparent transparent
+        $theme-deafult__desktop-sub-item-color transparent;
     }
     .scroll-down-arrow {
       top: 6px;
       border-style: solid dashed dashed dashed;
-      border-color: $theme-deafult__desktop-sub-item-color transparent transparent transparent;
+      border-color: $theme-deafult__desktop-sub-item-color transparent
+        transparent transparent;
     }
     // Main menu box
     &.sm-rtl {
@@ -1371,7 +1417,8 @@ header{
       }
       > li {
         &:first-child {
-          border-left: $theme-deafult__desktop-separators-size solid $theme-deafult__desktop-separators-color;
+          border-left: $theme-deafult__desktop-separators-size solid
+            $theme-deafult__desktop-separators-color;
         }
         &:last-child {
           border-left: 0;
@@ -1389,7 +1436,8 @@ header{
     // Main menu box
     &.sm-vertical {
       a {
-        padding: $theme-deafult__desktop-vertical-item-padding-vertical $theme-deafult__desktop-vertical-item-padding-horizontal;
+        padding: $theme-deafult__desktop-vertical-item-padding-vertical
+          $theme-deafult__desktop-vertical-item-padding-horizontal;
         .sub-arrow {
           &:before {
             content: "\f105";
@@ -1404,13 +1452,13 @@ header{
     }
   }
   .main-nav-center {
-    >nav {
+    > nav {
       text-align: center;
     }
     .sm {
       display: inline-block;
       vertical-align: middle;
-      >li{
+      > li {
         .lable-nav {
           top: 3px;
         }
@@ -1467,7 +1515,7 @@ header{
       .full-mega-menu {
         float: left !important;
         left: 50% !important;
-        right:auto !important;
+        right: auto !important;
         &.center-mega-menu {
           margin-right: 0 !important;
           margin-left: 0 !important;
@@ -1495,10 +1543,10 @@ header{
       }
     }
     .sm-horizontal {
-      .mega  {
+      .mega {
         ul {
           float: right;
-          left:50% !important;
+          left: 50% !important;
           right: 0;
           li {
             text-align: right;
@@ -1544,7 +1592,7 @@ header{
                   padding: 5px 35px;
                 }
                 &:before {
-                  right:35px;
+                  right: 35px;
                 }
               }
             }
@@ -1564,7 +1612,7 @@ header{
               li {
                 a {
                   &:before {
-                    right:0;
+                    right: 0;
                   }
                 }
               }
@@ -1637,8 +1685,8 @@ header{
 }
 @media (max-width: 1199px) {
   header {
-    .main-navbar{
-      .nav-menu{
+    .main-navbar {
+      .nav-menu {
         position: fixed;
         background-color: #fff;
         width: 300px;
@@ -1652,7 +1700,7 @@ header{
         -webkit-transition: all 0.3s ease;
         transition: all 0.3s ease;
         overflow: scroll;
-        &.opennav{
+        &.opennav {
           right: 0;
         }
         .back-btn {
@@ -1677,78 +1725,78 @@ header{
             align-items: center;
           }
         }
-        > li{
+        > li {
           display: block;
           float: none;
           width: 100%;
-          a{
+          a {
             padding: 10px 15px;
             font-size: 16px;
             font-weight: 700;
             position: relative;
-            .sub-arrow{ 
+            .sub-arrow {
               right: 0;
-              &:before{
-                content: '+';
+              &:before {
+                content: "+";
                 font-family: inherit;
                 position: relative;
               }
             }
           }
-          .nav-submenu{
+          .nav-submenu {
             width: 100%;
             padding: 0;
             position: relative;
             display: none;
-            &.opensubmenu{
+            &.opensubmenu {
               display: block;
             }
-            li{
-              a{
+            li {
+              a {
                 text-transform: uppercase;
-                .sub-arrow{
+                .sub-arrow {
                   right: 0;
-                  &:before{
-                    content: '+';
+                  &:before {
+                    content: "+";
                     font-family: inherit;
                     position: relative;
                   }
                 }
               }
-              .nav-sub-childmenu{
+              .nav-sub-childmenu {
                 display: none;
                 position: relative;
                 right: 0;
                 width: 100%;
                 padding: 0;
                 background: rgba(255, 85, 69, 0.04);
-                &.opensubchild{
+                &.opensubchild {
                   display: block;
                 }
-                li{
-                  a{
+                li {
+                  a {
                     padding: 5px 35px 5px 50px;
                   }
                 }
               }
             }
           }
-          .mega-menu-container{
+          .mega-menu-container {
             display: none;
             padding: 0 30px;
-            &.opensubmenu{
+            &.opensubmenu {
               display: block;
             }
-            .mega-box{
+            .mega-box {
               width: 100%;
               padding: 0;
-              .link-section{
-                .menu-title{
-                  h5{
+              .link-section {
+                .menu-title {
+                  h5 {
                     margin-bottom: 0;
-                    .sub-arrow{
+                    .sub-arrow {
                       font: bold 16px/34px monospace !important;
-                      &:before{
+                      &:before {
                         content: "+";
                         position: absolute;
                         right: -16px;
@@ -1756,15 +1804,15 @@ header{
                     }
                   }
                 }
-                .menu-content{
+                .menu-content {
                   display: none;
-                  &.opensubmegamenu{
+                  &.opensubmegamenu {
                     display: block;
                     padding: 0 15px;
                   }
-                  ul{
-                    li{
-                      a{
+                  ul {
+                    li {
+                      a {
                         line-height: 1.7;
                       }
                     }
@@ -1776,13 +1824,13 @@ header{
         }
       }
     }
-    .sidenav{
-      .sidebar-menu{
-        li{
-          a{
+    .sidenav {
+      .sidebar-menu {
+        li {
+          a {
             padding: 10px 25px;
             font-weight: 700;
-            .sub-arrow{
+            .sub-arrow {
               position: absolute;
               top: 50%;
               margin-top: -17px;
@@ -1795,47 +1843,47 @@ header{
               text-align: center;
               text-shadow: none;
               border-radius: 4px;
-              &:before{
-                content: '+';
+              &:before {
+                content: "+";
                 font-family: inherit;
                 position: relative;
               }
             }
           }
-          ul{
+          ul {
             position: relative;
             left: 0;
             width: 100%;
             display: none;
             padding: 5px 0;
-            &.opensub1{
+            &.opensub1 {
               display: block;
             }
-            li{
-              a{
+            li {
+              a {
                 font-size: 12px;
                 font-weight: 400;
               }
-              ul{
+              ul {
                 display: none;
-                background: rgba(255,85,69,0.04);
-                &.opensub2{
+                background: rgba(255, 85, 69, 0.04);
+                &.opensub2 {
                   display: block;
                 }
-                li{
-                  a{
+                li {
+                  a {
                     padding: 5px 45px;
                   }
-                  ul{
+                  ul {
                     display: none;
                     background: rgba(255, 85, 69, 0.04);
-                    &.opensub3{
+                    &.opensub3 {
                       display: block;
                     }
-                    li{
-                      ul{
+                    li {
+                      ul {
                         display: none;
-                        &.opensub4{
+                        &.opensub4 {
                           display: block;
                         }
                       }
@@ -1851,23 +1899,23 @@ header{
             position: relative;
             display: none;
             left: 0;
-            &.opensidesubmenu{
+            &.opensidesubmenu {
               display: block;
               padding: 10px 30px 0 !important;
               box-shadow: none;
             }
-            .link-section{
-              h5{
+            .link-section {
+              h5 {
                 font-weight: 700;
                 font-size: 14px;
                 text-transform: capitalize;
               }
-              ul{ 
+              ul {
                 display: block;
                 padding: 0;
                 background: #fff;
-                li{
-                  a{
+                li {
+                  a {
                     padding: 5px 0px 5px 10px !important;
                     font-size: 12px;
                     font-weight: 400;
@@ -1875,9 +1923,9 @@ header{
                 }
               }
             }
-            .mega-menu-banner{
+            .mega-menu-banner {
               padding: 5px 0;
-              img{
+              img {
                 padding: 20px 0 0;
               }
             }
@@ -1894,7 +1942,7 @@ header{
             a {
               span {
                 img {
-                  top:30px;
+                  top: 30px;
                   right: -60px;
                 }
               }
@@ -1950,7 +1998,8 @@ header{
         margin-left: 0 !important;
       }
     }
-    .full-mega-menu, .clothing-menu {
+    .full-mega-menu,
+    .clothing-menu {
       width: 100% !important;
       padding: 0 30px !important;
     }
@@ -1958,18 +2007,18 @@ header{
       &.highlighted {
         .sub-arrow {
           &:before {
-            content: '-';
+            content: "-";
           }
         }
       }
       .sub-arrow {
         right: 0;
         &:before {
-          content: '+';
+          content: "+";
         }
       }
     }
-   > li {
+    > li {
       > a {
         font-weight: 700;
         &:hover,
@@ -2017,7 +2066,7 @@ header{
     }
     .full-mega-menu {
       .mega-box {
-        border-right:none;
+        border-right: none;
         margin-bottom: 0;
       }
     }
@@ -2034,7 +2083,7 @@ header{
     li {
       .lable-nav {
         left: 15px;
-        top:-8px;
+        top: -8px;
       }
       a {
         padding: 10px 15px;
@@ -2178,7 +2227,7 @@ header{
       a {
         .sub-arrow {
           right: unset;
-          left:0;
+          left: 0;
         }
       }
       li {
@@ -2205,7 +2254,9 @@ header{
   .main-menu {
     .menu-right {
       .icon-nav {
-        .mobile-search, .mobile-cart, .mobile-setting {
+        .mobile-search,
+        .mobile-cart,
+        .mobile-setting {
           i {
             display: none;
           }
@@ -2230,30 +2281,31 @@ header{
     }
   }
 }
-@media (max-width:577px) {
+@media (max-width: 577px) {
   .top-header {
     height: 0;
   }
   .main-nav-center {
     .toggle-nav {
       right: 15px;
-      top:-85px;
+      top: -85px;
     }
   }
   .mobile-fix-option {
     position: fixed;
     bottom: 0;
-    left:0;
+    left: 0;
     height: 60px;
     background-color: $font-color;
     width: 100vw;
     z-index: 9;
-    box-shadow: 0 2px 5px 0 rgba(168,168,168,1);
+    box-shadow: 0 2px 5px 0 rgba(168, 168, 168, 1);
   }
   .header-5 {
     .top-header {
       .header-dropdown {
-        .mobile-wishlist, .mobile-account {
+        .mobile-wishlist,
+        .mobile-account {
           img {
             filter: brightness(5);
           }
@@ -2270,7 +2322,8 @@ header{
   }
   .top-header {
     .header-dropdown {
-      .mobile-account, .mobile-wishlist{
+      .mobile-account,
+      .mobile-wishlist {
         position: fixed;
         bottom: 20px;
         right: 32%;
@@ -2288,7 +2341,7 @@ header{
         .onhover-show-div {
           top: unset;
           bottom: 42px;
-          right:0;
+          right: 0;
         }
         &:hover {
           i {
@@ -2321,7 +2374,9 @@ header{
     }
     .menu-right {
       .icon-nav {
-        .mobile-setting, .mobile-cart,.mobile-search {
+        .mobile-setting,
+        .mobile-cart,
+        .mobile-search {
           position: fixed;
           bottom: 20px;
           right: 16%;
@@ -2415,18 +2470,20 @@ header{
     .main-nav-center {
       .toggle-nav {
         right: unset;
-        left:15px;
+        left: 15px;
       }
     }
     .main-menu {
       .menu-right {
         .icon-nav {
-          .mobile-setting, .mobile-cart,.mobile-search {
+          .mobile-setting,
+          .mobile-cart,
+          .mobile-search {
             right: unset;
-            left:16%;
+            left: 16%;
             .show-div {
               left: unset;
-              right:0;
+              right: 0;
               &.shopping-cart {
                 left: unset !important;
                 right: -118px !important;
@@ -2440,7 +2497,7 @@ header{
           }
           .mobile-cart {
             right: unset;
-            left:48%;
+            left: 48%;
           }
           .mobile-search {
             right: unset;
@@ -2456,16 +2513,17 @@ header{
     }
     .top-header {
       .header-dropdown {
-        .mobile-account, .mobile-wishlist{
+        .mobile-account,
+        .mobile-wishlist {
           right: unset;
           left: 32%;
           .onhover-show-div {
-            right:0;
+            right: 0;
           }
         }
         .mobile-wishlist {
           right: unset;
-          left:64%;
+          left: 64%;
         }
       }
     }

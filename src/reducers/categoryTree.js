@@ -11,16 +11,13 @@ const initialState = {
 const categoryTreeReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_CATEGORYTREE:
-      console.log(action);
       return {
         ...state,
         categoryTree: action.categoryTree,
       };
     case FETCH_CATEGORYTREE:
-      console.log(action);
       if (
-        state.categoryTree.findIndex(category => {
-          console.log(category);
+        state.categoryTree.findIndex((category) => {
           if (category.id !== -1) {
             const singleCategory = state.categoryTree.reduce(
               (itemAcc, categoryTree) => {

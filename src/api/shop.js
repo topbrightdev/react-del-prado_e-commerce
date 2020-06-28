@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {useContext} from "react";
 import _products from "./data.json";
+import {getAllCategories} from "../actions/indexO";
 
 const wooConfig = require("./wooConfig");
 const WooCommerceAPI = require("woocommerce-api");
@@ -49,6 +50,7 @@ var __products = null;
 
 var pos = 1;
 var isTreeLoaded = false;
+var done = false;
 
 var tree = {
   id: 19,
@@ -67,15 +69,15 @@ var addresses = [
 ];
 
 const getProducts = () => {
-  console.log("get products");
   return WooCommerce.getAsync(`products?per_page=30`)
-    .then((res) => res.toJSON().body)
+    .then((res) => {
+      return res.toJSON().body;
+    })
     .then((json) => {
       var data = json;
       Object.json1 = JSON.parse(data);
       var items = Object.json1;
       var products = [];
-      console.log(items);
       items.map(
         ({
           id,
@@ -130,116 +132,25 @@ const getProducts = () => {
     });
 };
 
-const getCategories = (parent, level) => {
-  console.log("getting");
-  return WooCommerce.getAsync(
-    `products/categories?hide_empty=false&per_page=100${parent}`
-  ).then((res) => {
-    console.log(res);
-    if (res) {
-      var data = res.toJSON().body;
-      Object.json1 = JSON.parse(data);
-      var items = Object.json1;
-      var categories = [];
-
-      if (items[0]) {
-        if (items[0].id != undefined) {
-          pos = 0;
-
-          items.map(({id, name, parent}) => {
-            const newCategory = {
-              id: id,
-              name: name,
-              parent: parent,
-              children: [],
-            };
-            const addr = {
-              id: id,
-              level: level,
-              position: pos,
-              name: name,
-            };
-            addresses.push(addr);
-            categories.push(newCategory); // Push the object
-
-            pos++;
-          });
-          console.log(categories);
-
-          return categories;
-        }
-      }
-    }
-  });
-};
-
 const getCategoryTree = async () => {
   var root = `&parent=19`;
   const Str = `&parent=`;
   var level = 1;
 
-  if (isTreeLoaded === false) {
-    console.log("Category tree");
+  return await getTheCategories(root, level).then((res) => {
+    return res;
+  });
+};
 
-    await getCategories(root, level)
-      .then((res) => {
-        console.log(res);
-        tree.children[0] = res;
-
-        if (res) {
-          level++;
-          var i = 0;
-
-          res.map(async (m) => {
-            // With m.id I request and what I get goes into
-            // m.children
-            if (m) {
-              if (m.id) {
-                root = Str + `${m.id}`;
-
-                await getCategories(root, level).then((res) => {
-                  console.log(res);
-                  if (res) {
-                    if (tree.children) {
-                      if (tree.children[0]) {
-                        if (tree.children[0][i]) {
-                          if (tree.children[0][i].children) {
-                            console.log(addresses);
-
-                            var arrayPos = 0;
-                            addresses.map((addr) => {
-                              if (addr.id === m.id) {
-                                arrayPos = addr.position;
-                              }
-                            });
-
-                            if (!tree.children[0][arrayPos].children[0]) {
-                              console.log(tree.children[0][arrayPos].children);
-                              tree.children[0][arrayPos].children.push(res);
-                              console.log(tree.children[0][arrayPos].children);
-                            }
-
-                            i++;
-                          }
-                        }
-                      }
-                    }
-                  }
-                });
-              }
-            }
-          });
-        }
-        isTreeLoaded = true;
-        tree = tree;
-        console.log("Tree Done");
-        console.log(tree);
-        return tree;
-      })
-      .catch((error) => {
-        return error;
-      });
-  }
+const getTheCategories = (parent, level) => {
+  return WooCommerce.getAsync(
+    `products/categories?hide_empty=false&per_page=100`
+  ).then((res) => {
+    var data = res.toJSON().body;
+    Object.json1 = JSON.parse(data);
+    var items = Object.json1;
+    return items;
+  });
 };
 
 export default {

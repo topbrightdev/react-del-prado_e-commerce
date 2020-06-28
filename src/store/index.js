@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import {createStore, applyMiddleware, compose} from "redux";
 
 // middlewares
 import thunkMiddleware from "redux-thunk";
@@ -19,7 +19,6 @@ function saveToLocalStorage(state) {
 function loadFromLocalStorage() {
   try {
     const serializedState = localStorage.getItem("state");
-    console.log(JSON.parse(serializedState));
     if (serializedState === null) return undefined;
     return JSON.parse(serializedState);
   } catch (e) {

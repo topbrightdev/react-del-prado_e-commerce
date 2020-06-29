@@ -15,6 +15,7 @@ class CollectionNoSideBar extends Component {
     this.state = {
       layoutColumns: 3,
       category: null,
+      prodcutsToShow: [],
     };
   }
 

@@ -10,6 +10,7 @@ import {removeFromCart, incrementQty, decrementQty} from "../../actions/indexO";
 class cartComponent extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   render() {
@@ -84,14 +85,13 @@ class cartComponent extends Component {
                                 <div className="col-xs-3">
                                   <h2 className="td-color">
                                     {symbol}
-                                    {item.price -
-                                      (item.price * item.discount) / 100}
+                                    {item.price}
                                   </h2>
                                 </div>
                                 <div className="col-xs-3">
                                   <h2 className="td-color">
                                     <a
-                                      href="#"
+                                      href="javascript:void(0)"
                                       className="icon"
                                       onClick={() =>
                                         this.props.removeFromCart(item)
@@ -106,8 +106,7 @@ class cartComponent extends Component {
                             <td>
                               <h2>
                                 {symbol}
-                                {item.price -
-                                  (item.price * item.discount) / 100}
+                                {item.price}
                               </h2>
                             </td>
                             <td>
@@ -154,7 +153,7 @@ class cartComponent extends Component {
                             </td>
                             <td>
                               <a
-                                href="#"
+                                href="javascript:void(0)"
                                 className="icon"
                                 onClick={() => this.props.removeFromCart(item)}
                               >

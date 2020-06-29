@@ -63,109 +63,109 @@ class LeftSideBar extends Component {
       dots: false,
       focusOnSelect: true,
     };
+    if (item) {
+      return (
+        <div>
+          {/*SEO Support*/}
+          <Helmet>
+            <title>
+              MultiKart | {item.category} | {item.name}
+            </title>
+            <meta
+              name="description"
+              content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses."
+            />
+          </Helmet>
+          {/*SEO Support End */}
 
-    return (
-      <div>
-        {/*SEO Support*/}
-        <Helmet>
-          <title>
-            MultiKart | {item.category} | {item.name}
-          </title>
-          <meta
-            name="description"
-            content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses."
-          />
-        </Helmet>
-        {/*SEO Support End */}
+          <Breadcrumb parent={"Product"} title={item.name} />
 
-        <Breadcrumb parent={"Product"} title={item.name} />
+          {/*Section Start*/}
+          {item ? (
+            <section className="section-b-space">
+              <div className="collection-wrapper">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-sm-3 collection-filter" id="filter">
+                      <div className="collection-mobile-back pl-5">
+                        <span onClick={this.backClick} className="filter-back">
+                          <i
+                            className="fa fa-angle-left"
+                            aria-hidden="true"
+                          ></i>{" "}
+                          back
+                        </span>
+                      </div>
 
-        {/*Section Start*/}
-        {item ? (
-          <section className="section-b-space">
-            <div className="collection-wrapper">
-              <div className="container">
-                <div className="row">
-                  <div className="col-sm-3 collection-filter" id="filter">
-                    <div className="collection-mobile-back pl-5">
-                      <span onClick={this.backClick} className="filter-back">
-                        <i className="fa fa-angle-left" aria-hidden="true"></i>{" "}
-                        back
-                      </span>
+                      {/* <BrandBlock/> */}
+                      <Service />
+                      {/*side-bar single product slider start*/}
+                      {/** <NewProduct /> */}
+                      <NewProduct />
+                      {/*side-bar single product slider end*/}
                     </div>
-
-                    {/* <BrandBlock/> */}
-                    <Service />
-                    {/*side-bar single product slider start*/}
-                    <NewProduct />
-                    {/*side-bar single product slider end*/}
-                  </div>
-                  <div className="col-lg-9 col-sm-12 col-xs-12">
-                    <div className="">
-                      <div className="row">
-                        <div className="col-xl-12">
-                          <div className="filter-main-btn mb-2">
-                            <span
-                              onClick={this.filterClick}
-                              className="filter-btn"
-                            >
-                              <i
-                                className="fa fa-filter"
-                                aria-hidden="true"
-                              ></i>{" "}
-                              filter
-                            </span>
+                    <div className="col-lg-9 col-sm-12 col-xs-12">
+                      <div className="">
+                        <div className="row">
+                          <div className="col-xl-12">
+                            <div className="filter-main-btn mb-2">
+                              <span
+                                onClick={this.filterClick}
+                                className="filter-btn"
+                              >
+                                <i
+                                  className="fa fa-filter"
+                                  aria-hidden="true"
+                                ></i>{" "}
+                                filter
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-lg-6 product-thumbnail">
-                          <Slider
-                            {...products}
-                            asNavFor={this.state.nav2}
-                            ref={(slider) => (this.slider1 = slider)}
-                            className="product-slick"
-                          >
-                            {item.variants
-                              ? item.variants.map((vari, index) => (
-                                  <div key={index}>
-                                    <ImageZoom image={vari.images} />
-                                  </div>
-                                ))
-                              : item.pictures.map((vari, index) => (
-                                  <div key={index}>
-                                    <ImageZoom image={vari} />
-                                  </div>
-                                ))}
-                          </Slider>
-                          <SmallImages
+                        <div className="row">
+                          <div className="col-lg-6 product-thumbnail">
+                            <Slider
+                              {...products}
+                              asNavFor={this.state.nav2}
+                              ref={(slider) => (this.slider1 = slider)}
+                              className="product-slick"
+                            >
+                              {item.variants
+                                ? item.variants.map((vari, index) => (
+                                    <div key={index}>
+                                      <ImageZoom image={vari.images} />
+                                    </div>
+                                  ))
+                                : item.pictures.map((vari, index) => (
+                                    <div key={index}>
+                                      <ImageZoom image={vari} />
+                                    </div>
+                                  ))}
+                            </Slider>
+                          </div>
+                          <DetailsWithPrice
+                            symbol={symbol}
                             item={item}
-                            settings={productsnav}
                             navOne={this.state.nav1}
+                            addToCartClicked={addToCart}
+                            BuynowClicked={addToCartUnsafe}
+                            addToWishlistClicked={addToWishlist}
                           />
                         </div>
-                        <DetailsWithPrice
-                          symbol={symbol}
-                          item={item}
-                          navOne={this.state.nav1}
-                          addToCartClicked={addToCart}
-                          BuynowClicked={addToCartUnsafe}
-                          addToWishlistClicked={addToWishlist}
-                        />
                       </div>
+                      <DetailsTopTabs item={item} />
                     </div>
-                    <DetailsTopTabs item={item} />
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-        ) : (
-          ""
-        )}
-        {/*Section End*/}
-      </div>
-    );
+            </section>
+          ) : null}
+          {/*Section End*/}
+        </div>
+      );
+    } else {
+      return <h6>Loading</h6>;
+    }
   }
 }
 

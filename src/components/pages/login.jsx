@@ -1,11 +1,19 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {getCartTotal} from "../../services";
+import {login} from "../../actions/indexO";
 import Breadcrumb from "../common/breadcrumb";
 
 class Login extends Component {
   constructor(props) {
     super(props);
   }
+
+  doLogin = () => {
+    const userData = {name: "abi", password: "123456"};
+    this.props.login(userData);
+  };
 
   render() {
     return (
@@ -40,7 +48,12 @@ class Login extends Component {
                         required=""
                       />
                     </div>
-                    <a href="#" className="btn btn-solid">
+                    <a
+                      onClick={() => {
+                        this.doLogin();
+                      }}
+                      className="btn btn-solid"
+                    >
                       Login
                     </a>
                   </form>
@@ -73,4 +86,10 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  state,
+});
+
+export default connect(mapStateToProps, {
+  login,
+})(Login);

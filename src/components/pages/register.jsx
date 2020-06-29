@@ -64,8 +64,8 @@ class Register extends Component {
                           className="form-control"
                           placeholder="Last Name"
                           required=""
-                          name="first_name"
-                          value={this.state.first_name}
+                          name="last_name"
+                          value={this.state.last_name}
                           onChange={this.setStateFromInput}
                         />
                         {this.validator.message(

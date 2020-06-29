@@ -9,8 +9,7 @@ import "./index.scss";
 // Import custom components
 import store from "./store";
 import translations from "./constants/translations";
-import {getAllProducts, getAllCategories} from "./actions/indexO";
-import Landing from "./components/landing";
+import {getAllProducts, getAllCategories, getUserWoo} from "./actions/indexO";
 
 // Layouts
 

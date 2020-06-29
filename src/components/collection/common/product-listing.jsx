@@ -4,7 +4,12 @@ import {Link} from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import {getTotal, getCartProducts} from "../../../reducers";
-import {addToCart, addToWishlist, addToCompare} from "../../../actions/indexO";
+import {
+  addToCart,
+  addToWishlist,
+  addToCompare,
+  addSelectedProducts,
+} from "../../../actions/indexO";
 import {getVisibleproducts} from "../../../services/index";
 import ProductListItem from "./product-list-item";
 
@@ -22,7 +27,6 @@ class ProductListing extends Component {
   }
 
   componentWillMount() {
-    this.fetchMoreItems();
     if (this.props.category !== this.state.category) {
       category = this.props.category;
       this.setState(() => {
@@ -30,6 +34,15 @@ class ProductListing extends Component {
       });
       this.fetchSameCategoryProducts();
     }
+    var products = null;
+
+    if (this.props.data3.productsToShow.length > 0) {
+      products = this.props.data3.productsToShow;
+    } else {
+      products = this.props.products;
+    }
+
+    this.fetchMoreItems(products);
   }
 
   componentDidUpdate() {
@@ -43,8 +56,6 @@ class ProductListing extends Component {
   }
 
   fetchSameCategoryProducts = () => {
-    console.log(category);
-    console.log(this.props);
     if (this.props.category !== this.state.category) {
       category = this.props.category;
       this.setState(() => {
@@ -52,11 +63,14 @@ class ProductListing extends Component {
       });
 
       var productsToShow = [];
-      const products = this.props.products;
+      var products = this.props.products[0];
+
+      if (this.props.products[1].length > 0) {
+        products = this.props.products[0];
+      }
+
       products.map((product) => {
         product.categories.map((productCategory) => {
-          console.log(productCategory);
-          console.log(category);
           if (productCategory.name === category) {
             productsToShow.push(product);
           }
@@ -68,22 +82,15 @@ class ProductListing extends Component {
       this.setState(() => {
         return {productsToShow: productsToShow};
       });
+      this.props.addSelectedProducts(productsToShow);
     }
-    console.log(productsToShow);
     category = this.props.category;
   };
 
-  fetchMoreItems = () => {
-    if (this.state.limit >= this.props.products.length) {
+  fetchMoreItems = (products) => {
+    if (this.state.limit >= products.length) {
       this.setState({hasMoreItems: false});
       return;
-    }
-
-    if (this.state.productsToShow) {
-      if (this.state.limit >= this.state.productsToShow.length) {
-        this.setState({hasMoreItems: false});
-        return;
-      }
     }
     // a fake async api call
     setTimeout(() => {
@@ -102,14 +109,24 @@ class ProductListing extends Component {
       addToCompare,
     } = this.props;
 
+    var theProducts = products[0];
+    if (this.state.productsToShow) {
+      theProducts = this.state.productsToShow;
+    }
+    if (products[1].length > 0) {
+      theProducts = products[1];
+    }
+
     if (category) {
       return (
         <div className="product-wrapper-grid">
           <div className="container-fluid">
-            {products.length > 0 ? (
+            {theProducts.length > 0 ? (
               <InfiniteScroll
                 dataLength={this.state.limit} //This is important field to render the next data
-                next={this.fetchMoreItems}
+                next={() => {
+                  this.fetchMoreItems(theProducts);
+                }}
                 hasMore={this.state.hasMoreItems}
                 loader={<div className="loading-cls"></div>}
                 endMessage={
@@ -119,57 +136,27 @@ class ProductListing extends Component {
                 }
               >
                 <div className="row">
-                  {this.state.productsToShow
-                    ? this.state.productsToShow
-                        .slice(0, this.state.limit)
-                        .map((product, index) => (
-                          <div
-                            className={`${
-                              this.props.colSize === 3
-                                ? "col-xl-3 col-md-6  col-grid-box ma-lr"
-                                : "col-lg-" + this.props.colSize
-                            }`}
-                            key={index}
-                          >
-                            <ProductListItem
-                              product={product}
-                              symbol={symbol}
-                              onAddToCompareClicked={() =>
-                                addToCompare(product)
-                              }
-                              onAddToWishlistClicked={() =>
-                                addToWishlist(product)
-                              }
-                              onAddToCartClicked={addToCart}
-                              key={index}
-                            />
-                          </div>
-                        ))
-                    : products
-                        .slice(0, this.state.limit)
-                        .map((product, index) => (
-                          <div
-                            className={`${
-                              this.props.colSize === 3
-                                ? "col-xl-3 col-md-6  col-grid-box ma-lr"
-                                : "col-lg-" + this.props.colSize
-                            }`}
-                            key={index}
-                          >
-                            <ProductListItem
-                              product={product}
-                              symbol={symbol}
-                              onAddToCompareClicked={() =>
-                                addToCompare(product)
-                              }
-                              onAddToWishlistClicked={() =>
-                                addToWishlist(product)
-                              }
-                              onAddToCartClicked={addToCart}
-                              key={index}
-                            />
-                          </div>
-                        ))}
+                  {theProducts
+                    .slice(0, this.state.limit)
+                    .map((product, index) => (
+                      <div
+                        className={`${
+                          this.props.colSize === 3
+                            ? "col-xl-3 col-md-6  col-grid-box ma-lr"
+                            : "col-lg-" + this.props.colSize
+                        }`}
+                        key={index}
+                      >
+                        <ProductListItem
+                          product={product}
+                          symbol={symbol}
+                          onAddToCompareClicked={() => addToCompare(product)}
+                          onAddToWishlistClicked={() => addToWishlist(product)}
+                          onAddToCartClicked={addToCart}
+                          key={index}
+                        />
+                      </div>
+                    ))}
                 </div>
               </InfiniteScroll>
             ) : (
@@ -205,8 +192,14 @@ class ProductListing extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    products: getVisibleproducts(state.data, state.filters),
+    products: getVisibleproducts(
+      state.data,
+      state.filters,
+      state.data2,
+      state.data3
+    ),
     data2: state.data2,
+    data3: state.data3,
     symbol: state.data.symbol,
   };
 };
@@ -215,4 +208,5 @@ export default connect(mapStateToProps, {
   addToCart,
   addToWishlist,
   addToCompare,
+  addSelectedProducts,
 })(ProductListing);

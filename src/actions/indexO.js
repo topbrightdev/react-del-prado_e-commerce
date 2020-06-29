@@ -1,4 +1,6 @@
 import shop from "../api/shop";
+import woo from "../api/woo";
+import user from "../api/user";
 import * as types from "../constants/ActionTypes";
 import store from "../store";
 import {toast} from "react-toastify";
@@ -28,12 +30,37 @@ export const fetchSingleProduct = (productId) => ({
   productId,
 });
 
+export const fetchSelectedProductsBegin = () => ({
+  type: types.FETCH_SELECTEDPRODUCTS_BEGIN,
+});
+
+export const receiveSelectedProducts = (products) => ({
+  type: types.RECEIVE_SELECTEDPRODUCTS,
+  products,
+});
+
+export const addSelectedProducts = (selected) => (dispatch) => {
+  dispatch(fetchSelectedProductsBegin());
+  dispatch(receiveSelectedProducts(selected));
+  return selected;
+};
+
+export const fetchSingleSelectedProduct = (productId) => ({
+  type: types.FETCH_SINGLE_SELECTEDPRODUCT,
+  productId,
+});
+
 /**      END  PRODUCTS ACTIONS          */
 
 /**           CATEGORYTREE ACTIONS          */
 
 export const fetchCategoryTreeBegin = () => ({
   type: types.FETCH_CATEGORYTREE_BEGIN,
+});
+
+export const fetchCategoryTree = (category) => ({
+  type: types.FETCH_CATEGORYTREE,
+  category,
 });
 
 export const receiveCategoryTree = (categoryTree) => ({
@@ -51,12 +78,58 @@ export const getAllCategories = () => (dispatch) => {
   });
 };
 
-export const fetchCategoryTree = (category) => ({
-  type: types.FETCH_CATEGORYTREE,
-  category,
+/**      END  CATEGORYTREE ACTIONS          */
+
+/**          USER               */
+export const fetchLoginBegin = () => ({
+  type: types.FETCH_LOGIN_BEGIN,
 });
 
-/**      END  CATEGORYTREE ACTIONS          */
+export const fetchLogin = (log) => ({
+  type: types.FETCH_LOGIN,
+  log,
+});
+
+export const receiveLogin = (log) => ({
+  type: types.RECEIVE_LOGIN,
+  log,
+});
+
+export const login = (userData) => (dispatch) => {
+  dispatch(fetchLoginBegin());
+  user.login(userData).then((log) => {
+    dispatch(receiveLogin(log));
+    return log;
+  });
+};
+/**            USER              */
+
+/**          WOOCOMMERCE USER               */
+
+export const fetchUserWooBegin = () => ({
+  type: types.FETCH_USERWOO_BEGIN,
+});
+
+export const receiveUserWoo = (userWoo) => ({
+  type: types.RECEIVE_USERWOO,
+  userWoo,
+});
+
+export const getUserWoo = () => (dispatch) => {
+  dispatch(fetchUserWooBegin());
+  woo.test().then((userWoo) => {
+    console.log(userWoo);
+    dispatch(receiveUserWoo(userWoo));
+    return userWoo;
+  });
+};
+
+export const fetchUserWoo = (userWoo) => ({
+  type: types.FETCH_USERWOO,
+  userWoo,
+});
+
+/**          END  WOOCOMMERCE USER              */
 
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => (dispatch) => {
@@ -115,10 +188,12 @@ export const addToCompare = (product) => (dispatch) => {
   toast.success("Item Added to Compare");
   dispatch(addToCompareUnsafe(product));
 };
+
 export const addToCompareUnsafe = (product) => ({
   type: types.ADD_TO_COMPARE,
   product,
 });
+
 export const removeFromCompare = (product_id) => ({
   type: types.REMOVE_FROM_COMPARE,
   product_id,

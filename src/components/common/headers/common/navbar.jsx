@@ -29,6 +29,7 @@ class NavBar extends Component {
   };
 
   componentWillMount() {
+    this.check();
     if (window.innerWidth < 750) {
       this.setState({navClose: {right: "-410px"}});
     }
@@ -38,6 +39,10 @@ class NavBar extends Component {
   }
 
   componentDidUpdate() {
+    this.check();
+  }
+
+  check() {
     if (this.props.categoryTree.length > 24 && !this.state.loaded) {
       this.setState(() => {
         return {

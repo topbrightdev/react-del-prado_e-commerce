@@ -7,6 +7,14 @@ import logger from "redux-logger";
 // Import custom components
 import rootReducer from "../reducers";
 
+function cleanLocalStorage() {
+  try {
+    localStorage.clear();
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 function saveToLocalStorage(state) {
   try {
     const serializedState = JSON.stringify(state);
@@ -20,6 +28,7 @@ function loadFromLocalStorage() {
   try {
     const serializedState = localStorage.getItem("state");
     if (serializedState === null) return undefined;
+    console.log(JSON.parse(serializedState));
     return JSON.parse(serializedState);
   } catch (e) {
     console.log(e);
@@ -46,7 +55,6 @@ const store = createStore(
         }
   )
 );
-
 const unsubscribe = store.subscribe(() => {
   const state = store.getState();
   saveToLocalStorage(state);

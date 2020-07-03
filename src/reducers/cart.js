@@ -3,6 +3,7 @@ import {
   REMOVE_FROM_CART,
   INCREMENT_QTY,
   DECREMENT_QTY,
+  CLEAR_CART,
 } from "../constants/ActionTypes";
 
 export default function cartReducer(
@@ -15,6 +16,7 @@ export default function cartReducer(
     case ADD_TO_CART:
       console.log(action);
       const productId = action.product.id;
+      console.log(action.product.id);
       if (state.cart.findIndex((product) => product.id === productId) !== -1) {
         const cart = state.cart.reduce((cartAcc, product) => {
           if (product.id === productId) {
@@ -96,6 +98,10 @@ export default function cartReducer(
           ],
         };
       }
+    case CLEAR_CART:
+      return {
+        cart: [],
+      };
 
     case REMOVE_FROM_CART:
       return {

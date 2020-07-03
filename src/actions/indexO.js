@@ -102,34 +102,47 @@ export const login = (userData) => (dispatch) => {
     return log;
   });
 };
-/**            USER              */
 
-/**          WOOCOMMERCE USER               */
-
-export const fetchUserWooBegin = () => ({
-  type: types.FETCH_USERWOO_BEGIN,
+export const signupBegin = () => ({
+  type: types.SIGNUP_BEGIN,
 });
 
-export const receiveUserWoo = (userWoo) => ({
-  type: types.RECEIVE_USERWOO,
-  userWoo,
+export const receiveSignup = (log) => ({
+  type: types.RECEIVE_SIGNUP,
+  log,
 });
 
-export const getUserWoo = () => (dispatch) => {
-  dispatch(fetchUserWooBegin());
-  woo.test().then((userWoo) => {
-    console.log(userWoo);
-    dispatch(receiveUserWoo(userWoo));
-    return userWoo;
+export const signup = (userData) => (dispatch) => {
+  dispatch(signupBegin());
+  user.signup(userData).then((log) => {
+    dispatch(receiveSignup(log));
+    return log;
+  });
+};
+/**            USER    END           */
+
+/**             ORDER                */
+
+export const orderBegin = () => ({
+  type: types.ORDER_BEGIN,
+});
+
+export const receiveOrderReceipt = (rec) => ({
+  type: types.RECEIVE_ORDER_RECEIPT,
+  rec,
+});
+
+export const placeOrder = (orderData) => (dispatch) => {
+  console.log(orderData);
+  dispatch(orderBegin());
+  user.order(orderData).then((rec) => {
+    console.log(rec);
+    dispatch(receiveOrderReceipt(rec));
+    return rec;
   });
 };
 
-export const fetchUserWoo = (userWoo) => ({
-  type: types.FETCH_USERWOO,
-  userWoo,
-});
-
-/**          END  WOOCOMMERCE USER              */
+/**             ORDER    END            */
 
 //it seems that I should probably use this as the basis for "Cart"
 export const addToCart = (product, qty) => (dispatch) => {
@@ -159,10 +172,14 @@ export const incrementQty = (product, qty) => (dispatch) => {
 };
 export const decrementQty = (productId) => (dispatch) => {
   toast.warn("Item Decrement Qty to Cart");
-
   dispatch({
     type: types.DECREMENT_QTY,
     productId,
+  });
+};
+export const clearCart = () => (dispatch) => {
+  dispatch({
+    type: types.CLEAR_CART,
   });
 };
 

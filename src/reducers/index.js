@@ -11,8 +11,11 @@ import compareReducer from "./compare";
 import categoryTreeReducer from "./categoryTree";
 import userWooReducer from "./userWoo";
 import userReducer from "./user";
+import orderReducer from "./order";
+import {DESTROY_SESSION} from "../constants/ActionTypes";
 
-const rootReducer = combineReducers({
+// Combine all reducers.
+const appReducer = combineReducers({
   data: productReducer,
   data2: categoryTreeReducer,
   data3: productsToShowReducer,
@@ -22,7 +25,13 @@ const rootReducer = combineReducers({
   compare: compareReducer,
   woo: userWooReducer,
   user: userReducer,
+  order: orderReducer,
   Intl,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === DESTROY_SESSION) state = undefined;
+  return appReducer(state, action);
+};
 
 export default rootReducer;

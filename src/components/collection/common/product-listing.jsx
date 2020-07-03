@@ -36,8 +36,12 @@ class ProductListing extends Component {
     }
     var products = null;
 
-    if (this.props.data3.productsToShow.length > 0) {
-      products = this.props.data3.productsToShow;
+    if (this.props.data3.productsToShow) {
+      if (this.props.data3.productsToShow.length > 0) {
+        products = this.props.data3.productsToShow;
+      } else {
+        products = this.props.products;
+      }
     } else {
       products = this.props.products;
     }

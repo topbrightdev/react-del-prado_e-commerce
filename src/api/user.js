@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {createContext, useContext} from "react";
 import axios from "axios";
+import orderReducer from "../reducers/order";
 
 const wooConfig = require("./wooConfig");
 const WooCommerceAPI = require("woocommerce-api");
@@ -18,17 +19,24 @@ const urlRegister = "wp/v2/users/register";
 const urlJWT = "jwt-auth/v1/token";
 const userURI = targetUrl + "wp/v2/users/me";
 
+/**
+ * Signup Flow
+ *  1-Create user : Creates an authenticated Wordpress Account with password
+ *  2-Create user in woocommerce -> createCustomer(newcustomer)
+ *  3-receiveLogin(data{user,email}) -> fillCustomer(mail)
+ *  4-getCustomerId(newCustomer) -> updateCustomer(userId, newCustomer)
+ */
+
 const login = async (user) => {
-  var userName = user.name; //this is the nice_name
+  var username = user.username; //this is the nice_name
   var password = user.password;
   var token,
     displayName,
     niceName,
     email = null;
-
   return await axios
     .post("https://grassrootemarket.com/wp-json/jwt-auth/v1/token", {
-      username: userName,
+      username: username,
       password: password,
     })
     .then((result) => {
@@ -42,7 +50,7 @@ const login = async (user) => {
           if (res) {
             filledFields = {
               ...res,
-              name: displayName,
+              username: displayName,
               email: email,
               token: token,
             };
@@ -54,8 +62,111 @@ const login = async (user) => {
       }
     })
     .catch((e) => {
-      alert("error");
+      alert(e.response.data.message);
     });
+};
+
+//var data = [user, shipping];
+
+const signup = async (userData) => {
+  const {
+    username,
+    email,
+    password,
+    address_1,
+    city,
+    country,
+    first_name,
+    last_name,
+    phone,
+    postcode,
+    state,
+  } = userData;
+
+  var user = {
+    username: username,
+    email: email,
+    password: password,
+  };
+
+  const newCustomer = {
+    email: email,
+    first_name: first_name,
+    last_name: last_name,
+    username: username,
+    billing: {
+      first_name: first_name,
+      last_name: last_name,
+      company: "company",
+      address_1: address_1,
+      address_2: "",
+      city: city,
+      state: state,
+      postcode: postcode,
+      country: "Spain",
+      email: email,
+      phone: phone,
+    },
+    shipping: {
+      first_name: first_name,
+      last_name: last_name,
+      company: "",
+      address: address_1,
+      address2: "",
+      city: city,
+      state: state,
+      cp: postcode,
+      country: country,
+    },
+  };
+  const body = JSON.stringify({
+    username: username,
+    email: email,
+    password: password,
+  });
+
+  var created = false;
+
+  // After filling the vlaue fields,the function will proceed to create
+  // first the wordpress user.
+
+  return await fetch(targetUrl + urlRegister, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: body,
+  })
+    .catch((error) => {
+      console.log(error.response.body);
+    })
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(res) {
+      if (res.message) {
+        alert(res.message);
+        if (res.code === 200) {
+          return createCustomer(newCustomer, email).then((res) => {
+            created = true;
+            return userData;
+          });
+        } else return null;
+      }
+    });
+};
+
+const createCustomer = (newCustomer, email) => {
+  if (!email) {
+    const data = {
+      user_display_name: newCustomer.username,
+      user_email: newCustomer.email,
+    };
+    receiveLogin(data).then((res) => {
+      return res;
+    });
+  }
+  return getCustomerId(newCustomer);
 };
 
 const fillCustomer = async (email) => {
@@ -69,12 +180,12 @@ const fillCustomer = async (email) => {
             userId: user.id,
             company: user.billing.company,
             first_name: user.billing.first_name,
-            lastName: user.billing.last_name,
-            address: user.billing.address_1,
-            address2: user.billing.address_2,
+            last_name: user.billing.last_name,
+            address_1: user.billing.address_1,
+            address_2: user.billing.address_2,
             city: user.billing.city,
             state: user.billing.state,
-            cp: user.billing.postcode,
+            postcode: user.billing.postcode,
             country: user.billing.country,
             phone: user.billing.phone,
           };
@@ -87,24 +198,9 @@ const fillCustomer = async (email) => {
     });
 };
 
-const createCustomer = (newCustomer) => {
-  if (!this.state.email) {
-    const data = {
-      user_display_name: newCustomer.username,
-      user_email: newCustomer.email,
-    };
-    this.receiveLogin(data);
-  }
-  this.getCustomerId(newCustomer);
-};
-
 async function updateAccount(id, updatedUser, updatedShipping) {
   // First will check if user values must be modified : name /mail
   // Check
-  console.log(id);
-  console.log(updatedUser);
-  console.log(updatedShipping);
-
   if (updatedUser) {
     await axios
       .post(`https://grassrootemarket.com/wp-json/wp/v2/users/${id}`, {
@@ -113,13 +209,12 @@ async function updateAccount(id, updatedUser, updatedShipping) {
       })
       .then((result) => {
         if (result.status === 200) {
-          console.log(result);
         } else {
           alert("error");
         }
       })
       .catch((e) => {
-        //  setIsError(true);
+        alert(e.response.body.message);
       });
   }
 
@@ -127,55 +222,133 @@ async function updateAccount(id, updatedUser, updatedShipping) {
     await WooCommerce.putAsync(`customers/${id}`, updatedShipping)
       .then((response) => {
         const customer = JSON.parse(response.body);
-        console.log(customer);
       })
       .catch((error) => {});
   }
 }
 
-async function updateCustomer(id, newCustomer) {
-  console.log(id);
-  console.log(newCustomer);
-  await WooCommerce.putAsync(`customers/${id}`, newCustomer)
+const updateCustomer = async (id, newCustomer) => {
+  return await WooCommerce.putAsync(`customers/${id}`, newCustomer)
     .then((response) => {
       const customer = JSON.parse(response.body);
-      console.log(customer);
+      return customer;
     })
     .catch((error) => {});
-}
+};
 
 const getCustomerId = async (newCustomer) => {
-  await WooCommerce.getAsync(`customers?email=${newCustomer.email}`)
+  return await WooCommerce.getAsync(`customers?email=${newCustomer.email}`)
     .then((response) => {
       if (response) {
         if (response.body) {
           const user = JSON.parse(response.body);
           const userId = user[0].id;
-          this.setState(() => {
-            return {
-              ...{
-                userId: userId,
-              },
-            };
-          });
-          this.updateCustomer(userId, newCustomer);
+          return updateCustomer(userId, newCustomer);
         }
       }
     })
-    .catch((error) => {});
+    .catch((error) => {
+      return null;
+    });
 };
 
-const createOrder = async (ready, userOrder) => {
-  this.fillOrder();
-  if (ready) {
-    await WooCommerce.postAsync("orders", userOrder)
-      .then((response) => {})
-      .catch((error) => {});
+const order = async (orderData) => {
+  console.log(orderData);
+  const orderReady = fillOrder(orderData);
+  console.log(orderReady);
+  if (orderReady) {
+    return await WooCommerce.postAsync("orders", orderReady).then((res) => {
+      if (res.body) {
+        const r = JSON.parse(res.body);
+        console.log(r);
+        return r;
+      }
+    });
   }
 };
 
+const fillOrder = (orderData) => {
+  var ready = false;
+  var orderReady = {};
+  const {
+    email,
+    address_1,
+    city,
+    country,
+    first_name,
+    last_name,
+    phone,
+    postcode,
+    state,
+    cart,
+    total,
+  } = orderData;
+  console.log(orderData);
+  var theCart = [];
+  cart.map((i) => {
+    console.log(cart);
+    const product = {
+      product_id: i.id,
+      quantity: i.qty,
+    };
+    theCart.push(product);
+  });
+
+  if (
+    last_name &&
+    first_name &&
+    email &&
+    address_1 &&
+    city &&
+    state &&
+    postcode &&
+    country &&
+    phone &&
+    cart &&
+    total
+  ) {
+    orderReady = {
+      payment_method: "bacs",
+      payment_method_title: "Credit Card Payment",
+      set_paid: "true",
+      billing: {
+        first_name: `${first_name}`,
+        last_name: `${last_name}`,
+        address_1: `${address_1}`,
+        address_2: ``,
+        city: `${city}`,
+        state: ` ${state}`,
+        postcode: `${postcode}`,
+        country: `${country}`,
+        email: `${email}`,
+        phone: `${phone}`,
+      },
+      shipping: {
+        first_name: `${first_name}`,
+        last_name: `${last_name}`,
+        address_1: `${address_1}`,
+        address_2: ``,
+        city: `${city}`,
+        state: `${state}`,
+        postcode: `${postcode}`,
+        country: `${country}`,
+        email: `${email}`,
+      },
+      line_items: theCart,
+      shipping_lines: [
+        {
+          method_id: "flat_rate",
+          method_title: "Flat Rate",
+          total: `${total}`,
+        },
+      ],
+    };
+  }
+  return orderReady;
+};
+
 const receiveLogin = (data) => {
-  console.log(data);
+  console.log("ZOMBIE");
   this.setState(() => {
     return {
       ...{
@@ -189,7 +362,7 @@ const receiveLogin = (data) => {
   // about the logged user and populate its state
 };
 
-const receiveLogout = (data) => {
+const logout = (data) => {
   this.setState(() => {
     return {
       ...{
@@ -236,102 +409,4 @@ const receiveSignup = (data) => {
   });
 };
 
-function Signup(props) {
-  const [isCreated, setCreated] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [userMail, setUserMail] = useState("");
-  const [password, setUserPassword] = useState("");
-  const [password2, setUserPassword2] = useState("");
-
-  const [phone, setPhone] = useState("");
-  const [realname, setRealname] = useState("");
-  const [surname, setSurname] = useState("");
-  const [company, setCompany] = useState("");
-  const [street, setStreet] = useState("");
-  const [street2, setStreet2] = useState("");
-  const [postal, setPostal] = useState("");
-  const [city, setCity] = useState("");
-  const [province, setProvince] = useState("");
-
-  var user = {
-    username: userName,
-    email: userMail,
-    password: password,
-  };
-
-  const newCustomer = {
-    email: userMail,
-    first_name: realname,
-    last_name: surname,
-    username: userName,
-    billing: {
-      first_name: realname,
-      last_name: surname,
-      company: company,
-      address_1: street,
-      address_2: street2,
-      city: city,
-      state: province,
-      postcode: postal,
-      country: "Spain",
-      email: userMail,
-      phone: phone,
-    },
-    shipping: {
-      first_name: realname,
-      last_name: surname,
-      company: company,
-      address: street,
-      address2: street2,
-      city: city,
-      state: province,
-      cp: postal,
-      country: "Spain",
-    },
-  };
-
-  //var data = [user, shipping];
-
-  async function createUser() {
-    const user = JSON.stringify({
-      username: userName,
-      email: userMail,
-      password: password,
-    });
-
-    await fetch(targetUrl + urlRegister, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: user,
-    })
-      .catch(function(error) {
-        console.log(
-          "There has been a problem with your fetch operation: " + error.message
-        );
-      })
-      .then(function(res) {
-        if (res) {
-          if (res.status) {
-            if (res.status == "200") {
-              setCreated(true);
-            } else {
-              alert("error");
-              setIsError(true);
-              //setAuthTokens("error");
-            }
-          }
-        }
-        return res.json();
-      })
-      .then(function(res) {
-        // setAuthTokens(user);
-        createCustomer(newCustomer);
-        return user.token;
-      });
-  }
-}
-
-export default {login};
+export default {login, signup, order};

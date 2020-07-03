@@ -4,11 +4,13 @@ import {Provider} from "react-redux";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {ScrollContext} from "react-router-scroll-4";
 import {IntlReducer as Intl, IntlProvider} from "react-redux-multilingual";
+
 import "./index.scss";
 
 // Import custom components
 import store from "./store";
 import translations from "./constants/translations";
+
 import {getAllProducts, getAllCategories, getUserWoo} from "./actions/indexO";
 
 // Layouts

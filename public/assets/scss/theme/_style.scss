@@ -143,6 +143,16 @@ button {
   }
 }
 
+input[type="radio"] {
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+
+.d-c {
+  display: contents;
+}
+
 .white {
   background-color: #fff;
   border: 1px solid #aaa;
@@ -1051,6 +1061,7 @@ header {
       .form-control {
         &:focus {
           box-shadow: none;
+          color: #96d627 !important;
         }
       }
 
@@ -1524,7 +1535,7 @@ header {
               border-radius: 0;
 
               &:focus {
-                border: 1px solid #ced4da;
+                border: 1px solid greenyellow;
                 box-shadow: none;
               }
             }
@@ -16000,7 +16011,7 @@ body {
 
   .theme_checkbox {
     label {
-      color: $dark-span;
+      color: rgba($theme-deafult, 0.75);
 
       .checkmark {
         background-color: $dark-top;

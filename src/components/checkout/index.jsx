@@ -6,7 +6,12 @@ import PaypalExpressBtn from "react-paypal-express-checkout";
 import SimpleReactValidator from "simple-react-validator";
 
 import Breadcrumb from "../common/breadcrumb";
-import {removeFromWishlist} from "../../actions/indexO";
+import {
+  removeFromWishlist,
+  placeOrder,
+  clearCart,
+  signup,
+} from "../../actions/indexO";
 import {getCartTotal} from "../../services";
 
 class checkOut extends Component {
@@ -15,19 +20,75 @@ class checkOut extends Component {
 
     this.state = {
       payment: "stripe",
+      username: "",
+      password: "",
       first_name: "",
       last_name: "",
       phone: "",
       email: "",
       country: "",
-      address: "",
+      address_1: "",
       city: "",
       state: "",
-      pincode: "",
+      postcode: "",
+      cart: [],
+      total: null,
       create_account: "",
     };
     this.validator = new SimpleReactValidator();
   }
+
+  componentDidMount() {
+    console.log(this.props);
+    if (this.props.cartItems.length > 0) {
+      this.setState(() => {
+        return {
+          cart: this.props.cartItems,
+          total: this.props.total,
+        };
+      });
+    }
+
+    if (this.props.user.log) {
+      if (this.props.user.log.username) {
+        this.fillFields(this.props);
+      }
+    }
+  }
+
+  fillFields = (props) => {
+    const {
+      first_name,
+      last_name,
+      phone,
+      email,
+      country,
+      address_1,
+      city,
+      state,
+      postcode,
+    } = props.user.log;
+
+    const cart = props.cartItems;
+    const total = props.total;
+    console.log(cart);
+
+    this.setState(() => {
+      return {
+        first_name: first_name,
+        last_name: last_name,
+        phone: phone,
+        email: email,
+        country: country,
+        address_1: address_1,
+        city: city,
+        state: state,
+        postcode: postcode,
+        cart: cart,
+        total: total,
+      };
+    });
+  };
 
   setStateFromInput = (event) => {
     var obj = {};
@@ -36,10 +97,10 @@ class checkOut extends Component {
   };
 
   setStateFromCheckbox = (event) => {
+    console.log(event);
     var obj = {};
     obj[event.target.name] = event.target.checked;
     this.setState(obj);
-
     if (!this.validator.fieldValid(event.target.name)) {
       this.validator.showMessages();
     }
@@ -51,9 +112,64 @@ class checkOut extends Component {
     });
   }
 
+  createOrderData() {
+    var orderData = {
+      username: this.state.username,
+      email: this.state.email,
+      // password : this.state.password,
+      address_1: this.state.address_1,
+      city: this.state.city,
+      country: this.state.country,
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      phone: this.state.phone,
+      postcode: this.state.postcode,
+      state: this.state.state,
+      cart: this.state.cart,
+      total: this.state.total,
+    };
+    return orderData;
+  }
+
+  callSignup = () => {
+    if (this.state.create_account) {
+      const {
+        first_name,
+
+        last_name,
+        phone,
+        email,
+        country,
+        address_1,
+        city,
+        state,
+        postcode,
+      } = this.state;
+
+      const userData = {
+        username: this.state.username,
+        first_name: first_name,
+        password: this.state.password,
+        last_name: last_name,
+        phone: phone,
+        email: email,
+        country: country,
+        address_1: address_1,
+        city: city,
+        state: state,
+        postcode: postcode,
+      };
+      this.props.signup(userData);
+    }
+  };
+
   StripeClick = () => {
     if (this.validator.allValid()) {
-      alert("You submitted the form and stuff!");
+      // if the user has an account nothing must happen here
+      // if the user wants to create a new account
+      if (this.state.create_account !== "") {
+        this.callSignup();
+      }
 
       var handler = window.StripeCheckout.configure({
         key: "pk_test_glxk17KhP7poKIawsaSgKtsL",
@@ -72,10 +188,13 @@ class checkOut extends Component {
         },
       });
       handler.open({
-        name: "Multikart",
-        description: "Online Fashion Store",
-        amount: this.amount * 100,
+        name: this.state.name,
+        description: "Online Del Prado",
+        amount: this.props.total * 100,
       });
+
+      this.props.placeOrder(this.createOrderData());
+      // if the user has not account and won't create one
     } else {
       this.validator.showMessages();
       // rerender to show messages for the first time
@@ -83,12 +202,55 @@ class checkOut extends Component {
     }
   };
 
+  Username = () => {
+    if (this.state.create_account) {
+      return (
+        <div className="d-c">
+          <div className="form-group col-md-6 col-sm-6 col-xs-12">
+            <div className="field-label">User Name</div>
+            <input
+              type="text"
+              name="username"
+              className="form-control"
+              value={this.state.username}
+              onChange={this.setStateFromInput}
+            />
+            {this.validator.message(
+              "username",
+              this.state.username,
+              "required|alpha"
+            )}
+          </div>
+          <div className="form-group col-md-6 col-sm-6 col-xs-12">
+            <div className="field-label">Password</div>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              value={this.state.password}
+              onChange={this.setStateFromInput}
+            />
+            {this.validator.message(
+              "password",
+              this.state.password,
+              "required"
+            )}
+          </div>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
   render() {
     const {cartItems, symbol, total} = this.props;
-
+    console.log(this.state);
+    console.log(this.props);
     // Paypal Integration
     const onSuccess = (payment) => {
-      console.log("The payment was succeeded!", payment);
+      console.log("The payment succeeded!", payment);
+
       this.props.history.push({
         pathname: "/order-success",
         state: {
@@ -119,10 +281,10 @@ class checkOut extends Component {
       <div>
         {/*SEO Support*/}
         <Helmet>
-          <title>MultiKart | CheckOut Page</title>
+          <title>Del Prado | CheckOut Page</title>
           <meta
             name="description"
-            content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses."
+            content="Del Prado – La mejor calidad de Asturias ahora online."
           />
         </Helmet>
         {/*SEO Support End */}
@@ -140,11 +302,15 @@ class checkOut extends Component {
                         <h3>Billing Details</h3>
                       </div>
                       <div className="row check-out">
+                        <this.Username />
                         <div className="form-group col-md-6 col-sm-6 col-xs-12">
                           <div className="field-label">First Name</div>
                           <input
                             type="text"
                             name="first_name"
+                            placeholder="First Name"
+                            required=""
+                            className="form-control"
                             value={this.state.first_name}
                             onChange={this.setStateFromInput}
                           />
@@ -159,6 +325,8 @@ class checkOut extends Component {
                           <input
                             type="text"
                             name="last_name"
+                            placeholder="Last Name"
+                            className="form-control"
                             value={this.state.last_name}
                             onChange={this.setStateFromInput}
                           />
@@ -173,6 +341,7 @@ class checkOut extends Component {
                           <input
                             type="text"
                             name="phone"
+                            placeholder="Phone"
                             value={this.state.phone}
                             onChange={this.setStateFromInput}
                           />
@@ -187,6 +356,8 @@ class checkOut extends Component {
                           <input
                             type="text"
                             name="email"
+                            placeholder="Email"
+                            className="form-control"
                             value={this.state.email}
                             onChange={this.setStateFromInput}
                           />
@@ -198,16 +369,14 @@ class checkOut extends Component {
                         </div>
                         <div className="form-group col-md-12 col-sm-12 col-xs-12">
                           <div className="field-label">Country</div>
-                          <select
+                          <input
+                            type="text"
                             name="country"
+                            placeholder="Country"
+                            className="form-control"
                             value={this.state.country}
                             onChange={this.setStateFromInput}
-                          >
-                            <option>India</option>
-                            <option>South Africa</option>
-                            <option>United State</option>
-                            <option>Australia</option>
-                          </select>
+                          />
                           {this.validator.message(
                             "country",
                             this.state.country,
@@ -217,16 +386,19 @@ class checkOut extends Component {
                         <div className="form-group col-md-12 col-sm-12 col-xs-12">
                           <div className="field-label">Address</div>
                           <input
+                            id="address_1"
                             type="text"
-                            name="address"
-                            value={this.state.address}
+                            className="form-control"
+                            placeholder="Address"
+                            required=""
+                            name="address_1"
+                            value={this.state.address_1}
                             onChange={this.setStateFromInput}
-                            placeholder="Street address"
                           />
                           {this.validator.message(
-                            "address",
-                            this.state.address,
-                            "required|min:20|max:120"
+                            "address_1",
+                            this.state.address_1,
+                            "required|min:2|max:120"
                           )}
                         </div>
                         <div className="form-group col-md-12 col-sm-12 col-xs-12">
@@ -234,6 +406,8 @@ class checkOut extends Component {
                           <input
                             type="text"
                             name="city"
+                            placeholder="City"
+                            className="form-control"
                             value={this.state.city}
                             onChange={this.setStateFromInput}
                           />
@@ -248,6 +422,8 @@ class checkOut extends Component {
                           <input
                             type="text"
                             name="state"
+                            placeholder="State"
+                            className="form-control"
                             value={this.state.state}
                             onChange={this.setStateFromInput}
                           />
@@ -261,13 +437,15 @@ class checkOut extends Component {
                           <div className="field-label">Postal Code</div>
                           <input
                             type="text"
-                            name="pincode"
-                            value={this.state.spincode}
+                            name="postcode"
+                            placeholder="Postal Code"
+                            className="form-control"
+                            value={this.state.postcode}
                             onChange={this.setStateFromInput}
                           />
                           {this.validator.message(
-                            "pincode",
-                            this.state.pincode,
+                            "postcode",
+                            this.state.postcode,
                             "required|integer"
                           )}
                         </div>
@@ -275,6 +453,7 @@ class checkOut extends Component {
                           <input
                             type="checkbox"
                             name="create_account"
+                            checked={"#96d627"}
                             id="account-option"
                             checked={this.state.create_account}
                             onChange={this.setStateFromCheckbox}
@@ -283,11 +462,6 @@ class checkOut extends Component {
                           <label htmlFor="account-option">
                             Create An Account?
                           </label>
-                          {this.validator.message(
-                            "checkbox",
-                            this.state.create_account,
-                            "create_account"
-                          )}
                         </div>
                       </div>
                     </div>
@@ -379,6 +553,7 @@ class checkOut extends Component {
                                       type="radio"
                                       name="payment-group"
                                       id="payment-1"
+                                      defaultChecked={false}
                                       onClick={() => this.checkhandle("paypal")}
                                     />
                                     <label htmlFor="payment-1">
@@ -484,9 +659,15 @@ class checkOut extends Component {
   }
 }
 const mapStateToProps = (state) => ({
+  ...state,
   cartItems: state.cartList.cart,
   symbol: state.data.symbol,
   total: getCartTotal(state.cartList.cart),
 });
 
-export default connect(mapStateToProps, {removeFromWishlist})(checkOut);
+export default connect(mapStateToProps, {
+  removeFromWishlist,
+  placeOrder,
+  clearCart,
+  signup,
+})(checkOut);

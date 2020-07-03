@@ -16,6 +16,15 @@ export const FETCH_USERWOO = "FETCH_USERWOO";
 export const FETCH_LOGIN_BEGIN = "FETCH_LOGIN_BEGIN";
 export const RECEIVE_LOGIN = "RECEIVE_LOGIN";
 export const FETCH_LOGIN = "FETCH_LOGIN";
+export const DESTROY_SESSION = "DESTROY_SESSION";
+export const SIGNUP_BEGIN = "SIGNUP_BEGIN";
+export const SIGNUP_ = "SIGNUP";
+export const RECEIVE_SIGNUP = "RECEIVE_SIGNUP";
+
+// Order
+export const ORDER_BEGIN = "ORDER_BEGIN";
+export const PLACE_ORDER = "PLACE_ORDER";
+export const RECEIVE_ORDER_RECEIPT = "RECEIVE_ORDER_RECEIPT";
 
 // Get CategoryTree
 export const FETCH_CATEGORYTREE_BEGIN = "FETCH_CATEGORYTREE_BEGIN";
@@ -35,6 +44,7 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const INCREMENT_QTY = "INCREMENT_QTY";
 export const DECREMENT_QTY = "DECREMENT_QTY";
+export const CLEAR_CART = "CLEAR_CART";
 
 // WishList
 export const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";

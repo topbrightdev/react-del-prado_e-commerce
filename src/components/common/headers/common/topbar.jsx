@@ -1,10 +1,18 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { withTranslate } from "react-redux-multilingual";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
+import {withTranslate} from "react-redux-multilingual";
+import {connect} from "react-redux";
 
 class TopBar extends Component {
   render() {
-    const { translate } = this.props;
+    const {translate} = this.props;
+    var name = null;
+    const log = this.props.state.user.log;
+    if (this.props.state.user.log) {
+      if (this.props.state.user.log.username) {
+        name = this.props.state.user.log.username;
+      }
+    }
     return (
       <div className="top-header">
         <div className="container-topbar">
@@ -12,12 +20,10 @@ class TopBar extends Component {
             <div className="col-lg-6">
               <div className="header-contact">
                 <ul>
-                  <li>
-                    {translate("topbar_title", { theme_name: " Multikart" })}
-                  </li>
+                  <li>Del Prado Alimentacion</li>
                   <li>
                     <i className="fa fa-phone" aria-hidden="true"></i>
-                    {translate("call_us")}: 123 - 456 - 7890
+                    {translate("call_us")}: 985 45 33 22
                   </li>
                 </ul>
               </div>
@@ -37,8 +43,8 @@ class TopBar extends Component {
                   </Link>
                 </li>
                 <li className="onhover-dropdown mobile-account">
-                  <i className="fa fa-user" aria-hidden="true"></i>{" "}
-                  {translate("my_account")}
+                  <i className={name ? "fa fa-user " : "fa fa-user "}></i>
+                  {name ? `${name}` : translate("my_account")}
                   <ul className="onhover-show-div">
                     <li>
                       <Link
@@ -67,4 +73,9 @@ class TopBar extends Component {
   }
 }
 
-export default withTranslate(TopBar);
+//export default withTranslate(TopBar);
+const mapStateToProps = (state) => ({
+  state,
+});
+
+export default connect(mapStateToProps)(withTranslate(TopBar));

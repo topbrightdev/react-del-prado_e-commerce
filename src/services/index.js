@@ -60,11 +60,13 @@ export const getVisibleproducts = (data, filters, data2, data3) => {
   if (data3) {
     if (data3.productsToShow) {
       products = data3.productsToShow;
+    } else {
+      products = data.products;
     }
   } else {
     products = data.products;
   }
-
+  console.log(products);
   var newData = products.filter((product) => {
     let brandMatch;
     if (product.tags && brand)
@@ -108,7 +110,7 @@ export const getVisibleproducts = (data, filters, data2, data3) => {
       return product2.id > product1.id ? -1 : 1;
     }
   });
-
+  console.log(newData);
   const res = [data.products, newData];
   return res;
 };

@@ -2,10 +2,12 @@ import {
   FETCH_LOGIN_BEGIN,
   RECEIVE_LOGIN,
   FETCH_LOGIN,
+  SIGNUP_BEGIN,
+  RECEIVE_SIGNUP,
 } from "../constants/ActionTypes";
 
 const initialState = {
-  user: null,
+  log: "empty",
 };
 
 const userReducer = (state = initialState, action) => {
@@ -20,6 +22,15 @@ const userReducer = (state = initialState, action) => {
         ...state,
         log: action.log,
       };
+
+    case RECEIVE_SIGNUP: {
+      if (action.log !== undefined) {
+        return {
+          ...state,
+          log: action.log,
+        };
+      }
+    }
 
     default:
       return state;

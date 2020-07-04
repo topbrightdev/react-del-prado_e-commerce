@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Link, NavLink} from "react-router-dom";
 import {IntlActions} from "react-redux-multilingual";
 import Pace from "react-pace-progress";
+import {withRouter} from "react-router-dom";
 
 // Import custom components
 import store from "../../../store";
@@ -10,7 +11,7 @@ import SideBar from "./common/sidebar";
 import CartContainer from "../../../containers/CartContainer";
 import TopBar from "./common/topbar";
 import LogoImage from "./common/logo";
-import {changeCurrency} from "../../../actions/indexO";
+import {changeCurrency, searchProduct} from "../../../actions/indexO";
 import {connect} from "react-redux";
 
 class HeaderTwo extends Component {
@@ -19,6 +20,8 @@ class HeaderTwo extends Component {
 
     this.state = {
       isLoading: false,
+      productName: "",
+      navigateTo: "",
     };
   }
 
@@ -38,6 +41,23 @@ class HeaderTwo extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
+  componentDidUpdate() {
+    if (this.props.data.product_details.length > 0) {
+      if (
+        this.props.data.product_details.name.toUpperCase() ===
+        this.state.productName.toUpperCase()
+      ) {
+        this.props.history.push(
+          `${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.data.product_details.id}`
+        );
+      }
+
+      //    this.props.history.push(
+      //      `${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.data.product_details.id}`
+      //    );
+    }
+  }
+
   handleScroll = () => {
     let number =
       window.pageXOffset ||
@@ -52,6 +72,17 @@ class HeaderTwo extends Component {
     } else {
       document.getElementById("sticky").classList.remove("fixed");
     }
+  };
+
+  handleChange = (e) => {
+    var obj = {};
+    obj[e.target.name] = e.target.value;
+
+    this.setState(obj);
+  };
+
+  handleSubmit = () => {
+    return this.props.searchProduct(this.state.productName);
   };
 
   changeLanguage(lang) {
@@ -217,7 +248,7 @@ class HeaderTwo extends Component {
           </div>
         </header>
 
-        <div id="search-overlay" className="search-overlay">
+        <div id="search-overlay" className="search-overlay ">
           <div>
             <span
               className="closebtn"
@@ -235,11 +266,18 @@ class HeaderTwo extends Component {
                         <input
                           type="text"
                           className="form-control"
-                          id="exampleInputPassword1"
+                          id="productName"
+                          name="productName"
                           placeholder="Search a Product"
+                          value={this.state.productName}
+                          onChange={this.handleChange}
                         />
                       </div>
-                      <button type="submit" className="btn btn-primary">
+                      <button
+                        type="submit"
+                        className="btn btn-primary"
+                        onClick={this.handleSubmit}
+                      >
                         <i className="fa fa-search"></i>
                       </button>
                     </form>
@@ -254,4 +292,12 @@ class HeaderTwo extends Component {
   }
 }
 
-export default connect(null, {changeCurrency})(HeaderTwo);
+//export default connect(null, {changeCurrency, searchProduct})(HeaderTwo);
+const mapStateToProps = (state) => ({
+  ...state,
+});
+
+export default connect(mapStateToProps, {
+  changeCurrency,
+  searchProduct,
+})(withRouter(HeaderTwo));

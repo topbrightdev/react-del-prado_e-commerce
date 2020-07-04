@@ -3,6 +3,7 @@ import {Helmet} from "react-helmet";
 import Slider from "react-slick";
 import "../common/index.scss";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 // import custom Components
 import Service from "./common/service";
@@ -123,7 +124,7 @@ class LeftSideBar extends Component {
                           </div>
                         </div>
                         <div className="row">
-                          <div className="col-lg-6 product-thumbnail">
+                          <div className="col-lg-6 product-thumbnail p-t-5">
                             <Slider
                               {...products}
                               asNavFor={this.state.nav2}

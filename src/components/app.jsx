@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { withTranslate } from "react-redux-multilingual";
+import React, {Component} from "react";
+import {withTranslate} from "react-redux-multilingual";
 
 // Custom Components
 import Header from "./common/headers/header";

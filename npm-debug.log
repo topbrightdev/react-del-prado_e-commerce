@@ -15,7 +15,7 @@
 13 verbose stack     at _errnoException (util.js:1022:11)
 13 verbose stack     at WriteWrap.afterWrite [as oncomplete] (net.js:880:14)
 14 verbose cwd /home/jarri/Desktop/projects-web/eCommerce/template-store1
-15 error Linux 4.15.0-108-generic
+15 error Linux 4.15.0-109-generic
 16 error argv "/usr/bin/node" "/usr/bin/npm" "start"
 17 error node v8.10.0
 18 error npm  v3.5.2

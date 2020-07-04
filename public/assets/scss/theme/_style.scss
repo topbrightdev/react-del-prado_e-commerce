@@ -207,6 +207,10 @@ section,
   padding-top: 0;
 }
 
+.p-t-5 {
+  padding-top: 5%;
+}
+
 .margin-t-10 {
   margin-top: 10% !important;
 }
@@ -1046,8 +1050,8 @@ header {
   z-index: 999;
   top: 0;
   left: 0;
-  background-color: lighten($white, 5%);
-
+  background-color: white;
+  /* background-image: url("/assets/images/vegetables/theme/10.png");*/
   > div {
     height: 100%;
     width: 100%;
@@ -1394,6 +1398,7 @@ header {
   .menu-right {
     display: flex;
     float: right;
+    min-width: max-content;
 
     .icon-nav {
       display: inline-block;
@@ -2125,7 +2130,7 @@ header {
   }
 
   .mw-90 {
-    min-width: 90vw;
+    min-width: 90vw !important;
   }
 
   .mw-100 {
@@ -4565,6 +4570,9 @@ header {
         }
       }
     }
+  }
+  .mw-90 {
+    min-width: 90vw !important;
   }
 
   .product-box {

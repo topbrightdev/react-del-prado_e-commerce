@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
 
-import { SlideUpDown } from "../../../services/script";
+import {SlideUpDown} from "../../../services/script";
 import LogoImage from "../headers/common/logo";
 
 class FooterFour extends Component {
@@ -105,31 +105,20 @@ class FooterFour extends Component {
                   <div className="footer-contant">
                     <ul>
                       <li>
-                        <Link
-                          to={`${process.env.PUBLIC_URL}/left-sidebar/collection`}
-                        >
-                          Registrarse
+                        <Link to={`${process.env.PUBLIC_URL}/pages/login`}>
+                          Logearse
                         </Link>
                       </li>
                       <li>
-                        <Link
-                          to={`${process.env.PUBLIC_URL}/left-sidebar/collection`}
-                        >
+                        <Link to={`${process.env.PUBLIC_URL}/pages/register`}>
                           Darse de alta
                         </Link>
                       </li>
                       <li>
                         <Link
-                          to={`${process.env.PUBLIC_URL}/left-sidebar/collection`}
+                          to={`${process.env.PUBLIC_URL}/pages/forget-password`}
                         >
                           Olvido la contrasena?
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to={`${process.env.PUBLIC_URL}/left-sidebar/collection`}
-                        >
-                          Editar datos de la cuenta
                         </Link>
                       </li>
                     </ul>
@@ -144,13 +133,19 @@ class FooterFour extends Component {
                   <div className="footer-contant">
                     <ul>
                       <li>
-                        <a href="#">Datos y privacidad</a>
+                        <Link to={`${process.env.PUBLIC_URL}/pages/about-us`}>
+                          Acerca de nosotros
+                        </Link>
                       </li>
                       <li>
-                        <a href="#">Compra segura</a>
+                        <Link to={`${process.env.PUBLIC_URL}/pages/faq`}>
+                          Compra segura
+                        </Link>
                       </li>
                       <li>
-                        <a href="#">Contactenos</a>
+                        <Link to={`${process.env.PUBLIC_URL}/pages/contact`}>
+                          Contactanos
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -164,8 +159,9 @@ class FooterFour extends Component {
                   <div className="footer-contant">
                     <ul className="contact-list">
                       <li>
-                        <i className="fa fa-map-marker"></i>Multikart Demo c/
-                        Armando Palacio Valdés , 10 (45,67 km) 33600 Mieres
+                        <i className="fa fa-map-marker"></i>Del Prado
+                        Alimentacion c/ Armando Palacio Valdés , 10 (45,67 km)
+                        33600 Mieres
                       </li>
                       <li>
                         <i className="fa fa-phone"></i>Llamanos: 985 45 33 22

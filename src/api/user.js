@@ -198,34 +198,143 @@ const fillCustomer = async (email) => {
     });
 };
 
-async function updateAccount(id, updatedUser, updatedShipping) {
+const updateAccount = async (userData, userOldData) => {
   // First will check if user values must be modified : name /mail
   // Check
-  if (updatedUser) {
-    await axios
+  const {
+    id,
+    username,
+    email,
+    password,
+    address_1,
+    city,
+    country,
+    first_name,
+    last_name,
+    phone,
+    postcode,
+    state,
+  } = userData;
+
+  var user = null;
+  if (username !== userOldData.username || email !== userOldData.email) {
+    console.log("Update user");
+    user = {
+      username: username,
+      email: email,
+    };
+  } else {
+    var customer = null;
+    if (userOldData) {
+      console.log("Update Customer");
+
+      customer = {
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
+        username: username,
+        billing: {
+          first_name: first_name,
+          last_name: last_name,
+          company: "company",
+          address_1: address_1,
+          address_2: "",
+          city: city,
+          state: state,
+          postcode: postcode,
+          country: "Spain",
+          email: email,
+          phone: phone,
+        },
+        shipping: {
+          first_name: first_name,
+          last_name: last_name,
+          company: "",
+          address: address_1,
+          address2: "",
+          city: city,
+          state: state,
+          cp: postcode,
+          country: country,
+        },
+      };
+    }
+  }
+
+  const body = JSON.stringify({
+    username: username,
+    email: email,
+    password: password,
+  });
+
+  if (user) {
+    console.log(user);
+    return await axios
       .post(`https://grassrootemarket.com/wp-json/wp/v2/users/${id}`, {
-        username: updatedUser.userName,
-        mail: updatedUser.email,
+        username: user.username,
+        mail: user.email,
       })
       .then((result) => {
+        console.log(result);
         if (result.status === 200) {
+          var thisUser = {
+            userId: user.id,
+            username: user.username,
+            mail: user.email,
+            company: userOldData.company,
+            first_name: userOldData.first_name,
+            last_name: userOldData.last_name,
+            address_1: userOldData.address_1,
+            address_2: userOldData.address_2,
+            city: userOldData.city,
+            state: userOldData.state,
+            postcode: userOldData.postcode,
+            country: userOldData.country,
+            phone: userOldData.phone,
+          };
+          console.log(thisUser);
+
+          return thisUser;
         } else {
           alert("error");
         }
       })
       .catch((e) => {
+        console.log(e.response.body.message);
         alert(e.response.body.message);
       });
   }
 
-  if (updatedShipping) {
-    await WooCommerce.putAsync(`customers/${id}`, updatedShipping)
+  if (customer) {
+    console.log(customer);
+    return await WooCommerce.putAsync(`customers/${id}`, customer)
       .then((response) => {
-        const customer = JSON.parse(response.body);
+        if (response.body) {
+          const res = JSON.parse(response.body);
+          console.log(res);
+
+          var thisUser = {
+            username: userOldData.username,
+            email: userOldData.email,
+            userId: res.id,
+            company: res.billing.company,
+            first_name: res.billing.first_name,
+            last_name: res.billing.last_name,
+            address_1: res.billing.address_1,
+            address_2: res.billing.address_2,
+            city: res.billing.city,
+            state: res.billing.state,
+            postcode: res.billing.postcode,
+            country: res.billing.country,
+            phone: res.billing.phone,
+          };
+          console.log(thisUser);
+          return thisUser;
+        }
       })
       .catch((error) => {});
   }
-}
+};
 
 const updateCustomer = async (id, newCustomer) => {
   return await WooCommerce.putAsync(`customers/${id}`, newCustomer)
@@ -409,4 +518,4 @@ const receiveSignup = (data) => {
   });
 };
 
-export default {login, signup, order};
+export default {login, signup, updateAccount, order};

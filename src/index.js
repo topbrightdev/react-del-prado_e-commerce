@@ -50,6 +50,8 @@ import PageNotFound from "./components/pages/404";
 import lookbook from "./components/pages/lookbook";
 import Login from "./components/pages/login";
 import Register from "./components/pages/register";
+import Account from "./components/pages/account";
+
 import Search from "./components/pages/search";
 import Collection from "./components/pages/collection";
 import ForgetPassword from "./components/pages/forget-password";
@@ -204,6 +206,10 @@ class Root extends React.Component {
                   <Route
                     path={`${process.env.PUBLIC_URL}/pages/register`}
                     component={Register}
+                  />
+                  <Route
+                    path={`${process.env.PUBLIC_URL}/pages/account`}
+                    component={Account}
                   />
                   <Route
                     path={`${process.env.PUBLIC_URL}/pages/search`}

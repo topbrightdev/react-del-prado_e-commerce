@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 import {getBestSeller} from "../../services";
+import {addToWishlistUnsafe} from "../../actions/indexO";
 
 class NewProduct extends Component {
   constructor() {
@@ -13,7 +14,16 @@ class NewProduct extends Component {
       items: null,
     };
   }
-  componentWillMount() {}
+  componentDidUpdate() {
+    if (this.props.items.length > 0) {
+      this.setState(() => {
+        return {
+          open: true,
+          items: this.props.items,
+        };
+      });
+    }
+  }
 
   componentDidMount() {
     if (this.props.items.length > 0) {
@@ -24,6 +34,9 @@ class NewProduct extends Component {
         };
       });
     }
+    this.setState(() => {
+      return {};
+    });
   }
 
   render() {

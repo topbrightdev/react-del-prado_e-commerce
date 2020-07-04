@@ -1,5 +1,4 @@
 import shop from "../api/shop";
-import woo from "../api/woo";
 import user from "../api/user";
 import * as types from "../constants/ActionTypes";
 import store from "../store";
@@ -49,6 +48,14 @@ export const fetchSingleSelectedProduct = (productId) => ({
   type: types.FETCH_SINGLE_SELECTEDPRODUCT,
   productId,
 });
+
+export const searchProduct = (productName) => (
+  console.log(productName),
+  {
+    type: types.SEARCH_PRODUCT,
+    productName,
+  }
+);
 
 /**      END  PRODUCTS ACTIONS          */
 
@@ -119,6 +126,19 @@ export const signup = (userData) => (dispatch) => {
     return log;
   });
 };
+
+export const receiveUpdatedAccount = (log) => ({
+  type: types.RECEIVE_UPDATED_ACCOUNT,
+  log,
+});
+
+export const updateAccount = (userData, userOldData) => (dispatch) => {
+  user.updateAccount(userData, userOldData).then((log) => {
+    dispatch(receiveUpdatedAccount(log));
+    return log;
+  });
+};
+
 /**            USER    END           */
 
 /**             ORDER                */

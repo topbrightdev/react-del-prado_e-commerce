@@ -76,10 +76,12 @@
 
 .slick-slide img {
   display: block;
-  min-width: 20vw;
-  max-width: 20vw;
-  min-height: 25vh;
-  max-height: 25vh;
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 250px;
+  max-height: 250px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .slick-slide.slick-loading img {

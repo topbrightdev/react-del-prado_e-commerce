@@ -8,6 +8,7 @@ import ProductListing from "./common/product-listing";
 import Breadcrumb from "../common/breadcrumb";
 import FilterBar from "./common/filter-bar";
 import {getAllProducts} from "../../actions/indexO";
+import {connect} from "react-redux";
 
 class CollectionNoSideBar extends Component {
   constructor(props) {
@@ -26,22 +27,47 @@ class CollectionNoSideBar extends Component {
   }
 
   componentDidMount() {
-    if (this.props.location.category !== this.state.category) {
-      const category = this.props.location.category;
-      this.setState(() => {
-        return {category: category};
-      });
-      //  this.setState({...category});
+    if (this.props.location.category !== undefined) {
+      if (this.props.location.category !== this.state.category) {
+        const category = this.props.location.category;
+        this.setState(() => {
+          return {category: category};
+        });
+        //  this.setState({...category});
+      }
+    } else {
+      if (this.props.state.data3.productsToShow) {
+        const items = this.props.state.data3.productsToShow;
+        var category = null;
+        var categories = [];
+        if (items.length > 0) {
+          items[0].categories.map((c) => {
+            if (!category) {
+              category = c.name;
+            }
+            categories.push(c);
+          });
+          this.setState(() => {
+            return {
+              productsToShow: items,
+              category: category,
+              categories: categories,
+            };
+          });
+        }
+      }
     }
   }
 
   componentDidUpdate() {
-    if (this.props.location.category !== this.state.category) {
-      const category = this.props.location.category;
-      this.setState(() => {
-        return {category: category};
-      });
-      //  this.setState({...category});
+    if (this.props.location.category) {
+      if (this.props.location.category !== this.state.category) {
+        const category = this.props.location.category;
+        this.setState(() => {
+          return {category: category};
+        });
+        //  this.setState({...category});
+      }
     }
   }
 
@@ -110,4 +136,11 @@ class CollectionNoSideBar extends Component {
   }
 }
 
-export default CollectionNoSideBar;
+//export default CollectionNoSideBar;
+const mapStateToProps = (state) => {
+  return {
+    state,
+  };
+};
+
+export default connect(mapStateToProps, {getAllProducts})(CollectionNoSideBar);

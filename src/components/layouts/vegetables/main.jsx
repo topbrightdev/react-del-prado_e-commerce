@@ -1,18 +1,14 @@
-import React, { Component } from "react";
-import { Helmet } from "react-helmet";
+import React, {Component} from "react";
+import {Helmet} from "react-helmet";
 import "../../common/index.scss";
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 // Import custom components
-import { Slider3 } from "../../../services/script";
+import {Slider3} from "../../../services/script";
 import Trading from "./tranding";
 import Special from "../common/special";
-import {
-  svgFreeShipping,
-  svgservice,
-  svgoffer,
-} from "../../../services/script";
+import {svgFreeShipping, svgservice, svgoffer} from "../../../services/script";
 import Header from "../../common/headers/header";
 import Footer from "../../common/footers/footer";
 import ThemeSettings from "../../common/theme-settings";
@@ -26,7 +22,7 @@ class Vegetables extends Component {
     return (
       <div>
         <Helmet>
-          <title>MultiKart | Vegetable Store</title>
+          <title>Del Prado | Comercio Online</title>
         </Helmet>
         <Header logoName={"logo.png"} />
         <ElementCategory />

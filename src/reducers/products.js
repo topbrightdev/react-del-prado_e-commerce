@@ -2,6 +2,7 @@ import {
   FETCH_SINGLE_PRODUCT,
   CHANGE_CURRENCY,
   RECEIVE_PRODUCTS,
+  SEARCH_PRODUCT,
 } from "../constants/ActionTypes";
 
 const initialState = {
@@ -29,6 +30,27 @@ const productReducer = (state = initialState, action) => {
         return {
           ...state,
           product_details: singleItem,
+        };
+      }
+
+    case SEARCH_PRODUCT:
+      console.log(action.productName);
+      var item = {};
+      state.products.map((product) => {
+        //console.log(product.name);
+        var thisName = product.name.toUpperCase();
+        var receivedName = action.productName.toUpperCase();
+        // console.log(thisName, receivedName);
+        if (thisName === receivedName) {
+          console.log(product);
+          item = product;
+        }
+      });
+      if (item.name) {
+        console.log(item);
+        return {
+          ...state,
+          product_details: item,
         };
       }
 

@@ -9,7 +9,6 @@ import filtersReducer from "./filters";
 import wishlistReducer from "./wishlist";
 import compareReducer from "./compare";
 import categoryTreeReducer from "./categoryTree";
-import userWooReducer from "./userWoo";
 import userReducer from "./user";
 import orderReducer from "./order";
 import {DESTROY_SESSION} from "../constants/ActionTypes";
@@ -23,7 +22,6 @@ const appReducer = combineReducers({
   filters: filtersReducer,
   wishlist: wishlistReducer,
   compare: compareReducer,
-  woo: userWooReducer,
   user: userReducer,
   order: orderReducer,
   Intl,

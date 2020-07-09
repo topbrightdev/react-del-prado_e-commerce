@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import SimpleReactValidator from "simple-react-validator";
 import {login} from "../../actions/indexO";
-import Breadcrumb from "../common/breadcrumb";
+import Breadcrumb from "../breadcrumb";
 
 class Login extends Component {
   constructor(props) {

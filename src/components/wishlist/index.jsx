@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
-import Breadcrumb from "../common/breadcrumb";
+import Breadcrumb from "../breadcrumb";
 import {
   addToCartAndRemoveWishlist,
   removeFromWishlist,

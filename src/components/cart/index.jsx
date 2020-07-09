@@ -3,7 +3,7 @@ import {Helmet} from "react-helmet";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
-import Breadcrumb from "../common/breadcrumb";
+import Breadcrumb from "../breadcrumb";
 import {getCartTotal} from "../../services";
 import {removeFromCart, incrementQty, decrementQty} from "../../actions/indexO";
 

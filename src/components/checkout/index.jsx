@@ -5,7 +5,7 @@ import {Link, Redirect} from "react-router-dom";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 import SimpleReactValidator from "simple-react-validator";
 
-import Breadcrumb from "../common/breadcrumb";
+import Breadcrumb from "../breadcrumb";
 import {
   removeFromWishlist,
   placeOrder,

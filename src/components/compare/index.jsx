@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import Slider from "react-slick";
 
-import Breadcrumb from "../common/breadcrumb";
+import Breadcrumb from "../breadcrumb";
 import {removeFromCompare, addToCart} from "../../actions/indexO";
 
 class Compare extends Component {

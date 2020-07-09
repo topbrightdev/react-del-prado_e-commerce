@@ -1,12 +1,11 @@
 import React, {Component} from "react";
-import Slider from "react-slick";
 
 import "../common/index.scss";
 
 // import custom Components
-import ProductListing from "./common/product-listing";
-import Breadcrumb from "../common/breadcrumb";
-import FilterBar from "./common/filter-bar";
+import ProductListing from "../products/product-listing";
+import Breadcrumb from "../breadcrumb";
+import FilterBar from "../products/filters/filter-bar";
 import {getAllProducts} from "../../actions/indexO";
 import {connect} from "react-redux";
 

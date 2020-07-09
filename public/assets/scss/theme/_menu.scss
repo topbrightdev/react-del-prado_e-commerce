@@ -630,7 +630,7 @@ header {
   padding-bottom: 40px;
   cursor: pointer;
   i {
-    font-size: 24px;
+    font-size: 2rem;
     color: lighten($theme-deafult, 5%);
   }
 }
@@ -1686,6 +1686,9 @@ header {
 @media (max-width: 1199px) {
   header {
     .main-navbar {
+      position: relative !important;
+      left: 15vw !important;
+      top: 13vh !important;
       .nav-menu {
         position: fixed;
         background-color: #fff;
@@ -2182,10 +2185,10 @@ header {
   }
   .main-nav-center {
     .toggle-nav {
-      position: absolute;
+      position: relative;
       z-index: 99;
-      right: 175px;
-      top: -105px;
+      right: 11vw;
+      top: -12.5vh;
     }
   }
   .layout3-menu {
@@ -2287,8 +2290,8 @@ header {
   }
   .main-nav-center {
     .toggle-nav {
-      right: 15px;
-      top: -85px;
+      right: 18vw;
+      top: -14vh;
     }
   }
   .mobile-fix-option {
@@ -2456,10 +2459,11 @@ header {
   }
   .brand-logo {
     position: absolute;
-    left: 50%;
+    text-align: center;
+    left: 10%;
     margin-right: -50%;
     transform: translateX(-50%);
-    padding-top: 30px !important;
+    padding-top: 6vh !important;
     padding-bottom: 30px !important;
   }
   .toggle-nav {
@@ -2530,6 +2534,12 @@ header {
   }
 }
 @media (max-width: 480px) {
+  .container-navbar {
+    max-width: 90% !important;
+    min-height: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .brand-logo {
     img {
       height: 25px;

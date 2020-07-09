@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import SimpleReactValidator from "simple-react-validator";
 import {updateAccount} from "../../actions/indexO";
-import Breadcrumb from "../common/breadcrumb";
+import Breadcrumb from "../breadcrumb";
 
 class Account extends Component {
   constructor(props) {

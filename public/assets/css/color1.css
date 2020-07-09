@@ -2597,7 +2597,8 @@ r .top-header .header-dropdown li:nth-child(2) {
 .category-border div .category-banner .category-box h2 {
   background-color: #ffffff;
   display: inline-block;
-  padding: 20px 35px;
+  padding: 20px 15px;
+  text-align: center;
   margin-bottom: 0;
   -webkit-box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.4);
@@ -4780,6 +4781,7 @@ r .top-header .header-dropdown li:nth-child(2) {
 
 .theme-card.center-align .offer-slider .product-box2 .media .media-body {
   margin-top: 0;
+  text-align: center;
 }
 
 .theme-card.card-border {
@@ -16479,7 +16481,7 @@ body.dark {
 }
 
 .toggle-nav i {
-  font-size: 24px;
+  font-size: 30px;
   color: #ff6355;
 }
 

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
-import CartPage from "../components/common/headers/common/cart-header";
+import CartPage from "../components/headers/common/cart-header";
 import {removeFromCart} from "../actions/indexO";
 import {getCartTotal} from "../services";
 

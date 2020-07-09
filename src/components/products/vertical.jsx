@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 // import custom Components
 import Service from "./common/service";
 import NewProduct from "../common/new-product";
-import Breadcrumb from "../common/breadcrumb";
+import Breadcrumb from "../breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
 import {addToCart, addToCartUnsafe, addToWishlist} from "../../actions/indexO";

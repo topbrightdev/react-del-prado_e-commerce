@@ -3,18 +3,15 @@ import {Helmet} from "react-helmet";
 import Slider from "react-slick";
 import "../common/index.scss";
 import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
 
 // import custom Components
 import Service from "./common/service";
-import BrandBlock from "./common/brand-block";
-import NewProduct from "../common/new-product";
-import Breadcrumb from "../common/breadcrumb";
+import NewProduct from "./new-product";
+import Breadcrumb from "../breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
 import {addToCart, addToCartUnsafe, addToWishlist} from "../../actions/indexO";
 import ImageZoom from "./common/product/image-zoom";
-import SmallImages from "./common/product/small-image";
 
 class LeftSideBar extends Component {
   constructor() {

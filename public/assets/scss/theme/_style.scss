@@ -1347,6 +1347,8 @@ header {
     display: inline-block;
     padding-top: 35px;
     padding-bottom: 35px;
+    min-width: max-content;
+    text-align: center;
   }
 
   .menu-left {
@@ -1541,7 +1543,7 @@ header {
 
               &:focus {
                 border: 1px solid greenyellow;
-                box-shadow: none;
+                box-shadow: 1px solid greenyellow;
               }
             }
 
@@ -2344,7 +2346,7 @@ header {
   padding: 20px 10px;
 
   .border-padding {
-    padding: 0 10px;
+    padding: 10px 10px;
   }
 
   div {
@@ -2383,10 +2385,12 @@ header {
         h2 {
           background-color: $white;
           display: inline-block;
-          padding: 20px 35px;
+          padding: 20px 15px;
           margin-bottom: 0;
           box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.4);
           transition: 0.5s ease;
+          text-align: center;
+          font-size: 2rem !important;
         }
       }
     }
@@ -4314,10 +4318,14 @@ header {
     align-items: center;
 
     .offer-slider {
+      margin-left: auto;
+      margin-right: auto;
+
       .product-box2 {
         .media {
           .media-body {
             margin-top: 0;
+            text-align: center;
           }
         }
       }
@@ -4522,10 +4530,10 @@ header {
           }
 
           .special-img {
-            max-width: 20vw;
-            min-width: 20vw;
-            max-height: 30vh;
-            min-height: 30vh;
+            max-width: 200px;
+            min-width: 200px;
+            max-height: 200px;
+            min-height: 200px;
           }
 
           .media-body {
@@ -9628,14 +9636,14 @@ footer {
 
           i {
             font-size: 20px;
-            color: #ff4c3b;
+            color: #96d627;
           }
 
           h6 {
             text-transform: uppercase;
             padding-top: 5px;
             font-weight: 600;
-            color: #ff4c3b;
+            color: #96d627;
           }
         }
 
@@ -16098,6 +16106,7 @@ body {
           h2 {
             background-color: $dark-top;
             transition: all 0.3s ease;
+            text-align: center;
           }
         }
       }

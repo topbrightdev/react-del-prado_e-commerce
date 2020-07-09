@@ -4,9 +4,9 @@ import "../common/index.scss";
 import {connect} from "react-redux";
 
 // import custom Components
-import RelatedProduct from "../common/related-product";
-import Breadcrumb from "../common/breadcrumb";
-import DetailsWithPrice from "./common/product/details-price";
+import RelatedProduct from "../products/related-product";
+import Breadcrumb from "../breadcrumb";
+import DetailsWithPrice from "../products/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
 import {addToCart, addToCartUnsafe, addToWishlist} from "../../actions/indexO";
 import ImageZoom from "./common/product/image-zoom";

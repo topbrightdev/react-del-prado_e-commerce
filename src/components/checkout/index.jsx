@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import {Helmet} from "react-helmet";
-import {connect} from "react-redux";
-import {Link, Redirect} from "react-router-dom";
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
+import { connect } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 import SimpleReactValidator from "simple-react-validator";
 
@@ -12,7 +12,7 @@ import {
   clearCart,
   signup,
 } from "../../actions/indexO";
-import {getCartTotal} from "../../services";
+import { getCartTotal } from "../../services";
 
 class checkOut extends Component {
   constructor(props) {
@@ -244,7 +244,7 @@ class checkOut extends Component {
   };
 
   render() {
-    const {cartItems, symbol, total} = this.props;
+    const { cartItems, symbol, total } = this.props;
     console.log(this.state);
     console.log(this.props);
     // Paypal Integration
@@ -341,6 +341,7 @@ class checkOut extends Component {
                           <input
                             type="text"
                             name="phone"
+                            className="form-control"
                             placeholder="Phone"
                             value={this.state.phone}
                             onChange={this.setStateFromInput}

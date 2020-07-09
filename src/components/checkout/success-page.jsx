@@ -1,6 +1,6 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {clearCart} from "../../actions/indexO";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { clearCart } from "../../actions/indexO";
 
 class orderSuccess extends Component {
   constructor(props) {
@@ -12,7 +12,9 @@ class orderSuccess extends Component {
   }
 
   render() {
-    const {payment, items, symbol, orderTotal} = this.props.location.state;
+    const { payment, items, symbol, orderTotal } = this.props.location.state;
+    console.log(this.props.location.state);
+    console.log(this.props);
     var options = {
       weekday: "long",
       year: "numeric",

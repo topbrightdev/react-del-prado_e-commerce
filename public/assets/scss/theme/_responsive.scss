@@ -2576,7 +2576,8 @@
     }
     + .service-block {
       border-left: 0;
-      margin-top: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
     &:last-child {
       .media {
@@ -3733,6 +3734,7 @@
     height: 35px;
     i {
       font-size: 19px;
+      margin-left: -6%;
     }
   }
   .dark-light {

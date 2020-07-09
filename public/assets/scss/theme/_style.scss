@@ -8044,7 +8044,7 @@ footer {
   width: 40px;
   height: 38px;
   display: flex;
-  z-index: 1;
+  z-index: 999;
   align-items: center;
   justify-content: center;
   font-size: 14px;
@@ -8074,13 +8074,14 @@ footer {
   border-bottom-right-radius: 0;
   box-shadow: 0px 0px 5px 0px rgba(154, 154, 154, 0.54);
   transition: all 0.5s ease;
-  z-index: 1;
+  z-index: 999;
 
   i {
     animation: ring-rotate 3s infinite linear;
     font-size: 20px;
     color: #3c3c3c;
-    margin-left: 10px;
+    margin-left: 0%;
+    margin-top: 30%;
   }
 
   &.open-icon {

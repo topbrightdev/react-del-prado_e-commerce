@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {Provider} from "react-redux";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {ScrollContext} from "react-router-scroll-4";
-import {IntlReducer as Intl, IntlProvider} from "react-redux-multilingual";
+import { Provider } from "react-redux";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { ScrollContext } from "react-router-scroll-4";
+import { IntlReducer as Intl, IntlProvider } from "react-redux-multilingual";
 
 import "./index.scss";
 
@@ -11,7 +11,7 @@ import "./index.scss";
 import store from "./store";
 import translations from "./constants/translations";
 
-import {getAllProducts, getAllCategories, getUserWoo} from "./actions/indexO";
+import { getAllProducts, getAllCategories, getUserWoo } from "./actions/indexO";
 
 // Layouts
 
@@ -20,6 +20,7 @@ import CollectionNoSidebar from "./components/collection/collection-no-sidebar";
 
 import aboutUs from "./components/pages/about-us";
 import PageNotFound from "./components/pages/404";
+import EmptySearch from "./components/pages/empty-search";
 import Login from "./components/pages/login";
 import Register from "./components/pages/register";
 import Account from "./components/pages/account";
@@ -32,7 +33,10 @@ import Layout from "./components/app";
 import Cart from "./components/cart";
 import Compare from "./components/compare/index";
 import wishList from "./components/wishlist";
-import checkOut from "./components/checkout";
+import checkOut from "./components/checkout/index";
+import checkoutForm from "./components/checkout/CheckoutForm";
+import stripeCheckout from "./components/checkout/StripeCheckout";
+
 import orderSuccess from "./components/checkout/success-page";
 
 import ForgetPassword from "./components/pages/forget-password";
@@ -88,8 +92,16 @@ class Root extends React.Component {
                     component={Compare}
                   />
                   <Route
-                    path={`${process.env.PUBLIC_URL}/checkout`}
+                    path={`${process.env.PUBLIC_URL}/Checkout`}
                     component={checkOut}
+                  />
+                  <Route
+                    path={`${process.env.PUBLIC_URL}/StripeCheckout`}
+                    component={stripeCheckout}
+                  />
+                  <Route
+                    path={`${process.env.PUBLIC_URL}/checkoutForm`}
+                    component={checkoutForm}
                   />
                   <Route
                     path={`${process.env.PUBLIC_URL}/order-success`}
@@ -107,6 +119,10 @@ class Root extends React.Component {
                   <Route
                     path={`${process.env.PUBLIC_URL}/pages/404`}
                     component={PageNotFound}
+                  />
+                  <Route
+                    path={`${process.env.PUBLIC_URL}/pages/empty-search`}
+                    component={EmptySearch}
                   />
                   <Route
                     path={`${process.env.PUBLIC_URL}/pages/login`}

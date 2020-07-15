@@ -55,7 +55,7 @@ export const getCategories = (data) => {
 };
 
 export const getVisibleproducts = (data, filters, data2, data3) => {
-  const {brand, color, value, sortBy} = filters;
+  const { brand, color, value, sortBy } = filters;
   var products = null;
   if (data3) {
     if (data3.productsToShow) {
@@ -66,7 +66,6 @@ export const getVisibleproducts = (data, filters, data2, data3) => {
   } else {
     products = data.products;
   }
-  console.log(products);
   var newData = products.filter((product) => {
     let brandMatch;
     if (product.tags && brand)
@@ -110,7 +109,6 @@ export const getVisibleproducts = (data, filters, data2, data3) => {
       return product2.id > product1.id ? -1 : 1;
     }
   });
-  console.log(newData);
   const res = [data.products, newData];
   return res;
 };

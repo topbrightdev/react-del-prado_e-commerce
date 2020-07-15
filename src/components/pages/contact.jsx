@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import * as emailjs from "emailjs-com";
 import SimpleReactValidator from "simple-react-validator";
 import Breadcrumb from "../breadcrumb";
@@ -21,7 +21,7 @@ class Contact extends Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
-    const {from_name, user_mail, subject, message} = this.state;
+    const { from_name, user_mail, subject, message } = this.state;
     let templateParams = {
       from_name: from_name,
       user_mail: user_mail,
@@ -33,7 +33,7 @@ class Contact extends Component {
         "default_service",
         "emailtemplate",
         templateParams,
-        "user_FqIXKAIpDQYC1lkU3it2G"
+        process.env.REACT_APP_EMAILJS
       )
       .then(
         (res) => {
@@ -52,7 +52,7 @@ class Contact extends Component {
     if (e.currentTarget.name) {
       {
         this.setState(() => {
-          return {[name]: value};
+          return { [name]: value };
         });
       }
     } else return null;
@@ -92,7 +92,7 @@ class Contact extends Component {
                   <ul>
                     <li>
                       <div className="contact-icon">
-                        <i class="fa fa-phone" />
+                        <i className="fa fa-phone" />
                         <h6>Contactanos</h6>
                       </div>
                       <div className="media-body">
@@ -112,7 +112,7 @@ class Contact extends Component {
                     </li>
                     <li>
                       <div className="contact-icon">
-                        <i class="fa fa-envelope-o" />
+                        <i className="fa fa-envelope-o" />
                         <h6>Direccion electronica</h6>
                       </div>
                       <div className="media-body">
@@ -146,7 +146,7 @@ class Contact extends Component {
                       {this.validator.message(
                         "from_name",
                         this.state.from_name,
-                        "required|alpha"
+                        "required"
                       )}
                     </div>
 
@@ -187,7 +187,7 @@ class Contact extends Component {
                       {this.validator.message(
                         "subject",
                         this.state.subject,
-                        "required|alpha"
+                        "required"
                       )}
                     </div>
                     <div className="col-md-12">
@@ -206,7 +206,7 @@ class Contact extends Component {
                       {this.validator.message(
                         "message",
                         this.state.message,
-                        "required|alpha"
+                        "required"
                       )}
                     </div>
                     <div className="col-md-12">

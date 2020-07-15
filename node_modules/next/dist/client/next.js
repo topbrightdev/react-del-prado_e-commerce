@@ -1,0 +1,2 @@
+"use strict";var _interopRequireWildcard=require("@babel/runtime/helpers/interopRequireWildcard");var next=_interopRequireWildcard(require("./"));window.next=next;(0,next.default)().catch(err=>{console.error(`${err.message}\n${err.stack}`);});
+//# sourceMappingURL=next.js.map

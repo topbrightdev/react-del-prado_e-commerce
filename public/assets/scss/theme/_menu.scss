@@ -632,6 +632,7 @@ header {
   i {
     font-size: 2rem;
     color: lighten($theme-deafult, 5%);
+    margin-left: 20vw;
   }
 }
 .mega-menu-banner {
@@ -2187,7 +2188,7 @@ header {
     .toggle-nav {
       position: relative;
       z-index: 99;
-      right: 11vw;
+      right: 14vw;
       top: -12.5vh;
     }
   }

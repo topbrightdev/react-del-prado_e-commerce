@@ -18,6 +18,7 @@ const productReducer = (state = initialState, action) => {
         ...state,
         products: action.products,
       };
+
     case FETCH_SINGLE_PRODUCT:
       if (
         state.products.findIndex(
@@ -34,7 +35,6 @@ const productReducer = (state = initialState, action) => {
       }
 
     case SEARCH_PRODUCT:
-      console.log(action.productName);
       var item = {};
       state.products.map((product) => {
         //console.log(product.name);
@@ -52,7 +52,11 @@ const productReducer = (state = initialState, action) => {
           ...state,
           product_details: item,
         };
-      }
+      } else
+        return {
+          ...state,
+          product_details: "notFound",
+        };
 
     case CHANGE_CURRENCY:
       return {

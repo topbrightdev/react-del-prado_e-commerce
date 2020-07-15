@@ -41,7 +41,11 @@ class HeaderTwo extends Component {
   }
 
   componentDidUpdate() {
-    if (this.props.data.product_details.length > 0) {
+    if (this.props.data.product_details === "notFound") {
+      console.log("notFound");
+      this.props.history.push(`${process.env.PUBLIC_URL}/pages/empty-search`);
+    } else if (this.props.data.product_details.length > 0) {
+      console.log(this.props.data.product_details);
       if (
         this.props.data.product_details.name.toUpperCase() ===
         this.state.productName.toUpperCase()
@@ -76,7 +80,6 @@ class HeaderTwo extends Component {
   handleChange = (e) => {
     var obj = {};
     obj[e.target.name] = e.target.value;
-
     this.setState(obj);
   };
 
@@ -142,16 +145,32 @@ class HeaderTwo extends Component {
                         <ul>
                           <li className="onhover-div mobile-search">
                             <div>
-                              <img
-                                src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`}
-                                onClick={this.openSearch}
-                                className="img-fluid"
-                                alt=""
-                              />
-                              <i
-                                className="fa fa-search"
-                                onClick={this.openSearch}
-                              ></i>
+                              <form
+                                className="form-search"
+                                onSubmit={this.handleSubmit}
+                              >
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="productName"
+                                  name="productName"
+                                  placeholder="Search a Product"
+                                  value={this.state.productName}
+                                  onChange={this.handleChange}
+                                />{" "}
+                                <img
+                                  src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`}
+                                  onClick={this.handleSubmit}
+                                  type="submit"
+                                  className="img-fluid search-img"
+                                  alt=""
+                                />
+                                <i
+                                  className="fa fa-search"
+                                  onClick={this.handleSubmit}
+                                  className="img-fluid search-img-mobile"
+                                ></i>
+                              </form>
                             </div>
                           </li>
                           <li className="onhover-div mobile-setting">
@@ -203,26 +222,7 @@ class HeaderTwo extends Component {
                                     euro
                                   </a>{" "}
                                 </li>
-                                <li>
-                                  <a
-                                    href={null}
-                                    onClick={() =>
-                                      this.props.changeCurrency("₹")
-                                    }
-                                  >
-                                    rupees
-                                  </a>{" "}
-                                </li>
-                                <li>
-                                  <a
-                                    href={null}
-                                    onClick={() =>
-                                      this.props.changeCurrency("£")
-                                    }
-                                  >
-                                    pound
-                                  </a>{" "}
-                                </li>
+
                                 <li>
                                   <a
                                     href={null}
@@ -230,7 +230,7 @@ class HeaderTwo extends Component {
                                       this.props.changeCurrency("$")
                                     }
                                   >
-                                    doller
+                                    dollar
                                   </a>{" "}
                                 </li>
                               </ul>
@@ -247,46 +247,6 @@ class HeaderTwo extends Component {
             </div>
           </div>
         </header>
-
-        <div id="search-overlay" className="search-overlay ">
-          <div>
-            <span
-              className="closebtn"
-              onClick={this.closeSearch}
-              title="Close Overlay"
-            >
-              ×
-            </span>
-            <div className="overlay-content">
-              <div className="container">
-                <div className="row">
-                  <div className="col-xl-12">
-                    <form>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="productName"
-                          name="productName"
-                          placeholder="Search a Product"
-                          value={this.state.productName}
-                          onChange={this.handleChange}
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        className="btn btn-primary"
-                        onClick={this.handleSubmit}
-                      >
-                        <i className="fa fa-search"></i>
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }

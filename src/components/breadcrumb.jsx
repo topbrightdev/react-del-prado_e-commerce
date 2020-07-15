@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 class Breadcrumb extends Component {
-    render (){
-        const {title, parent} = this.props;
+    render() {
+        const { title, parent } = this.props;
         return (
             <div className="breadcrumb-section">
                 <div className="container">
@@ -17,8 +17,8 @@ class Breadcrumb extends Component {
                             <nav aria-label="breadcrumb" className="theme-breadcrumb">
                                 <ol className="breadcrumb">
                                     <li className="breadcrumb-item"><Link to={`${process.env.PUBLIC_URL}`}>Home</Link></li>
-                                    {parent?
-                                    <li className="breadcrumb-item" aria-current="page">{parent}</li>:''}
+                                    {parent ?
+                                        <li className="breadcrumb-item" aria-current="page">{parent}</li> : ''}
                                     <li className="breadcrumb-item active" aria-current="page">{title}</li>
                                 </ol>
                             </nav>

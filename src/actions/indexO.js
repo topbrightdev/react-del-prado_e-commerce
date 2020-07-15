@@ -2,7 +2,7 @@ import shop from "../api/shop";
 import user from "../api/user";
 import * as types from "../constants/ActionTypes";
 import store from "../store";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 /**           PRODUCTS ACTIONS          */
@@ -57,7 +57,44 @@ export const searchProduct = (productName) => (
   }
 );
 
+
+export const postReviewDone = () => ({
+  type: types.POST_REVIEW_DONE,
+
+});
+
+
+export const postReview = (data) => (dispatch) => {
+  shop.postReview(data).then((res) => {
+    dispatch(postReviewDone());
+    console.log(res)
+    return res;
+  });
+};
+
+export const receiveReviews = (reviews) => ({
+  type: types.RECEIVE_REVIEWS,
+  reviews
+
+});
+
+export const fetchedReviews = (reviews) => ({
+  type: types.FETCHED_REVIEW_DONE,
+  reviews
+})
+
+export const getReviews = (id) => (dispatch) => {
+  shop.getReview(id).then((res) => {
+    dispatch(receiveReviews(res));
+    dispatch(fetchedReviews(res))
+    return res
+  })
+}
+
+
 /**      END  PRODUCTS ACTIONS          */
+
+
 
 /**           CATEGORYTREE ACTIONS          */
 

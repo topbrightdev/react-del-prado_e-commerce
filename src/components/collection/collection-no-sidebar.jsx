@@ -1,13 +1,13 @@
-import React, {Component} from "react";
-
+import React, { Component } from "react";
+import PageNotFound from "../pages/404"
 import "../common/index.scss";
 
 // import custom Components
 import ProductListing from "../products/product-listing";
 import Breadcrumb from "../breadcrumb";
 import FilterBar from "../products/filters/filter-bar";
-import {getAllProducts} from "../../actions/indexO";
-import {connect} from "react-redux";
+import { getAllProducts } from "../../actions/indexO";
+import { connect } from "react-redux";
 
 class CollectionNoSideBar extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class CollectionNoSideBar extends Component {
       if (this.props.location.category !== this.state.category) {
         const category = this.props.location.category;
         this.setState(() => {
-          return {category: category};
+          return { category: category };
         });
         //  this.setState({...category});
       }
@@ -39,6 +39,7 @@ class CollectionNoSideBar extends Component {
         const items = this.props.state.data3.productsToShow;
         var category = null;
         var categories = [];
+
         if (items.length > 0) {
           items[0].categories.map((c) => {
             if (!category) {
@@ -59,11 +60,12 @@ class CollectionNoSideBar extends Component {
   }
 
   componentDidUpdate() {
+
     if (this.props.location.category) {
       if (this.props.location.category !== this.state.category) {
         const category = this.props.location.category;
         this.setState(() => {
-          return {category: category};
+          return { category: category };
         });
         //  this.setState({...category});
       }
@@ -131,7 +133,7 @@ class CollectionNoSideBar extends Component {
         </section>
         {/*Section End*/}
       </div>
-    ) : null;
+    ) : <PageNotFound />;
   }
 }
 
@@ -142,4 +144,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {getAllProducts})(CollectionNoSideBar);
+export default connect(mapStateToProps, { getAllProducts })(CollectionNoSideBar);

@@ -10,21 +10,17 @@ const initialState = {
 };
 
 const userReducer = (state = initialState, action) => {
-  console.log(action.type);
   switch (action.type) {
     case RECEIVE_LOGIN:
-      console.log(action.log);
       return {
         log: action.log,
       };
     case FETCH_LOGIN:
-      console.log(action.log);
       return {
         log: action.log,
       };
 
     case RECEIVE_SIGNUP: {
-      console.log(action.log);
 
       if (action.log !== undefined) {
         return {
@@ -34,8 +30,6 @@ const userReducer = (state = initialState, action) => {
     }
 
     case RECEIVE_UPDATED_ACCOUNT: {
-      console.log(action.log);
-
       if (action.log !== undefined) {
         alert("Your account has been updated succesfully");
         return {
@@ -50,8 +44,7 @@ const userReducer = (state = initialState, action) => {
     }
 
     default:
-      console.log(action);
-      console.log(state);
+
       return state;
   }
 };

@@ -1,5 +1,5 @@
-import {combineReducers} from "redux";
-import {IntlReducer as Intl, IntlProvider} from "react-redux-multilingual";
+import { combineReducers } from "redux";
+import { IntlReducer as Intl, IntlProvider } from "react-redux-multilingual";
 
 // Import custom components
 import productReducer from "./products";
@@ -11,7 +11,8 @@ import compareReducer from "./compare";
 import categoryTreeReducer from "./categoryTree";
 import userReducer from "./user";
 import orderReducer from "./order";
-import {DESTROY_SESSION} from "../constants/ActionTypes";
+import reviewsReducer from "./reviews"
+import { DESTROY_SESSION } from "../constants/ActionTypes";
 
 // Combine all reducers.
 const appReducer = combineReducers({
@@ -24,6 +25,7 @@ const appReducer = combineReducers({
   compare: compareReducer,
   user: userReducer,
   order: orderReducer,
+  reviews: reviewsReducer,
   Intl,
 });
 

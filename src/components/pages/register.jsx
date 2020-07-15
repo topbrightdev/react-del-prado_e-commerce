@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import SimpleReactValidator from "simple-react-validator";
-import {signup} from "../../actions/indexO";
+import { signup } from "../../actions/indexO";
 import Breadcrumb from "../breadcrumb";
 
 class Register extends Component {
@@ -43,11 +43,11 @@ class Register extends Component {
     if (e.currentTarget.name) {
       if (name === "postcode" || name === "phone") {
         this.setState(() => {
-          return {[name]: value.replace(/\D/, "")};
+          return { [name]: value.replace(/\D/, "") };
         });
       } else {
         this.setState(() => {
-          return {[name]: value};
+          return { [name]: value };
         });
       }
     } else return null;
@@ -288,7 +288,7 @@ class Register extends Component {
                           type="text"
                           className="form-control"
                           placeholder="State / Province "
-                          required=""
+                          required
                           name="state"
                           value={this.state.state}
                           onChange={this.handleChange}
@@ -314,7 +314,7 @@ class Register extends Component {
                           onChange={this.handleChange}
                         />
                         {this.validator.message(
-                          "postal",
+                          "postcode",
                           this.state.postcode,
                           "required|alpha"
                         )}

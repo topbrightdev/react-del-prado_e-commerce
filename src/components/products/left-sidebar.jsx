@@ -1,8 +1,8 @@
-import React, {Component} from "react";
-import {Helmet} from "react-helmet";
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import Slider from "react-slick";
 import "../common/index.scss";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 // import custom Components
 import Service from "./common/service";
@@ -10,7 +10,11 @@ import NewProduct from "./new-product";
 import Breadcrumb from "../breadcrumb";
 import DetailsWithPrice from "./common/product/details-price";
 import DetailsTopTabs from "./common/details-top-tabs";
-import {addToCart, addToCartUnsafe, addToWishlist} from "../../actions/indexO";
+import {
+  addToCart,
+  addToCartUnsafe,
+  addToWishlist,
+} from "../../actions/indexO";
 import ImageZoom from "./common/product/image-zoom";
 
 class LeftSideBar extends Component {
@@ -47,6 +51,8 @@ class LeftSideBar extends Component {
       addToCartUnsafe,
       addToWishlist,
     } = this.props;
+    console.log(this.props);
+
     var products = {
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -54,6 +60,7 @@ class LeftSideBar extends Component {
       arrows: true,
       fade: true,
     };
+
     var productsnav = {
       slidesToShow: 3,
       swipeToSlide: true,
@@ -61,18 +68,16 @@ class LeftSideBar extends Component {
       dots: false,
       focusOnSelect: true,
     };
+
     if (item) {
       return (
         <div>
           {/*SEO Support*/}
           <Helmet>
             <title>
-              MultiKart | {item.category} | {item.name}
+              Del Prado Alimentacion | {item.category} | {item.name}
             </title>
-            <meta
-              name="description"
-              content="Multikart – Multipurpose eCommerce React Template is a multi-use React template. It is designed to go well with multi-purpose websites. Multikart Bootstrap 4 Template will help you run multiple businesses."
-            />
+            <meta name="description" content="Del Prado Alimentacion" />
           </Helmet>
           {/*SEO Support End */}
 

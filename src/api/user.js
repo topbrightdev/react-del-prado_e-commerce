@@ -1,8 +1,4 @@
-import React, {useState} from "react";
-import {createContext, useContext} from "react";
 import axios from "axios";
-import orderReducer from "../reducers/order";
-
 const wooConfig = require("./wooConfig");
 const WooCommerceAPI = require("woocommerce-api");
 
@@ -35,7 +31,8 @@ const login = async (user) => {
     niceName,
     email = null;
   return await axios
-    .post("https://grassrootemarket.com/wp-json/jwt-auth/v1/token", {
+    // .post("https://grassrootemarket.com/wp-json/jwt-auth/v1/token", {
+    .post(process.env.REACT_APP_WORDPRESS + process.env.REACT_APP_JWT, {
       username: username,
       password: password,
     })
@@ -129,8 +126,9 @@ const signup = async (userData) => {
 
   // After filling the vlaue fields,the function will proceed to create
   // first the wordpress user.
+  //return await fetch(targetUrl + urlRegister, {
 
-  return await fetch(targetUrl + urlRegister, {
+  return await fetch(process.env.REACT_APP_WORDPRESS + process.env.REGISTER, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -218,7 +216,6 @@ const updateAccount = async (userData, userOldData) => {
 
   var user = null;
   if (username !== userOldData.username || email !== userOldData.email) {
-    console.log("Update user");
     user = {
       username: username,
       email: email,
@@ -226,8 +223,6 @@ const updateAccount = async (userData, userOldData) => {
   } else {
     var customer = null;
     if (userOldData) {
-      console.log("Update Customer");
-
       customer = {
         email: email,
         first_name: first_name,
@@ -268,14 +263,12 @@ const updateAccount = async (userData, userOldData) => {
   });
 
   if (user) {
-    console.log(user);
     return await axios
-      .post(`https://grassrootemarket.com/wp-json/wp/v2/users/${id}`, {
+      .post(process.env.REACT_APP_WORDPRESS`/wp/v2/users/${id}`, {
         username: user.username,
         mail: user.email,
       })
       .then((result) => {
-        console.log(result);
         if (result.status === 200) {
           var thisUser = {
             userId: user.id,
@@ -292,7 +285,6 @@ const updateAccount = async (userData, userOldData) => {
             country: userOldData.country,
             phone: userOldData.phone,
           };
-          console.log(thisUser);
 
           return thisUser;
         } else {
@@ -306,12 +298,10 @@ const updateAccount = async (userData, userOldData) => {
   }
 
   if (customer) {
-    console.log(customer);
     return await WooCommerce.putAsync(`customers/${id}`, customer)
       .then((response) => {
         if (response.body) {
           const res = JSON.parse(response.body);
-          console.log(res);
 
           var thisUser = {
             username: userOldData.username,
@@ -328,7 +318,6 @@ const updateAccount = async (userData, userOldData) => {
             country: res.billing.country,
             phone: res.billing.phone,
           };
-          console.log(thisUser);
           return thisUser;
         }
       })
@@ -362,14 +351,11 @@ const getCustomerId = async (newCustomer) => {
 };
 
 const order = async (orderData) => {
-  console.log(orderData);
   const orderReady = fillOrder(orderData);
-  console.log(orderReady);
   if (orderReady) {
     return await WooCommerce.postAsync("orders", orderReady).then((res) => {
       if (res.body) {
         const r = JSON.parse(res.body);
-        console.log(r);
         return r;
       }
     });
@@ -392,10 +378,8 @@ const fillOrder = (orderData) => {
     cart,
     total,
   } = orderData;
-  console.log(orderData);
   var theCart = [];
   cart.map((i) => {
-    console.log(cart);
     const product = {
       product_id: i.id,
       quantity: i.qty,
@@ -457,7 +441,6 @@ const fillOrder = (orderData) => {
 };
 
 const receiveLogin = (data) => {
-  console.log("ZOMBIE");
   this.setState(() => {
     return {
       ...{
@@ -518,4 +501,4 @@ const receiveSignup = (data) => {
   });
 };
 
-export default {login, signup, updateAccount, order};
+export default { login, signup, updateAccount, order };

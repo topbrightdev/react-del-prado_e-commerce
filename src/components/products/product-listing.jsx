@@ -1,16 +1,16 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import {getTotal, getCartProducts} from "../../reducers";
+import { getTotal, getCartProducts } from "../../reducers";
 import {
   addToCart,
   addToWishlist,
   addToCompare,
   addSelectedProducts,
 } from "../../actions/indexO";
-import {getVisibleproducts} from "../../services/index";
+import { getVisibleproducts } from "../../services/index";
 import ProductListItem from "./product-list-item";
 
 var category = null;
@@ -30,7 +30,7 @@ class ProductListing extends Component {
     if (this.props.category !== this.state.category) {
       category = this.props.category;
       this.setState(() => {
-        return {category: category};
+        return { category: category };
       });
       this.fetchSameCategoryProducts();
     }
@@ -53,7 +53,7 @@ class ProductListing extends Component {
     if (this.props.category !== this.state.category) {
       category = this.props.category;
       this.setState(() => {
-        return {category: category};
+        return { category: category };
       });
       this.fetchSameCategoryProducts();
     }
@@ -63,7 +63,7 @@ class ProductListing extends Component {
     if (this.props.category !== this.state.category) {
       category = this.props.category;
       this.setState(() => {
-        return {category: category};
+        return { category: category };
       });
 
       var productsToShow = [];
@@ -84,7 +84,7 @@ class ProductListing extends Component {
 
     if (this.state.productsToShow !== productsToShow) {
       this.setState(() => {
-        return {productsToShow: productsToShow};
+        return { productsToShow: productsToShow };
       });
       this.props.addSelectedProducts(productsToShow);
     }
@@ -92,8 +92,9 @@ class ProductListing extends Component {
   };
 
   fetchMoreItems = (products) => {
-    if (this.state.limit >= products.length) {
-      this.setState({hasMoreItems: false});
+
+    if (this.state.limit >= products[0].length) {
+      this.setState({ hasMoreItems: false });
       return;
     }
     // a fake async api call
@@ -148,7 +149,7 @@ class ProductListing extends Component {
                           this.props.colSize === 3
                             ? "col-xl-3 col-md-6  col-grid-box ma-lr"
                             : "col-lg-" + this.props.colSize
-                        }`}
+                          }`}
                         key={index}
                       >
                         <ProductListItem
@@ -164,28 +165,28 @@ class ProductListing extends Component {
                 </div>
               </InfiniteScroll>
             ) : (
-              <div className="row">
-                <div className="col-sm-12 text-center section-b-space mt-5 no-found">
-                  <img
-                    src={`${process.env.PUBLIC_URL}/assets/images/empty-search.jpg`}
-                    className="img-fluid mb-4"
-                  />
-                  <h3>
-                    Sorry! Couldn't find the product you were looking For!!!{" "}
-                  </h3>
-                  <p>
-                    Please check if you have misspelt something or try searching
-                    with other words.
+                <div className="row">
+                  <div className="col-sm-12 text-center section-b-space mt-5 no-found">
+                    <img
+                      src={`${process.env.PUBLIC_URL}/assets/images/empty-search.jpg`}
+                      className="img-fluid mb-4"
+                    />
+                    <h3>
+                      Sorry! Couldn't find the product you were looking For!!!{" "}
+                    </h3>
+                    <p>
+                      Please check if you have misspelt something or try searching
+                      with other words.
                   </p>
-                  <Link
-                    to={`${process.env.PUBLIC_URL}/`}
-                    className="btn btn-solid"
-                  >
-                    continue shopping
+                    <Link
+                      to={`${process.env.PUBLIC_URL}/`}
+                      className="btn btn-solid"
+                    >
+                      continue shopping
                   </Link>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         </div>
       );

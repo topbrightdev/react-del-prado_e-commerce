@@ -54,6 +54,7 @@ const getProducts = () => {
           sale_price,
           on_sale,
           tags,
+          rating_count
         }) => {
           var img;
           var newImages = [];
@@ -81,7 +82,7 @@ const getProducts = () => {
             colors: ["yellow", "gray", "green"],
             size: ["M", "L", "XL"],
             tags: ["nike", "caprese"],
-            rating: 4,
+            rating: rating_count,
             variants: null,
           };
 
@@ -116,9 +117,35 @@ const getTheCategories = (parent, level) => {
   });
 };
 
+const postReview = (data) => {
+  return WooCommerce.postAsync("products/reviews", data)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    });
+}
+
+const getReview = (id) => {
+  return WooCommerce.getAsync(`products/reviews?product=${id}`)
+    .then((res) => {
+      var data = res.toJSON().body;
+      Object.json1 = JSON.parse(data);
+      var reviews = Object.json1;
+      return (reviews)
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    });
+}
+
+
 export default {
   getProducts,
   getCategoryTree,
+  postReview,
+  getReview,
   buyProducts: (payload, cb, timeout) =>
     setTimeout(() => cb(), timeout || TIMEOUT),
 };

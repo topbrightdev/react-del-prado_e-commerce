@@ -39,6 +39,8 @@ class checkOut extends Component {
       create_account: "",
     };
     this.validator = new SimpleReactValidator();
+    this.createOrderData = this.createOrderData.bind(this);
+    var orderData = "";
   }
 
   componentDidMount() {
@@ -93,6 +95,25 @@ class checkOut extends Component {
     });
   };
 
+  createOrderData() {
+    var orderData = {
+      username: this.state.username,
+      email: this.state.email,
+      // password : this.state.password,
+      address_1: this.state.address_1,
+      city: this.state.city,
+      country: this.state.country,
+      first_name: this.state.first_name,
+      last_name: this.state.last_name,
+      phone: this.state.phone,
+      postcode: this.state.postcode,
+      state: this.state.state,
+      cart: this.state.cart,
+      total: this.state.total,
+    };
+    return orderData;
+  }
+
   setStateFromInput = (event) => {
     var obj = {};
     obj[event.target.name] = event.target.value;
@@ -113,25 +134,6 @@ class checkOut extends Component {
     this.setState({
       payment: value,
     });
-  }
-
-  createOrderData() {
-    var orderData = {
-      username: this.state.username,
-      email: this.state.email,
-      // password : this.state.password,
-      address_1: this.state.address_1,
-      city: this.state.city,
-      country: this.state.country,
-      first_name: this.state.first_name,
-      last_name: this.state.last_name,
-      phone: this.state.phone,
-      postcode: this.state.postcode,
-      state: this.state.state,
-      cart: this.state.cart,
-      total: this.state.total,
-    };
-    return orderData;
   }
 
   callSignup = () => {
@@ -163,33 +165,6 @@ class checkOut extends Component {
         postcode: postcode,
       };
       this.props.signup(userData);
-    }
-  };
-
-  StripeClick = () => {
-    if (this.validator.allValid()) {
-      // if the user has an account nothing must happen here
-      // if the user wants to create a new account
-      if (this.state.create_account !== "") {
-        this.callSignup();
-      }
-
-      this.props.history.push({
-        pathname: "/StripeCheckout",
-        state: {
-          payment: 1000,
-          items: this.state.cart,
-          orderTotal: this.state.total,
-          symbol: "$",
-        },
-      });
-
-      // this.props.placeOrder(this.createOrderData());
-      // if the user has not account and won't create one
-    } else {
-      // this.validator.showMessages();
-      // rerender to show messages for the first time
-      //  this.forceUpdate();
     }
   };
 
@@ -232,6 +207,11 @@ class checkOut extends Component {
     } else {
       return null;
     }
+  };
+
+  doOrder = (flag) => {
+    console.log(flag);
+    this.props.placeOrder(this.createOrderData());
   };
 
   render() {
@@ -572,8 +552,12 @@ class checkOut extends Component {
                                 {this.state.payment === "stripe" ? (
                                   <Elements>
                                     <CheckoutForm
-                                      selectedProduct={this.state.cart}
+                                      selectedProduct={cartItems}
                                       history={this.props.history}
+                                      total={total}
+                                      email={this.state.email}
+                                      doOrder={this.doOrder}
+                                      clientData={this.state}
                                     />
                                   </Elements>
                                 ) : (
@@ -591,56 +575,6 @@ class checkOut extends Component {
                             ) : (
                               ""
                             )}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row section-t-space">
-                      <div className="col-lg-6">
-                        <div className="stripe-section">
-                          <h5>stripe js example</h5>
-                          <div>
-                            <h5 className="checkout_class">dummy test</h5>
-                            <table>
-                              <tbody>
-                                <tr>
-                                  <td>cart number</td>
-                                  <td>4242424242424242</td>
-                                </tr>
-                                <tr>
-                                  <td>mm/yy</td>
-                                  <td>2/2020</td>
-                                </tr>
-                                <tr>
-                                  <td>cvc</td>
-                                  <td>2222</td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-6 m-sm-t-2">
-                        <div className="stripe-section">
-                          <h5>paypal example</h5>
-                          <div>
-                            <h5 className="checkout_class">dummy test</h5>
-                            <table>
-                              <tbody>
-                                <tr>
-                                  <td>cart number</td>
-                                  <td>4152521541244</td>
-                                </tr>
-                                <tr>
-                                  <td>mm/yy</td>
-                                  <td>11/18</td>
-                                </tr>
-                                <tr>
-                                  <td>cvc</td>
-                                  <td>521</td>
-                                </tr>
-                              </tbody>
-                            </table>
                           </div>
                         </div>
                       </div>

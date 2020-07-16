@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class ElementCategory extends Component {
   newTo = (key) => {
@@ -20,7 +20,9 @@ class ElementCategory extends Component {
                 <div className="category-banner">
                   <div>
                     <img
-                      src={`${process.env.PUBLIC_URL}/assets/images/vegetables/pro/carnes.jpg`}
+                      src={`${
+                        process.env.PUBLIC_URL
+                      }/assets/images/vegetables/pro/carnes.jpg`}
                       className="img-fluid blur-up lazyload bg-img"
                       alt=""
                     />
@@ -36,7 +38,9 @@ class ElementCategory extends Component {
                 <div className="category-banner">
                   <div>
                     <img
-                      src={`${process.env.PUBLIC_URL}/assets/images/vegetables/pro/pescado.jpg`}
+                      src={`${
+                        process.env.PUBLIC_URL
+                      }/assets/images/vegetables/pro/pescado.jpg`}
                       className="img-fluid blur-up lazyload bg-img"
                       alt=""
                     />
@@ -52,7 +56,9 @@ class ElementCategory extends Component {
                 <div className="category-banner">
                   <div>
                     <img
-                      src={`${process.env.PUBLIC_URL}/assets/images/vegetables/pro/bread.jpg`}
+                      src={`${
+                        process.env.PUBLIC_URL
+                      }/assets/images/vegetables/pro/bread.jpg`}
                       className="img-fluid blur-up lazyload bg-img"
                       alt=""
                     />
@@ -70,7 +76,9 @@ class ElementCategory extends Component {
                 <div className="category-banner">
                   <div>
                     <img
-                      src={`${process.env.PUBLIC_URL}/assets/images/vegetables/pro/frutasvegetables.jpg`}
+                      src={`${
+                        process.env.PUBLIC_URL
+                      }/assets/images/vegetables/pro/frutasvegetables.jpg`}
                       className="img-fluid blur-up lazyload bg-img"
                       alt=""
                     />
@@ -86,7 +94,9 @@ class ElementCategory extends Component {
                 <div className="category-banner">
                   <div>
                     <img
-                      src={`${process.env.PUBLIC_URL}/assets/images/vegetables/pro/meal.jpg`}
+                      src={`${
+                        process.env.PUBLIC_URL
+                      }/assets/images/vegetables/pro/meal.jpg`}
                       className="img-fluid blur-up lazyload bg-img"
                       alt=""
                     />
@@ -102,7 +112,9 @@ class ElementCategory extends Component {
                 <div className="category-banner">
                   <div>
                     <img
-                      src={`${process.env.PUBLIC_URL}/assets/images/vegetables/pro/wine.jpg`}
+                      src={`${
+                        process.env.PUBLIC_URL
+                      }/assets/images/vegetables/pro/wine.jpg`}
                       className="img-fluid blur-up lazyload bg-img"
                       alt=""
                     />

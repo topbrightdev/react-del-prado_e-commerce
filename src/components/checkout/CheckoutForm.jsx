@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+
 import { Link } from "react-router-dom";
 import {
   CardNumberElement,
@@ -23,13 +25,31 @@ const urlCharge =
     : "http://localhost:7000/api/stripe/charge";
 //const urlCharge ='http://waldenberginc.com/api/stripe/charge'
 
-const CheckoutForm = ({ selectedProduct, stripe, history }) => {
+const newTo = (data) => {
+  return {
+    pathname: `${process.env.PUBLIC_URL}/order-success`,
+    data: data,
+  };
+};
+
+const CheckoutForm = ({
+  selectedProduct,
+  stripe,
+  history,
+  total,
+  email,
+  doOrder,
+  clientData,
+}) => {
   if (selectedProduct === null) history.push("/");
-  const [receiptUrl, setReceiptUrl] = useState("");
+  //onst [receiptUrl, setReceiptUrl] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(total);
+    var amount = total * 100;
+    amount = amount.toString();
+    console.log(amount);
     const { error, token } = await stripe.createToken();
     if (error) {
       console.log(error);
@@ -39,37 +59,40 @@ const CheckoutForm = ({ selectedProduct, stripe, history }) => {
     }
     const order = await axios
       .post("http://localhost:9000/stripe", {
-        // amount: total.toString().replace(".", ""),
+        amount: amount,
         source: token.id,
-        //  receipt_email: email,
-        amount: "1000",
-        receipt_email: "test@c.com",
+        receipt_email: email,
       })
       .catch((e) => {
         console.log(e);
       });
-    setReceiptUrl(order.data.charge.receipt_url);
-    // receiveReceipt(receiptUrl);
+    var receiptUrl = "";
+    console.log(clientData);
+    receiptUrl = order.data;
+    //history.push(`${process.env.PUBLIC_URL}/order-success`);
+    //this.props.placeOrder(this.createOrderData());
+    doOrder(true);
+    const data = [receiptUrl, clientData];
+    history.push(newTo(data));
+
+    // receiptUrl = order.data.charge.receipt_url;
+    //receiveReceipt(receiptUrl);
   };
 
   // if (receiptUrl) {
-  if (receiptUrl) {
-    return (
-      <div className="success ">
-        <div className=" success-form farm-19">
-          <h2 className="success-text">Payment Successful!</h2>
-          <div className="success-links">
-            <a href={receiptUrl} className="success-receipt links">
-              View Receipt
-            </a>
-            <Link to="/" className="success-home links">
-              Shop
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // if (receiptUrl) {
+  //  history.push(
+  //   `${process.env.PUBLIC_URL}/order-success`
+  //  );
+
+  /*const newTo = (receipt) => {
+    return {
+      pathname: `${process.env.PUBLIC_URL}/order-success`,
+      receipt: receipt,
+    };
+  };
+*/
+  // if (receiptUrl) {
 
   return (
     <div className="checkout-details">
@@ -77,7 +100,7 @@ const CheckoutForm = ({ selectedProduct, stripe, history }) => {
         <h6 className="checkout-text">
           Introduce your Credit Card Information
         </h6>
-        <p>Amount: </p>
+        <p>Amount: {total} $ </p>
 
         <div className="checkout-number">
           <label className="checkout-label-number">
@@ -106,4 +129,9 @@ const CheckoutForm = ({ selectedProduct, stripe, history }) => {
   );
 };
 
-export default injectStripe(CheckoutForm);
+//export default injectStripe(CheckoutForm);
+const mapStateToProps = (state) => ({
+  state,
+});
+
+export default connect(mapStateToProps)(injectStripe(CheckoutForm));

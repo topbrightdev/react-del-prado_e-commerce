@@ -95,10 +95,11 @@ class Root extends React.Component {
                     path={`${process.env.PUBLIC_URL}/Checkout`}
                     component={checkOut}
                   />
-                  <Route
+                  {/*   <Route
                     path={`${process.env.PUBLIC_URL}/StripeCheckout`}
                     component={stripeCheckout}
                   />
+               */}
                   <Route
                     path={`${process.env.PUBLIC_URL}/checkoutForm`}
                     component={checkoutForm}

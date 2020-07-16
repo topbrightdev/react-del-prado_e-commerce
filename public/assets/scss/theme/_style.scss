@@ -224,6 +224,30 @@ section,
   margin-right: auto !important;
 }
 
+.m-tb-5 {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.m-tb-2-5 {
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
+.w-mx {
+  width: max-content !important;
+  max-width: max-content !important;
+  min-width: max-content !important;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.txt-end {
+  text-align: end;
+}
+
 hr.style1 {
   width: 75px;
   height: 3px;
@@ -9799,6 +9823,8 @@ footer {
   }
 }
 .order-success-sec {
+  padding-left: 10%;
+  padding-top: 9%;
   h4 {
     font-weight: 700;
     text-transform: capitalize;
@@ -9809,6 +9835,7 @@ footer {
       text-transform: capitalize;
       line-height: 24px;
       font-size: 16px;
+      margin-top: 4%;
     }
   }
   .payment-mode {
@@ -9837,7 +9864,8 @@ footer {
     color: $black;
   }
   .product-order-detail {
-    margin-top: 15px;
+    margin-top: 5%;
+    margin-bottom: 2%;
     img {
       height: 130px;
     }
@@ -9845,7 +9873,7 @@ footer {
       display: flex;
       align-items: center;
       h4 {
-        margin-bottom: 5px;
+        margin-bottom: 25%;
         text-transform: capitalize;
         font-weight: 700;
       }

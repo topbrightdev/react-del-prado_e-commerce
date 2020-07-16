@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PageNotFound from "../pages/404"
+import PageNotFound from "../pages/404";
 import "../common/index.scss";
 
 // import custom Components
@@ -15,13 +15,27 @@ class CollectionNoSideBar extends Component {
     this.state = {
       layoutColumns: 3,
       category: null,
-      prodcutsToShow: [],
+      categories: null,
+      productsToShow: [],
     };
   }
+
+  abortController = new AbortController();
 
   LayoutViewClicked(colums) {
     this.setState({
       layoutColumns: colums,
+    });
+  }
+
+  componentWillUnmount() {
+    this.setState(() => {
+      return {
+        layoutColumns: 3,
+        category: null,
+        categories: null,
+        productsToShow: [],
+      };
     });
   }
 
@@ -60,7 +74,6 @@ class CollectionNoSideBar extends Component {
   }
 
   componentDidUpdate() {
-
     if (this.props.location.category) {
       if (this.props.location.category !== this.state.category) {
         const category = this.props.location.category;
@@ -90,7 +103,9 @@ class CollectionNoSideBar extends Component {
                           <div className="top-banner-wrapper">
                             <a href="#">
                               <img
-                                src={`${process.env.PUBLIC_URL}/assets/images/mega-menu/2.jpeg`}
+                                src={`${
+                                  process.env.PUBLIC_URL
+                                }/assets/images/mega-menu/2.jpeg`}
                                 className="img-fluid"
                                 alt=""
                               />
@@ -133,7 +148,9 @@ class CollectionNoSideBar extends Component {
         </section>
         {/*Section End*/}
       </div>
-    ) : <PageNotFound />;
+    ) : (
+      <PageNotFound />
+    );
   }
 }
 
@@ -144,4 +161,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getAllProducts })(CollectionNoSideBar);
+export default connect(
+  mapStateToProps,
+  { getAllProducts }
+)(CollectionNoSideBar);

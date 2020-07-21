@@ -53,7 +53,7 @@ class orderSuccess extends Component {
           console.log(receipt);
           console.log(order);
           var payment = {
-            payerID: receipt.fingerprint,
+            payerID: receipt.source.fingerprint,
             paymentID: receipt.id,
             paymentToken: receipt.payment_method,
             orderId: order.id,
@@ -75,7 +75,7 @@ class orderSuccess extends Component {
 
   render() {
     const { payment, items, symbol, orderTotal, order } = this.state;
-
+    console.log(this.state);
     console.log(this.props);
     var options = {
       weekday: "long",
@@ -136,8 +136,7 @@ class orderSuccess extends Component {
                               <div className="w-mx">
                                 <h4 className="text-end">price</h4>
                                 <h5>
-                                  {symbol}
-                                  {item.total}
+                                  {item.total} {symbol}
                                 </h5>
                               </div>
                             </div>
@@ -150,8 +149,7 @@ class orderSuccess extends Component {
                       <li className="m-tb-2-5">
                         subtotal
                         <span>
-                          {symbol}
-                          {orderTotal}
+                          {orderTotal} {symbol}
                         </span>
                       </li>
                       <li className="m-tb-2-5">
@@ -175,14 +173,20 @@ class orderSuccess extends Component {
               </div>
               <div className="col-lg-6">
                 <div className="row order-success-sec">
-                  <div className="col-sm-6 m-tb-5">
-                    <h4>summa ry</h4>
+                  <div className="col-sm-6 m-tb-5 w-mx55">
+                    <h4>Paymment Information</h4>
                     <ul className="order-detail">
                       {payment.paymentID ? (
                         <div>
-                          <li>payer ID: {payment.payerID}</li>
-                          <li>payment ID: {payment.paymentID}</li>
-                          <li>payment Token: {payment.paymentToken}</li>
+                          <li>
+                            payer ID: <span>{payment.payerID}</span>
+                          </li>
+                          <li>
+                            payment ID: <span>{payment.paymentID}</span>
+                          </li>
+                          <li>
+                            payment Token: <span>{payment.paymentToken}</span>
+                          </li>
                         </div>
                       ) : (
                         <li>Order ID: {payment.id}</li>
@@ -190,22 +194,28 @@ class orderSuccess extends Component {
 
                       <li>Order Date: {CheckDate}</li>
                       <li>
-                        Order Total: {symbol}
-                        {orderTotal}
+                        Order Total:
+                        {orderTotal} {symbol}
                       </li>
                     </ul>
                   </div>
-                  <div className="col-sm-6 m-tb-5">
+                  <div className="col-sm-6 m-tb-5 w-mx55">
                     <h4>shipping address</h4>
                     <ul className="order-detail">
                       <li>
-                        {order.first_name} {order.last_name}
+                        <span>
+                          {order.billing.first_name} {order.billing.last_name}{" "}
+                        </span>
                       </li>
-                      <li>{order.address_1}</li>
                       <li>
-                        {order.state} {order.postcode}
+                        <span>{order.billing.address_1}</span>
                       </li>
-                      <li>Contact No. {order.phone}</li>
+                      <li>
+                        <span>
+                          {order.billing.state} {order.billing.postcode}
+                        </span>
+                      </li>
+                      <li>Contact Phone: {order.billing.phone}</li>
                     </ul>
                   </div>
 

@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Modal from "react-responsive-modal";
 
 class SpecialProductItem extends Component {
@@ -16,49 +16,49 @@ class SpecialProductItem extends Component {
   }
 
   onClickHandle(img) {
-    this.setState({image: img});
+    this.setState({ image: img });
   }
   onOpenModal = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   onCloseModal = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   minusQty = () => {
     if (this.state.quantity > 1) {
-      this.setState({stock: "InStock"});
-      this.setState({quantity: this.state.quantity - 1});
+      this.setState({ stock: "InStock" });
+      this.setState({ quantity: this.state.quantity - 1 });
       this.props.onDecrementClicked();
     } else {
       console.log("removefromcart");
-      this.setState({openQuantity: false});
+      this.setState({ openQuantity: false });
       this.props.onRemoveFromCart();
     }
   };
 
   plusQty = () => {
     if (this.props.product.stock >= this.state.quantity) {
-      this.setState({quantity: this.state.quantity + 1});
+      this.setState({ quantity: this.state.quantity + 1 });
       this.props.onIncrementClicked();
     } else {
-      this.setState({stock: "Out of Stock !"});
+      this.setState({ stock: "Out of Stock !" });
     }
   };
   changeQty = (e) => {
-    this.setState({quantity: parseInt(e.target.value)});
+    this.setState({ quantity: parseInt(e.target.value) });
   };
   updateQty = (e) => {
     if (this.props.product.stock >= parseInt(e.target.value)) {
-      this.setState({quantity: parseInt(e.target.value)});
+      this.setState({ quantity: parseInt(e.target.value) });
       this.props.onAddToCartClicked();
     } else {
-      this.setState({stock: "Out of Stock !"});
+      this.setState({ stock: "Out of Stock !" });
     }
   };
   openQuantity = () => {
-    this.setState({openQuantity: true});
+    this.setState({ openQuantity: true });
     this.props.onAddToCartClicked();
   };
 
@@ -73,7 +73,7 @@ class SpecialProductItem extends Component {
 
     let RatingStars = [];
     for (var i = 0; i < product.rating; i++) {
-      RatingStars.push(<i className="fa fa-star" key={i}></i>);
+      RatingStars.push(<i className="fa fa-star" key={i} />);
     }
     return (
       <div className="product-box">
@@ -88,7 +88,9 @@ class SpecialProductItem extends Component {
           </div>
           <div className="front">
             <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                product.id
+              }`}
             >
               <img
                 src={`${
@@ -109,7 +111,7 @@ class SpecialProductItem extends Component {
               title="Add to Wishlist"
               onClick={onAddToWishlistClicked}
             >
-              <i className="fa fa-heart" aria-hidden="true"></i>
+              <i className="fa fa-heart" aria-hidden="true" />
             </a>
             <a
               dangerouslySetInnerHTML={undefined}
@@ -118,14 +120,14 @@ class SpecialProductItem extends Component {
               title="Quick View"
               onClick={this.onOpenModal}
             >
-              <i className="fa fa-search" aria-hidden="true"></i>
+              <i className="fa fa-search" aria-hidden="true" />
             </a>
             <Link
               to={`${process.env.PUBLIC_URL}/compare`}
               title="Compare"
               onClick={onAddToCompareClicked}
             >
-              <i className="fa fa-refresh" aria-hidden="true"></i>
+              <i className="fa fa-refresh" aria-hidden="true" />
             </Link>
           </div>
           <div className="addtocart_btn">
@@ -150,7 +152,7 @@ class SpecialProductItem extends Component {
                     data-type="minus"
                     data-field=""
                   >
-                    <i className="fa fa-minus"></i>
+                    <i className="fa fa-minus" />
                   </button>
                 </span>
                 <input
@@ -169,7 +171,7 @@ class SpecialProductItem extends Component {
                     data-type="plus"
                     data-field=""
                   >
-                    <i className="fa fa-plus"></i>
+                    <i className="fa fa-plus" />
                   </button>
                 </span>
               </div>
@@ -181,19 +183,17 @@ class SpecialProductItem extends Component {
           <div>
             <div className="rating">{RatingStars}</div>
             <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                product.id
+              }`}
             >
               <h6>{product.name}</h6>
             </Link>
             <h4>
-              {symbol}
-              {product.price - (product.price * product.discount) / 100}
-              <del>
-                <span className="money">
-                  {symbol}
-                  {product.price}
-                </span>
-              </del>
+              <span className="money">
+                {symbol}
+                {product.price}
+              </span>
             </h4>
           </div>
         </div>
@@ -235,7 +235,7 @@ class SpecialProductItem extends Component {
                               key={i}
                               title={vari.color}
                               onClick={() => this.onClickHandle(vari.images)}
-                            ></li>
+                            />
                           ))}
                         </ul>
                       ) : (
@@ -272,7 +272,7 @@ class SpecialProductItem extends Component {
                                 data-type="minus"
                                 data-field=""
                               >
-                                <i className="fa fa-angle-left"></i>
+                                <i className="fa fa-angle-left" />
                               </button>
                             </span>
                             <input
@@ -290,7 +290,7 @@ class SpecialProductItem extends Component {
                                 data-type="plus"
                                 data-field=""
                               >
-                                <i className="fa fa-angle-right"></i>
+                                <i className="fa fa-angle-right" />
                               </button>
                             </span>
                           </div>
@@ -306,7 +306,9 @@ class SpecialProductItem extends Component {
                           add to cart
                         </button>
                         <Link
-                          to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+                          to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                            product.id
+                          }`}
                           className="btn btn-solid"
                         >
                           view detail

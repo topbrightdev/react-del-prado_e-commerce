@@ -1,14 +1,14 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 import Breadcrumb from "../breadcrumb";
-import {removeFromCompare, addToCart} from "../../actions/indexO";
+import { removeFromCompare, addToCart } from "../../actions/indexO";
 
 class Compare extends Component {
   changeQty = (e) => {
-    this.setState({quantity: parseInt(e.target.value)});
+    this.setState({ quantity: parseInt(e.target.value) });
   };
 
   render() {
@@ -44,7 +44,7 @@ class Compare extends Component {
       ],
     };
 
-    const {Items, symbol, addToCart, removeFromCompare} = this.props;
+    const { Items, symbol, addToCart, removeFromCompare } = this.props;
 
     return (
       <div>
@@ -67,7 +67,9 @@ class Compare extends Component {
                           </button>
                           <div className="img-secton">
                             <Link
-                              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.id}`}
+                              to={`${
+                                process.env.PUBLIC_URL
+                              }/left-sidebar/product/${item.id}`}
                             >
                               <img
                                 src={
@@ -78,57 +80,19 @@ class Compare extends Component {
                                 className="img-fluid"
                                 alt=""
                               />
-                              <h5>{item.name}</h5>
+                              <h5 className="money text-center">{item.name}</h5>
                             </Link>
-                            <h5>
+                            <h5 className="money text-center">
                               {symbol}
-                              {(item.price * item.discount) / 100}
-                              <del>
-                                <span className="money">
-                                  {symbol}
-                                  {item.price}
-                                </span>
-                              </del>
+                              {item.price}
                             </h5>
                           </div>
-                          <div className="detail-part">
+                          <div className="detail-part text-center">
                             <div className="title-detail">
-                              <h5>discription</h5>
+                              <h5>description</h5>
                             </div>
                             <div className="inner-detail">
                               <p>{item.shortDetails}</p>
-                            </div>
-                          </div>
-                          <div className="detail-part">
-                            <div className="title-detail">
-                              <h5>Brand Name</h5>
-                            </div>
-                            <div className="inner-detail">
-                              <p>{item.tags}</p>
-                            </div>
-                          </div>
-                          <div className="detail-part">
-                            <div className="title-detail">
-                              <h5>size</h5>
-                            </div>
-                            <div className="inner-detail">
-                              <p>{item.size}</p>
-                            </div>
-                          </div>
-                          <div className="detail-part">
-                            <div className="title-detail">
-                              <h5>color</h5>
-                            </div>
-                            <div className="inner-detail">
-                              <p>{item.colors}</p>
-                            </div>
-                          </div>
-                          <div className="detail-part">
-                            <div className="title-detail">
-                              <h5>availability</h5>
-                            </div>
-                            <div className="inner-detail">
-                              <p>In stock</p>
                             </div>
                           </div>
                           <div className="btn-part">
@@ -156,7 +120,9 @@ class Compare extends Component {
                   <div>
                     <div className="col-sm-12 empty-cart-cls text-center">
                       <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/empty-compare.png`}
+                        src={`${
+                          process.env.PUBLIC_URL
+                        }/assets/images/empty-compare.png`}
                         className="img-fluid mb-4"
                         alt=""
                       />
@@ -180,6 +146,7 @@ const mapStateToProps = (state) => ({
   symbol: state.data.symbol,
 });
 
-export default connect(mapStateToProps, {removeFromCompare, addToCart})(
-  Compare
-);
+export default connect(
+  mapStateToProps,
+  { removeFromCompare, addToCart }
+)(Compare);

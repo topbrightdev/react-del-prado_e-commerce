@@ -1,6 +1,6 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import Breadcrumb from "../breadcrumb";
 import {
@@ -10,11 +10,11 @@ import {
 
 class wishList extends Component {
   changeQty = (e) => {
-    this.setState({quantity: parseInt(e.target.value)});
+    this.setState({ quantity: parseInt(e.target.value) });
   };
 
   render() {
-    const {Items, symbol} = this.props;
+    const { Items, symbol } = this.props;
 
     return (
       <div>
@@ -40,7 +40,9 @@ class wishList extends Component {
                           <tr>
                             <td>
                               <Link
-                                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.id}`}
+                                to={`${
+                                  process.env.PUBLIC_URL
+                                }/left-sidebar/product/${item.id}`}
                               >
                                 <img
                                   src={
@@ -54,7 +56,9 @@ class wishList extends Component {
                             </td>
                             <td>
                               <Link
-                                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.id}`}
+                                to={`${
+                                  process.env.PUBLIC_URL
+                                }/left-sidebar/product/${item.id}`}
                               >
                                 {item.name}
                               </Link>
@@ -84,7 +88,7 @@ class wishList extends Component {
                                         this.props.removeFromWishlist(item)
                                       }
                                     >
-                                      <i className="fa fa-times"></i>
+                                      <i className="fa fa-times" />
                                     </a>
                                     <a
                                       href="javascript:void(0)"
@@ -96,7 +100,7 @@ class wishList extends Component {
                                         )
                                       }
                                     >
-                                      <i className="fa fa-shopping-cart"></i>
+                                      <i className="fa fa-shopping-cart" />
                                     </a>
                                   </h2>
                                 </div>
@@ -126,7 +130,7 @@ class wishList extends Component {
                                   this.props.removeFromWishlist(item)
                                 }
                               >
-                                <i className="fa fa-times"></i>
+                                <i className="fa fa-times" />
                               </a>
                               <a
                                 href="javascript:void(0)"
@@ -135,7 +139,7 @@ class wishList extends Component {
                                   this.props.addToCartAndRemoveWishlist(item, 1)
                                 }
                               >
-                                <i className="fa fa-shopping-cart"></i>
+                                <i className="fa fa-shopping-cart" />
                               </a>
                             </td>
                           </tr>
@@ -171,7 +175,9 @@ class wishList extends Component {
                   <div>
                     <div className="col-sm-12 empty-cart-cls text-center">
                       <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/empty-wishlist.png`}
+                        src={`${
+                          process.env.PUBLIC_URL
+                        }/assets/images/empty-wishlist.png`}
                         className="img-fluid mb-4"
                         alt=""
                       />
@@ -195,7 +201,10 @@ const mapStateToProps = (state) => ({
   symbol: state.data.symbol,
 });
 
-export default connect(mapStateToProps, {
-  addToCartAndRemoveWishlist,
-  removeFromWishlist,
-})(wishList);
+export default connect(
+  mapStateToProps,
+  {
+    addToCartAndRemoveWishlist,
+    removeFromWishlist,
+  }
+)(wishList);

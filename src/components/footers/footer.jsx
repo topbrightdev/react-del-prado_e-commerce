@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-import {SlideUpDown} from "../../services/script";
+import { SlideUpDown } from "../../services/script";
 import LogoImage from "../headers/common/logo";
 
 class FooterFour extends Component {
@@ -50,7 +50,7 @@ class FooterFour extends Component {
         <section className="section-b-space darken-layout">
           <div className="container  mw-90">
             <div className="row footer-theme partition-f">
-              <div className="col-lg-4 col-md-6">
+              <div className="col-lg-4 col-md-6 responsive-w100">
                 <div className="footer-title footer-mobile-title">
                   <h4>about</h4>
                 </div>
@@ -58,39 +58,38 @@ class FooterFour extends Component {
                   <div className="footer-logo ta-c">
                     <LogoImage logo={this.props.logoName} />
                   </div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam,{" "}
+                  <p className="text-center">
+                    Alimentacion Del Prado lleva decadas produciendo y
+                    comercializando productos de la mas alta calidad cumpliendo
+                    con los mal altos estandares. <br />
+                    Ademas de distribuir otros productos avalados por sellos de
+                    garantia.
                   </p>
                   <div className="footer-social">
                     <ul className="m-lr-a">
                       <li>
                         <Link to={"https://www.facebook.com/"}>
-                          <i className="fa fa-facebook" aria-hidden="true"></i>
+                          <i className="fa fa-facebook" aria-hidden="true" />
                         </Link>
                       </li>
                       <li>
                         <Link to={"https://plus.google.com/"}>
-                          <i
-                            className="fa fa-google-plus"
-                            aria-hidden="true"
-                          ></i>
+                          <i className="fa fa-google-plus" aria-hidden="true" />
                         </Link>
                       </li>
                       <li>
                         <Link to={"https://twitter.com"}>
-                          <i className="fa fa-twitter" aria-hidden="true"></i>
+                          <i className="fa fa-twitter" aria-hidden="true" />
                         </Link>
                       </li>
                       <li>
                         <Link to={"https://instagram.com"}>
-                          <i className="fa fa-instagram" aria-hidden="true"></i>
+                          <i className="fa fa-instagram" aria-hidden="true" />
                         </Link>
                       </li>
                       <li>
                         <Link to={"https://rss.com/"}>
-                          <i className="fa fa-rss" aria-hidden="true"></i>
+                          <i className="fa fa-rss" aria-hidden="true" />
                         </Link>
                       </li>
                     </ul>
@@ -159,16 +158,17 @@ class FooterFour extends Component {
                   <div className="footer-contant">
                     <ul className="contact-list">
                       <li>
-                        <i className="fa fa-map-marker"></i>Del Prado
-                        Alimentacion c/ Armando Palacio Valdés , 10 (45,67 km)
-                        33600 Mieres
+                        <i className="fa fa-map-marker" />
+                        Del Prado Alimentacion c/ Armando Palacio Valdés , 10
+                        (45,67 km) 33600 Mieres
                       </li>
                       <li>
-                        <i className="fa fa-phone"></i>Llamanos: 985 45 33 22
+                        <i className="fa fa-phone" />
+                        Llamanos: 985 45 33 22
                       </li>
                       <li>
-                        <i className="fa fa-envelope-o"></i>Email:{" "}
-                        <a href="#">Support@delPrado.com</a>
+                        <i className="fa fa-envelope-o" />
+                        Email: <a href="#">Support@delPrado.com</a>
                       </li>
                     </ul>
                   </div>
@@ -183,7 +183,7 @@ class FooterFour extends Component {
               <div className="col-xl-6 col-md-6 col-sm-12">
                 <div className="footer-end">
                   <p>
-                    <i className="fa fa-copyright" aria-hidden="true"></i> 2020
+                    <i className="fa fa-copyright" aria-hidden="true" /> 2020
                     Waldenberg Incorporated
                   </p>
                 </div>
@@ -194,7 +194,9 @@ class FooterFour extends Component {
                     <li>
                       <a href="#">
                         <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/icon/visa.png`}
+                          src={`${
+                            process.env.PUBLIC_URL
+                          }/assets/images/icon/visa.png`}
                           alt=""
                         />
                       </a>
@@ -202,7 +204,9 @@ class FooterFour extends Component {
                     <li>
                       <a href="#">
                         <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/icon/mastercard.png`}
+                          src={`${
+                            process.env.PUBLIC_URL
+                          }/assets/images/icon/mastercard.png`}
                           alt=""
                         />
                       </a>
@@ -210,7 +214,9 @@ class FooterFour extends Component {
                     <li>
                       <a href="#">
                         <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/icon/paypal.png`}
+                          src={`${
+                            process.env.PUBLIC_URL
+                          }/assets/images/icon/paypal.png`}
                           alt=""
                         />
                       </a>
@@ -218,7 +224,9 @@ class FooterFour extends Component {
                     <li>
                       <a href="#">
                         <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/icon/american-express.png`}
+                          src={`${
+                            process.env.PUBLIC_URL
+                          }/assets/images/icon/american-express.png`}
                           alt=""
                         />
                       </a>
@@ -226,7 +234,9 @@ class FooterFour extends Component {
                     <li>
                       <a href="#">
                         <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/icon/discover.png`}
+                          src={`${
+                            process.env.PUBLIC_URL
+                          }/assets/images/icon/discover.png`}
                           alt=""
                         />
                       </a>

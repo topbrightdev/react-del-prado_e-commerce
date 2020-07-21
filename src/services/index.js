@@ -116,16 +116,20 @@ export const getVisibleproducts = (data, filters, data2, data3) => {
 export const getCartTotal = (cartItems) => {
   var total = 0;
   for (var i = 0; i < cartItems.length; i++) {
-    var thisPrice = parseInt(cartItems[i].price);
-    var thisDiscount = parseInt(cartItems[i].discount);
+    var thisPrice = parseFloat(cartItems[i].price).toFixed(2);
+    //  var thisDiscount = parseFloat(cartItems[i].discount);
     //parseInt(cartItems[i].qty, 10) *
     // parseInt((cartItems[i].price * cartItems[i].discount) / 100, 10);
-    thisDiscount = (thisPrice * thisDiscount) / 100;
+    //  thisDiscount = (thisPrice * thisDiscount) / 100;
     //thisPrice -= thisDiscount;
-    const thisTotal = thisPrice * cartItems[i].qty;
-    thisTotal = parseInt(thisTotal.toFixed(2));
+    thisPrice = thisPrice * 100;
+    var thisTotal = thisPrice * cartItems[i].qty;
+    thisTotal = thisTotal / 100;
+    //thisTotal = parsefloat(thisTotal.toFixed(2));
     total += thisTotal;
   }
+  total = total.toFixed(2);
+
   return total;
 };
 

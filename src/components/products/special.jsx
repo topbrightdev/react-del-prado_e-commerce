@@ -1,10 +1,11 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Slider from "react-slick";
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 //import {getSingleItem, getSpecialCollection} from "../../services/index";
-import {getSingleItem, getSpecialCollection} from "../../services/index";
+import { getSingleItem, getSpecialCollection } from "../../services/index";
+import NumberFormat from "react-number-format";
 
 import {
   addToCart,
@@ -39,7 +40,7 @@ class Special extends Component {
                 <div className="title4">
                   <h2 className="title-inner4">special products</h2>
                   <div className="line">
-                    <span></span>
+                    <span />
                   </div>
                 </div>
                 <div className="row">
@@ -50,7 +51,9 @@ class Special extends Component {
                           <div className="product-box2">
                             <div className="media">
                               <Link
-                                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product[0].id}`}
+                                to={`${
+                                  process.env.PUBLIC_URL
+                                }/left-sidebar/product/${product[0].id}`}
                               >
                                 <img
                                   className="img-fluid blur-up lazyload special-img "
@@ -60,28 +63,29 @@ class Special extends Component {
                               </Link>
                               <div className="media-body align-self-center">
                                 <div className="rating">
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />
                                 </div>
                                 <Link
-                                  to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product[0].id}`}
+                                  to={`${
+                                    process.env.PUBLIC_URL
+                                  }/left-sidebar/product/${product[0].id}`}
                                 >
                                   <h6>{product[0].name}</h6>
                                 </Link>
                                 <h4>
-                                  {symbol}
-                                  {product[0].price -
-                                    (product[0].price * product[0].discount) /
-                                      100}
-                                  <del>
-                                    <span className="money">
-                                      {symbol}
-                                      {product[0].price}
-                                    </span>
-                                  </del>
+                                  <NumberFormat
+                                    value={product[0].price}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={"$"}
+                                    renderText={(formattedValue) => (
+                                      <span>{formattedValue}</span>
+                                    )} // <--- Don't forget this!
+                                  />
                                 </h4>
                               </div>
                             </div>
@@ -89,7 +93,9 @@ class Special extends Component {
                           <div className="product-box2">
                             <div className="media">
                               <Link
-                                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product[1].id}`}
+                                to={`${
+                                  process.env.PUBLIC_URL
+                                }/left-sidebar/product/${product[1].id}`}
                               >
                                 <img
                                   className="img-fluid blur-up lazyload special-img"
@@ -99,28 +105,29 @@ class Special extends Component {
                               </Link>
                               <div className="media-body align-self-center">
                                 <div className="rating">
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />
                                 </div>
                                 <Link
-                                  to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product[1].id}`}
+                                  to={`${
+                                    process.env.PUBLIC_URL
+                                  }/left-sidebar/product/${product[1].id}`}
                                 >
                                   <h6>{product[1].name}</h6>
                                 </Link>
                                 <h4>
-                                  {symbol}
-                                  {product[1].price -
-                                    (product[1].price * product[1].discount) /
-                                      100}
-                                  <del>
-                                    <span className="money">
-                                      {symbol}
-                                      {product[1].price}
-                                    </span>
-                                  </del>
+                                  <NumberFormat
+                                    value={product[1].price}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={"$"}
+                                    renderText={(formattedValue) => (
+                                      <span>{formattedValue}</span>
+                                    )} // <--- Don't forget this!
+                                  />
                                 </h4>
                               </div>
                             </div>
@@ -162,7 +169,9 @@ class Special extends Component {
                           <div className="product-box2">
                             <div className="media">
                               <Link
-                                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product[3].id}`}
+                                to={`${
+                                  process.env.PUBLIC_URL
+                                }/left-sidebar/product/${product[3].id}`}
                               >
                                 <img
                                   className="img-fluid blur-up lazyload special-img"
@@ -172,28 +181,29 @@ class Special extends Component {
                               </Link>
                               <div className="media-body align-self-center">
                                 <div className="rating">
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />
                                 </div>
                                 <Link
-                                  to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product[3].id}`}
+                                  to={`${
+                                    process.env.PUBLIC_URL
+                                  }/left-sidebar/product/${product[3].id}`}
                                 >
                                   <h6>{product[3].name}</h6>
                                 </Link>
                                 <h4>
-                                  {symbol}
-                                  {product[3].price -
-                                    (product[3].price * product[3].discount) /
-                                      100}
-                                  <del>
-                                    <span className="money">
-                                      {symbol}
-                                      {product[3].price}
-                                    </span>
-                                  </del>
+                                  <NumberFormat
+                                    value={product[3].price}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={"$"}
+                                    renderText={(formattedValue) => (
+                                      <span>{formattedValue}</span>
+                                    )} // <--- Don't forget this!
+                                  />
                                 </h4>
                               </div>
                             </div>
@@ -201,7 +211,9 @@ class Special extends Component {
                           <div className="product-box2">
                             <div className="media">
                               <Link
-                                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product[4].id}`}
+                                to={`${
+                                  process.env.PUBLIC_URL
+                                }/left-sidebar/product/${product[4].id}`}
                               >
                                 <img
                                   className="img-fluid blur-up lazyload special-img"
@@ -211,28 +223,29 @@ class Special extends Component {
                               </Link>
                               <div className="media-body align-self-center">
                                 <div className="rating">
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>{" "}
-                                  <i className="fa fa-star"></i>
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />{" "}
+                                  <i className="fa fa-star" />
                                 </div>
                                 <Link
-                                  to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product[4].id}`}
+                                  to={`${
+                                    process.env.PUBLIC_URL
+                                  }/left-sidebar/product/${product[4].id}`}
                                 >
                                   <h6>{product[4].name}</h6>
                                 </Link>
                                 <h4>
-                                  {symbol}
-                                  {product[4].price -
-                                    (product[4].price * product[4].discount) /
-                                      100}
-                                  <del>
-                                    <span className="money">
-                                      {symbol}
-                                      {product[4].price}
-                                    </span>
-                                  </del>
+                                  <NumberFormat
+                                    value={product[4].price}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={"$"}
+                                    renderText={(formattedValue) => (
+                                      <span>{formattedValue}</span>
+                                    )} // <--- Don't forget this!
+                                  />
                                 </h4>
                               </div>
                             </div>
@@ -258,11 +271,14 @@ const mapStateToProps = (state, Ownprops) => ({
   symbol: state.data.symbol,
 });
 
-export default connect(mapStateToProps, {
-  addToCart,
-  addToWishlist,
-  addToCompare,
-  incrementQty,
-  decrementQty,
-  removeFromCart,
-})(Special);
+export default connect(
+  mapStateToProps,
+  {
+    addToCart,
+    addToWishlist,
+    addToCompare,
+    incrementQty,
+    decrementQty,
+    removeFromCart,
+  }
+)(Special);

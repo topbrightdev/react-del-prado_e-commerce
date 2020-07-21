@@ -31,6 +31,17 @@ var addresses = [
   },
 ];
 
+const removeString = (res) => {
+  var newParraf = null;
+  if (res !== "") {
+    newParraf = res.replace(`<p>`, " ");
+    newParraf = newParraf.split(`</p>`, 2);
+    newParraf = newParraf[0];
+  }
+
+  return newParraf;
+};
+
 const getProducts = () => {
   return WooCommerce.getAsync(`products?per_page=30`)
     .then((res) => {
@@ -41,6 +52,7 @@ const getProducts = () => {
       Object.json1 = JSON.parse(data);
       var items = Object.json1;
       var products = [];
+      console.log(items);
       items.map(
         ({
           id,
@@ -54,7 +66,8 @@ const getProducts = () => {
           sale_price,
           on_sale,
           tags,
-          rating_count
+          rating_count,
+          average_rating,
         }) => {
           var img;
           var newImages = [];
@@ -62,12 +75,16 @@ const getProducts = () => {
             img = data.src;
             newImages.push(img);
           });
+          var thisPrice = parseFloat(price).toFixed(2);
+
+          var stringDescription = removeString(description);
+          var stringShortDescription = removeString(short_description);
 
           const newItem = {
             categories: categories,
             category: "vegetable",
-            description: description,
-            discount: "10",
+            description: stringDescription,
+            discount: sale_price,
             id: id,
             name: name,
             new: false,
@@ -76,13 +93,14 @@ const getProducts = () => {
             price: price,
             sale: on_sale,
             salePrice: sale_price,
-            shortDetails: short_description,
+            shortDetails: stringShortDescription,
             stock: stock_quantity,
             brand: tags,
             colors: ["yellow", "gray", "green"],
             size: ["M", "L", "XL"],
             tags: ["nike", "caprese"],
-            rating: rating_count,
+            rating_count: rating_count,
+            average_rating: average_rating,
             variants: null,
           };
 
@@ -119,13 +137,11 @@ const getTheCategories = (parent, level) => {
 
 const postReview = (data) => {
   return WooCommerce.postAsync("products/reviews", data)
-    .then((response) => {
-      console.log(response);
-    })
+    .then((response) => {})
     .catch((error) => {
       console.log(error.response.data);
     });
-}
+};
 
 const getReview = (id) => {
   return WooCommerce.getAsync(`products/reviews?product=${id}`)
@@ -133,13 +149,12 @@ const getReview = (id) => {
       var data = res.toJSON().body;
       Object.json1 = JSON.parse(data);
       var reviews = Object.json1;
-      return (reviews)
+      return reviews;
     })
     .catch((error) => {
       console.log(error.response.data);
     });
-}
-
+};
 
 export default {
   getProducts,

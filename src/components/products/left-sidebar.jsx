@@ -51,7 +51,6 @@ class LeftSideBar extends Component {
       addToCartUnsafe,
       addToWishlist,
     } = this.props;
-    console.log(this.props);
 
     var products = {
       slidesToShow: 1,
@@ -81,7 +80,7 @@ class LeftSideBar extends Component {
           </Helmet>
           {/*SEO Support End */}
 
-          <Breadcrumb parent={"Product"} title={item.name} />
+          <Breadcrumb parent={"Product"} title={item.name} data={this.props} />
 
           {/*Section Start*/}
           {item ? (
@@ -92,10 +91,7 @@ class LeftSideBar extends Component {
                     <div className="col-sm-3 collection-filter" id="filter">
                       <div className="collection-mobile-back pl-5">
                         <span onClick={this.backClick} className="filter-back">
-                          <i
-                            className="fa fa-angle-left"
-                            aria-hidden="true"
-                          ></i>{" "}
+                          <i className="fa fa-angle-left" aria-hidden="true" />{" "}
                           back
                         </span>
                       </div>
@@ -119,7 +115,7 @@ class LeftSideBar extends Component {
                                 <i
                                   className="fa fa-filter"
                                   aria-hidden="true"
-                                ></i>{" "}
+                                />{" "}
                                 filter
                               </span>
                             </div>
@@ -177,11 +173,15 @@ const mapStateToProps = (state, ownProps) => {
   return {
     item: state.data.products.find((el) => el.id == productId),
     symbol: state.data.symbol,
+    state,
   };
 };
 
-export default connect(mapStateToProps, {
-  addToCart,
-  addToCartUnsafe,
-  addToWishlist,
-})(LeftSideBar);
+export default connect(
+  mapStateToProps,
+  {
+    addToCart,
+    addToCartUnsafe,
+    addToWishlist,
+  }
+)(LeftSideBar);

@@ -20,9 +20,13 @@ export default function cartReducer(
       if (state.cart.findIndex((product) => product.id === productId) !== -1) {
         const cart = state.cart.reduce((cartAcc, product) => {
           if (product.id === productId) {
-            var thisPrice = parseInt(product.price);
+            var thisPrice = parseFloat(product.price).toFixed(2);
+            thisPrice = thisPrice * 100;
             var thisTotal = thisPrice * (product.qty + 1);
-            thisTotal = (thisTotal * 100) / 100;
+            //thisTotal = (thisTotal * 100) / 100;
+            thisTotal = thisTotal.toFixed(2);
+
+            console.log(thisTotal);
 
             cartAcc.push({
               ...product,
@@ -35,12 +39,23 @@ export default function cartReducer(
 
           return cartAcc;
         }, []);
-        return {...state, cart};
+        return { ...state, cart };
       } else {
         var product = action.product;
-        var thisPrice = parseInt(product.price);
+        console.log(product.price);
+        var thisPrice = parseFloat(product.price).toFixed(2);
+        console.log(thisPrice);
+
+        thisPrice = thisPrice * 100;
+        console.log(thisPrice);
+
         var thisTotal = thisPrice * action.qty;
-        thisTotal = (thisTotal * 100) / 100;
+        console.log(thisTotal);
+
+        thisTotal = thisTotal / 100;
+        thisTotal = thisTotal.toFixed(2);
+
+        console.log(thisTotal);
 
         return {
           ...state,
@@ -62,9 +77,14 @@ export default function cartReducer(
       ) {
         const cart = state.cart.reduce((cartAcc, product) => {
           if (product.id === action.productId && product.qty > 1) {
-            var thisPrice = parseInt(product.price);
+            var thisPrice = parseFloat(product.price).toFixed(2);
+            thisPrice = thisPrice * 100;
             var thisTotal = thisPrice * (product.qty - 1);
-            thisTotal = (thisTotal * 100) / 100;
+            thisTotal = thisTotal / 100;
+            thisTotal = thisTotal.toFixed(2);
+
+            //thisTotal = (thisTotal * 100) / 100;
+            console.log(thisTotal);
 
             cartAcc.push({
               ...product,
@@ -78,13 +98,15 @@ export default function cartReducer(
           return cartAcc;
         }, []);
 
-        return {...state, cart};
+        return { ...state, cart };
       } else {
         var product = action.product;
-        var thisPrice = parseInt(product.price);
-
+        var thisPrice = parseFloat(product.price).toFixed(2);
+        thisPrice = thisPrice * 100;
         var thisTotal = thisPrice * (product.qty - 1);
-        thisTotal = (thisTotal * 100) / 100;
+        thisTotal = thisTotal / 100;
+        thisTotal = thisTotal.toFixed(2);
+        console.log(thisTotal);
 
         return {
           ...state,

@@ -7,11 +7,25 @@ class ProductItem extends Component {
     super(props);
 
     this.state = {
+      stars: ["on", "on", "on", "on", "on"],
       open: false,
       stock: "InStock",
       quantity: 1,
       image: "",
     };
+  }
+
+  componentWillMount() {
+    console.log(this.props);
+
+    if (this.props.product.id) {
+      this.setState(() => {
+        return {
+          rating_count: this.props.product.rating_count,
+          average_rating: this.props.product.average_rating,
+        };
+      });
+    }
   }
 
   onClickHandle(img) {
@@ -43,6 +57,29 @@ class ProductItem extends Component {
     this.setState({ quantity: parseInt(e.target.value) });
   };
 
+  fetchRating = (string, flag) => {
+    n = parseFloat(string);
+    console.log(n);
+    if (flag) {
+      n--;
+    }
+    var stars = [];
+    for (var i = 0; i <= 4; i++) {
+      if (n >= i) {
+        stars.push("on");
+      } else {
+        stars.push("off");
+      }
+    }
+    if (flag) {
+      return stars;
+    } else {
+      this.setState(() => {
+        return { stars: stars };
+      });
+    }
+  };
+
   render() {
     const {
       product,
@@ -52,10 +89,8 @@ class ProductItem extends Component {
       onAddToCompareClicked,
     } = this.props;
 
-    let RatingStars = [];
-    for (var i = 0; i < product.rating; i++) {
-      RatingStars.push(<i className="fa fa-star" key={i}></i>);
-    }
+    const stars = this.fetchRating(product.average_rating);
+
     return (
       <div className="product-box">
         <div className="img-wrapper">
@@ -69,7 +104,9 @@ class ProductItem extends Component {
           </div>
           <div className="front">
             <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                product.id
+              }`}
             >
               <img
                 src={`${
@@ -86,14 +123,14 @@ class ProductItem extends Component {
           </div>
           <div className="cart-info cart-wrap">
             <button title="Add to cart" onClick={onAddToCartClicked}>
-              <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+              <i className="fa fa-shopping-cart" aria-hidden="true" />
             </button>
             <a
               href="javascript:void(0)"
               title="Add to Wishlist"
               onClick={onAddToWishlistClicked}
             >
-              <i className="fa fa-heart" aria-hidden="true"></i>
+              <i className="fa fa-heart" aria-hidden="true" />
             </a>
             <a
               href="javascript:void(0)"
@@ -102,14 +139,14 @@ class ProductItem extends Component {
               title="Quick View"
               onClick={this.onOpenModal}
             >
-              <i className="fa fa-search" aria-hidden="true"></i>
+              <i className="fa fa-search" aria-hidden="true" />
             </a>
             <Link
               to={`${process.env.PUBLIC_URL}/compare`}
               title="Compare"
               onClick={onAddToCompareClicked}
             >
-              <i className="fa fa-refresh" aria-hidden="true"></i>
+              <i className="fa fa-refresh" aria-hidden="true" />
             </Link>
           </div>
           {product.variants ? (
@@ -135,40 +172,32 @@ class ProductItem extends Component {
           )}
         </div>
         <div className="product-detail">
-          <div>
-            <div className="rating">{RatingStars}</div>
-            <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
-            >
-              <h6>{product.name}</h6>
-            </Link>
-            <h4>
-              {symbol}
-              {product.price - (product.price * product.discount) / 100}
-              <del>
-                <span className="money">
-                  {symbol}
-                  {product.price}
-                </span>
-              </del>
-            </h4>
-            {product.variants ? (
-              <ul className="color-variant">
-                {product.variants.map((vari, i) => {
-                  return (
-                    <li
-                      className={vari.color}
-                      key={i}
-                      title={vari.color}
-                      onClick={() => this.onClickHandle(vari.images)}
-                    ></li>
-                  );
-                })}
-              </ul>
-            ) : (
-              ""
-            )}
+          <div className="rating d-f ">
+            {RatingStars}
+            <h6 className="rating-count">
+              {" "}
+              (
+              {product.rating_count > 0
+                ? product.rating_count + 1
+                : product.rating_count}
+              )
+            </h6>
           </div>
+
+          <Link
+            to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+          >
+            <h6>{product.name}</h6>
+          </Link>
+          <h4>
+            <NumberFormat
+              value={product.price}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix={"€"}
+              renderText={(formattedValue) => formattedValue} // <--- Don't forget this!
+            />
+          </h4>
         </div>
         <Modal open={this.state.open} onClose={this.onCloseModal} center>
           <div
@@ -197,23 +226,26 @@ class ProductItem extends Component {
                     <div className="product-right">
                       <h2> {product.name} </h2>
                       <h3>
-                        {symbol}
-                        {product.price}
+                        <NumberFormat
+                          value={product.price}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"€"}
+                          renderText={(formattedValue) => formattedValue} // <--- Don't forget this!
+                        />
                       </h3>
-                      {product.variants ? (
-                        <ul className="color-variant">
-                          {product.variants.map((vari, i) => (
-                            <li
-                              className={vari.color}
-                              key={i}
-                              title={vari.color}
-                              onClick={() => this.onClickHandle(vari.images)}
-                            ></li>
-                          ))}
-                        </ul>
-                      ) : (
-                        ""
-                      )}
+                      <div className="rating d-f">
+                        {RatingStars}
+                        <h6 className="rating-count">
+                          {" "}
+                          (
+                          {product.rating_count > 0
+                            ? product.rating_count + 1
+                            : product.rating_count}
+                          )
+                        </h6>
+                      </div>
+
                       <div className="border-product">
                         <h6 className="product-title">product details</h6>
                         <p>{product.shortDetails}</p>
@@ -230,7 +262,7 @@ class ProductItem extends Component {
                                 data-type="minus"
                                 data-field=""
                               >
-                                <i className="fa fa-angle-left"></i>
+                                <i className="fa fa-angle-left" />
                               </button>
                             </span>
                             <input
@@ -248,7 +280,7 @@ class ProductItem extends Component {
                                 data-type="plus"
                                 data-field=""
                               >
-                                <i className="fa fa-angle-right"></i>
+                                <i className="fa fa-angle-right" />
                               </button>
                             </span>
                           </div>
@@ -264,7 +296,9 @@ class ProductItem extends Component {
                           add to cart
                         </button>
                         <Link
-                          to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+                          to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                            product.id
+                          }`}
                           className="btn btn-solid"
                         >
                           view detail

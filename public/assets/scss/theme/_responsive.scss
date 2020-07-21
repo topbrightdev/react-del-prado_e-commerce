@@ -1346,6 +1346,70 @@
 }
 
 @media (max-width: 991px) {
+  .ipad-p-l-15 {
+    padding-left: 15% !important;
+  }
+  footer {
+    position: relative;
+    padding-bottom: 5%;
+  }
+  .footer-theme {
+    display: block;
+    text-align: center;
+  }
+  .footer-contant {
+    display: block;
+    width: 90vw;
+  }
+  .container-navbar {
+    max-width: 90vw !important;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+  }
+  .count2 {
+    margin-right: 20%;
+  }
+  .product-cart-size {
+    min-width: 40vw;
+    max-width: 40vw;
+    min-height: 20vh;
+    max-height: 20vh;
+  }
+  .product-list-modal-img {
+    min-width: 75vw;
+    max-width: 75vw;
+    min-height: 30vh;
+    max-height: 30vh;
+  }
+  .review-div {
+    margin-bottom: 17%;
+    padding: 2%;
+    background: #f1f3f5;
+    display: table;
+    min-height: -8vh !important;
+    /* height: 45vh; */
+  }
+  .review {
+    margin-top: 3%;
+    margin-left: 0%;
+    max-width: 100%;
+  }
+  .slick-slide img {
+    display: block;
+    min-width: 60vw;
+    max-width: 60vw;
+    min-height: 30vh;
+    max-height: 30vh;
+  }
+  .wishlist-section {
+    .wishlist-buttons {
+      padding-top: 35px;
+      text-align: center;
+    }
+  }
+  .product-detail-rating {
+    margin-left: 43%;
+  }
   .pet-parallax {
     .pet-decor {
       left: 34px;
@@ -1471,8 +1535,9 @@
   }
   .footer-theme {
     .col {
-      max-width: 50%;
+      max-width: 100%;
       flex-basis: unset;
+      margin-top: 3%;
     }
     .footer-logo {
       margin-bottom: 30px;
@@ -2403,6 +2468,50 @@
 }
 
 @media (max-width: 767px) {
+  .count2 {
+    margin-right: 20%;
+  }
+  .product-cart-size {
+    min-width: 40vw;
+    max-width: 40vw;
+    min-height: 20vh;
+    max-height: 20vh;
+  }
+  .product-list-modal-img {
+    min-width: 75vw;
+    max-width: 75vw;
+    min-height: 30vh;
+    max-height: 30vh;
+  }
+  .review-div {
+    margin-bottom: 17%;
+    padding: 2%;
+    background: #f1f3f5;
+    display: table;
+    min-height: -8vh !important;
+    /* height: 45vh; */
+  }
+  .review {
+    margin-top: 3%;
+    margin-left: 0%;
+    max-width: 100%;
+  }
+  .slick-slide img {
+    display: block;
+    min-width: 75vw;
+    max-width: 75vw;
+    min-height: 30vh;
+    max-height: 30vh;
+  }
+  .wishlist-section {
+    .wishlist-buttons {
+      padding-top: 35px;
+      text-align: center;
+    }
+  }
+  .product-detail-rating {
+    margin-left: 37%;
+  }
   .pet-parallax {
     .pet-decor {
       display: none;
@@ -3576,6 +3685,8 @@
       }
     }
     .footer-contant {
+      display: block;
+      width: 90vw;
       li {
         text-align: right;
       }
@@ -3590,6 +3701,8 @@
     }
     .dark-layout {
       .footer-contant {
+        display: block;
+        width: 90vw;
         .footer-logo {
           text-align: right;
         }
@@ -3764,8 +3877,6 @@
       }
       .main-nav-center {
         .toggle-nav {
-          top: -5px;
-          padding: 0;
         }
       }
       &.sticky {
@@ -3834,7 +3945,7 @@
       }
     }
     .brand-logo {
-      left: 35%;
+      left: 50%;
     }
   }
   .search-overlay {
@@ -5243,7 +5354,51 @@
 }
 
 @media (max-width: 420px) {
-  h2 {
+  .count2 {
+    margin-right: 20%;
+  }
+  .product-cart-size {
+    min-width: 40vw;
+    max-width: 40vw;
+    min-height: 20vh;
+    max-height: 20vh;
+  }
+  .product-list-modal-img {
+    min-width: 75vw;
+    max-width: 75vw;
+    min-height: 30vh;
+    max-height: 30vh;
+  }
+  .review-div {
+    margin-bottom: 17%;
+    padding: 2%;
+    background: #f1f3f5;
+    display: table;
+    min-height: -8vh !important;
+    /* height: 45vh; */
+  }
+  .review {
+    margin-top: 3%;
+    margin-left: 0%;
+    max-width: 100%;
+  }
+  .slick-slide img {
+    display: block;
+    min-width: 75vw;
+    max-width: 75vw;
+    min-height: 30vh;
+    max-height: 30vh;
+  }
+  .wishlist-section {
+    .wishlist-buttons {
+      padding-top: 35px;
+      text-align: center;
+    }
+  }
+  .product-detail-rating {
+    margin-left: 37%;
+  }
+  s h2 {
     font-size: 22px;
   }
   .subscribe {
@@ -5268,6 +5423,13 @@
   .product-box,
   .product-wrap {
     .img-wrapper {
+      .img-collection-list {
+        min-width: 65vw;
+        max-width: 65vw;
+        min-height: 24vh;
+        max-height: 24vh;
+      }
+
       .cart-box {
         i {
           font-size: 16px;
@@ -5826,8 +5988,7 @@
     }
   }
   .full-banner {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    background-size: contain;
     &.parallax-layout {
       padding-top: 30px;
       padding-bottom: 30px;
@@ -5843,7 +6004,10 @@
   }
   .home-slider {
     .home {
-      height: 50vh;
+      background-size: cover;
+      background-repeat: no-repeat !important;
+      background-position: unset !important;
+      height: 50vh !important;
     }
     .slider-contain {
       height: 50vh;
@@ -5952,6 +6116,7 @@
     }
   }
   .collection-product-wrapper {
+    margin-top: 5vh !important;
     .product-pagination {
       .pagination {
         .page-item {

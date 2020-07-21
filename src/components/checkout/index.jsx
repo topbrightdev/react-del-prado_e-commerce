@@ -3,9 +3,10 @@ import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 import SimpleReactValidator from "simple-react-validator";
-import CheckoutForm from "./CheckoutForm";
+import NumberFormat from "react-number-format";
 import { StripeProvider, Elements } from "react-stripe-elements";
 
+import CheckoutForm from "./CheckoutForm";
 import Breadcrumb from "../breadcrumb";
 import {
   removeFromWishlist,
@@ -22,18 +23,18 @@ class checkOut extends Component {
     super(props);
 
     this.state = {
-      payment: "stripe",
-      username: "juan",
+      payment: "",
+      username: "",
       password: "",
-      first_name: "sss",
-      last_name: "lolaa",
-      phone: "23333333333",
-      email: "as@as.com",
-      country: "Spa",
-      address_1: "assdv",
-      city: "asdasd",
-      state: "asdasd",
-      postcode: "33333",
+      first_name: "",
+      last_name: "",
+      phone: "",
+      email: "",
+      country: "",
+      address_1: "",
+      city: "",
+      state: "",
+      postcode: "",
       cart: [],
       total: null,
       create_account: "",
@@ -449,9 +450,15 @@ class checkOut extends Component {
                                 return (
                                   <li key={index}>
                                     {item.name} × {item.qty}{" "}
-                                    <span>
-                                      {symbol} {item.sum}
-                                    </span>
+                                    <NumberFormat
+                                      value={item.sum}
+                                      displayType={"text"}
+                                      thousandSeparator={true}
+                                      prefix={"€"}
+                                      renderText={(formattedValue) => (
+                                        <span>{formattedValue}</span>
+                                      )} // <--- Don't forget this!
+                                    />
                                   </li>
                                 );
                               })}
@@ -460,8 +467,15 @@ class checkOut extends Component {
                               <li>
                                 Subtotal{" "}
                                 <span className="count">
-                                  {symbol}
-                                  {total}
+                                  <NumberFormat
+                                    value={total}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={"€"}
+                                    renderText={(formattedValue) => (
+                                      <span>{formattedValue}</span>
+                                    )} // <--- Don't forget this!
+                                  />
                                 </span>
                               </li>
                               <li>
@@ -494,9 +508,16 @@ class checkOut extends Component {
                             <ul className="total">
                               <li>
                                 Total{" "}
-                                <span className="count">
-                                  {symbol}
-                                  {total}
+                                <span className="count2">
+                                  <NumberFormat
+                                    value={total}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={"€"}
+                                    renderText={(formattedValue) => (
+                                      <span>{formattedValue}</span>
+                                    )} // <--- Don't forget this!
+                                  />
                                 </span>
                               </li>
                             </ul>

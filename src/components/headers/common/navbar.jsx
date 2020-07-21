@@ -4,11 +4,12 @@ import { withTranslate } from "react-redux-multilingual";
 import { connect } from "react-redux";
 
 import { getCategories } from "../../../services/index";
-import {
-  addToCart,
-  addToWishlist,
-  addToCompare,
-} from "../../../actions/indexO";
+import Meat from "../../../icons/Meat";
+import Fish from "../../../icons/Fish";
+import Meal from "../../../icons/Meal";
+import Drinks from "../../../icons/Drinks";
+import Bread from "../../../icons/Bread";
+import Fruits from "../../../icons/Fruits";
 
 class NavBar extends Component {
   constructor(props) {
@@ -144,22 +145,26 @@ class NavBar extends Component {
     const loaded = this.state.loaded;
 
     return (
-      <div className="main-navbar">
-        <div className="toggle-nav" onClick={this.openNav.bind(this)}>
-          <i className="fa fa-bars sidebar-bar"></i>
+      <div className="main-navbar ">
+        <div
+          className="toggle-nav"
+          onClick={this.openNav.bind(this)}
+          onMouseOut={this.closeNav.bind(this)}
+        >
+          <i className="fa fa-bars sidebar-bar" />
         </div>
         <div id="mainnav">
           <ul className="nav-menu" style={this.state.navClose}>
             <li className="back-btn" onClick={this.closeNav.bind(this)}>
               <div className="mobile-back text-right">
                 <span>Back</span>
-                <i className="fa fa-angle-right pl-2" aria-hidden="true"></i>
+                <i className="fa fa-angle-right pl-2" aria-hidden="true" />
               </div>
             </li>
             <li>
               <Link to={this.newTo("Meat")} className="nav-link">
+                <Meat className="ma-lr" />
                 {translate("meat")}
-                <span className="sub-arrow"></span>
               </Link>
               {loaded ? (
                 <ul className="nav-submenu">
@@ -169,8 +174,8 @@ class NavBar extends Component {
             </li>
             <li>
               <Link to={this.newTo("Fish")} className="nav-link">
+                <Fish className="ma-lr" />
                 {translate("fish")}
-                <span className="sub-arrow"></span>
               </Link>
               {loaded ? (
                 <ul className="nav-submenu">
@@ -179,9 +184,20 @@ class NavBar extends Component {
               ) : null}
             </li>
             <li>
+              <Link to={this.newTo("FruitsVegetables")} className="nav-link">
+                <Fruits className="ma-lr" />
+                {translate("fruits_vegetables")}
+              </Link>
+              {loaded ? (
+                <ul className="nav-submenu">
+                  {this.handlerTree(translate, "FruitsVegetables")}
+                </ul>
+              ) : null}
+            </li>
+            <li>
               <Link to={this.newTo("Bread")} className="nav-link">
+                <Bread className="ma-lr" />
                 {translate("bakery")}
-                <span className="sub-arrow"></span>
               </Link>
               {loaded ? (
                 <ul className="nav-submenu">
@@ -191,8 +207,8 @@ class NavBar extends Component {
             </li>
             <li>
               <Link to={this.newTo("Meal")} className="nav-link">
+                <Meal className="ma-lr" />
                 {translate("dishes")}
-                <span className="sub-arrow"></span>
               </Link>
               {loaded ? (
                 <ul className="nav-submenu">
@@ -202,23 +218,12 @@ class NavBar extends Component {
             </li>
             <li>
               <Link to={this.newTo("Drinks")} className="nav-link">
+                <Drinks className="ma-lr" />
                 {translate("drinks")}
-                <span className="sub-arrow"></span>
               </Link>
               {loaded ? (
                 <ul className="nav-submenu">
                   {this.handlerTree(translate, "Drinks")}
-                </ul>
-              ) : null}
-            </li>
-            <li>
-              <Link to={this.newTo("FruitsVegetables")} className="nav-link">
-                {translate("fruits_vegetables")}
-                <span className="sub-arrow"></span>
-              </Link>
-              {loaded ? (
-                <ul className="nav-submenu">
-                  {this.handlerTree(translate, "FruitsVegetables")}
                 </ul>
               ) : null}
             </li>

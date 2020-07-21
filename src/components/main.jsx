@@ -57,7 +57,10 @@ class Vegetables extends Component {
                         <div className="items">
                           <h4>descuentos de hasta el 15%</h4>
                           <h1>recibe la compra en tu hogar</h1>
-                          <a href="#" className="btn btn-solid">
+                          <a
+                            href={`${process.env.PUBLIC_URL}/pages/delivery`}
+                            className="btn btn-solid"
+                          >
                             consulte aqui
                           </a>
                         </div>

@@ -88,7 +88,7 @@ class CollectionNoSideBar extends Component {
   render() {
     return this.state.category ? (
       <div>
-        <Breadcrumb title={"Productos/" + `${this.state.category}`} />
+        <Breadcrumb title={this.state.category} data={this.props} />
 
         {/*Section Start*/}
         <section className="section-b-space">

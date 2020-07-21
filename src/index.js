@@ -18,6 +18,8 @@ import { getAllProducts, getAllCategories, getUserWoo } from "./actions/indexO";
 import Vegetables from "./components/main";
 import CollectionNoSidebar from "./components/collection/collection-no-sidebar";
 
+import Delivery from "./components/pages/delivery";
+
 import aboutUs from "./components/pages/about-us";
 import PageNotFound from "./components/pages/404";
 import EmptySearch from "./components/pages/empty-search";
@@ -41,7 +43,6 @@ import orderSuccess from "./components/checkout/success-page";
 
 import ForgetPassword from "./components/pages/forget-password";
 import Contact from "./components/pages/contact";
-import Dashboard from "./components/pages/dashboard";
 import Faq from "./components/pages/faq";
 
 // Theme Element
@@ -146,12 +147,12 @@ class Root extends React.Component {
                     component={Contact}
                   />
                   <Route
-                    path={`${process.env.PUBLIC_URL}/pages/dashboard`}
-                    component={Dashboard}
-                  />
-                  <Route
                     path={`${process.env.PUBLIC_URL}/pages/faq`}
                     component={Faq}
+                  />
+                  <Route
+                    path={`${process.env.PUBLIC_URL}/pages/delivery`}
+                    component={Delivery}
                   />
                   {/*Features*/} {/*Theme Elements*/}
                   <Route

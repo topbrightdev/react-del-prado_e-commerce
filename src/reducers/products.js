@@ -43,9 +43,13 @@ const productReducer = (state = initialState, action) => {
         // console.log(thisName, receivedName);
         if (thisName === receivedName) {
           console.log(product);
+          // item = product;
+        }
+        if (thisName.includes(receivedName)) {
           item = product;
         }
       });
+
       if (item.name) {
         console.log(item);
         return {

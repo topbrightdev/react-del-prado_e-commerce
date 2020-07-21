@@ -46,12 +46,16 @@ class HeaderTwo extends Component {
       this.props.history.push(`${process.env.PUBLIC_URL}/pages/empty-search`);
     } else if (this.props.data.product_details.length > 0) {
       console.log(this.props.data.product_details);
+      console.log(this.state.productName);
       if (
-        this.props.data.product_details.name.toUpperCase() ===
-        this.state.productName.toUpperCase()
+        this.props.data.product_details.name
+          .toUpperCase()
+          .includes(this.state.productName.toUpperCase())
       ) {
         this.props.history.push(
-          `${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.data.product_details.id}`
+          `${process.env.PUBLIC_URL}/left-sidebar/product/${
+            this.props.data.product_details.id
+          }`
         );
       }
 
@@ -118,7 +122,7 @@ class HeaderTwo extends Component {
       <div>
         <header id="sticky" className="sticky">
           {this.state.isLoading ? <Pace color="#27ae60" /> : null}
-          <div className="mobile-fix-option"></div>
+          <div className="mobile-fix-option" />
           {/*Top Header Component*/}
           <TopBar />
 
@@ -130,7 +134,7 @@ class HeaderTwo extends Component {
                     <LogoImage logo={this.props.logoName} />
                     <h6> Del Prado</h6>
                   </div>
-                  <div className="container p-l-10">
+                  <div className="container p-l-20 ipad-p-l-15">
                     <div className="row">
                       <div className="col-lg-12">
                         <div className="main-nav-center">
@@ -159,7 +163,9 @@ class HeaderTwo extends Component {
                                   onChange={this.handleChange}
                                 />{" "}
                                 <img
-                                  src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`}
+                                  src={`${
+                                    process.env.PUBLIC_URL
+                                  }/assets/images/icon/search.png`}
                                   onClick={this.handleSubmit}
                                   type="submit"
                                   className="img-fluid search-img"
@@ -169,18 +175,20 @@ class HeaderTwo extends Component {
                                   className="fa fa-search"
                                   onClick={this.handleSubmit}
                                   className="img-fluid search-img-mobile"
-                                ></i>
+                                />
                               </form>
                             </div>
                           </li>
                           <li className="onhover-div mobile-setting">
                             <div>
                               <img
-                                src={`${process.env.PUBLIC_URL}/assets/images/icon/setting.png`}
+                                src={`${
+                                  process.env.PUBLIC_URL
+                                }/assets/images/icon/setting.png`}
                                 className="img-fluid"
                                 alt=""
                               />
-                              <i className="fa fa-cog"></i>
+                              <i className="fa fa-cog" />
                             </div>
                             <div className="show-div setting">
                               <h6>language</h6>
@@ -257,7 +265,10 @@ const mapStateToProps = (state) => ({
   ...state,
 });
 
-export default connect(mapStateToProps, {
-  changeCurrency,
-  searchProduct,
-})(withRouter(HeaderTwo));
+export default connect(
+  mapStateToProps,
+  {
+    changeCurrency,
+    searchProduct,
+  }
+)(withRouter(HeaderTwo));

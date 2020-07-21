@@ -1,11 +1,16 @@
-import React, {Component} from "react";
-import {Helmet} from "react-helmet";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import NumberFormat from "react-number-format";
 
 import Breadcrumb from "../breadcrumb";
-import {getCartTotal} from "../../services";
-import {removeFromCart, incrementQty, decrementQty} from "../../actions/indexO";
+import { getCartTotal } from "../../services";
+import {
+  removeFromCart,
+  incrementQty,
+  decrementQty,
+} from "../../actions/indexO";
 
 class cartComponent extends Component {
   constructor(props) {
@@ -14,7 +19,7 @@ class cartComponent extends Component {
   }
 
   render() {
-    const {cartItems, symbol, total} = this.props;
+    const { cartItems, symbol, total } = this.props;
     return (
       <div>
         {/*SEO Support*/}
@@ -51,9 +56,12 @@ class cartComponent extends Component {
                           <tr>
                             <td>
                               <Link
-                                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.id}`}
+                                to={`${
+                                  process.env.PUBLIC_URL
+                                }/left-sidebar/product/${item.id}`}
                               >
                                 <img
+                                  className="product-cart-size"
                                   src={
                                     item.variants
                                       ? item.variants[0].images
@@ -65,7 +73,9 @@ class cartComponent extends Component {
                             </td>
                             <td>
                               <Link
-                                to={`${process.env.PUBLIC_URL}/left-sidebar/product/${item.id}`}
+                                to={`${
+                                  process.env.PUBLIC_URL
+                                }/left-sidebar/product/${item.id}`}
                               >
                                 {item.name}
                               </Link>
@@ -97,7 +107,7 @@ class cartComponent extends Component {
                                         this.props.removeFromCart(item)
                                       }
                                     >
-                                      <i className="icon-close"></i>
+                                      <i className="icon-close" />
                                     </a>
                                   </h2>
                                 </div>
@@ -122,7 +132,7 @@ class cartComponent extends Component {
                                       data-type="minus"
                                       data-field=""
                                     >
-                                      <i className="fa fa-angle-left"></i>
+                                      <i className="fa fa-angle-left" />
                                     </button>
                                   </span>
                                   <input
@@ -144,7 +154,7 @@ class cartComponent extends Component {
                                         item.qty >= item.stock ? true : false
                                       }
                                     >
-                                      <i className="fa fa-angle-right"></i>
+                                      <i className="fa fa-angle-right" />
                                     </button>
                                   </span>
                                 </div>
@@ -157,13 +167,20 @@ class cartComponent extends Component {
                                 className="icon"
                                 onClick={() => this.props.removeFromCart(item)}
                               >
-                                <i className="fa fa-times"></i>
+                                <i className="fa fa-times" />
                               </a>
                             </td>
                             <td>
                               <h2 className="td-color">
-                                {symbol}
-                                {item.sum}
+                                <NumberFormat
+                                  value={item.sum}
+                                  displayType={"text"}
+                                  thousandSeparator={true}
+                                  prefix={"€"}
+                                  renderText={(formattedValue) => (
+                                    <span>{formattedValue}</span>
+                                  )} // <--- Don't forget this!
+                                />
                               </h2>
                             </td>
                           </tr>
@@ -177,7 +194,15 @@ class cartComponent extends Component {
                         <td>total price :</td>
                         <td>
                           <h2>
-                            {symbol} {total}{" "}
+                            <NumberFormat
+                              value={total}
+                              displayType={"text"}
+                              thousandSeparator={true}
+                              prefix={"€"}
+                              renderText={(formattedValue) => (
+                                <span>{formattedValue}</span>
+                              )} // <--- Don't forget this!
+                            />
                           </h2>
                         </td>
                       </tr>
@@ -213,7 +238,9 @@ class cartComponent extends Component {
                   <div>
                     <div className="col-sm-12 empty-cart-cls text-center">
                       <img
-                        src={`${process.env.PUBLIC_URL}/assets/images/icon-empty-cart.png`}
+                        src={`${
+                          process.env.PUBLIC_URL
+                        }/assets/images/icon-empty-cart.png`}
                         className="img-fluid mb-4"
                         alt=""
                       />
@@ -238,8 +265,11 @@ const mapStateToProps = (state) => ({
   total: getCartTotal(state.cartList.cart),
 });
 
-export default connect(mapStateToProps, {
-  removeFromCart,
-  incrementQty,
-  decrementQty,
-})(cartComponent);
+export default connect(
+  mapStateToProps,
+  {
+    removeFromCart,
+    incrementQty,
+    decrementQty,
+  }
+)(cartComponent);

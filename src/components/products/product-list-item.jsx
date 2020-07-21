@@ -1,6 +1,7 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Modal from "react-responsive-modal";
+import NumberFormat from "react-number-format";
 
 class ProductListItem extends Component {
   constructor(props) {
@@ -15,33 +16,33 @@ class ProductListItem extends Component {
   }
 
   onOpenModal = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   onCloseModal = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   onClickHandle(img) {
-    this.setState({image: img});
+    this.setState({ image: img });
   }
 
   minusQty = () => {
     if (this.state.quantity > 1) {
-      this.setState({stock: "InStock"});
-      this.setState({quantity: this.state.quantity - 1});
+      this.setState({ stock: "InStock" });
+      this.setState({ quantity: this.state.quantity - 1 });
     }
   };
 
   plusQty = () => {
     if (this.props.product.stock >= this.state.quantity) {
-      this.setState({quantity: this.state.quantity + 1});
+      this.setState({ quantity: this.state.quantity + 1 });
     } else {
-      this.setState({stock: "Out of Stock !"});
+      this.setState({ stock: "Out of Stock !" });
     }
   };
   changeQty = (e) => {
-    this.setState({quantity: parseInt(e.target.value)});
+    this.setState({ quantity: parseInt(e.target.value) });
   };
 
   render() {
@@ -53,11 +54,24 @@ class ProductListItem extends Component {
       onAddToCompareClicked,
     } = this.props;
 
-    const {open} = this.state;
+    const { open } = this.state;
 
     let RatingStars = [];
-    for (var i = 0; i < product.rating; i++) {
-      RatingStars.push(<i className="fa fa-star" key={i}></i>);
+    console.log(product.average_rating);
+    for (var i = 1; i <= parseInt(product.average_rating); i++) {
+      RatingStars.push(<i className="fa fa-star" key={i + 20} />);
+    }
+    console.log(RatingStars.length);
+    if (RatingStars.length < 4) {
+      var leftOff = 4 - RatingStars.length;
+      console.log(leftOff);
+      for (i = 0; i <= leftOff; i++) {
+        RatingStars.push(<i className="fa fa-star off" key={i} />);
+      }
+    }
+    if (RatingStars.length > 5) {
+      RatingStars.pop();
+      console.log(RatingStars);
     }
 
     return (
@@ -65,7 +79,10 @@ class ProductListItem extends Component {
         <div className="img-wrapper">
           <div className="front">
             <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                product.id
+              }`}
+              className="link-product-list-item"
             >
               <img
                 src={
@@ -85,7 +102,7 @@ class ProductListItem extends Component {
               title="Add to cart"
               onClick={() => onAddToCartClicked(product, 1)}
             >
-              <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+              <i className="fa fa-shopping-cart" aria-hidden="true" />
             </button>
             <a
               // href="javascript:void(0)"
@@ -93,7 +110,7 @@ class ProductListItem extends Component {
               title="Add to Wishlist"
               onClick={onAddToWishlistClicked}
             >
-              <i className="fa fa-heart" aria-hidden="true"></i>
+              <i className="fa fa-heart" aria-hidden="true" />
             </a>
             <a
               //  href="javascript:void(0)"
@@ -103,77 +120,49 @@ class ProductListItem extends Component {
               title="Quick View"
               onClick={this.onOpenModal}
             >
-              <i className="fa fa-search" aria-hidden="true"></i>
+              <i className="fa fa-search" aria-hidden="true" />
             </a>
             <Link
               to={`${process.env.PUBLIC_URL}/compare`}
               title="Compare"
               onClick={onAddToCompareClicked}
             >
-              <i className="fa fa-refresh" aria-hidden="true"></i>
+              <i className="fa fa-refresh" aria-hidden="true" />
             </Link>
           </div>
-          {product.variants ? (
-            <ul className="product-thumb-list">
-              {product.variants.map((vari, i) => (
-                <li
-                  className={`grid_thumb_img ${
-                    vari.images === this.state.image ? "active" : ""
-                  }`}
-                  key={i}
-                >
-                  <a
-                    // href="javascript:void(0)"
-                    dangerouslySetInnerHTML={undefined}
-                    title="Add to Wishlist"
-                  >
-                    <img
-                      src={`${vari.images}`}
-                      onClick={() => this.onClickHandle(vari.images)}
-                    />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            ""
-          )}
         </div>
         <div className="product-detail">
-          <div>
-            <div className="rating">{RatingStars}</div>
-            <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
-            >
-              <h6>{product.name}</h6>
-            </Link>
-            <h4>
-              {symbol}
-              {product.price - (product.price * product.discount) / 100}
-              <del>
-                <span className="money">
-                  {symbol}
-                  {product.price}
-                </span>
-              </del>
-            </h4>
-            {product.variants ? (
-              <ul className="color-variant">
-                {product.variants.map((vari, i) => {
-                  return (
-                    <li
-                      className={vari.color}
-                      key={i}
-                      title={vari.color}
-                      onClick={() => this.onClickHandle(vari.images)}
-                    ></li>
-                  );
-                })}
-              </ul>
-            ) : (
-              ""
-            )}
-          </div>
+          <Link
+            to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+          >
+            <div className="d-f">
+              <h6 className="txt-dark">{product.name}</h6>
+
+              <div>
+                <h6 className="price-right">
+                  <NumberFormat
+                    value={product.price}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    prefix={"€"}
+                    renderText={(formattedValue) => formattedValue} // <--- Don't forget this!
+                  />
+                </h6>
+              </div>
+            </div>
+            <div className="txt-details">{product.shortDetails}</div>
+            <div className="rating d-f">
+              {RatingStars}
+              <h6 className="rating-count">
+                {" "}
+                (
+                {product.rating_count > 0
+                  ? product.rating_count + 1
+                  : product.rating_count}
+                )
+              </h6>
+            </div>
+          </Link>
         </div>
         <Modal open={open} onClose={this.onCloseModal} center>
           <div
@@ -194,58 +183,43 @@ class ProductListItem extends Component {
                             : product.pictures[0]
                         }
                         alt=""
-                        className="img-fluid"
+                        className="img-fluid product-list-modal-img"
                       />
                     </div>
                   </div>
                   <div className="col-lg-6 rtl-text">
                     <div className="product-right">
-                      <h2> {product.name} </h2>
+                      <div>
+                        <h2 className="txt-dark"> {product.name} </h2>
+                      </div>
                       <h3>
-                        {symbol}
-                        {product.price -
-                          (product.price * product.discount) / 100}
-                        <del>
-                          <span className="money">
-                            {symbol}
-                            {product.price}
-                          </span>
-                        </del>
+                        <NumberFormat
+                          value={product.price}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"€"}
+                          renderText={(formattedValue) => formattedValue} // <--- Don't forget this!
+                        />
                       </h3>
-                      {product.variants ? (
-                        <ul className="color-variant">
-                          {product.variants.map((vari, i) => (
-                            <li
-                              className={vari.color}
-                              key={i}
-                              title={vari.color}
-                              onClick={() => this.onClickHandle(vari.images)}
-                            ></li>
-                          ))}
-                        </ul>
-                      ) : (
-                        ""
-                      )}
+                      <div className="rating d-f product-detail-rating">
+                        {RatingStars}
+                        <h6 className="rating-count">
+                          {" "}
+                          (
+                          {product.rating_count > 0
+                            ? product.rating_count + 1
+                            : product.rating_count}
+                          )
+                        </h6>
+                      </div>
+
                       <div className="border-product">
                         <h6 className="product-title">product details</h6>
-                        <p>{product.shortDetails}</p>
+                        <div className="txt-details">
+                          {product.shortDetails}
+                        </div>
                       </div>
                       <div className="product-description border-product">
-                        {product.size ? (
-                          <div className="size-box">
-                            <ul>
-                              {product.size.map((size, i) => {
-                                return (
-                                  <li key={i}>
-                                    <a href="#">{size}</a>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </div>
-                        ) : (
-                          ""
-                        )}
                         <h6 className="product-title">quantity</h6>
                         <div className="qty-box">
                           <div className="input-group">
@@ -257,7 +231,7 @@ class ProductListItem extends Component {
                                 data-type="minus"
                                 data-field=""
                               >
-                                <i className="fa fa-angle-left"></i>
+                                <i className="fa fa-angle-left" />
                               </button>
                             </span>
                             <input
@@ -275,7 +249,7 @@ class ProductListItem extends Component {
                                 data-type="plus"
                                 data-field=""
                               >
-                                <i className="fa fa-angle-right"></i>
+                                <i className="fa fa-angle-right" />
                               </button>
                             </span>
                           </div>
@@ -291,7 +265,9 @@ class ProductListItem extends Component {
                           add to cart
                         </button>
                         <Link
-                          to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+                          to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                            product.id
+                          }`}
                           className="btn btn-solid"
                         >
                           view detail

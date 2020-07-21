@@ -112,7 +112,6 @@ class ProductListing extends Component {
   };
 
   fetchMoreItems = (products) => {
-    console.log(mounted);
     if (mounted) {
       // a fake async api call
       setTimeout(() => {

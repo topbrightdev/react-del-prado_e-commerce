@@ -65,7 +65,7 @@ class ElementCategory extends Component {
                   </div>
                   <div className="category-box">
                     <Link to={this.newTo("Bread")}>
-                      <h2>panaderia</h2>
+                      <h2>pan</h2>
                     </Link>
                   </div>
                 </div>
@@ -85,7 +85,7 @@ class ElementCategory extends Component {
                   </div>
                   <div className="category-box">
                     <Link to={this.newTo("FruitsVegetables")}>
-                      <h2>frutas y verduras</h2>
+                      <h2>fruta</h2>
                     </Link>
                   </div>
                 </div>

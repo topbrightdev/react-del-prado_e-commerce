@@ -1,7 +1,6 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import Slider from "react-slick";
-import Modal from "react-responsive-modal";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import NumberFormat from "react-number-format";
 
 class DetailsWithPrice extends Component {
   constructor(props) {
@@ -15,11 +14,11 @@ class DetailsWithPrice extends Component {
   }
 
   onOpenModal = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   onCloseModal = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   };
 
   componentDidMount() {
@@ -30,20 +29,20 @@ class DetailsWithPrice extends Component {
 
   minusQty = () => {
     if (this.state.quantity > 1) {
-      this.setState({stock: "InStock"});
-      this.setState({quantity: this.state.quantity - 1});
+      this.setState({ stock: "InStock" });
+      this.setState({ quantity: this.state.quantity - 1 });
     }
   };
 
   plusQty = () => {
     if (this.props.item.stock >= this.state.quantity) {
-      this.setState({quantity: this.state.quantity + 1});
+      this.setState({ quantity: this.state.quantity + 1 });
     } else {
-      this.setState({stock: "Out of Stock !"});
+      this.setState({ stock: "Out of Stock !" });
     }
   };
   changeQty = (e) => {
-    this.setState({quantity: parseInt(e.target.value)});
+    this.setState({ quantity: parseInt(e.target.value) });
   };
 
   render() {
@@ -62,40 +61,49 @@ class DetailsWithPrice extends Component {
       dots: false,
       focusOnSelect: true,
     };
+    let RatingStars = [];
+    console.log(item.average_rating);
+    for (var i = 1; i <= parseInt(item.average_rating); i++) {
+      RatingStars.push(<i className="fa fa-star" key={i + 20} />);
+    }
+    console.log(RatingStars.length);
+    if (RatingStars.length < 4) {
+      var leftOff = 4 - RatingStars.length;
+      console.log(leftOff);
+      for (i = 0; i <= leftOff; i++) {
+        RatingStars.push(<i className="fa fa-star off" key={i} />);
+      }
+    }
+    if (RatingStars.length > 5) {
+      RatingStars.pop();
+      console.log(RatingStars);
+    }
 
     return (
       <div className="col-lg-6 rtl-text">
         <div className="product-right">
           <h2> {item.name} </h2>
-          <h4>
-            <del>
-              {symbol}
-              {item.price}
-            </del>
-            <span>{item.discount}% off</span>
-          </h4>
-          <h3>
-            {symbol}
-            {item.price - (item.price * item.discount) / 100}{" "}
-          </h3>
-          {item.variants ? (
-            <ul>
-              <Slider
-                {...colorsnav}
-                asNavFor={this.props.navOne}
-                ref={(slider) => (this.slider1 = slider)}
-                className="color-variant"
-              >
-                {item.variants.map((vari, i) => {
-                  return (
-                    <li className={vari.color} key={i} title={vari.color}></li>
-                  );
-                })}
-              </Slider>
-            </ul>
-          ) : (
-            ""
-          )}
+          <h2>
+            <NumberFormat
+              value={item.price}
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix={"€"}
+              renderText={(formattedValue) => formattedValue} // <--- Don't forget this!
+            />
+          </h2>
+          <div className="rating d-f product-detail-rating">
+            {RatingStars}
+            <h6 className="rating-count">
+              {" "}
+              (
+              {item.rating_count > 0
+                ? item.rating_count + 1
+                : item.rating_count}
+              )
+            </h6>
+          </div>
+
           <div className="product-description border-product">
             <span className="instock-cls">{this.state.stock}</span>
             <h6 className="product-title">quantity</h6>
@@ -109,7 +117,7 @@ class DetailsWithPrice extends Component {
                     data-type="minus"
                     data-field=""
                   >
-                    <i className="fa fa-angle-left"></i>
+                    <i className="fa fa-angle-left" />
                   </button>
                 </span>
                 <input
@@ -127,7 +135,7 @@ class DetailsWithPrice extends Component {
                     data-type="plus"
                     data-field=""
                   >
-                    <i className="fa fa-angle-right"></i>
+                    <i className="fa fa-angle-right" />
                   </button>
                 </span>
               </div>
@@ -157,23 +165,22 @@ class DetailsWithPrice extends Component {
             <div className="product-icon">
               <ul className="product-social">
                 <li>
-                  <a href="https://www.facebook.com/" target="_blank">
-                    <i className="fa fa-facebook"></i>
+                  <a
+                    href="https://www.facebook.com/delpradoalimentacion/"
+                    target="_blank"
+                  >
+                    <i className="fa fa-facebook" />
                   </a>
                 </li>
-                <li>
-                  <a href="https://plus.google.com/discover" target="_blank">
-                    <i className="fa fa-google-plus"></i>
-                  </a>
-                </li>
+
                 <li>
                   <a href="https://twitter.com/" target="_blank">
-                    <i className="fa fa-twitter"></i>
+                    <i className="fa fa-twitter" />
                   </a>
                 </li>
                 <li>
                   <a href="https://www.instagram.com/" target="_blank">
-                    <i className="fa fa-instagram"></i>
+                    <i className="fa fa-instagram" />
                   </a>
                 </li>
               </ul>
@@ -181,30 +188,12 @@ class DetailsWithPrice extends Component {
                 className="wishlist-btn"
                 onClick={() => addToWishlistClicked(item)}
               >
-                <i className="fa fa-heart"></i>
+                <i className="fa fa-heart" />
                 <span className="title-font">Add To WishList</span>
               </button>
             </div>
           </div>
         </div>
-        <Modal open={this.state.open} onClose={this.onCloseModal} center>
-          <div className="modal-dialog modal-dialog-centered" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
-                  Sheer Straight Kurta
-                </h5>
-              </div>
-              <div className="modal-body">
-                <img
-                  src={`${process.env.PUBLIC_URL}/assets/images/size-chart.jpg`}
-                  alt=""
-                  className="img-fluid"
-                />
-              </div>
-            </div>
-          </div>
-        </Modal>
       </div>
     );
   }

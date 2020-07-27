@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Slider from "react-slick";
 
 import Breadcrumb from "../breadcrumb";
@@ -21,7 +21,7 @@ class ElementSlider extends Component {
                           <div>
                             <h4>welcome to fashion</h4>
                             <h1>women fashion</h1>
-                            <a href="#" className="btn btn-solid">
+                            <a href="!#" className="btn btn-solid">
                               shop now
                             </a>
                           </div>
@@ -40,7 +40,7 @@ class ElementSlider extends Component {
                           <div>
                             <h4>welcome to fashion</h4>
                             <h1>men fashion</h1>
-                            <a href="#" className="btn btn-solid">
+                            <a href="!#" className="btn btn-solid">
                               shop now
                             </a>
                           </div>

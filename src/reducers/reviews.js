@@ -1,37 +1,39 @@
 import {
-    POST_REVIEW_DONE,
-    RECEIVE_REVIEWS,
-    FETCHED_REVIEW_DONE
+  POST_REVIEW_DONE,
+  RECEIVE_REVIEWS,
+  FETCHED_REVIEW_DONE,
 } from "../constants/ActionTypes";
 
 const initialState = {
-    reviews: [],
+  reviews: [],
 };
 
 const reviewsReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case POST_REVIEW_DONE:
-            alert("Your review has been posted succesfully !")
-            return state
+  switch (action.type) {
+    case POST_REVIEW_DONE:
+      alert("Your review has been posted succesfully !");
+      return state;
 
-        case RECEIVE_REVIEWS:
-            if (action.reviews.length > 0) {
-                return {
-                    ...state,
-                    reviews: action.reviews
-                }
-            }
-        case FETCHED_REVIEW_DONE:
-            if (action.reviews.length > 0) {
-                return {
-                    ...state,
-                    reviews: action.reviews
-                }
-            }
+    case RECEIVE_REVIEWS:
+      if (action.reviews.length > 0) {
+        return {
+          ...state,
+          reviews: action.reviews,
+        };
+      }
+      break;
 
+    case FETCHED_REVIEW_DONE:
+      if (action.reviews.length > 0) {
+        return {
+          ...state,
+          reviews: action.reviews,
+        };
+      }
+      break;
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };
 export default reviewsReducer;

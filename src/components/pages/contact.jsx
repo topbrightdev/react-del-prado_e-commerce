@@ -50,11 +50,9 @@ class Contact extends Component {
     var value = e.currentTarget.value;
     const name = e.currentTarget.name;
     if (e.currentTarget.name) {
-      {
-        this.setState(() => {
-          return { [name]: value };
-        });
-      }
+      this.setState(() => {
+        return { [name]: value };
+      });
     } else return null;
   };
 
@@ -83,9 +81,10 @@ class Contact extends Component {
             <div className="row section-b-space">
               <div className="col-lg-7 map">
                 <iframe
+                  title="google"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d726.5011199455585!2d-5.776505786481614!3d43.25132791966658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd36f6889d124981%3A0x6cd613e0c84b5ec2!2sCalle%20Armando%20Palacio%20Vald%C3%A9s%2C%2010%2C%2033600%20Mieres%2C%20Asturias!5e0!3m2!1sen!2ses!4v1594039183938!5m2!1sen!2ses"
                   allowFullScreen=""
-                ></iframe>
+                />
               </div>
               <div className="col-lg-5 p-l-10">
                 <div className="contact-right">
@@ -102,7 +101,7 @@ class Contact extends Component {
                     </li>
                     <li>
                       <div className="contact-icon">
-                        <i className="fa fa-map-marker" aria-hidden="true"></i>
+                        <i className="fa fa-map-marker" aria-hidden="true" />
                         <h6>Direccion</h6>
                       </div>
                       <div className="media-body">

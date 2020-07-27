@@ -1,12 +1,13 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import NumberFormat from "react-number-format";
 
 import CartPage from "../components/headers/common/cart-header";
-import {removeFromCart} from "../actions/indexO";
-import {getCartTotal} from "../services";
+import { removeFromCart } from "../actions/indexO";
+import { getCartTotal } from "../services";
 
-const CartContainer = ({cartList, total, symbol, removeFromCart}) => (
+const CartContainer = ({ cartList, total, symbol, removeFromCart }) => (
   <li className="onhover-div mobile-cart">
     {" "}
     <div className="cart-qty-cls"> {cartList.length} </div>{" "}
@@ -34,14 +35,19 @@ const CartContainer = ({cartList, total, symbol, removeFromCart}) => (
         <div>
           <li>
             <div className="total">
-              <h5>
-                {" "}
-                subtotal:{" "}
-                <span>
-                  {" "}
-                  {symbol} {total}{" "}
-                </span>
-              </h5>
+              {" "}
+              subtotal:{" "}
+              <NumberFormat
+                value={total}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"€"}
+                renderText={(formattedValue) => (
+                  <h5 className="td-color">
+                    <span>{formattedValue}</span>
+                  </h5>
+                )} // <--- Don't forget this!
+              />
             </div>{" "}
           </li>{" "}
           <li>
@@ -78,6 +84,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {
-  removeFromCart,
-})(CartContainer);
+export default connect(
+  mapStateToProps,
+  {
+    removeFromCart,
+  }
+)(CartContainer);

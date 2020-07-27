@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-const tree1 = "Products";
-const tree2 = ["Drinks", "Meal", "FruitsVegetables", "Meat", "Fish", "Bread"];
 var tree = [];
 var done = null;
 
@@ -72,14 +70,14 @@ class Breadcrumb extends Component {
         }
 
         length = tree.length;
-        var l = length - 1;
+        l = length - 1;
 
         if (!done) {
           this.hasParent(tree[l], categoryList);
         }
 
         length = tree.length;
-        var l = length - 1;
+        l = length - 1;
 
         if (!done) {
           this.hasParent(tree[l], categoryList);

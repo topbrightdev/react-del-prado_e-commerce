@@ -1,8 +1,8 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import SimpleReactValidator from "simple-react-validator";
-import {login} from "../../actions/indexO";
+import { login } from "../../actions/indexO";
 import Breadcrumb from "../breadcrumb";
 
 class Login extends Component {
@@ -18,7 +18,7 @@ class Login extends Component {
 
   componentDidUpdate() {
     if (this.props.state.user.log.username) {
-      alert(this.state.username + " you are currently logged in !");
+      // alert(this.state.username + " you are currently logged in !");
       this.props.history.push("/");
     }
   }
@@ -28,11 +28,11 @@ class Login extends Component {
     const name = e.currentTarget.name;
     if (name === "password") {
       this.setState(() => {
-        return {password: n};
+        return { password: n };
       });
     } else {
       this.setState(() => {
-        return {username: n};
+        return { username: n };
       });
     }
   };
@@ -133,6 +133,9 @@ const mapStateToProps = (state) => ({
   state,
 });
 
-export default connect(mapStateToProps, {
-  login,
-})(Login);
+export default connect(
+  mapStateToProps,
+  {
+    login,
+  }
+)(Login);

@@ -55,7 +55,6 @@ class NavBar extends Component {
   }
 
   openNav() {
-    console.log("open");
     this.setState({ navClose: { right: "0px" } });
   }
   closeNav() {
@@ -106,24 +105,24 @@ class NavBar extends Component {
   };
 
   // if the menu item doesn't have any child, this method simply returns a clickable menu item that redirects to any location and if there is no child this method uses recursion to go until the last level of children and then returns the item by the first condition.
-  handlerTree(translate, category) {
+  handlerTree(category) {
     const addresses = this.state.addresses;
     var parentId = null;
     var cats = [];
-    var subCats = null;
     if (addresses) {
       addresses.map((addr) => {
         if (addr.name === category) {
           parentId = addr.id;
-        }
+          return parentId;
+        } else return null;
       });
 
       addresses.map((addr) => {
         if (addr.parent === parentId) {
           cats.push(addr.name);
-        }
+          return cats;
+        } else return null;
       });
-      var i = 0;
     } else {
       return null;
     }
@@ -135,13 +134,12 @@ class NavBar extends Component {
             <Link to={this.newTo(res)}>{res}</Link>
           </li>
         );
-        i++;
       });
     }
   }
 
   render() {
-    const { translate, data2 } = this.props;
+    const { translate } = this.props;
     const loaded = this.state.loaded;
 
     return (
@@ -167,9 +165,7 @@ class NavBar extends Component {
                 {translate("meat")}
               </Link>
               {loaded ? (
-                <ul className="nav-submenu">
-                  {this.handlerTree(translate, "Meat")}
-                </ul>
+                <ul className="nav-submenu">{this.handlerTree("Meat")}</ul>
               ) : null}
             </li>
             <li>
@@ -178,9 +174,7 @@ class NavBar extends Component {
                 {translate("fish")}
               </Link>
               {loaded ? (
-                <ul className="nav-submenu">
-                  {this.handlerTree(translate, "Fish")}
-                </ul>
+                <ul className="nav-submenu">{this.handlerTree("Fish")}</ul>
               ) : null}
             </li>
             <li>
@@ -190,7 +184,7 @@ class NavBar extends Component {
               </Link>
               {loaded ? (
                 <ul className="nav-submenu">
-                  {this.handlerTree(translate, "FruitsVegetables")}
+                  {this.handlerTree("FruitsVegetables")}
                 </ul>
               ) : null}
             </li>
@@ -200,9 +194,7 @@ class NavBar extends Component {
                 {translate("bakery")}
               </Link>
               {loaded ? (
-                <ul className="nav-submenu">
-                  {this.handlerTree(translate, "Bread")}
-                </ul>
+                <ul className="nav-submenu">{this.handlerTree("Bread")}</ul>
               ) : null}
             </li>
             <li>
@@ -211,9 +203,7 @@ class NavBar extends Component {
                 {translate("dishes")}
               </Link>
               {loaded ? (
-                <ul className="nav-submenu">
-                  {this.handlerTree(translate, "Meal")}
-                </ul>
+                <ul className="nav-submenu">{this.handlerTree("Meal")}</ul>
               ) : null}
             </li>
             <li>
@@ -222,9 +212,7 @@ class NavBar extends Component {
                 {translate("drinks")}
               </Link>
               {loaded ? (
-                <ul className="nav-submenu">
-                  {this.handlerTree(translate, "Drinks")}
-                </ul>
+                <ul className="nav-submenu">{this.handlerTree("Drinks")}</ul>
               ) : null}
             </li>
           </ul>

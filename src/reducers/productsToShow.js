@@ -1,5 +1,4 @@
 import {
-  FETCH_SELECTEDPRODUCTS_BEGIN,
   FETCH_SINGLE_SELECTEDPRODUCT,
   RECEIVE_SELECTEDPRODUCTS,
   CHANGE_CURRENCY,
@@ -18,6 +17,7 @@ const productsToShowReducer = (state = initialState, action) => {
         ...state,
         productsToShow: action.products,
       };
+
     case FETCH_SINGLE_SELECTEDPRODUCT:
       if (
         state.productsToShow.findIndex(
@@ -32,12 +32,14 @@ const productsToShowReducer = (state = initialState, action) => {
           product_details: singleItem,
         };
       }
+      break;
 
     case CHANGE_CURRENCY:
       return {
         ...state,
         symbol: action.symbol,
       };
+
     default:
       return state;
   }

@@ -1,10 +1,9 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Slider from "react-slick";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-import {getBestSeller} from "../../services";
-import {addToWishlistUnsafe} from "../../actions/indexO";
+import { getBestSeller } from "../../services";
 
 class NewProduct extends Component {
   constructor() {
@@ -42,7 +41,7 @@ class NewProduct extends Component {
   render() {
     var arrays = [];
 
-    const {symbol} = this.props;
+    const { symbol } = this.props;
     var items = this.props.items;
 
     if (this.state.open) {
@@ -61,7 +60,9 @@ class NewProduct extends Component {
                 {products.map((product, i) => (
                   <div className="media" key={i}>
                     <Link
-                      to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+                      to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                        product.id
+                      }`}
                     >
                       <img
                         className="img-fluid"
@@ -71,14 +72,16 @@ class NewProduct extends Component {
                     </Link>
                     <div className="media-body align-self-center">
                       <div className="rating">
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
-                        <i className="fa fa-star"></i>
+                        <i className="fa fa-star" />
+                        <i className="fa fa-star" />
+                        <i className="fa fa-star" />
+                        <i className="fa fa-star" />
+                        <i className="fa fa-star" />
                       </div>
                       <Link
-                        to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+                        to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
+                          product.id
+                        }`}
                       >
                         <h6>{product.name}</h6>
                       </Link>
@@ -113,4 +116,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(NewProduct);
+export default connect(
+  mapStateToProps,
+  null
+)(NewProduct);

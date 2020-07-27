@@ -31,9 +31,7 @@ class cartComponent extends Component {
           />
         </Helmet>
         {/*SEO Support End */}
-
         <Breadcrumb title={"Cart Page"} />
-
         {cartItems.length > 0 ? (
           <section className="cart-section section-b-space">
             <div className="container">
@@ -77,7 +75,7 @@ class cartComponent extends Component {
                                   process.env.PUBLIC_URL
                                 }/left-sidebar/product/${item.id}`}
                               >
-                                {item.name}
+                                <h2 className="cart-item-name">{item.name}</h2>
                               </Link>
                               <div className="mobile-cart-content row">
                                 <div className="col-xs-3">
@@ -93,15 +91,22 @@ class cartComponent extends Component {
                                   </div>
                                 </div>
                                 <div className="col-xs-3">
-                                  <h2 className="td-color">
-                                    {symbol}
-                                    {item.price}
-                                  </h2>
+                                  <NumberFormat
+                                    value={item.price}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={"€"}
+                                    renderText={(formattedValue) => (
+                                      <h2 className="td-color">
+                                        <span>{formattedValue}</span>
+                                      </h2>
+                                    )} // <--- Don't forget this!
+                                  />
                                 </div>
                                 <div className="col-xs-3">
                                   <h2 className="td-color">
                                     <a
-                                      href="javascript:void(0)"
+                                      href="!#"
                                       className="icon"
                                       onClick={() =>
                                         this.props.removeFromCart(item)
@@ -127,7 +132,9 @@ class cartComponent extends Component {
                                       type="button"
                                       className="btn quantity-left-minus"
                                       onClick={() =>
-                                        this.props.decrementQty(item.id)
+                                        item.qty > 1
+                                          ? this.props.decrementQty(item.id)
+                                          : this.props.removeFromCart(item)
                                       }
                                       data-type="minus"
                                       data-field=""
@@ -162,13 +169,12 @@ class cartComponent extends Component {
                               {item.qty >= item.stock ? "out of Stock" : ""}
                             </td>
                             <td>
-                              <a
-                                href="javascript:void(0)"
-                                className="icon"
+                              <button
+                                className="icon invisible-button"
                                 onClick={() => this.props.removeFromCart(item)}
                               >
                                 <i className="fa fa-times" />
-                              </a>
+                              </button>
                             </td>
                             <td>
                               <h2 className="td-color">

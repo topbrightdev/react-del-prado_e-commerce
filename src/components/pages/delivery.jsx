@@ -1,14 +1,7 @@
 import React, { Component } from "react";
-import Slider from "react-slick";
-
 import Breadcrumb from "../breadcrumb";
-import { Slider2, Team4 } from "../../services/script";
 
 class delivery extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     var svgFreeShipping =
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -117 679.99892 679">\n' +
@@ -66,8 +59,9 @@ class delivery extends Component {
               </h2>{" "}
             </span>
 
-            <div className="ma-lr w-mx">
+            <div className="ma-lr delivery-img">
               <img
+                className="delivery-img"
                 src={`${process.env.PUBLIC_URL}/assets/images/ecommerce.png`}
                 alt="#"
               />
@@ -76,11 +70,12 @@ class delivery extends Component {
               Siga estos 3 sencillos pasos ....
             </h4>
 
-            <div className="row ma-lr w-mx">
+            <div className="row ma-lr ">
               <div>
                 <div className="media">
                   <div className="text-center">
                     <img
+                      className="delivery-steps"
                       src={`${process.env.PUBLIC_URL}/assets/images/select.png`}
                       alt="#"
                     />
@@ -92,6 +87,7 @@ class delivery extends Component {
                 <div className="media">
                   <div className="text-center">
                     <img
+                      className="delivery-steps"
                       src={`${
                         process.env.PUBLIC_URL
                       }/assets/images/payment.png`}
@@ -105,6 +101,7 @@ class delivery extends Component {
                 <div className="media">
                   <div className="text-center">
                     <img
+                      className="delivery-steps"
                       src={`${
                         process.env.PUBLIC_URL
                       }/assets/images/delivery.png`}

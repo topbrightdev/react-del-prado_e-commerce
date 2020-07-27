@@ -11,26 +11,6 @@ const WooCommerce = new WooCommerceAPI({
 
 const TIMEOUT = 9000;
 
-var pos = 1;
-var isTreeLoaded = false;
-var done = false;
-
-var tree = {
-  id: 19,
-  name: "products",
-  parent: "none",
-  children: [],
-};
-
-var addresses = [
-  {
-    id: 19,
-    level: 0,
-    position: 0,
-    name: "Product Categories",
-  },
-];
-
 const removeString = (res) => {
   var newParraf = null;
   if (res !== "") {
@@ -52,7 +32,6 @@ const getProducts = () => {
       Object.json1 = JSON.parse(data);
       var items = Object.json1;
       var products = [];
-      console.log(items);
       items.map(
         ({
           id,
@@ -73,9 +52,8 @@ const getProducts = () => {
           var newImages = [];
           images.map((data) => {
             img = data.src;
-            newImages.push(img);
+            return newImages.push(img);
           });
-          var thisPrice = parseFloat(price).toFixed(2);
 
           var stringDescription = removeString(description);
           var stringShortDescription = removeString(short_description);
@@ -104,7 +82,7 @@ const getProducts = () => {
             variants: null,
           };
 
-          products.push(newItem); // Push the object
+          return products.push(newItem); // Push the object
         }
       );
       return products;
@@ -116,7 +94,7 @@ const getProducts = () => {
 
 const getCategoryTree = async () => {
   var root = `&parent=19`;
-  const Str = `&parent=`;
+
   var level = 1;
 
   return await getTheCategories(root, level).then((res) => {

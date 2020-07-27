@@ -168,7 +168,7 @@ class FooterFour extends Component {
                       </li>
                       <li>
                         <i className="fa fa-envelope-o" />
-                        Email: <a href="#">Support@delPrado.com</a>
+                        Email: <a href="!#">Support@delPrado.com</a>
                       </li>
                     </ul>
                   </div>
@@ -192,7 +192,7 @@ class FooterFour extends Component {
                 <div className="payment-card-bottom">
                   <ul>
                     <li>
-                      <a href="#">
+                      <a href="!#">
                         <img
                           src={`${
                             process.env.PUBLIC_URL
@@ -202,7 +202,7 @@ class FooterFour extends Component {
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="!#">
                         <img
                           src={`${
                             process.env.PUBLIC_URL
@@ -212,7 +212,7 @@ class FooterFour extends Component {
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="!#">
                         <img
                           src={`${
                             process.env.PUBLIC_URL
@@ -222,7 +222,7 @@ class FooterFour extends Component {
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="!#">
                         <img
                           src={`${
                             process.env.PUBLIC_URL
@@ -232,7 +232,7 @@ class FooterFour extends Component {
                       </a>
                     </li>
                     <li>
-                      <a href="#">
+                      <a href="!#">
                         <img
                           src={`${
                             process.env.PUBLIC_URL

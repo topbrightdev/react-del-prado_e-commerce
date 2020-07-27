@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
-import { Link } from "react-router-dom";
 import {
   CardNumberElement,
   CardExpiryElement,
@@ -12,17 +11,10 @@ import axios from "axios";
 
 //4242424242424242
 
-var send = false;
-var email,
-  total,
-  amount = null;
-
-const port = process.env.PORT || 7000;
-
 const urlCharge =
   process.env.NODE_ENV.trim() === "production"
-    ? `https://waldenberginc.com/api/stripe/charge`
-    : "http://localhost:7000/api/stripe/charge";
+    ? `https://waldenberginc.com/stripe`
+    : "http://localhost:9000/stripe";
 //const urlCharge ='http://waldenberginc.com/api/stripe/charge'
 
 const newTo = (data) => {
@@ -42,23 +34,16 @@ const CheckoutForm = ({
   clientData,
 }) => {
   if (selectedProduct === null) history.push("/");
-  //onst [receiptUrl, setReceiptUrl] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(total);
+
     var amount = total * 100;
     amount = amount.toString();
-    console.log(amount);
-    const { error, token } = await stripe.createToken();
-    if (error) {
-      console.log(error);
-    }
-    if (token) {
-      console.log(token);
-    }
+    const { token } = await stripe.createToken();
+
     const order = await axios
-      .post("http://localhost:9000/stripe", {
+      .post(urlCharge, {
         amount: amount,
         source: token.id,
         receipt_email: email,
@@ -74,25 +59,7 @@ const CheckoutForm = ({
     doOrder(true);
     const data = [receiptUrl, clientData];
     history.push(newTo(data));
-
-    // receiptUrl = order.data.charge.receipt_url;
-    //receiveReceipt(receiptUrl);
   };
-
-  // if (receiptUrl) {
-  // if (receiptUrl) {
-  //  history.push(
-  //   `${process.env.PUBLIC_URL}/order-success`
-  //  );
-
-  /*const newTo = (receipt) => {
-    return {
-      pathname: `${process.env.PUBLIC_URL}/order-success`,
-      receipt: receipt,
-    };
-  };
-*/
-  // if (receiptUrl) {
 
   return (
     <div className="checkout-details">

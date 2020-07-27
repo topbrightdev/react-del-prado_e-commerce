@@ -1,11 +1,10 @@
 import shop from "../api/shop";
 import user from "../api/user";
 import * as types from "../constants/ActionTypes";
-import store from "../store";
+
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-
-/**           PRODUCTS ACTIONS          */
+import "react-toastify/dist/ReactToastify.css";
 
 export const fetchProductsBegin = () => ({
   type: types.FETCH_PRODUCTS_BEGIN,
@@ -49,52 +48,42 @@ export const fetchSingleSelectedProduct = (productId) => ({
   productId,
 });
 
-export const searchProduct = (productName) => (
-  console.log(productName),
-  {
-    type: types.SEARCH_PRODUCT,
-    productName,
-  }
-);
-
+export const searchProduct = (productName) => ({
+  type: types.SEARCH_PRODUCT,
+  productName,
+});
 
 export const postReviewDone = () => ({
   type: types.POST_REVIEW_DONE,
-
 });
-
 
 export const postReview = (data) => (dispatch) => {
   shop.postReview(data).then((res) => {
+    this.toast.success("Review posted successfullly");
     dispatch(postReviewDone());
-    console.log(res)
     return res;
   });
 };
 
 export const receiveReviews = (reviews) => ({
   type: types.RECEIVE_REVIEWS,
-  reviews
-
+  reviews,
 });
 
 export const fetchedReviews = (reviews) => ({
   type: types.FETCHED_REVIEW_DONE,
-  reviews
-})
+  reviews,
+});
 
 export const getReviews = (id) => (dispatch) => {
   shop.getReview(id).then((res) => {
     dispatch(receiveReviews(res));
-    dispatch(fetchedReviews(res))
-    return res
-  })
-}
-
+    dispatch(fetchedReviews(res));
+    return res;
+  });
+};
 
 /**      END  PRODUCTS ACTIONS          */
-
-
 
 /**           CATEGORYTREE ACTIONS          */
 
@@ -142,6 +131,7 @@ export const receiveLogin = (log) => ({
 export const login = (userData) => (dispatch) => {
   dispatch(fetchLoginBegin());
   user.login(userData).then((log) => {
+    toast.success("Account logged-in successfullly");
     dispatch(receiveLogin(log));
     return log;
   });
@@ -159,6 +149,8 @@ export const receiveSignup = (log) => ({
 export const signup = (userData) => (dispatch) => {
   dispatch(signupBegin());
   user.signup(userData).then((log) => {
+    console.log(log);
+    toast.success("Account created successfully");
     dispatch(receiveSignup(log));
     return log;
   });
@@ -171,6 +163,7 @@ export const receiveUpdatedAccount = (log) => ({
 
 export const updateAccount = (userData, userOldData) => (dispatch) => {
   user.updateAccount(userData, userOldData).then((log) => {
+    toast.success("Account updated successfully");
     dispatch(receiveUpdatedAccount(log));
     return log;
   });
@@ -190,10 +183,9 @@ export const receiveOrderReceipt = (rec) => ({
 });
 
 export const placeOrder = (orderData) => (dispatch) => {
-  console.log(orderData);
   dispatch(orderBegin());
   user.order(orderData).then((rec) => {
-    console.log(rec);
+    toast.success("Order placed successfully");
     dispatch(receiveOrderReceipt(rec));
     return rec;
   });
@@ -223,10 +215,12 @@ export const removeFromCart = (product_id) => (dispatch) => {
     product_id,
   });
 };
+
 export const incrementQty = (product, qty) => (dispatch) => {
   toast.success("Item Added to Cart");
   dispatch(addToCartUnsafe(product, qty));
 };
+
 export const decrementQty = (productId) => (dispatch) => {
   toast.warn("Item Decrement Qty to Cart");
   dispatch({

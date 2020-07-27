@@ -175,17 +175,13 @@ $theme-deafult__collapsible-item-disabled-color: lighten(
 ) !default;
 $theme-deafult__collapsible-item-padding-vertical: 10px !default;
 $theme-deafult__collapsible-item-padding-horizontal: 20px !default;
-
 // Toggle button (sub menu indicators)
 $theme-deafult__collapsible-toggle-bg: rgba(0, 0, 0, 0.1) !default;
-
 // ----------------------------------------------------------
 // :: 1.5. Collapsible sub menus
 // ----------------------------------------------------------
-
 // Menu box
 $theme-deafult__collapsible-sub-bg: $theme-deafult__white !default;
-
 // Items
 $theme-deafult__collapsible-sub-item-color: $theme-deafult-dark !default;
 $theme-deafult__collapsible-sub-item-bg: transparent !default;
@@ -195,40 +191,31 @@ $theme-deafult__collapsible-sub-item-disabled-color: darken(
   $theme-deafult__white,
   30%
 ) !default;
-
 // Items separators
 $theme-deafult__collapsible-sub-separators-color: rgba(0, 0, 0, 0.05) !default;
-
 // Items text indentation for deeper levels
 $theme-deafult__collapsible-sub-item-indentation: 8px !default;
-
 // ----------------------------------------------------------
 // :: 1.6. Desktop main menu
 // ----------------------------------------------------------
-
 // Items separators
 $theme-deafult__desktop-separators-size: 1px !default;
 $theme-deafult__desktop-separators-color: darken($theme-deafult, 5%) !default;
-
 // Sub menu indicators
 $theme-deafult__desktop-arrow-size: 5px !default; // border-width
 $theme-deafult__desktop-arrow-color: $theme-deafult-light !default;
-
 // Vertical items
 $theme-deafult__desktop-vertical-item-padding-vertical: 9px !default;
 $theme-deafult__desktop-vertical-item-padding-horizontal: 23px !default;
-
 // ----------------------------------------------------------
 // :: 1.7. Desktop sub menus
 // ----------------------------------------------------------
-
 // Menu box
 $theme-deafult__desktop-sub-bg: $theme-deafult__white !default;
 $theme-deafult__desktop-sub-border-color: $theme-deafult__gray !default;
 $theme-deafult__desktop-sub-border-radius: $theme-deafult__border-radius-small !default;
 $theme-deafult__desktop-sub-padding-vertical: 7px !default;
 $theme-deafult__desktop-sub-padding-horizontal: 0 !default;
-
 // Items
 $theme-deafult__desktop-sub-item-color: $theme-deafult-dark !default;
 $theme-deafult__desktop-sub-item-bg: transparent !default;
@@ -242,18 +229,15 @@ $theme-deafult__desktop-sub-item-disabled-color: darken(
 ) !default;
 $theme-deafult__desktop-sub-item-padding-vertical: 9px !default;
 $theme-deafult__desktop-sub-item-padding-horizontal: 23px !default;
-
 // ----------------------------------------------------------
 // desktop mode
 // ----------------------------------------------------------
-
 // calc item height and sub menus toggle button size
 $theme-deafult__item-height: $theme-deafult__line-height +
   $theme-deafult__collapsible-item-padding-vertical * 2;
 // set toggle button size to 80% of item height
 $theme-deafult__toggle-size: floor($theme-deafult__item-height * 0.8);
 $theme-deafult__toggle-spacing: floor($theme-deafult__item-height * 0.1);
-
 header {
   .main-navbar {
     .nav-menu {
@@ -263,13 +247,13 @@ header {
       padding: 0;
       line-height: normal;
       direction: ltr;
-      text-align: left;
+      text-align: center;
       > li {
         position: relative;
         float: left;
         display: block;
         > a {
-          display: block;
+          display: grid;
           padding-right: 45px;
           color: #222222;
           font-size: 16px;
@@ -277,18 +261,14 @@ header {
           line-height: 23px;
           text-decoration: none;
           text-transform: uppercase;
-          padding-top: 42px;
-          padding-bottom: 42px;
+          padding-top: 0%;
+          padding-bottom: 0%;
           padding-left: 0;
           letter-spacing: 0.07em;
           position: relative;
           .sub-arrow {
-            position: absolute;
-            top: 50%;
             margin-top: -17px;
-            left: auto;
-            right: 15px;
-            width: 34px;
+            width: 100%;
             height: 34px;
             overflow: hidden;
             font: bold 16px/34px monospace !important;
@@ -304,7 +284,7 @@ header {
         }
         .nav-submenu {
           position: absolute;
-          left: 0;
+          left: -50%;
           z-index: 4;
           box-shadow: 0 0 1px 0 #ebebeb;
           padding: 15px 0px 15px 0px;
@@ -630,8 +610,9 @@ header {
   padding-bottom: 40px;
   cursor: pointer;
   i {
-    font-size: 24px;
+    font-size: 2rem;
     color: lighten($theme-deafult, 5%);
+    margin-left: 20vw;
   }
 }
 .mega-menu-banner {
@@ -730,8 +711,7 @@ header {
         color: $theme-deafult__collapsible-sub-item-color;
         font-size: 14px;
         text-shadow: none;
-        // add indentation for sub menus text
-        //border-left: $theme-deafult__collapsible-sub-item-indentation solid transparent;
+        // add indentation for sub menus text // border-left: $theme-deafult__collapsible-sub-item-indentation solid transparent;
       }
       &.current {
         background: $theme-deafult__collapsible-sub-item-current-bg;
@@ -945,8 +925,7 @@ header {
     &.sm-vertical {
       a {
         .sub-arrow {
-          //right: unset;
-          //left: 7px;
+          // right: unset; // left: 7px;
         }
       }
     }
@@ -980,7 +959,6 @@ header {
     }
   }
 }
-
 // Responsive menu css start //
 @media (min-width: 1200px) {
   .responsive-btn {
@@ -991,7 +969,8 @@ header {
       .nav-menu {
         > li {
           .nav-submenu {
-            width: 200px;
+            min-width: 10vw;
+            max-width: 10vw;
             display: none;
             li {
               a {
@@ -1325,7 +1304,6 @@ header {
       border: none;
       padding: 15px 0px 15px 0px;
       background: white;
-
       ul {
         background: white;
       }
@@ -1686,6 +1664,9 @@ header {
 @media (max-width: 1199px) {
   header {
     .main-navbar {
+      position: relative !important;
+      left: 15vw !important;
+      top: 13vh !important;
       .nav-menu {
         position: fixed;
         background-color: #fff;
@@ -1693,9 +1674,8 @@ header {
         border-radius: 0;
         border: 1px solid #eee;
         top: 0;
-        height: 100vh;
-        right: -300px;
-        // right: 0;
+        height: 102vh;
+        right: -300px; // right: 0;
         z-index: 99;
         -webkit-transition: all 0.3s ease;
         transition: all 0.3s ease;
@@ -1737,7 +1717,7 @@ header {
             .sub-arrow {
               right: 0;
               &:before {
-                content: "+";
+                content: "\f107";
                 font-family: inherit;
                 position: relative;
               }
@@ -1964,7 +1944,6 @@ header {
     z-index: 99;
     transition: all 0.3s ease;
     overflow: scroll;
-
     .mobile-back {
       padding: 20px;
       font-size: 18px;
@@ -2168,9 +2147,9 @@ header {
       .main-menu-right {
         .toggle-nav {
           position: absolute;
-          z-index: 2;
-          right: 145px;
-          top: 6px;
+          z-index: 99;
+          right: -20vw;
+          top: -21.5vh;
           .sidebar-name {
             font-size: 18px;
             padding-left: 5px;
@@ -2182,10 +2161,10 @@ header {
   }
   .main-nav-center {
     .toggle-nav {
-      position: absolute;
+      position: relative;
       z-index: 99;
-      right: 175px;
-      top: -105px;
+      right: 14vw;
+      top: -12.5vh;
     }
   }
   .layout3-menu {
@@ -2287,17 +2266,17 @@ header {
   }
   .main-nav-center {
     .toggle-nav {
-      right: 15px;
-      top: -85px;
+      right: -7vw;
+      top: -14vh;
     }
   }
   .mobile-fix-option {
     position: fixed;
     bottom: 0;
     left: 0;
-    height: 60px;
+    height: 20vh;
     background-color: $font-color;
-    width: 100vw;
+    width: 100%;
     z-index: 9;
     box-shadow: 0 2px 5px 0 rgba(168, 168, 168, 1);
   }
@@ -2325,8 +2304,8 @@ header {
       .mobile-account,
       .mobile-wishlist {
         position: fixed;
-        bottom: 20px;
-        right: 32%;
+        bottom: 12%;
+        right: 80%;
         font-size: 0;
         padding: 0;
         z-index: 9;
@@ -2339,9 +2318,9 @@ header {
           }
         }
         .onhover-show-div {
-          top: unset;
-          bottom: 42px;
-          right: 0;
+          bottom: 6vh;
+          right: 2vw;
+          z-index: 2;
         }
         &:hover {
           i {
@@ -2349,8 +2328,11 @@ header {
           }
         }
       }
+      .mobile-account {
+        right: 35%;
+      }
       .mobile-wishlist {
-        right: 64%;
+        right: 80%;
         i {
           font-family: $font-themify;
           color: $header-font !important;
@@ -2378,8 +2360,8 @@ header {
         .mobile-cart,
         .mobile-search {
           position: fixed;
-          bottom: 20px;
-          right: 16%;
+          bottom: 12%;
+          right: 13%;
           font-size: 0;
           padding: 0;
           .show-div {
@@ -2410,7 +2392,7 @@ header {
           }
         }
         .mobile-cart {
-          right: 48%;
+          right: 60%;
           .close-circle {
             i {
               font-size: 14px;
@@ -2428,7 +2410,12 @@ header {
           }
         }
         .mobile-search {
-          right: 80%;
+          width: 80%;
+          position: fixed;
+          bottom: 25px;
+          right: 10.5%;
+          font-size: 0;
+          padding: 0;
           z-index: 1;
           i {
             display: inline-block;
@@ -2456,10 +2443,11 @@ header {
   }
   .brand-logo {
     position: absolute;
+    text-align: center;
     left: 50%;
     margin-right: -50%;
     transform: translateX(-50%);
-    padding-top: 30px !important;
+    padding-top: 6vh !important;
     padding-bottom: 30px !important;
   }
   .toggle-nav {
@@ -2491,13 +2479,14 @@ header {
             }
           }
           .mobile-setting {
+            right: 13%;
             .setting {
               left: unset !important;
             }
           }
           .mobile-cart {
             right: unset;
-            left: 48%;
+            left: 40%;
           }
           .mobile-search {
             right: unset;
@@ -2530,6 +2519,12 @@ header {
   }
 }
 @media (max-width: 480px) {
+  .container-navbar {
+    max-width: 90% !important;
+    min-height: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .brand-logo {
     img {
       height: 25px;

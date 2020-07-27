@@ -2274,9 +2274,9 @@ header {
     position: fixed;
     bottom: 0;
     left: 0;
-    height: 125px;
+    height: 20vh;
     background-color: $font-color;
-    width: 100vw;
+    width: 100%;
     z-index: 9;
     box-shadow: 0 2px 5px 0 rgba(168, 168, 168, 1);
   }

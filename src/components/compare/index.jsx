@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import NumberFormat from "react-number-format";
 
 import Breadcrumb from "../breadcrumb";
 import { removeFromCompare, addToCart } from "../../actions/indexO";
@@ -44,7 +45,7 @@ class Compare extends Component {
       ],
     };
 
-    const { Items, symbol, addToCart, removeFromCompare } = this.props;
+    const { Items, addToCart, removeFromCompare } = this.props;
 
     return (
       <div>
@@ -83,21 +84,32 @@ class Compare extends Component {
                               <h5 className="money text-center">{item.name}</h5>
                             </Link>
                             <h5 className="money text-center">
-                              {symbol}
-                              {item.price}
+                              <NumberFormat
+                                value={item.price}
+                                displayType={"text"}
+                                thousandSeparator={true}
+                                prefix={"€"}
+                                renderText={(formattedValue) => (
+                                  <span>{formattedValue}</span>
+                                )} // <--- Don't forget this!
+                              />
                             </h5>
                           </div>
                           <div className="detail-part text-center">
                             <div className="title-detail">
-                              <h5>description</h5>
+                              <h6>Description</h6>
                             </div>
                             <div className="inner-detail">
-                              <p>{item.shortDetails}</p>
+                              {item.shortDetails ? (
+                                <p>{item.shortDetails}</p>
+                              ) : (
+                                <p>"No description available"</p>
+                              )}
                             </div>
                           </div>
                           <div className="btn-part">
                             <a
-                              href="javascript:void(0)"
+                              href="!#"
                               className="btn btn-solid"
                               onClick={() => addToCart(item, 1)}
                             >

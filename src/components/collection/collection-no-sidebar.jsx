@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import PageNotFound from "../pages/404";
-import "../common/index.scss";
+import { connect } from "react-redux";
 
 // import custom Components
 import ProductListing from "../products/product-listing";
 import Breadcrumb from "../breadcrumb";
 import FilterBar from "../products/filters/filter-bar";
 import { getAllProducts } from "../../actions/indexO";
-import { connect } from "react-redux";
+import PageNotFound from "../pages/404";
+
+import "../common/index.scss";
 
 class CollectionNoSideBar extends Component {
   constructor(props) {
@@ -51,15 +52,16 @@ class CollectionNoSideBar extends Component {
     } else {
       if (this.props.state.data3.productsToShow) {
         const items = this.props.state.data3.productsToShow;
+        console.log(items);
         var category = null;
         var categories = [];
 
         if (items.length > 0) {
           items[0].categories.map((c) => {
             if (!category) {
-              category = c.name;
+              return (category = c.name);
             }
-            categories.push(c);
+            return categories.push(c);
           });
           this.setState(() => {
             return {
@@ -101,7 +103,7 @@ class CollectionNoSideBar extends Component {
                       <div className="row">
                         <div className="col-sm-12">
                           <div className="top-banner-wrapper">
-                            <a href="#">
+                            <a href="!#">
                               <img
                                 src={`${
                                   process.env.PUBLIC_URL
@@ -146,6 +148,7 @@ class CollectionNoSideBar extends Component {
             </div>
           </div>
         </section>
+
         {/*Section End*/}
       </div>
     ) : (

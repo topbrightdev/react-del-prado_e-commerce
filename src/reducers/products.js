@@ -33,21 +33,16 @@ const productReducer = (state = initialState, action) => {
           product_details: singleItem,
         };
       }
+      break;
 
     case SEARCH_PRODUCT:
       var item = {};
       state.products.map((product) => {
-        //console.log(product.name);
         var thisName = product.name.toUpperCase();
         var receivedName = action.productName.toUpperCase();
-        // console.log(thisName, receivedName);
-        if (thisName === receivedName) {
-          console.log(product);
-          // item = product;
-        }
         if (thisName.includes(receivedName)) {
-          item = product;
-        }
+          return (item = product);
+        } else return null;
       });
 
       if (item.name) {

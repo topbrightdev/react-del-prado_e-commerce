@@ -5,22 +5,17 @@ import Slider from "react-slick";
 
 // Import custom components
 import Special from "./products/special";
-import Header from "./headers/header";
-import Footer from "./footers/footer";
-import ThemeSettings from "./theme-settings";
+
 import ElementCategory from "./elements/element-category";
 
 class Vegetables extends Component {
-  componentDidMount() {
-    document.getElementById("color").setAttribute("href", `#`);
-  }
   render() {
     return (
       <div>
         <Helmet>
           <title>Del Prado | Comercio Online</title>
         </Helmet>
-        <Header logoName={"logo.png"} />
+
         <ElementCategory />
         <section className="p-0 margin-t-10">
           <Slider className="slide-1 home-slider">
@@ -79,12 +74,12 @@ class Vegetables extends Component {
             <div className="service p-0">
               <div className="row">
                 <div className="col-md-4 service-block">
-                  <div className="media mw-100">
+                  <div className="media mw-100 ipad-block">
                     <img
                       src={`${
                         process.env.PUBLIC_URL
                       }/assets/images/vegetables/theme/17.png`}
-                      className="img-fluid m-lr-10"
+                      className="img-fluid m-lr-10 ipad-no-margin"
                       alt=""
                     />{" "}
                     <div className="media-body">
@@ -94,12 +89,12 @@ class Vegetables extends Component {
                   </div>
                 </div>
                 <div className="col-md-4 service-block">
-                  <div className="media mw-100">
+                  <div className="media mw-100 ipad-block">
                     <img
                       src={`${
                         process.env.PUBLIC_URL
                       }/assets/images/vegetables/theme/14.png`}
-                      className="img-fluid m-lr-10"
+                      className="img-fluid m-lr-10 ipad-no-margin"
                       alt=""
                     />{" "}
                     <div className="media-body">
@@ -109,12 +104,12 @@ class Vegetables extends Component {
                   </div>
                 </div>
                 <div className="col-md-4 service-block">
-                  <div className="media mw-100">
+                  <div className="media mw-100 ipad-block">
                     <img
                       src={`${
                         process.env.PUBLIC_URL
                       }/assets/images/vegetables/theme/13.png`}
-                      className="img-fluid m-lr-10"
+                      className="img-fluid m-lr-10 ipad-no-margin"
                       alt=""
                     />
                     <div className="media-body">
@@ -150,9 +145,6 @@ class Vegetables extends Component {
         {/*product-box slider*/}
         <Special type={"vegetable"} />
         {/*product-box slider end*/}
-
-        <ThemeSettings />
-        <Footer logoName={"logo.png"} />
       </div>
     );
   }

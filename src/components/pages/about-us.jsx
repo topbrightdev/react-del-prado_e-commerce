@@ -1,14 +1,10 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Slider from "react-slick";
 
 import Breadcrumb from "../breadcrumb";
-import {Slider2, Team4} from "../../services/script";
+import { Slider2, Team4 } from "../../services/script";
 
 class aboutUs extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     var svgFreeShipping =
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -117 679.99892 679">\n' +
@@ -62,7 +58,9 @@ class aboutUs extends Component {
               <div className="col-lg-12">
                 <div className="banner-section">
                   <img
-                    src={`${process.env.PUBLIC_URL}/assets/images/about/about%20us.jpg`}
+                    src={`${
+                      process.env.PUBLIC_URL
+                    }/assets/images/about/about%20us.jpg`}
                     className="img-fluid"
                     alt=""
                   />
@@ -114,7 +112,9 @@ class aboutUs extends Component {
                     <div className="media">
                       <div className="text-center">
                         <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/avtar.jpg`}
+                          src={`${
+                            process.env.PUBLIC_URL
+                          }/assets/images/avtar.jpg`}
                           alt="#"
                         />
                         <h5>Mark Jecno</h5>
@@ -154,7 +154,9 @@ class aboutUs extends Component {
                     <div className="media">
                       <div className="text-center">
                         <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/avtar.jpg`}
+                          src={`${
+                            process.env.PUBLIC_URL
+                          }/assets/images/avtar.jpg`}
                           alt="#"
                         />
                         <h5>Mark Jecno</h5>
@@ -174,7 +176,9 @@ class aboutUs extends Component {
                     <div className="media">
                       <div className="text-center">
                         <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/avtar.jpg`}
+                          src={`${
+                            process.env.PUBLIC_URL
+                          }/assets/images/avtar.jpg`}
                           alt="#"
                         />
                         <h5>Mark Jecno</h5>
@@ -194,7 +198,9 @@ class aboutUs extends Component {
                     <div className="media">
                       <div className="text-center">
                         <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/avtar.jpg`}
+                          src={`${
+                            process.env.PUBLIC_URL
+                          }/assets/images/avtar.jpg`}
                           alt="#"
                         />
                         <h5>Mark Jecno</h5>
@@ -214,7 +220,9 @@ class aboutUs extends Component {
                     <div className="media">
                       <div className="text-center">
                         <img
-                          src={`${process.env.PUBLIC_URL}/assets/images/avtar.jpg`}
+                          src={`${
+                            process.env.PUBLIC_URL
+                          }/assets/images/avtar.jpg`}
                           alt="#"
                         />
                         <h5>Mark Jecno</h5>
@@ -300,7 +308,7 @@ class aboutUs extends Component {
             <div className="row">
               <div className="col-md-4 service-block">
                 <div className="media">
-                  <div dangerouslySetInnerHTML={{__html: svgFreeShipping}} />
+                  <div dangerouslySetInnerHTML={{ __html: svgFreeShipping }} />
                   <div className="media-body">
                     <h4>free shipping</h4>
                     <p>free shipping world wide</p>
@@ -309,7 +317,7 @@ class aboutUs extends Component {
               </div>
               <div className="col-md-4 service-block">
                 <div className="media">
-                  <div dangerouslySetInnerHTML={{__html: svgservice}} />
+                  <div dangerouslySetInnerHTML={{ __html: svgservice }} />
                   <div className="media-body">
                     <h4>24 X 7 service</h4>
                     <p>online service for new customer</p>
@@ -318,7 +326,7 @@ class aboutUs extends Component {
               </div>
               <div className="col-md-4 service-block">
                 <div className="media">
-                  <div dangerouslySetInnerHTML={{__html: svgoffer}} />
+                  <div dangerouslySetInnerHTML={{ __html: svgoffer }} />
                   <div className="media-body">
                     <h4>festival offer</h4>
                     <p>new online special festival offer</p>

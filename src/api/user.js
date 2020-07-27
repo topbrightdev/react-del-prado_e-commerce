@@ -10,11 +10,6 @@ const WooCommerce = new WooCommerceAPI({
   version: "wc/v3",
 });
 
-const targetUrl = "https://grassrootemarket.com/wp-json/";
-const urlRegister = "wp/v2/users/register";
-const urlJWT = "jwt-auth/v1/token";
-const userURI = targetUrl + "wp/v2/users/me";
-
 /**
  * Signup Flow
  *  1-Create user : Creates an authenticated Wordpress Account with password
@@ -28,7 +23,6 @@ const login = async (user) => {
   var password = user.password;
   var token,
     displayName,
-    niceName,
     email = null;
   return await axios
     // .post("https://grassrootemarket.com/wp-json/jwt-auth/v1/token", {
@@ -40,7 +34,6 @@ const login = async (user) => {
       if (result.status === 200) {
         token = result.data.token;
         displayName = result.data.user_display_name;
-        niceName = result.data.user_nicename;
         email = result.data.user_email;
         var filledFields = null;
         return fillCustomer(email).then((res) => {
@@ -80,12 +73,6 @@ const signup = async (userData) => {
     state,
   } = userData;
 
-  var user = {
-    username: username,
-    email: email,
-    password: password,
-  };
-
   const newCustomer = {
     email: email,
     first_name: first_name,
@@ -122,19 +109,22 @@ const signup = async (userData) => {
     password: password,
   });
 
-  var created = false;
+  console.log(body);
 
   // After filling the vlaue fields,the function will proceed to create
   // first the wordpress user.
   //return await fetch(targetUrl + urlRegister, {
 
-  return await fetch(process.env.REACT_APP_WORDPRESS + process.env.REGISTER, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: body,
-  })
+  return await fetch(
+    process.env.REACT_APP_WORDPRESS + process.env.REACT_APP_REGISTER,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: body,
+    }
+  )
     .catch((error) => {
       console.log(error.response.body);
     })
@@ -143,10 +133,9 @@ const signup = async (userData) => {
     })
     .then(function(res) {
       if (res.message) {
-        alert(res.message);
+        //  alert(res.message);
         if (res.code === 200) {
           return createCustomer(newCustomer, email).then((res) => {
-            created = true;
             return userData;
           });
         } else return null;
@@ -203,7 +192,6 @@ const updateAccount = async (userData, userOldData) => {
     id,
     username,
     email,
-    password,
     address_1,
     city,
     country,
@@ -256,12 +244,6 @@ const updateAccount = async (userData, userOldData) => {
     }
   }
 
-  const body = JSON.stringify({
-    username: username,
-    email: email,
-    password: password,
-  });
-
   if (user) {
     return await axios
       .post(process.env.REACT_APP_WORDPRESS`/wp/v2/users/${id}`, {
@@ -285,7 +267,7 @@ const updateAccount = async (userData, userOldData) => {
             country: userOldData.country,
             phone: userOldData.phone,
           };
-
+          this.login(thisUser);
           return thisUser;
         } else {
           alert("error");
@@ -318,6 +300,8 @@ const updateAccount = async (userData, userOldData) => {
             country: res.billing.country,
             phone: res.billing.phone,
           };
+          this.login(thisUser);
+
           return thisUser;
         }
       })
@@ -363,7 +347,6 @@ const order = async (orderData) => {
 };
 
 const fillOrder = (orderData) => {
-  var ready = false;
   var orderReady = {};
   const {
     email,
@@ -384,7 +367,7 @@ const fillOrder = (orderData) => {
       product_id: i.id,
       quantity: i.qty,
     };
-    theCart.push(product);
+    return theCart.push(product);
   });
 
   if (
@@ -452,53 +435,6 @@ const receiveLogin = (data) => {
   this.fillCustomer(data.user_email);
   // Also must to retrieve from wooApi the rest of information
   // about the logged user and populate its state
-};
-
-const logout = (data) => {
-  this.setState(() => {
-    return {
-      ...{
-        user: null,
-        order: null,
-        name: null,
-        lastName: null,
-        email: null,
-        address: null,
-        address2: null,
-        city: null,
-        state: null,
-        cp: null,
-        country: null,
-        phone: null,
-        cart: null,
-        cartSubTotal: null,
-        cartTax: null,
-        total: null,
-      },
-    };
-  });
-  // Also must to retrieve from wooApi the rest of information
-  // about the logged user and populate its state
-};
-
-const receiveSignup = (data) => {
-  const user = data.user;
-  const ship = data.shipping;
-  this.setState(() => {
-    return {
-      ...{
-        name: user.user_display_name,
-        email: user.user_email,
-        phone: ship.phone,
-        address: ship.street,
-        address2: ship.address2,
-        city: ship.city,
-        state: ship.province,
-        cp: ship.postal,
-        country: ship.country,
-      },
-    };
-  });
 };
 
 export default { login, signup, updateAccount, order };

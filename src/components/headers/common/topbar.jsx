@@ -1,13 +1,17 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
-import {withTranslate} from "react-redux-multilingual";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { withTranslate } from "react-redux-multilingual";
+import { connect } from "react-redux";
 
 class TopBar extends Component {
   render() {
-    const {translate} = this.props;
+    const { translate } = this.props;
+    var wishes = null;
+    if (this.props.state.wishlist.list.length > 0) {
+      wishes = true;
+    }
+
     var name = null;
-    const log = this.props.state.user.log;
     if (this.props.state.user.log) {
       if (this.props.state.user.log.username) {
         name = this.props.state.user.log.username;
@@ -22,7 +26,7 @@ class TopBar extends Component {
                 <ul>
                   <li>Del Prado Alimentacion</li>
                   <li>
-                    <i className="fa fa-phone" aria-hidden="true"></i>
+                    <i className="fa fa-phone" aria-hidden="true" />
                     {translate("call_us")}: 985 45 33 22
                   </li>
                 </ul>
@@ -32,18 +36,22 @@ class TopBar extends Component {
               <ul className="header-dropdown">
                 <li className="mobile-wishlist compare-mobile">
                   <Link to={`${process.env.PUBLIC_URL}/compare`}>
-                    <i className="fa fa-random" aria-hidden="true"></i>
+                    <i className="fa fa-random" aria-hidden="true" />
                     {translate("compare")}
                   </Link>
                 </li>
                 <li className="mobile-wishlist">
                   <Link to={`${process.env.PUBLIC_URL}/wishlist`}>
-                    <i className="fa fa-heart" aria-hidden="true"></i>
+                    {!wishes ? (
+                      <i className="fa fa-heart" aria-hidden="true" />
+                    ) : (
+                      <i className=" fa-heart icon-green" aria-hidden="true" />
+                    )}
                     {translate("wishlist")}
                   </Link>
                 </li>
                 <li className="onhover-dropdown mobile-account">
-                  <i className={name ? "fa fa-user " : "fa fa-user "}></i>
+                  <i className={name ? "icon-green fa-user " : "fa fa-user "} />
                   {name ? `${name}` : translate("my_account")}
 
                   {name ? (

@@ -172,9 +172,8 @@ class HeaderTwo extends Component {
                                   alt=""
                                 />
                                 <i
-                                  className="fa fa-search"
+                                  className="fa fa-search img-fluid search-img-mobile"
                                   onClick={this.handleSubmit}
-                                  className="img-fluid search-img-mobile"
                                 />
                               </form>
                             </div>
@@ -194,52 +193,44 @@ class HeaderTwo extends Component {
                               <h6>language</h6>
                               <ul>
                                 <li>
-                                  <a
-                                    href={null}
+                                  <button
+                                    className="setting-button"
                                     onClick={() => this.changeLanguage("es")}
                                   >
                                     Spanish
-                                  </a>{" "}
+                                  </button>{" "}
                                 </li>
                                 <li>
-                                  <a
-                                    href={null}
+                                  <button
+                                    className="setting-button"
                                     onClick={() => this.changeLanguage("en")}
                                   >
                                     English
-                                  </a>{" "}
-                                </li>
-                                <li>
-                                  <a
-                                    href={null}
-                                    onClick={() => this.changeLanguage("fn")}
-                                  >
-                                    French
-                                  </a>{" "}
+                                  </button>{" "}
                                 </li>
                               </ul>
                               <h6>currency</h6>
                               <ul className="list-inline">
                                 <li>
-                                  <a
-                                    href={null}
+                                  <button
+                                    className="setting-button"
                                     onClick={() =>
                                       this.props.changeCurrency("€")
                                     }
                                   >
                                     euro
-                                  </a>{" "}
+                                  </button>{" "}
                                 </li>
 
                                 <li>
-                                  <a
-                                    href={null}
+                                  <button
+                                    className="setting-button"
                                     onClick={() =>
                                       this.props.changeCurrency("$")
                                     }
                                   >
                                     dollar
-                                  </a>{" "}
+                                  </button>{" "}
                                 </li>
                               </ul>
                             </div>

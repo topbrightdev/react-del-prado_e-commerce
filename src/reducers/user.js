@@ -15,19 +15,20 @@ const userReducer = (state = initialState, action) => {
       return {
         log: action.log,
       };
+
     case FETCH_LOGIN:
       return {
         log: action.log,
       };
 
-    case RECEIVE_SIGNUP: {
-
+    case RECEIVE_SIGNUP:
       if (action.log !== undefined) {
         return {
           log: action.log,
         };
       }
-    }
+
+      break;
 
     case RECEIVE_UPDATED_ACCOUNT: {
       if (action.log !== undefined) {
@@ -44,7 +45,6 @@ const userReducer = (state = initialState, action) => {
     }
 
     default:
-
       return state;
   }
 };

@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { getTotal, getCartProducts } from "../../reducers";
 import {
   addToCart,
   addToWishlist,
   addToCompare,
   addSelectedProducts,
 } from "../../actions/indexO";
+
 import { getVisibleproducts } from "../../services/index";
 import ProductListItem from "./product-list-item";
 
@@ -76,7 +76,6 @@ class ProductListing extends Component {
 
         var productsToShow = [];
         var products = this.props.products[0];
-
         if (this.props.products[1].length > 0) {
           products = this.props.products[0];
         }
@@ -86,7 +85,9 @@ class ProductListing extends Component {
             if (productCategory.name === category) {
               productsToShow.push(product);
             }
+            return null;
           });
+          return null;
         });
       }
 
@@ -186,6 +187,7 @@ class ProductListing extends Component {
                 <div className="row">
                   <div className="col-sm-12 text-center section-b-space mt-5 no-found">
                     <img
+                      alt="404"
                       src={`${
                         process.env.PUBLIC_URL
                       }/assets/images/empty-search.jpg`}

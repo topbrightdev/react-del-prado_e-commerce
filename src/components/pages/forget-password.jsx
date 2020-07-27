@@ -1,10 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Breadcrumb from "../breadcrumb";
-class ForgetPassword extends Component {
-  constructor(props) {
-    super(props);
-  }
 
+class ForgetPassword extends Component {
   render() {
     return (
       <div>
@@ -22,12 +19,12 @@ class ForgetPassword extends Component {
                       <input
                         type="text"
                         className="form-control"
-                        id="email"
+                        id="email3"
                         placeholder="Enter Your Email"
                         required=""
                       />
                     </div>
-                    <a href="#" className="btn btn-solid">
+                    <a href="!#" className="btn btn-solid">
                       Submit
                     </a>
                   </div>

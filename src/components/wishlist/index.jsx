@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import NumberFormat from "react-number-format";
 import Breadcrumb from "../breadcrumb";
 import {
   addToCartAndRemoveWishlist,
@@ -14,7 +14,7 @@ class wishList extends Component {
   };
 
   render() {
-    const { Items, symbol } = this.props;
+    const { Items } = this.props;
 
     return (
       <div>
@@ -45,6 +45,7 @@ class wishList extends Component {
                                 }/left-sidebar/product/${item.id}`}
                               >
                                 <img
+                                  className="product-cart-size"
                                   src={
                                     item.variants
                                       ? item.variants[0].images
@@ -60,29 +61,29 @@ class wishList extends Component {
                                   process.env.PUBLIC_URL
                                 }/left-sidebar/product/${item.id}`}
                               >
-                                {item.name}
+                                <h2 className="cart-item-name">{item.name}</h2>
                               </Link>
                               <div className="mobile-cart-content row">
                                 <div className="col-xs-3">
-                                  <p>in stock</p>
+                                  <p className="td-color">in stock</p>
                                 </div>
                                 <div className="col-xs-3">
-                                  <h2 className="td-color">
-                                    {symbol}
-                                    {item.price -
-                                      (item.price * item.discount) / 100}
-                                    <del>
-                                      <span className="money">
-                                        {symbol}
-                                        {item.price}
-                                      </span>
-                                    </del>
-                                  </h2>
+                                  <NumberFormat
+                                    value={item.price}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={"€"}
+                                    renderText={(formattedValue) => (
+                                      <h2>
+                                        <span>{formattedValue}</span>
+                                      </h2>
+                                    )} // <--- Don't forget this!
+                                  />
                                 </div>
                                 <div className="col-xs-3">
                                   <h2 className="td-color">
                                     <a
-                                      href="javascript:void(0)"
+                                      href="!#"
                                       className="icon"
                                       onClick={() =>
                                         this.props.removeFromWishlist(item)
@@ -91,7 +92,7 @@ class wishList extends Component {
                                       <i className="fa fa-times" />
                                     </a>
                                     <a
-                                      href="javascript:void(0)"
+                                      href="!#"
                                       className="cart"
                                       onClick={() =>
                                         this.props.addToCartAndRemoveWishlist(
@@ -107,24 +108,24 @@ class wishList extends Component {
                               </div>
                             </td>
                             <td>
-                              <h2>
-                                {symbol}
-                                {item.price -
-                                  (item.price * item.discount) / 100}
-                                <del>
-                                  <span className="money">
-                                    {symbol}
-                                    {item.price}
-                                  </span>
-                                </del>
-                              </h2>
+                              <NumberFormat
+                                value={item.price}
+                                displayType={"text"}
+                                thousandSeparator={true}
+                                prefix={"€"}
+                                renderText={(formattedValue) => (
+                                  <h2>
+                                    <span>{formattedValue}</span>
+                                  </h2>
+                                )} // <--- Don't forget this!
+                              />
                             </td>
                             <td>
-                              <p>in stock</p>
+                              <h3 className="td-color">in stock</h3>
                             </td>
                             <td>
                               <a
-                                href="javascript:void(0)"
+                                href="!#"
                                 className="icon"
                                 onClick={() =>
                                   this.props.removeFromWishlist(item)
@@ -133,7 +134,7 @@ class wishList extends Component {
                                 <i className="fa fa-times" />
                               </a>
                               <a
-                                href="javascript:void(0)"
+                                href="!#"
                                 className="cart"
                                 onClick={() =>
                                   this.props.addToCartAndRemoveWishlist(item, 1)

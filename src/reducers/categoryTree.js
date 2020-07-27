@@ -15,23 +15,23 @@ const categoryTreeReducer = (state = initialState, action) => {
         ...state,
         categoryTree: action.categoryTree,
       };
+
     case FETCH_CATEGORYTREE:
       if (
         state.categoryTree.findIndex((category) => {
           if (category.id !== -1) {
-            const singleCategory = state.categoryTree.reduce(
-              (itemAcc, categoryTree) => {
-                return categoryTree;
-              },
-              []
-            );
+            const singleCategory = state.categoryTree.reduce((categoryTree) => {
+              return categoryTree;
+            }, []);
             return {
               ...state,
               category: singleCategory,
             };
-          }
+          } else return null;
         })
       );
+      break;
+
     default:
       return state;
   }

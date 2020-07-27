@@ -36,9 +36,8 @@ class Register extends Component {
   }
 
   handleChange = (e) => {
-    let newValue = "";
     var value = e.currentTarget.value;
-    newValue = value.replace(/\s/, " ");
+
     const name = e.currentTarget.name;
     if (e.currentTarget.name) {
       if (name === "postcode" || name === "phone") {
@@ -57,7 +56,6 @@ class Register extends Component {
     event.preventDefault();
     if (this.state.first_name.length > 0 && this.state.password > 0) {
       const {
-        payment,
         username,
         first_name,
         password,
@@ -144,7 +142,7 @@ class Register extends Component {
                       <div className="col-md-6">
                         <label htmlFor="email">email</label>
                         <input
-                          id="email"
+                          id="email_register"
                           type="text"
                           className="form-control"
                           placeholder="Email"
@@ -340,6 +338,9 @@ const mapStateToProps = (state) => ({
   state,
 });
 
-export default connect(mapStateToProps, {
-  signup,
-})(Register);
+export default connect(
+  mapStateToProps,
+  {
+    signup,
+  }
+)(Register);

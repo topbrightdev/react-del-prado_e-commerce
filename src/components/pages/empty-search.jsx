@@ -1,12 +1,7 @@
 import React, { Component } from "react";
-import Slider from "react-slick";
-
 import Breadcrumb from "../breadcrumb";
-class EmptySearch extends Component {
-  constructor(props) {
-    super(props);
-  }
 
+class EmptySearch extends Component {
   render() {
     return (
       <div>
@@ -19,7 +14,9 @@ class EmptySearch extends Component {
                 <div className="error-section">
                   <div className="empty-search-img">
                     <img
-                      src={`${process.env.PUBLIC_URL}/assets/images/empty-search.jpg`}
+                      src={`${
+                        process.env.PUBLIC_URL
+                      }/assets/images/empty-search.jpg`}
                       className="img-fluid empty-search-img"
                       alt=""
                     />

@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import SimpleReactValidator from "simple-react-validator";
 import { postReview, getReviews } from "../../../actions/indexO";
 
-import { Link } from "react-router-dom";
-
 class DetailsTopTabs extends Component {
   constructor(props) {
     super(props);
@@ -27,8 +25,6 @@ class DetailsTopTabs extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
-
     if (this.props.item.id) {
       this.setState(() => {
         return { id: this.props.item.id };
@@ -38,8 +34,6 @@ class DetailsTopTabs extends Component {
   }
 
   componentWillReceiveProps() {
-    console.log(this.props);
-
     if (this.props.state.reviews.reviews[0]) {
       this.setState(() => {
         return { reviewsToLoad: true };
@@ -48,7 +42,6 @@ class DetailsTopTabs extends Component {
   }
 
   componentWillUpdate() {
-    console.log(this.props);
     if (this.props.item.id !== this.state.id) {
       this.setState(() => {
         return { id: this.props.item.id };
@@ -131,12 +124,12 @@ class DetailsTopTabs extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { id, name, title, review, email, stars } = this.state;
+    const { id, name, review, email, stars } = this.state;
     var starsCounter = 0;
     stars.map((s) => {
       if (s === "on") {
-        starsCounter++;
-      }
+        return starsCounter++;
+      } else return null;
     });
 
     const data = {
@@ -211,6 +204,7 @@ class DetailsTopTabs extends Component {
                 <div className="mt-4 text-center">
                   <div className="embed-responsive embed-responsive-16by9">
                     <iframe
+                      title="autoplay"
                       src="https://www.youtube.com/embed/BUWzX78Ye_8"
                       allow="autoplay; encrypted-media"
                       allowFullScreen
@@ -224,7 +218,7 @@ class DetailsTopTabs extends Component {
                     <div className="col-md-12 ">
                       <div className="media m-0">
                         <label>Rating</label>
-                        <div className="media-body ml-3">
+                        <div className="media-body ml-3 ipad-max-width-content">
                           {this.state.stars.map((s, i) => (
                             <i
                               key={i}

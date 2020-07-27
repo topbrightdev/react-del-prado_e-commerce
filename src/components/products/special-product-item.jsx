@@ -79,8 +79,8 @@ class SpecialProductItem extends Component {
       <div className="product-box">
         <div className="img-wrapper">
           <div className="lable-block">
-            {product.new == true ? <span className="lable3">new</span> : ""}
-            {product.sale == true ? (
+            {product.new === true ? <span className="lable3">new</span> : ""}
+            {product.sale === true ? (
               <span className="lable4">on sale</span>
             ) : (
               ""
@@ -107,14 +107,14 @@ class SpecialProductItem extends Component {
           </div>
           <div className="cart-info cart-wrap">
             <a
-              dangerouslySetInnerHTML={undefined}
+              href="!#"
               title="Add to Wishlist"
               onClick={onAddToWishlistClicked}
             >
               <i className="fa fa-heart" aria-hidden="true" />
             </a>
             <a
-              dangerouslySetInnerHTML={undefined}
+              href="!#"
               data-toggle="modal"
               data-target="#quick-view"
               title="Quick View"
@@ -177,25 +177,21 @@ class SpecialProductItem extends Component {
               </div>
             </div>
           </div>
-          {this.state.stock != "InStock" ? <span>Out Of Stock</span> : ""}
+          {this.state.stock !== "InStock" ? <span>Out Of Stock</span> : ""}
         </div>
         <div className="product-detail text-center">
-          <div>
-            <div className="rating">{RatingStars}</div>
-            <Link
-              to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
-                product.id
-              }`}
-            >
-              <h6>{product.name}</h6>
-            </Link>
-            <h4>
-              <span className="money">
-                {symbol}
-                {product.price}
-              </span>
-            </h4>
-          </div>
+          <div className="rating">{RatingStars}</div>
+          <Link
+            to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}
+          >
+            <h6>{product.name}</h6>
+          </Link>
+          <h4>
+            <span className="money">
+              {symbol}
+              {product.price}
+            </span>
+          </h4>
         </div>
         <Modal open={this.state.open} onClose={this.onCloseModal} center>
           <div
@@ -252,7 +248,7 @@ class SpecialProductItem extends Component {
                               {product.size.map((size, i) => {
                                 return (
                                   <li key={i}>
-                                    <a href="#">{size}</a>
+                                    <a href="!#">{size}</a>
                                   </li>
                                 );
                               })}

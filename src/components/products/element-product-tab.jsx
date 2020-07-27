@@ -1,11 +1,10 @@
-import React, {Component} from "react";
-import Slider from "react-slick";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 // import Custom Components
 import Breadcrumb from "../breadcrumb";
-import {getVisibleproducts} from "../../services";
-import {addToCart, addToCompare, addToWishlist} from "../../actions/indexO";
+import { getVisibleproducts } from "../../services";
+import { addToCart, addToCompare, addToWishlist } from "../../actions/indexO";
 import SpecialProduct from "../../layouts/common/products";
 
 class ElementProductTab extends Component {
@@ -32,8 +31,11 @@ const mapStateToProps = (state) => ({
   symbol: state.data.symbol,
 });
 
-export default connect(mapStateToProps, {
-  addToCart,
-  addToWishlist,
-  addToCompare,
-})(ElementProductTab);
+export default connect(
+  mapStateToProps,
+  {
+    addToCart,
+    addToWishlist,
+    addToCompare,
+  }
+)(ElementProductTab);

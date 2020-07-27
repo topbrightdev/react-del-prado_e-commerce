@@ -1,28 +1,11 @@
-import {createStore, applyMiddleware, compose} from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 
 // middlewares
-import thunkMiddleware from "redux-thunk";
-import logger from "redux-logger";
+//import thunkMiddleware from "redux-thunk";
+import thunk from "redux-thunk";
 
 // Import custom components
 import rootReducer from "../reducers";
-
-function cleanLocalStorage() {
-  try {
-    localStorage.clear();
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-function saveToLocalStorage(state) {
-  try {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem("state", serializedState);
-  } catch (e) {
-    console.log(e);
-  }
-}
 
 function loadFromLocalStorage() {
   try {
@@ -45,7 +28,8 @@ const store = createStore(
   rootReducer,
   persistedState,
   compose(
-    applyMiddleware(thunkMiddleware),
+    //applyMiddleware(thunkMiddleware),
+    applyMiddleware(thunk),
 
     //For working redux dev tools in chrome (https://github.com/zalmoxisus/redux-devtools-extension)
     window.__REDUX_DEVTOOLS_EXTENSION__
@@ -55,9 +39,5 @@ const store = createStore(
         }
   )
 );
-const unsubscribe = store.subscribe(() => {
-  const state = store.getState();
-  saveToLocalStorage(state);
-});
 
 export default store;

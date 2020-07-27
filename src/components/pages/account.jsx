@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import SimpleReactValidator from "simple-react-validator";
-import {updateAccount} from "../../actions/indexO";
+import { updateAccount } from "../../actions/indexO";
 import Breadcrumb from "../breadcrumb";
 
 class Account extends Component {
@@ -97,18 +97,16 @@ class Account extends Component {
   }
 
   handleChange = (e) => {
-    let newValue = "";
     var value = e.currentTarget.value;
-    newValue = value.replace(/\s/, " ");
     const name = e.currentTarget.name;
     if (e.currentTarget.name) {
       if (name === "postcode" || name === "phone") {
         this.setState(() => {
-          return {[name]: value.replace(/\D/, "")};
+          return { [name]: value.replace(/\D/, "") };
         });
       } else {
         this.setState(() => {
-          return {[name]: value};
+          return { [name]: value };
         });
       }
     } else return null;
@@ -185,9 +183,9 @@ class Account extends Component {
                         )}
                       </div>
                       <div className="col-md-6">
-                        <label htmlFor="email">email</label>
+                        <label htmlFor="email2">email</label>
                         <input
-                          id="email"
+                          id="email2"
                           type="text"
                           className="form-control"
                           placeholder="Email"
@@ -204,7 +202,7 @@ class Account extends Component {
                       </div>
                     </div>
 
-                    <div className="form-row"></div>
+                    <div className="form-row" />
                     <div className="form-row">
                       <div className="col-md-6">
                         <label htmlFor="email">First Name</label>
@@ -389,6 +387,9 @@ const mapStateToProps = (state) => ({
   state,
 });
 
-export default connect(mapStateToProps, {
-  updateAccount,
-})(Account);
+export default connect(
+  mapStateToProps,
+  {
+    updateAccount,
+  }
+)(Account);

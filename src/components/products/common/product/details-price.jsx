@@ -47,36 +47,24 @@ class DetailsWithPrice extends Component {
 
   render() {
     const {
-      symbol,
       item,
       addToCartClicked,
       BuynowClicked,
       addToWishlistClicked,
     } = this.props;
 
-    var colorsnav = {
-      slidesToShow: 6,
-      swipeToSlide: true,
-      arrows: false,
-      dots: false,
-      focusOnSelect: true,
-    };
     let RatingStars = [];
-    console.log(item.average_rating);
     for (var i = 1; i <= parseInt(item.average_rating); i++) {
       RatingStars.push(<i className="fa fa-star" key={i + 20} />);
     }
-    console.log(RatingStars.length);
     if (RatingStars.length < 4) {
       var leftOff = 4 - RatingStars.length;
-      console.log(leftOff);
       for (i = 0; i <= leftOff; i++) {
         RatingStars.push(<i className="fa fa-star off" key={i} />);
       }
     }
     if (RatingStars.length > 5) {
       RatingStars.pop();
-      console.log(RatingStars);
     }
 
     return (
@@ -142,14 +130,14 @@ class DetailsWithPrice extends Component {
             </div>
           </div>
           <div className="product-buttons">
-            <a
+            <button
               className="btn btn-solid"
               onClick={() => addToCartClicked(item, this.state.quantity)}
             >
               add to cart
-            </a>
+            </button>
             <Link
-              to={`${process.env.PUBLIC_URL}/checkout`}
+              to={`${process.env.PUBLIC_URL}/cart`}
               className="btn btn-solid"
               onClick={() => BuynowClicked(item, this.state.quantity)}
             >
@@ -168,18 +156,27 @@ class DetailsWithPrice extends Component {
                   <a
                     href="https://www.facebook.com/delpradoalimentacion/"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fa fa-facebook" />
                   </a>
                 </li>
 
                 <li>
-                  <a href="https://twitter.com/" target="_blank">
+                  <a
+                    href="https://twitter.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <i className="fa fa-twitter" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.instagram.com/" target="_blank">
+                  <a
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <i className="fa fa-instagram" />
                   </a>
                 </li>

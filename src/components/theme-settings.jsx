@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { withTranslate } from "react-redux-multilingual";
 import { ToastContainer } from "react-toastify";
 
@@ -65,8 +64,8 @@ class ThemeSettings extends Component {
     return (
       <div>
         <a
-          // href="javascript:void(0)"
-          dangerouslySetInnerHTML={undefined}
+          href="!#"
+          //dangerouslySetInnerHTML="!#"
           onClick={() => this.openSetting()}
         >
           <div className="setting-sidebar" id="setting-icon">
@@ -78,11 +77,13 @@ class ThemeSettings extends Component {
 
         <div id="setting_box" className="setting-box">
           <a
-            // href="javascript:void(0)"
-            dangerouslySetInnerHTML={undefined}
+            href="!#"
+            title="close"
             className="overlay"
             onClick={() => this.closeSetting()}
-          />
+          >
+            Close
+          </a>
           <div className="setting_box_body">
             <div onClick={() => this.closeSetting()}>
               <div className="sidebar-back text-left">
@@ -94,6 +95,7 @@ class ThemeSettings extends Component {
               <a
                 href={`${process.env.PUBLIC_URL}/pages/register`}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-block purchase_btn"
               >
                 <i className="fa fa-shopping-cart" aria-hidden="true" /> Darse
@@ -102,6 +104,7 @@ class ThemeSettings extends Component {
               <a
                 href={`${process.env.PUBLIC_URL}/pages/login`}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-block purchase_btn"
               >
                 Comenzar sesion
@@ -110,6 +113,7 @@ class ThemeSettings extends Component {
               <a
                 href={`${process.env.PUBLIC_URL}/pages/forget-password`}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-block purchase_btn"
               >
                 Olvido la contrasena?

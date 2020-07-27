@@ -60,14 +60,6 @@ class LeftSideBar extends Component {
       fade: true,
     };
 
-    var productsnav = {
-      slidesToShow: 3,
-      swipeToSlide: true,
-      arrows: false,
-      dots: false,
-      focusOnSelect: true,
-    };
-
     if (item) {
       return (
         <div>
@@ -169,9 +161,11 @@ class LeftSideBar extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let productId = ownProps.match.params.id;
+  var productId = ownProps.match.params.id;
+  var item = state.data.products.find((el) => `${el.id}` === productId);
+
   return {
-    item: state.data.products.find((el) => el.id == productId),
+    item: item,
     symbol: state.data.symbol,
     state,
   };

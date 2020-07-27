@@ -15,20 +15,18 @@ class orderSuccess extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
     if (this.props.history.location.data) {
       if (this.props.history.location.data) {
         var receipt = this.props.history.location.data[0].charge;
         var order = this.props.state.order.rec;
-        console.log(receipt);
-        console.log(order);
+
         var payment = {
           payerID: receipt.fingerprint,
           paymentID: receipt.id,
           paymentToken: receipt.payment_method,
           orderId: order ? order.id : null,
         };
-        var date;
+
         this.setState(() => {
           return {
             payment,
@@ -43,22 +41,19 @@ class orderSuccess extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props);
-
     if (this.props.history.location.data) {
       if (this.state.orderTotal !== this.props.state.order.rec.total) {
         if (this.props.history.location.data) {
           var receipt = this.props.history.location.data[0].charge;
           var order = this.props.state.order.rec;
-          console.log(receipt);
-          console.log(order);
+
           var payment = {
             payerID: receipt.source.fingerprint,
             paymentID: receipt.id,
             paymentToken: receipt.payment_method,
             orderId: order.id,
           };
-          var date;
+
           this.setState(() => {
             return {
               payment,
@@ -75,8 +70,7 @@ class orderSuccess extends Component {
 
   render() {
     const { payment, items, symbol, orderTotal, order } = this.state;
-    console.log(this.state);
-    console.log(this.props);
+
     var options = {
       weekday: "long",
       year: "numeric",
@@ -239,7 +233,10 @@ class orderSuccess extends Component {
         </section>
       </div>
     ) : (
-      <section className="p-0">
+      <div className="loader-wrapper">
+        <div className="loader" />
+      </div>
+      /*<section className="p-0">
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
@@ -253,7 +250,7 @@ class orderSuccess extends Component {
             </div>
           </div>
         </div>
-      </section>
+      </section>*/
     );
   }
 }

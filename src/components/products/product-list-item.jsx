@@ -48,7 +48,6 @@ class ProductListItem extends Component {
   render() {
     const {
       product,
-      symbol,
       onAddToCartClicked,
       onAddToWishlistClicked,
       onAddToCompareClicked,
@@ -57,21 +56,21 @@ class ProductListItem extends Component {
     const { open } = this.state;
 
     let RatingStars = [];
-    console.log(product.average_rating);
+    //console.log(product.average_rating);
     for (var i = 1; i <= parseInt(product.average_rating); i++) {
       RatingStars.push(<i className="fa fa-star" key={i + 20} />);
     }
-    console.log(RatingStars.length);
+    //console.log(RatingStars.length);
     if (RatingStars.length < 4) {
       var leftOff = 4 - RatingStars.length;
-      console.log(leftOff);
+      //console.log(leftOff);
       for (i = 0; i <= leftOff; i++) {
         RatingStars.push(<i className="fa fa-star off" key={i} />);
       }
     }
     if (RatingStars.length > 5) {
       RatingStars.pop();
-      console.log(RatingStars);
+      // console.log(RatingStars);
     }
 
     return (
@@ -99,21 +98,23 @@ class ProductListItem extends Component {
           </div>
           <div className="cart-info cart-wrap">
             <button
+              className="list-item-button"
               title="Add to cart"
               onClick={() => onAddToCartClicked(product, 1)}
             >
               <i className="fa fa-shopping-cart" aria-hidden="true" />
             </button>
-            <a
-              // href="javascript:void(0)"
+
+            <button
+              className="list-item-button"
               dangerouslySetInnerHTML={undefined}
               title="Add to Wishlist"
               onClick={onAddToWishlistClicked}
             >
               <i className="fa fa-heart" aria-hidden="true" />
-            </a>
-            <a
-              //  href="javascript:void(0)"
+            </button>
+            <button
+              className="list-item-button"
               dangerouslySetInnerHTML={undefined}
               data-toggle="modal"
               data-target="#quick-view"
@@ -121,7 +122,7 @@ class ProductListItem extends Component {
               onClick={this.onOpenModal}
             >
               <i className="fa fa-search" aria-hidden="true" />
-            </a>
+            </button>
             <Link
               to={`${process.env.PUBLIC_URL}/compare`}
               title="Compare"
@@ -264,6 +265,7 @@ class ProductListItem extends Component {
                         >
                           add to cart
                         </button>
+
                         <Link
                           to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
                             product.id

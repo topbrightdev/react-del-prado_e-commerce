@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-
-//import {getSingleItem, getSpecialCollection} from "../../services/index";
-import { getSingleItem, getSpecialCollection } from "../../services/index";
 import NumberFormat from "react-number-format";
+import { getSpecialCollection } from "../../services/index";
 
 import {
   addToCart,
@@ -31,6 +28,27 @@ class Special extends Component {
     } = this.props;
 
     if (product[0]) {
+      var ratings = [];
+      product.map((p) => {
+        let RatingStars = [];
+
+        for (var i = 1; i <= parseInt(p.average_rating); i++) {
+          RatingStars.push(<i className="fa fa-star" key={i + 20} />);
+        }
+
+        if (RatingStars.length < 4) {
+          var leftOff = 4 - RatingStars.length;
+          for (i = 0; i <= leftOff; i++) {
+            RatingStars.push(<i className="fa fa-star off" key={i} />);
+          }
+        }
+        if (RatingStars.length > 5) {
+          RatingStars.pop();
+        }
+
+        return ratings.push(RatingStars);
+      });
+
       return (
         <div>
           {/*Paragraph*/}
@@ -49,7 +67,7 @@ class Special extends Component {
                       <div className="offer-slider">
                         <div className="sec-1">
                           <div className="product-box2">
-                            <div className="media">
+                            <div className="media ipad-block">
                               <Link
                                 to={`${
                                   process.env.PUBLIC_URL
@@ -62,12 +80,16 @@ class Special extends Component {
                                 />
                               </Link>
                               <div className="media-body align-self-center">
-                                <div className="rating">
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />
+                                <div className="rating d-f">
+                                  {ratings[0]}
+                                  <h6 className="rating-count">
+                                    {" "}
+                                    (
+                                    {product[0].rating_count > 0
+                                      ? product[0].rating_count + 1
+                                      : product[0].rating_count}
+                                    )
+                                  </h6>
                                 </div>
                                 <Link
                                   to={`${
@@ -81,7 +103,7 @@ class Special extends Component {
                                     value={product[0].price}
                                     displayType={"text"}
                                     thousandSeparator={true}
-                                    prefix={"$"}
+                                    prefix={"€"}
                                     renderText={(formattedValue) => (
                                       <span>{formattedValue}</span>
                                     )} // <--- Don't forget this!
@@ -91,7 +113,7 @@ class Special extends Component {
                             </div>
                           </div>
                           <div className="product-box2">
-                            <div className="media">
+                            <div className="media ipad-block">
                               <Link
                                 to={`${
                                   process.env.PUBLIC_URL
@@ -104,12 +126,16 @@ class Special extends Component {
                                 />
                               </Link>
                               <div className="media-body align-self-center">
-                                <div className="rating">
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />
+                                <div className="rating d-f">
+                                  {ratings[1]}
+                                  <h6 className="rating-count">
+                                    {" "}
+                                    (
+                                    {product[1].rating_count > 0
+                                      ? product[1].rating_count + 1
+                                      : product[1].rating_count}
+                                    )
+                                  </h6>
                                 </div>
                                 <Link
                                   to={`${
@@ -123,7 +149,7 @@ class Special extends Component {
                                     value={product[1].price}
                                     displayType={"text"}
                                     thousandSeparator={true}
-                                    prefix={"$"}
+                                    prefix={"€"}
                                     renderText={(formattedValue) => (
                                       <span>{formattedValue}</span>
                                     )} // <--- Don't forget this!
@@ -137,28 +163,20 @@ class Special extends Component {
                     </div>
                   </div>
                   <div className="col-md-4 center-slider m-t-10">
-                    <div>
-                      <div className="offer-slider">
-                        <div>
-                          <ProductItem
-                            product={product[2]}
-                            symbol={symbol}
-                            onAddToCompareClicked={() =>
-                              addToCompare(product[2])
-                            }
-                            onAddToWishlistClicked={() =>
-                              addToWishlist(product[2])
-                            }
-                            onAddToCartClicked={() => addToCart(product[2], 1)}
-                            onIncrementClicked={() =>
-                              incrementQty(product[2], 1)
-                            }
-                            onDecrementClicked={() =>
-                              decrementQty(product[2].id)
-                            }
-                            onRemoveFromCart={() => removeFromCart(product[2])}
-                          />
-                        </div>
+                    <div className="offer-slider">
+                      <div>
+                        <ProductItem
+                          product={product[2]}
+                          symbol={symbol}
+                          onAddToCompareClicked={() => addToCompare(product[2])}
+                          onAddToWishlistClicked={() =>
+                            addToWishlist(product[2])
+                          }
+                          onAddToCartClicked={() => addToCart(product[2], 1)}
+                          onIncrementClicked={() => incrementQty(product[2], 1)}
+                          onDecrementClicked={() => decrementQty(product[2].id)}
+                          onRemoveFromCart={() => removeFromCart(product[2])}
+                        />
                       </div>
                     </div>
                   </div>
@@ -167,7 +185,7 @@ class Special extends Component {
                       <div className="offer-slider">
                         <div className="sec-1">
                           <div className="product-box2">
-                            <div className="media">
+                            <div className="media ipad-block">
                               <Link
                                 to={`${
                                   process.env.PUBLIC_URL
@@ -180,12 +198,16 @@ class Special extends Component {
                                 />
                               </Link>
                               <div className="media-body align-self-center">
-                                <div className="rating">
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />
+                                <div className="rating d-f">
+                                  {ratings[3]}
+                                  <h6 className="rating-count">
+                                    {" "}
+                                    (
+                                    {product[3].rating_count > 0
+                                      ? product[3].rating_count + 1
+                                      : product[3].rating_count}
+                                    )
+                                  </h6>
                                 </div>
                                 <Link
                                   to={`${
@@ -199,7 +221,7 @@ class Special extends Component {
                                     value={product[3].price}
                                     displayType={"text"}
                                     thousandSeparator={true}
-                                    prefix={"$"}
+                                    prefix={"€"}
                                     renderText={(formattedValue) => (
                                       <span>{formattedValue}</span>
                                     )} // <--- Don't forget this!
@@ -209,7 +231,7 @@ class Special extends Component {
                             </div>
                           </div>
                           <div className="product-box2">
-                            <div className="media">
+                            <div className="media ipad-block">
                               <Link
                                 to={`${
                                   process.env.PUBLIC_URL
@@ -222,12 +244,16 @@ class Special extends Component {
                                 />
                               </Link>
                               <div className="media-body align-self-center">
-                                <div className="rating">
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />{" "}
-                                  <i className="fa fa-star" />
+                                <div className="rating d-f">
+                                  {ratings[4]}
+                                  <h6 className="rating-count">
+                                    {" "}
+                                    (
+                                    {product[4].rating_count > 0
+                                      ? product[4].rating_count + 1
+                                      : product[4].rating_count}
+                                    )
+                                  </h6>
                                 </div>
                                 <Link
                                   to={`${
@@ -241,7 +267,7 @@ class Special extends Component {
                                     value={product[4].price}
                                     displayType={"text"}
                                     thousandSeparator={true}
-                                    prefix={"$"}
+                                    prefix={"€"}
                                     renderText={(formattedValue) => (
                                       <span>{formattedValue}</span>
                                     )} // <--- Don't forget this!

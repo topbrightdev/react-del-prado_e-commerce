@@ -42,11 +42,8 @@ class HeaderTwo extends Component {
 
   componentDidUpdate() {
     if (this.props.data.product_details === "notFound") {
-      console.log("notFound");
       this.props.history.push(`${process.env.PUBLIC_URL}/pages/empty-search`);
     } else if (this.props.data.product_details.length > 0) {
-      console.log(this.props.data.product_details);
-      console.log(this.state.productName);
       if (
         this.props.data.product_details.name
           .toUpperCase()
@@ -120,39 +117,36 @@ class HeaderTwo extends Component {
   render() {
     return (
       <div>
-        <header id="sticky" className="sticky">
-          {this.state.isLoading ? <Pace color="#27ae60" /> : null}
-          <div className="mobile-fix-option" />
-          {/*Top Header Component*/}
-          <TopBar />
+        <form onSubmit={this.handleSubmit}>
+          <header id="sticky" className="sticky">
+            {this.state.isLoading ? <Pace color="#27ae60" /> : null}
+            <div className="mobile-fix-option" />
+            {/*Top Header Component*/}
+            <TopBar />
 
-          <div className="container-navbar">
-            <div className="row">
-              <div className="col-sm-12">
-                <div className="main-menu border-section border-top-0">
-                  <div className="brand-logo layout2-logo">
-                    <LogoImage logo={this.props.logoName} />
-                    <h6> Del Prado</h6>
-                  </div>
-                  <div className="container p-l-20 ipad-p-l-15">
-                    <div className="row">
-                      <div className="col-lg-12">
-                        <div className="main-nav-center">
-                          <NavBar />
+            <div className="container-navbar">
+              <div className="row">
+                <div className="col-sm-12">
+                  <div className="main-menu border-section border-top-0">
+                    <div className="brand-logo layout2-logo">
+                      <LogoImage logo={this.props.logoName} />
+                      <h6> Del Prado</h6>
+                    </div>
+                    <div className="container p-l-20 ipad-p-l-15">
+                      <div className="row">
+                        <div className="col-lg-12">
+                          <div className="main-nav-center">
+                            <NavBar />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="menu-right pull-right">
-                    <div>
-                      <div className="icon-nav">
-                        <ul>
-                          <li className="onhover-div mobile-search">
-                            <div>
-                              <form
-                                className="form-search"
-                                onSubmit={this.handleSubmit}
-                              >
+                    <div className="menu-right pull-right">
+                      <div>
+                        <div className="icon-nav">
+                          <ul>
+                            <li className="onhover-div mobile-search">
+                              <div className="form-search">
                                 <input
                                   type="text"
                                   className="form-control"
@@ -162,90 +156,92 @@ class HeaderTwo extends Component {
                                   value={this.state.productName}
                                   onChange={this.handleChange}
                                 />{" "}
+                                <button
+                                  className="invisible-button"
+                                  type="submit"
+                                >
+                                  {" "}
+                                  <img
+                                    src={`${
+                                      process.env.PUBLIC_URL
+                                    }/assets/images/icon/search.png`}
+                                    type="submit"
+                                    className="img-fluid search-img"
+                                    alt=""
+                                  />
+                                  <i className="fa fa-search img-fluid search-img-mobile" />
+                                </button>
+                              </div>
+                            </li>
+                            <li className="onhover-div mobile-setting">
+                              <div>
                                 <img
                                   src={`${
                                     process.env.PUBLIC_URL
-                                  }/assets/images/icon/search.png`}
-                                  onClick={this.handleSubmit}
-                                  type="submit"
-                                  className="img-fluid search-img"
+                                  }/assets/images/icon/setting.png`}
+                                  className="img-fluid"
                                   alt=""
                                 />
-                                <i
-                                  className="fa fa-search img-fluid search-img-mobile"
-                                  onClick={this.handleSubmit}
-                                />
-                              </form>
-                            </div>
-                          </li>
-                          <li className="onhover-div mobile-setting">
-                            <div>
-                              <img
-                                src={`${
-                                  process.env.PUBLIC_URL
-                                }/assets/images/icon/setting.png`}
-                                className="img-fluid"
-                                alt=""
-                              />
-                              <i className="fa fa-cog" />
-                            </div>
-                            <div className="show-div setting">
-                              <h6>language</h6>
-                              <ul>
-                                <li>
-                                  <button
-                                    className="setting-button"
-                                    onClick={() => this.changeLanguage("es")}
-                                  >
-                                    Spanish
-                                  </button>{" "}
-                                </li>
-                                <li>
-                                  <button
-                                    className="setting-button"
-                                    onClick={() => this.changeLanguage("en")}
-                                  >
-                                    English
-                                  </button>{" "}
-                                </li>
-                              </ul>
-                              <h6>currency</h6>
-                              <ul className="list-inline">
-                                <li>
-                                  <button
-                                    className="setting-button"
-                                    onClick={() =>
-                                      this.props.changeCurrency("€")
-                                    }
-                                  >
-                                    euro
-                                  </button>{" "}
-                                </li>
+                                <i className="fa fa-cog" />
+                              </div>
+                              <div className="show-div setting">
+                                <h6>language</h6>
+                                <ul>
+                                  <li>
+                                    <button
+                                      className="setting-button"
+                                      onClick={() => this.changeLanguage("es")}
+                                    >
+                                      Spanish
+                                    </button>{" "}
+                                  </li>
+                                  <li>
+                                    <button
+                                      className="setting-button"
+                                      onClick={() => this.changeLanguage("en")}
+                                    >
+                                      English
+                                    </button>{" "}
+                                  </li>
+                                </ul>
+                                <h6>currency</h6>
+                                <ul className="list-inline">
+                                  <li>
+                                    <button
+                                      className="setting-button"
+                                      onClick={() =>
+                                        this.props.changeCurrency("€")
+                                      }
+                                    >
+                                      euro
+                                    </button>{" "}
+                                  </li>
 
-                                <li>
-                                  <button
-                                    className="setting-button"
-                                    onClick={() =>
-                                      this.props.changeCurrency("$")
-                                    }
-                                  >
-                                    dollar
-                                  </button>{" "}
-                                </li>
-                              </ul>
-                            </div>
-                          </li>
-                          {/*Header Cart Component */}
-                          <CartContainer />
-                        </ul>
+                                  <li>
+                                    <button
+                                      className="setting-button"
+                                      onClick={() =>
+                                        this.props.changeCurrency("$")
+                                      }
+                                    >
+                                      dollar
+                                    </button>{" "}
+                                  </li>
+                                </ul>
+                              </div>
+                            </li>
+                            {/*Header Cart Component */}
+                            <CartContainer />
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </header>
+          </header>
+        </form>
       </div>
     );
   }

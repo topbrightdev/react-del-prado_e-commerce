@@ -1,7 +1,8 @@
 {
-  "name": "react-multikart",
+  "name": "delprado",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://waldenberginc.com",
   "main": "src/index.js",
   "basename": "/",
   "dependencies": {
@@ -174,5 +175,6 @@
   },
   "resolutions": {
     "**/@babel/runtime": "7.5.0"
-  }
+  },
+  "proxy": "https://waldenberginc.com:7000"
 }

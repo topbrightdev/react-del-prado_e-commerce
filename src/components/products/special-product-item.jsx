@@ -106,22 +106,22 @@ class SpecialProductItem extends Component {
             </Link>
           </div>
           <div className="cart-info cart-wrap">
-            <a
-              href="!#"
+            <button
+              className="invisible-button"
               title="Add to Wishlist"
               onClick={onAddToWishlistClicked}
             >
               <i className="fa fa-heart" aria-hidden="true" />
-            </a>
-            <a
-              href="!#"
+            </button>
+            <button
+              className="invisible-button"
               data-toggle="modal"
               data-target="#quick-view"
               title="Quick View"
               onClick={this.onOpenModal}
             >
               <i className="fa fa-search" aria-hidden="true" />
-            </a>
+            </button>
             <Link
               to={`${process.env.PUBLIC_URL}/compare`}
               title="Compare"
@@ -242,21 +242,6 @@ class SpecialProductItem extends Component {
                         <p>{product.shortDetails}</p>
                       </div>
                       <div className="product-description border-product">
-                        {product.size ? (
-                          <div className="size-box">
-                            <ul>
-                              {product.size.map((size, i) => {
-                                return (
-                                  <li key={i}>
-                                    <a href="!#">{size}</a>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </div>
-                        ) : (
-                          ""
-                        )}
                         <h6 className="product-title">quantity</h6>
                         <div className="qty-box">
                           <div className="input-group">

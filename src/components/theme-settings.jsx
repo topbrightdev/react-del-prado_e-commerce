@@ -62,28 +62,24 @@ class ThemeSettings extends Component {
     let tap_to_top = { display: "none" };
 
     return (
-      <div>
-        <a
-          href="!#"
-          //dangerouslySetInnerHTML="!#"
-          onClick={() => this.openSetting()}
-        >
+      <div className="theme-settings">
+        <button className="invisible-button" onClick={() => this.openSetting()}>
           <div className="setting-sidebar" id="setting-icon">
             <div>
               <i className="fa fa-cog" aria-hidden="true" />
             </div>
           </div>
-        </a>
+        </button>
 
         <div id="setting_box" className="setting-box">
-          <a
-            href="!#"
+          <button
+            className="invisible-button"
             title="close"
             className="overlay"
             onClick={() => this.closeSetting()}
           >
             Close
-          </a>
+          </button>
           <div className="setting_box_body">
             <div onClick={() => this.closeSetting()}>
               <div className="sidebar-back text-left">

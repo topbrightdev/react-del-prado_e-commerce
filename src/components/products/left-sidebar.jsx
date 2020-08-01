@@ -155,7 +155,11 @@ class LeftSideBar extends Component {
         </div>
       );
     } else {
-      return <h6>Loading</h6>;
+      return (
+        <div className="loader-wrapper">
+          <div className="loader" />
+        </div>
+      );
     }
   }
 }

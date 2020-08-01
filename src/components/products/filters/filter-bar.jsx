@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {filterSort} from "../../../actions/indexO";
-import {getVisibleproducts} from "../../../services";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { filterSort } from "../../../actions/indexO";
+import { getVisibleproducts } from "../../../services";
 
 class FilterBar extends Component {
   //List Layout View
@@ -64,13 +64,13 @@ class FilterBar extends Component {
               <i
                 className="fa fa-th grid-layout-view"
                 onClick={this.gridLayout}
-              ></i>
+              />
             </li>
             <li>
               <i
                 className="fa fa-list-ul list-layout-view"
                 onClick={this.listLayout}
-              ></i>
+              />
             </li>
           </ul>
         </div>
@@ -100,14 +100,6 @@ class FilterBar extends Component {
                 onClick={() => this.LayoutView(3)}
               />
             </li>
-            <li>
-              <img
-                src={`${process.env.PUBLIC_URL}/assets/images/icon/6.png`}
-                alt=""
-                className="product-6-layout-view"
-                onClick={() => this.LayoutView(2)}
-              />
-            </li>
           </ul>
         </div>
         <div className="product-page-filter">
@@ -130,4 +122,7 @@ const mapStateToProps = (state) => ({
   filters: state.filters,
 });
 
-export default connect(mapStateToProps, {filterSort})(FilterBar);
+export default connect(
+  mapStateToProps,
+  { filterSort }
+)(FilterBar);

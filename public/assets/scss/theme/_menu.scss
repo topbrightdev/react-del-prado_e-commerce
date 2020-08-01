@@ -1369,7 +1369,8 @@ header {
       width: 0;
       height: 0;
       overflow: hidden;
-      border-width: 8px; // tweak size of the arrow
+      border-width: 8px;
+      // tweak size of the arrow
       border-style: dashed dashed solid dashed;
       border-color: transparent transparent
         $theme-deafult__desktop-sub-item-color transparent;
@@ -2413,7 +2414,7 @@ header {
           width: 80%;
           position: fixed;
           bottom: 25px;
-          right: 10.5%;
+          right: 9.5%;
           font-size: 0;
           padding: 0;
           z-index: 1;

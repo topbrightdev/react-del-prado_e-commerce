@@ -20,8 +20,7 @@ const reviewsReducer = (state = initialState, action) => {
           ...state,
           reviews: action.reviews,
         };
-      }
-      break;
+      } else return { ...state };
 
     case FETCHED_REVIEW_DONE:
       if (action.reviews.length > 0) {
@@ -29,8 +28,7 @@ const reviewsReducer = (state = initialState, action) => {
           ...state,
           reviews: action.reviews,
         };
-      }
-      break;
+      } else return { ...state };
 
     default:
       return state;

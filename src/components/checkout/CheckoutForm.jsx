@@ -11,11 +11,12 @@ import axios from "axios";
 
 //4242424242424242
 
-const urlCharge =
-  process.env.NODE_ENV.trim() === "production"
-    ? `https://waldenberginc.com/stripe`
-    : "http://localhost:9000/stripe";
+//const urlCharge =
+//  process.env.NODE_ENV.trim() === "production"
+//    ? `https://waldenberginc.com:7000/stripe`
+//    : "http://localhost:7000/stripe";
 //const urlCharge ='http://waldenberginc.com/api/stripe/charge'
+const urlCharge = `https://waldenberginc.com/stripe`;
 
 const newTo = (data) => {
   return {
@@ -44,7 +45,7 @@ const CheckoutForm = ({
 
     const order = await axios
       .post(urlCharge, {
-        amount: amount,
+        amount: "2000",
         source: token.id,
         receipt_email: email,
       })

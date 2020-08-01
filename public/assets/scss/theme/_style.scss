@@ -55,7 +55,7 @@ body {
   width: 100%;
   height: 100%;
   margin: 0px;
-  padding: 0px;
+  padding: 0px;  
   overflow-x: hidden !important;
   letter-spacing: 0.8px;
 }
@@ -7273,106 +7273,6 @@ footer {
     width: 100%;
     height: 100%;
     transition: all 0.5s ease;
-  }
-}
-.demo-section {
-  .title-text {
-    h3 {
-      color: $theme-deafult;
-      margin-bottom: 24px;
-      display: inline-block;
-      padding-bottom: 5px;
-      font-size: 40px;
-      position: relative;
-      i {
-        font-size: 22px;
-        position: absolute;
-        top: 0;
-        right: -20px;
-      }
-    }
-  }
-  .demo-effects {
-    margin-bottom: 30px;
-    h4 {
-      text-transform: capitalize;
-    }
-    .set-position {
-      display: block;
-    }
-    > div {
-      text-decoration: none;
-      color: black;
-      .layout-container {
-        height: 110px;
-        width: 100%;
-        display: inline-flex;
-        background-size: cover;
-        transition: all 2s ease-out 0s;
-        box-shadow: -1px 2px 5px 1px #ececec;
-        @for $i from 1 through 70 {
-          &.demo#{$i} {
-            background-image: url("#{$assetspath}/landing-page/demo/#{$i}.jpg");
-          }
-        }
-      }
-      .demo-text {
-        h4 {
-          font-size: 16px;
-          margin-top: 10px;
-          margin-bottom: 0;
-          color: #000000;
-          span {
-            font-weight: 500;
-          }
-        }
-        .demo-btn {
-          margin-top: 10px;
-          .btn {
-            border: 1px solid #ddd;
-            background-color: white;
-            width: 90px;
-            color: $theme-deafult;
-            padding: 5px 10px;
-            border-radius: 30px;
-            &:hover {
-              background-color: $theme-deafult;
-              color: white;
-            }
-          }
-        }
-      }
-    }
-    &:last-child {
-      margin-bottom: 0;
-    }
-    &.effect-2 {
-      .layout-container {
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
-      &:hover {
-        .layout-container {
-          background-position: top !important;
-        }
-      }
-    }
-    &.effect-3 {
-      .layout-container {
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
-      &:hover {
-        .layout-container {
-          background-position: top !important;
-        }
-      }
-    }
-    &:hover {
-      .layout-container {
-        background-position: center 100% !important;
-      }
-    }
   }
 }
 @keyframes ring-rotate {

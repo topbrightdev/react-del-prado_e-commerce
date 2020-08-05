@@ -3,6 +3,7 @@ import {
   FETCH_LOGIN,
   RECEIVE_SIGNUP,
   RECEIVE_UPDATED_ACCOUNT,
+  LOGOUT,
 } from "../constants/ActionTypes";
 
 const initialState = {
@@ -21,10 +22,15 @@ const userReducer = (state = initialState, action) => {
         log: action.log,
       };
 
+    case LOGOUT:
+      return {
+        log: action.log,
+      };
+
     case RECEIVE_SIGNUP:
       if (action.log !== undefined) {
         return {
-          log: action.log,
+          log: "empty",
         };
       }
 
@@ -32,12 +38,10 @@ const userReducer = (state = initialState, action) => {
 
     case RECEIVE_UPDATED_ACCOUNT: {
       if (action.log !== undefined) {
-        alert("Your account has been updated succesfully");
         return {
           log: action.log,
         };
       } else {
-        alert("There has been a problem with the upload process");
         return {
           log: action.log,
         };

@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import NumberFormat from "react-number-format";
+import { withTranslate } from "react-redux-multilingual";
 
 import Breadcrumb from "../breadcrumb";
 import { removeFromCompare, addToCart } from "../../actions/indexO";
+import Banner from "../elements/element-banner";
 
 class Compare extends Component {
   changeQty = (e) => {
@@ -13,6 +15,8 @@ class Compare extends Component {
   };
 
   render() {
+    const { translate } = this.props;
+
     var settings = {
       infinite: false,
       speed: 300,
@@ -53,6 +57,7 @@ class Compare extends Component {
         {Items.length > 0 ? (
           <section className="compare-section section-b-space">
             <div className="container">
+              <Banner />
               <div className="row">
                 <div className="col-12">
                   <Slider {...settings} className="slide-4">
@@ -97,13 +102,13 @@ class Compare extends Component {
                           </div>
                           <div className="detail-part text-center">
                             <div className="title-detail">
-                              <h6>Description</h6>
+                              <h6>{translate("description")}</h6>
                             </div>
                             <div className="inner-detail">
                               {item.shortDetails ? (
                                 <p>{item.shortDetails}</p>
                               ) : (
-                                <p>"No description available"</p>
+                                <p>{translate("no_description")}</p>
                               )}
                             </div>
                           </div>
@@ -113,7 +118,7 @@ class Compare extends Component {
                               className="btn btn-solid"
                               onClick={() => addToCart(item, 1)}
                             >
-                              add to cart
+                              ={translate("add_cart")}
                             </a>
                           </div>
                         </div>
@@ -126,6 +131,7 @@ class Compare extends Component {
           </section>
         ) : (
           <section className="cart-section section-b-space">
+            <Banner />{" "}
             <div className="container">
               <div className="row">
                 <div className="col-sm-12">
@@ -139,9 +145,9 @@ class Compare extends Component {
                         alt=""
                       />
                       <h3>
-                        <strong>Compare List is Empty</strong>
+                        <strong>{translate("whishList_empty")}</strong>
                       </h3>
-                      <h4>Explore more shortlist some items.</h4>
+                      <h4>{translate("explore")}</h4>
                     </div>
                   </div>
                 </div>
@@ -161,4 +167,4 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   { removeFromCompare, addToCart }
-)(Compare);
+)(withTranslate(Compare));

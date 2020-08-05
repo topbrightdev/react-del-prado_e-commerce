@@ -7,6 +7,7 @@ const filtersReducerDefaultState = {
     max: 950,
   },
   sortBy: "LowToHigh",
+  grid: true,
 };
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
@@ -36,6 +37,12 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
         ...state,
         sortBy: action.sort_by,
       };
+    case types.CHANGE_LAYOUT:
+      return {
+        ...state,
+        grid: action.grid,
+      };
+
     default:
       return state;
   }

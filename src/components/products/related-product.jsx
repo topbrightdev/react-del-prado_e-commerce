@@ -1,22 +1,29 @@
-import React, {Component} from "react";
-import Slider from "react-slick";
-import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withTranslate } from "react-redux-multilingual";
 
-import {getBestSeller} from "../../services";
-import {addToCart, addToWishlist, addToCompare} from "../../actions/indexO";
+import { getBestSeller } from "../../services";
+import { addToCart, addToWishlist, addToCompare } from "../../actions/indexO";
 import ProductItem from "../layouts/common/product-item";
 
 class RelatedProduct extends Component {
   render() {
-    const {items, symbol, addToCart, addToWishlist, addToCompare} = this.props;
+    const { translate } = this.props;
+
+    const {
+      items,
+      symbol,
+      addToCart,
+      addToWishlist,
+      addToCompare,
+    } = this.props;
 
     return (
       <section className="section-b-space">
         <div className="container">
           <div className="row">
             <div className="col-12 product-related">
-              <h2>related products</h2>
+              <h2>{translate("related_products")}</h2>
             </div>
           </div>
           <div className="row search-product">
@@ -46,8 +53,11 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {
-  addToCart,
-  addToWishlist,
-  addToCompare,
-})(RelatedProduct);
+export default connect(
+  mapStateToProps,
+  {
+    addToCart,
+    addToWishlist,
+    addToCompare,
+  }
+)(withTranslate(RelatedProduct));

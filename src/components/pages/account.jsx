@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import SimpleReactValidator from "simple-react-validator";
+import { withTranslate } from "react-redux-multilingual";
 import { updateAccount } from "../../actions/indexO";
 import Breadcrumb from "../breadcrumb";
+import Banner from "../elements/element-banner";
 
 class Account extends Component {
   constructor(props) {
@@ -151,6 +153,7 @@ class Account extends Component {
     }
   }
   render() {
+    const { translate } = this.props;
     return (
       <div>
         <Breadcrumb title={"Update Account Parameters"} />
@@ -158,14 +161,15 @@ class Account extends Component {
         {/*Regsiter section*/}
         <section className="register-page section-b-space">
           <div className="container">
+            <Banner />
             <div className="row">
               <div className="col-lg-12">
-                <h3>Updata Account Parameters</h3>
+                <h3>{translate("update_parameter")}</h3>
                 <div className="theme-card">
                   <form className="theme-form" onSubmit={this.handleSubmit}>
                     <div className="form-row">
                       <div className="col-md-6">
-                        <label htmlFor="email">User Name</label>
+                        <label htmlFor="email">{translate("user_name")}</label>
                         <input
                           id="uname"
                           type="text"
@@ -205,7 +209,7 @@ class Account extends Component {
                     <div className="form-row" />
                     <div className="form-row">
                       <div className="col-md-6">
-                        <label htmlFor="email">First Name</label>
+                        <label htmlFor="email">{translate("name")}</label>
                         <input
                           id="fname"
                           type="text"
@@ -223,7 +227,7 @@ class Account extends Component {
                         )}
                       </div>
                       <div className="col-md-6">
-                        <label htmlFor="review">Last Name</label>
+                        <label htmlFor="review">{translate("last_name")}</label>
                         <input
                           id="lname"
                           type="text"
@@ -243,11 +247,14 @@ class Account extends Component {
                     </div>
 
                     <div className="checkout-title">
-                      <h3>Billing Details</h3>
+                      <h3>Billing Details{translate("")}</h3>
                     </div>
                     <div className="form-row">
                       <div className="col-md-6">
-                        <label htmlFor="country ">country </label>
+                        <label htmlFor="country ">
+                          {" "}
+                          {translate("country")}
+                        </label>
                         <input
                           id="country"
                           type="text"
@@ -265,7 +272,7 @@ class Account extends Component {
                         )}
                       </div>
                       <div className="col-md-6">
-                        <label htmlFor="review">Phone</label>
+                        <label htmlFor="review">{translate("phone")}</label>
                         <input
                           id="phone"
                           type="tel"
@@ -287,7 +294,10 @@ class Account extends Component {
                     </div>
                     <div className="form-row">
                       <div className="col-md-6">
-                        <label htmlFor="address ">address </label>
+                        <label htmlFor="address ">
+                          {" "}
+                          {translate("address")}
+                        </label>
                         <input
                           id="address_1"
                           type="text"
@@ -305,7 +315,7 @@ class Account extends Component {
                         )}
                       </div>
                       <div className="col-md-6">
-                        <label htmlFor="review">City</label>
+                        <label htmlFor="review">{translate("city")}</label>
                         <input
                           id="city"
                           type="text"
@@ -325,7 +335,7 @@ class Account extends Component {
                     </div>
                     <div className="form-row">
                       <div className="col-md-6">
-                        <label htmlFor="state ">state / province </label>
+                        <label htmlFor="state ">{translate("state")} </label>
                         <input
                           id="state"
                           type="text"
@@ -343,7 +353,7 @@ class Account extends Component {
                         )}
                       </div>
                       <div className="col-md-6">
-                        <label htmlFor="review">Postal</label>
+                        <label htmlFor="review">{translate("postal")}</label>
                         <input
                           id="postcode"
                           type="tel"
@@ -368,7 +378,7 @@ class Account extends Component {
                       className="btn btn-solid"
                       onClick={this.handleSubmit}
                     >
-                      Update Account
+                      {translate("submit")}
                     </button>
                   </form>
                 </div>
@@ -392,4 +402,4 @@ export default connect(
   {
     updateAccount,
   }
-)(Account);
+)(withTranslate(Account));

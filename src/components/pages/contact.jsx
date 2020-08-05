@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import * as emailjs from "emailjs-com";
 import SimpleReactValidator from "simple-react-validator";
 import Breadcrumb from "../breadcrumb";
+import { withTranslate } from "react-redux-multilingual";
+import Banner from "../elements/element-banner";
 
 //AIzaSyADbvaiUnaCa2HuKsVLMYbMUY4DvOUFIjk   GoogleAPImaps
 class Contact extends Component {
@@ -71,6 +73,8 @@ class Contact extends Component {
   /*   src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d50059.12775918716!2d72.78534673554945!3d21.16564923510817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1533793756956"
    */
   render() {
+    const { translate } = this.props;
+
     return (
       <div>
         <Breadcrumb title={"Contactanos"} />
@@ -78,6 +82,7 @@ class Contact extends Component {
         {/*Forget Password section*/}
         <section className=" contact-page section-b-space">
           <div className="container">
+            <Banner />
             <div className="row section-b-space">
               <div className="col-lg-7 map">
                 <iframe
@@ -92,7 +97,7 @@ class Contact extends Component {
                     <li>
                       <div className="contact-icon">
                         <i className="fa fa-phone" />
-                        <h6>Contactanos</h6>
+                        <h6>{translate("contact_us")}</h6>
                       </div>
                       <div className="media-body">
                         <p>+91 123 - 456 - 7890</p>
@@ -102,7 +107,7 @@ class Contact extends Component {
                     <li>
                       <div className="contact-icon">
                         <i className="fa fa-map-marker" aria-hidden="true" />
-                        <h6>Direccion</h6>
+                        <h6>{translate("address")}</h6>
                       </div>
                       <div className="media-body">
                         <p>C/ Armando Palacio Valdés , 10 </p>
@@ -112,7 +117,7 @@ class Contact extends Component {
                     <li>
                       <div className="contact-icon">
                         <i className="fa fa-envelope-o" />
-                        <h6>Direccion electronica</h6>
+                        <h6>{translate("electronic_contact")}</h6>
                       </div>
                       <div className="media-body">
                         <p>Support@delprado.com</p>
@@ -128,7 +133,7 @@ class Contact extends Component {
                 <form className="theme-form">
                   <div className="form-row">
                     <div className="col-md-6">
-                      <label htmlFor="name">Nombre</label>
+                      <label htmlFor="name">{translate("name")}</label>
                       <input
                         className="form-control"
                         type="text"
@@ -171,7 +176,9 @@ class Contact extends Component {
                       )}
                     </div>
                     <div>
-                      <label htmlFor="contactSubject">Asunto</label>
+                      <label htmlFor="contactSubject">
+                        {translate("issue")}
+                      </label>
                       <input
                         className="form-control"
                         type="text"
@@ -190,7 +197,9 @@ class Contact extends Component {
                       )}
                     </div>
                     <div className="col-md-12">
-                      <label htmlFor="review">Escribe aqui tu mensage</label>
+                      <label htmlFor="review">
+                        {translate("message_input")}
+                      </label>
                       <textarea
                         className="form-control"
                         cols={50}
@@ -213,7 +222,7 @@ class Contact extends Component {
                         className="btn btn-solid"
                         onClick={this.handleFormSubmit}
                       >
-                        Enviar
+                        {translate("submit")}
                       </button>
                     </div>
                   </div>
@@ -227,4 +236,4 @@ class Contact extends Component {
   }
 }
 
-export default Contact;
+export default withTranslate(Contact);

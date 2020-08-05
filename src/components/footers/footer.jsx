@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import Contact from "./Contact";
 import { SlideUpDown } from "../../services/script";
 import LogoImage from "../headers/common/logo";
+import { withTranslate } from "react-redux-multilingual";
 
 class FooterFour extends Component {
   componentDidMount() {
@@ -19,6 +20,8 @@ class FooterFour extends Component {
   }
 
   render() {
+    const { translate } = this.props;
+
     return (
       <footer className="">
         <div className="white-layout">
@@ -27,20 +30,8 @@ class FooterFour extends Component {
               <div className="row">
                 <div className="col-xl-6 offset-xl-3">
                   <div className="subscribe">
-                    <h4>newsletter</h4>
-                    <form className="form-inline subscribe-form classic-form">
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleFormControlInput"
-                          placeholder="Enter your email"
-                        />
-                      </div>
-                      <button type="submit" className="btn btn-solid">
-                        subscribe
-                      </button>
-                    </form>
+                    <h4>{translate("subscribe_newsletter")}</h4>
+                    <Contact />
                   </div>
                 </div>
               </div>
@@ -48,23 +39,17 @@ class FooterFour extends Component {
           </div>
         </div>
         <section className="section-b-space darken-layout">
-          <div className="container  mw-90">
+          <div className="container  mw-90 p-b-5">
             <div className="row footer-theme partition-f">
               <div className="col-lg-4 col-md-6 responsive-w100">
                 <div className="footer-title footer-mobile-title">
-                  <h4>about</h4>
+                  <h4>{translate("about_us")}</h4>
                 </div>
                 <div className="footer-contant">
                   <div className="footer-logo ta-c">
                     <LogoImage logo={this.props.logoName} />
                   </div>
-                  <p className="text-center">
-                    Alimentacion Del Prado lleva decadas produciendo y
-                    comercializando productos de la mas alta calidad cumpliendo
-                    con los mal altos estandares. <br />
-                    Ademas de distribuir otros productos avalados por sellos de
-                    garantia.
-                  </p>
+                  <p className="text-center">{translate("about_text")}</p>
                   <div className="footer-social">
                     <ul className="m-lr-a">
                       <li>
@@ -99,25 +84,25 @@ class FooterFour extends Component {
               <div className="col offset-xl-1">
                 <div className="sub-title">
                   <div className="footer-title">
-                    <h4>Mi cuenta de usuario</h4>
+                    <h4>{translate("my_account")}</h4>
                   </div>
                   <div className="footer-contant">
                     <ul>
                       <li>
                         <Link to={`${process.env.PUBLIC_URL}/pages/login`}>
-                          Logearse
+                          {translate("login")}
                         </Link>
                       </li>
                       <li>
                         <Link to={`${process.env.PUBLIC_URL}/pages/register`}>
-                          Darse de alta
+                          {translate("signup")}
                         </Link>
                       </li>
                       <li>
                         <Link
                           to={`${process.env.PUBLIC_URL}/pages/forget-password`}
                         >
-                          Olvido la contrasena?
+                          {translate("forget_password")}
                         </Link>
                       </li>
                     </ul>
@@ -127,23 +112,23 @@ class FooterFour extends Component {
               <div className="col">
                 <div className="sub-title">
                   <div className="footer-title">
-                    <h4>Informacion </h4>
+                    <h4> {translate("information")}</h4>
                   </div>
                   <div className="footer-contant">
                     <ul>
                       <li>
                         <Link to={`${process.env.PUBLIC_URL}/pages/about-us`}>
-                          Acerca de nosotros
+                          {translate("about_us")}
                         </Link>
                       </li>
                       <li>
                         <Link to={`${process.env.PUBLIC_URL}/pages/faq`}>
-                          Compra segura
+                          {translate("safe_buy")}
                         </Link>
                       </li>
                       <li>
                         <Link to={`${process.env.PUBLIC_URL}/pages/contact`}>
-                          Contactanos
+                          {translate("contact")}
                         </Link>
                       </li>
                     </ul>
@@ -153,22 +138,24 @@ class FooterFour extends Component {
               <div className="col">
                 <div className="sub-title">
                   <div className="footer-title">
-                    <h4>Acerca de nosotros</h4>
+                    <h4>{translate("about_us")}</h4>
                   </div>
                   <div className="footer-contant">
                     <ul className="contact-list">
                       <li>
                         <i className="fa fa-map-marker" />
-                        Del Prado Alimentacion c/ Armando Palacio Valdés , 10
-                        (45,67 km) 33600 Mieres
+                        {translate("address_text")}
                       </li>
                       <li>
                         <i className="fa fa-phone" />
-                        Llamanos: 985 45 33 22
+                        {translate("call_us")}
                       </li>
                       <li>
                         <i className="fa fa-envelope-o" />
-                        Email: <a href="!#">Support@delPrado.com</a>
+                        Email:{" "}
+                        <button className="invisible-button">
+                          Support@delPrado.com
+                        </button>
                       </li>
                     </ul>
                   </div>
@@ -192,54 +179,54 @@ class FooterFour extends Component {
                 <div className="payment-card-bottom">
                   <ul>
                     <li>
-                      <a href="!#">
+                      <button className="invisible-button">
                         <img
                           src={`${
                             process.env.PUBLIC_URL
                           }/assets/images/icon/visa.png`}
                           alt=""
                         />
-                      </a>
+                      </button>
                     </li>
                     <li>
-                      <a href="!#">
+                      <button className="invisible-button">
                         <img
                           src={`${
                             process.env.PUBLIC_URL
                           }/assets/images/icon/mastercard.png`}
                           alt=""
                         />
-                      </a>
+                      </button>
                     </li>
                     <li>
-                      <a href="!#">
+                      <button className="invisible-button">
                         <img
                           src={`${
                             process.env.PUBLIC_URL
                           }/assets/images/icon/paypal.png`}
                           alt=""
                         />
-                      </a>
+                      </button>
                     </li>
                     <li>
-                      <a href="!#">
+                      <button className="invisible-button">
                         <img
                           src={`${
                             process.env.PUBLIC_URL
                           }/assets/images/icon/american-express.png`}
                           alt=""
                         />
-                      </a>
+                      </button>
                     </li>
                     <li>
-                      <a href="!#">
+                      <button className="invisible-button">
                         <img
                           src={`${
                             process.env.PUBLIC_URL
                           }/assets/images/icon/discover.png`}
                           alt=""
                         />
-                      </a>
+                      </button>
                     </li>
                   </ul>
                 </div>
@@ -252,4 +239,4 @@ class FooterFour extends Component {
   }
 }
 
-export default FooterFour;
+export default withTranslate(FooterFour);

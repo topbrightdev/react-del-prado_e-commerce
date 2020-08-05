@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { withTranslate } from "react-redux-multilingual";
 
 class ElementCategory extends Component {
   newTo = (key) => {
@@ -10,6 +11,7 @@ class ElementCategory extends Component {
   };
 
   render() {
+    const { translate } = this.props;
     return (
       <div>
         {/*Category Two*/}
@@ -29,7 +31,7 @@ class ElementCategory extends Component {
                   </div>
                   <div className="category-box">
                     <Link to={this.newTo("Meat")}>
-                      <h2>carne</h2>
+                      <h2>{translate("meat")}</h2>
                     </Link>
                   </div>
                 </div>
@@ -47,7 +49,7 @@ class ElementCategory extends Component {
                   </div>
                   <div className="category-box">
                     <Link to={this.newTo("Fish")}>
-                      <h2>pescado</h2>
+                      <h2>{translate("fish")}</h2>
                     </Link>
                   </div>
                 </div>
@@ -65,7 +67,7 @@ class ElementCategory extends Component {
                   </div>
                   <div className="category-box">
                     <Link to={this.newTo("Bread")}>
-                      <h2>pan</h2>
+                      <h2>{translate("bread")}</h2>
                     </Link>
                   </div>
                 </div>
@@ -85,7 +87,7 @@ class ElementCategory extends Component {
                   </div>
                   <div className="category-box">
                     <Link to={this.newTo("FruitsVegetables")}>
-                      <h2>fruta</h2>
+                      <h2>{translate("fruits_vegetables")}</h2>
                     </Link>
                   </div>
                 </div>
@@ -103,7 +105,7 @@ class ElementCategory extends Component {
                   </div>
                   <div className="category-box">
                     <Link to={this.newTo("Meal")}>
-                      <h2>platos precocinados</h2>
+                      <h2>{translate("dishes")}</h2>
                     </Link>
                   </div>
                 </div>
@@ -121,7 +123,7 @@ class ElementCategory extends Component {
                   </div>
                   <div className="category-box">
                     <Link to={this.newTo("Drinks")}>
-                      <h2>bebidas</h2>
+                      <h2>{translate("drinks")}</h2>
                     </Link>
                   </div>
                 </div>
@@ -134,4 +136,4 @@ class ElementCategory extends Component {
   }
 }
 
-export default ElementCategory;
+export default withTranslate(ElementCategory);

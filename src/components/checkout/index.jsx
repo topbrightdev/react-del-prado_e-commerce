@@ -5,7 +5,9 @@ import PaypalExpressBtn from "react-paypal-express-checkout";
 import SimpleReactValidator from "simple-react-validator";
 import NumberFormat from "react-number-format";
 import { Elements } from "react-stripe-elements";
+import { withTranslate } from "react-redux-multilingual";
 
+import Banner from "../elements/element-banner";
 import CheckoutForm from "./CheckoutForm";
 import Breadcrumb from "../breadcrumb";
 import {
@@ -208,7 +210,7 @@ class checkOut extends Component {
   };
 
   render() {
-    const { cartItems, symbol, total } = this.props;
+    const { cartItems, symbol, total, translate } = this.props;
     // Paypal Integration
     const onSuccess = (payment) => {
       this.props.history.push({
@@ -252,18 +254,21 @@ class checkOut extends Component {
         <Breadcrumb title={"Checkout"} />
         <section className="section-b-space">
           <div className="container padding-cls">
+            <Banner />
             <div className="checkout-page">
               <div className="checkout-form">
                 <form>
                   <div className="checkout row">
                     <div className="col-lg-6 col-sm-12 col-xs-12">
                       <div className="checkout-title">
-                        <h3>Billing Details</h3>
+                        <h3>{translate("billing")}</h3>
                       </div>
                       <div className="row check-out">
                         <this.Username />
                         <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                          <div className="field-label">First Name</div>
+                          <div className="field-label">
+                            {translate("first_name")}
+                          </div>
                           <input
                             type="text"
                             name="first_name"
@@ -280,7 +285,9 @@ class checkOut extends Component {
                           )}
                         </div>
                         <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                          <div className="field-label">Last Name</div>
+                          <div className="field-label">
+                            {translate("last_name")}
+                          </div>
                           <input
                             type="text"
                             name="last_name"
@@ -296,7 +303,9 @@ class checkOut extends Component {
                           )}
                         </div>
                         <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                          <div className="field-label">Phone</div>
+                          <div className="field-label">
+                            {translate("phone")}
+                          </div>
                           <input
                             type="text"
                             name="phone"
@@ -312,7 +321,9 @@ class checkOut extends Component {
                           )}
                         </div>
                         <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                          <div className="field-label">Email Address</div>
+                          <div className="field-label">
+                            {translate("email_address")}
+                          </div>
                           <input
                             type="text"
                             name="email"
@@ -328,7 +339,9 @@ class checkOut extends Component {
                           )}
                         </div>
                         <div className="form-group col-md-12 col-sm-12 col-xs-12">
-                          <div className="field-label">Country</div>
+                          <div className="field-label">
+                            {translate("country")}
+                          </div>
                           <input
                             type="text"
                             name="country"
@@ -344,7 +357,9 @@ class checkOut extends Component {
                           )}
                         </div>
                         <div className="form-group col-md-12 col-sm-12 col-xs-12">
-                          <div className="field-label">Address</div>
+                          <div className="field-label">
+                            {translate("address")}
+                          </div>
                           <input
                             id="address_1"
                             type="text"
@@ -362,7 +377,7 @@ class checkOut extends Component {
                           )}
                         </div>
                         <div className="form-group col-md-12 col-sm-12 col-xs-12">
-                          <div className="field-label">Town/City</div>
+                          <div className="field-label">{translate("city")}</div>
                           <input
                             type="text"
                             name="city"
@@ -378,7 +393,9 @@ class checkOut extends Component {
                           )}
                         </div>
                         <div className="form-group col-md-12 col-sm-6 col-xs-12">
-                          <div className="field-label">State / County</div>
+                          <div className="field-label">
+                            {translate("state")}
+                          </div>
                           <input
                             type="text"
                             name="state"
@@ -394,7 +411,9 @@ class checkOut extends Component {
                           )}
                         </div>
                         <div className="form-group col-md-12 col-sm-6 col-xs-12">
-                          <div className="field-label">Postal Code</div>
+                          <div className="field-label">
+                            {translate("postal")}
+                          </div>
                           <input
                             type="text"
                             name="postcode"
@@ -419,7 +438,7 @@ class checkOut extends Component {
                           />
                           &ensp;{" "}
                           <label htmlFor="account-option">
-                            Create An Account?
+                            {translate("create_question")}
                           </label>
                         </div>
                       </div>
@@ -429,7 +448,8 @@ class checkOut extends Component {
                         <div className="order-box">
                           <div className="title-box">
                             <div>
-                              Product <span> Total</span>
+                              {translate("product")}{" "}
+                              <span> {translate("total")}</span>
                             </div>
                           </div>
                           <ul className="qty">
@@ -452,7 +472,7 @@ class checkOut extends Component {
                           </ul>
                           <ul className="sub-total">
                             <li>
-                              Subtotal{" "}
+                              {translate("subtotal")}
                               <span className="count">
                                 <NumberFormat
                                   value={total}
@@ -466,7 +486,7 @@ class checkOut extends Component {
                               </span>
                             </li>
                             <li>
-                              Shipping{" "}
+                              {translate("shipping")}
                               <div className="shipping">
                                 <div className="shopping-option">
                                   <input
@@ -475,7 +495,7 @@ class checkOut extends Component {
                                     id="free-shipping"
                                   />
                                   <label htmlFor="free-shipping">
-                                    Free Shipping
+                                    {translate("free_shipping")}
                                   </label>
                                 </div>
                                 <div className="shopping-option">
@@ -485,7 +505,7 @@ class checkOut extends Component {
                                     id="local-pickup"
                                   />
                                   <label htmlFor="local-pickup">
-                                    Local Pickup
+                                    {translate("local_pickup")}
                                   </label>
                                 </div>
                               </div>
@@ -494,7 +514,7 @@ class checkOut extends Component {
 
                           <ul className="total">
                             <li>
-                              Total{" "}
+                              Total
                               <span className="count2">
                                 <NumberFormat
                                   value={total}
@@ -607,4 +627,4 @@ export default connect(
     clearCart,
     signup,
   }
-)(checkOut);
+)(withTranslate(checkOut));

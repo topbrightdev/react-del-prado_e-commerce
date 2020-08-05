@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withTranslate } from "react-redux-multilingual";
 
 import {
   CardNumberElement,
@@ -66,31 +67,35 @@ const CheckoutForm = ({
     <div className="checkout-details">
       <div className="checkout-form farm-19">
         <h6 className="checkout-text">
-          Introduce your Credit Card Information
+          {this.props.translate("introduce_credit")}
         </h6>
-        <p>Amount: {total} $ </p>
+        <p>
+          {" "}
+          {this.props.translate("total")}
+          {total} ${" "}
+        </p>
 
         <div className="checkout-number">
           <label className="checkout-label-number">
-            Card details
+            {this.props.translate("card_details")}
             <CardNumberElement />
           </label>
         </div>
         <div className="checkout-card-details">
           <label className="checkout-label">
-            Expiration date
+            {this.props.translate("expiration_date")}
             <CardExpiryElement />
           </label>
 
           <label className="checkout-label cvc">
-            CVC
+            {this.props.translate("cvc")}
             <CardCVCElement />
           </label>
         </div>
       </div>
       <div className="checkout-div-button">
         <button type="button" className="btn-solid btn" onClick={handleSubmit}>
-          Pay
+          {this.props.translate("pay")}
         </button>
       </div>
     </div>
@@ -102,4 +107,6 @@ const mapStateToProps = (state) => ({
   state,
 });
 
-export default connect(mapStateToProps)(injectStripe(CheckoutForm));
+export default connect(mapStateToProps)(
+  injectStripe(withTranslate(CheckoutForm))
+);

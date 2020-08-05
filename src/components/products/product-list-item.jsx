@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-responsive-modal";
 import NumberFormat from "react-number-format";
+import withTranslate from "react-redux-multilingual/lib/withTranslate";
+import { connect } from "react-redux";
 
 class ProductListItem extends Component {
   constructor(props) {
@@ -12,7 +14,20 @@ class ProductListItem extends Component {
       stock: "InStock",
       quantity: 1,
       image: "",
+      grid: true,
     };
+  }
+
+  componentWillReceiveProps() {
+    console.log(this.props);
+    if (this.props.filters.grid !== this.state.grid) {
+      console.log(this.props.filters.grid);
+      this.setState(() => {
+        return {
+          grid: this.props.filters.grid,
+        };
+      });
+    }
   }
 
   onOpenModal = () => {
@@ -51,9 +66,13 @@ class ProductListItem extends Component {
       onAddToCartClicked,
       onAddToWishlistClicked,
       onAddToCompareClicked,
+      translate,
     } = this.props;
 
+    console.log(this.props);
+
     const { open } = this.state;
+    const grid = this.props.filters.grid;
 
     let RatingStars = [];
     //console.log(product.average_rating);
@@ -74,7 +93,13 @@ class ProductListItem extends Component {
     }
 
     return (
-      <div className="product-box">
+      <div
+        className={
+          this.props.filters.grid
+            ? "product-box"
+            : "product-box product-box-list"
+        }
+      >
         <div className="img-wrapper">
           <div className="front">
             <Link
@@ -215,13 +240,17 @@ class ProductListItem extends Component {
                       </div>
 
                       <div className="border-product">
-                        <h6 className="product-title">product details</h6>
+                        <h6 className="product-title">
+                          {translate("product details")}
+                        </h6>
                         <div className="txt-details">
                           {product.shortDetails}
                         </div>
                       </div>
                       <div className="product-description border-product">
-                        <h6 className="product-title">quantity</h6>
+                        <h6 className="product-title">
+                          {translate("quantity")}
+                        </h6>
                         <div className="qty-box">
                           <div className="input-group">
                             <span className="input-group-prepend">
@@ -263,7 +292,7 @@ class ProductListItem extends Component {
                             onAddToCartClicked(product, this.state.quantity)
                           }
                         >
-                          add to cart
+                          {translate("add_cart")}
                         </button>
 
                         <Link
@@ -272,7 +301,7 @@ class ProductListItem extends Component {
                           }`}
                           className="btn btn-solid"
                         >
-                          view detail
+                          {translate("view_details")}
                         </Link>
                       </div>
                     </div>
@@ -287,4 +316,8 @@ class ProductListItem extends Component {
   }
 }
 
-export default ProductListItem;
+const mapStateToProps = (state) => ({
+  filters: state.filters,
+});
+
+export default connect(mapStateToProps)(withTranslate(ProductListItem));

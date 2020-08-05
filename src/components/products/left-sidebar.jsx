@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import Slider from "react-slick";
 import "../common/index.scss";
 import { connect } from "react-redux";
+import { withTranslate } from "react-redux-multilingual";
 
 // import custom Components
 import Service from "./common/service";
@@ -60,13 +61,15 @@ class LeftSideBar extends Component {
       fade: true,
     };
 
+    const { translate } = this.props;
+
     if (item) {
       return (
         <div>
           {/*SEO Support*/}
           <Helmet>
             <title>
-              Del Prado Alimentacion | {item.category} | {item.name}
+              {translate("title_web")}| {item.category} | {item.name}
             </title>
             <meta name="description" content="Del Prado Alimentacion" />
           </Helmet>
@@ -79,12 +82,24 @@ class LeftSideBar extends Component {
             <section className="section-b-space">
               <div className="collection-wrapper">
                 <div className="container">
+                  <div className="top-banner-wrapper2">
+                    <button className="invisible-button">
+                      <img
+                        src={`${
+                          process.env.PUBLIC_URL
+                        }/assets/images/mega-menu/2.jpeg`}
+                        className="img-fluid"
+                        alt=""
+                      />
+                    </button>
+                  </div>
+
                   <div className="row">
                     <div className="col-sm-3 collection-filter" id="filter">
                       <div className="collection-mobile-back pl-5">
                         <span onClick={this.backClick} className="filter-back">
                           <i className="fa fa-angle-left" aria-hidden="true" />{" "}
-                          back
+                          {translate("back")}
                         </span>
                       </div>
 
@@ -108,7 +123,7 @@ class LeftSideBar extends Component {
                                   className="fa fa-filter"
                                   aria-hidden="true"
                                 />{" "}
-                                filter
+                                {translate("filter")}
                               </span>
                             </div>
                           </div>
@@ -182,4 +197,4 @@ export default connect(
     addToCartUnsafe,
     addToWishlist,
   }
-)(LeftSideBar);
+)(withTranslate(LeftSideBar));

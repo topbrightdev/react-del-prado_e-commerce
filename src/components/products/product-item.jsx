@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Modal from "react-responsive-modal";
+import { withTranslate } from "react-redux-multilingual";
 
 class ProductItem extends Component {
   constructor(props) {
@@ -88,6 +89,7 @@ class ProductItem extends Component {
       onAddToWishlistClicked,
       onAddToCompareClicked,
     } = this.props;
+    const { translate } = this.props;
 
     const stars = this.fetchRating(product.average_rating);
 
@@ -95,9 +97,13 @@ class ProductItem extends Component {
       <div className="product-box">
         <div className="img-wrapper">
           <div className="lable-block">
-            {product.new == true ? <span className="lable3">new</span> : ""}
+            {product.new == true ? (
+              <span className="lable3">{translate("new")}</span>
+            ) : (
+              ""
+            )}
             {product.sale == true ? (
-              <span className="lable4">on sale</span>
+              <span className="lable4">{translate("on_sale")}</span>
             ) : (
               ""
             )}
@@ -247,11 +253,15 @@ class ProductItem extends Component {
                       </div>
 
                       <div className="border-product">
-                        <h6 className="product-title">product details</h6>
+                        <h6 className="product-title">
+                          {translate("product_details")}
+                        </h6>
                         <p>{product.shortDetails}</p>
                       </div>
                       <div className="product-description border-product">
-                        <h6 className="product-title">quantity</h6>
+                        <h6 className="product-title">
+                          {translate("quantity")}
+                        </h6>
                         <div className="qty-box">
                           <div className="input-group">
                             <span className="input-group-prepend">
@@ -293,7 +303,7 @@ class ProductItem extends Component {
                             onAddToCartClicked(product, this.state.quantity)
                           }
                         >
-                          add to cart
+                          {translate("add_cart")}
                         </button>
                         <Link
                           to={`${process.env.PUBLIC_URL}/left-sidebar/product/${
@@ -301,7 +311,7 @@ class ProductItem extends Component {
                           }`}
                           className="btn btn-solid"
                         >
-                          view detail
+                          {translate("view_details")}
                         </Link>
                       </div>
                     </div>
@@ -316,4 +326,4 @@ class ProductItem extends Component {
   }
 }
 
-export default ProductItem;
+export default withTranslate(ProductItem);

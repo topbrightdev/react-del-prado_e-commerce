@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withTranslate } from "react-redux-multilingual";
 import { connect } from "react-redux";
+import { logout } from "../../../actions/indexO";
 
 class TopBar extends Component {
   render() {
@@ -27,7 +28,7 @@ class TopBar extends Component {
                   <li>Del Prado Alimentacion</li>
                   <li>
                     <i className="fa fa-phone" aria-hidden="true" />
-                    {translate("call_us")}: 985 45 33 22
+                    {translate("call_us")}
                   </li>
                 </ul>
               </div>
@@ -62,6 +63,17 @@ class TopBar extends Component {
                           data-lng="en"
                         >
                           {translate("my_account")}
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to={`${process.env.PUBLIC_URL}/`}
+                          data-lng="en"
+                          onClick={() => {
+                            this.props.logout();
+                          }}
+                        >
+                          {translate("logout")}
                         </Link>
                       </li>
                     </ul>
@@ -100,4 +112,7 @@ const mapStateToProps = (state) => ({
   state,
 });
 
-export default connect(mapStateToProps)(withTranslate(TopBar));
+export default connect(
+  mapStateToProps,
+  { logout }
+)(withTranslate(TopBar));

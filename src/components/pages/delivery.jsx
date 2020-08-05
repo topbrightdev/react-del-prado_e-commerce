@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import Breadcrumb from "../breadcrumb";
+import { withTranslate } from "react-redux-multilingual";
+import Banner from "../elements/element-banner";
 
 class delivery extends Component {
   render() {
+    const { translate } = this.props;
+
     var svgFreeShipping =
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -117 679.99892 679">\n' +
       "                                        <path\n" +
@@ -51,11 +55,12 @@ class delivery extends Component {
         {/*about section*/}
         <section className="about-page  section-b-space">
           <div className="container">
+            <Banner />
             <span>
               {" "}
               <h2 className="m-tb-5 txt-center">
                 {" "}
-                Realice la compra online de manera simple y segura
+                {translate("buy_safely")}
               </h2>{" "}
             </span>
 
@@ -67,7 +72,7 @@ class delivery extends Component {
               />
             </div>
             <h4 className="margin-t-10 txt-center">
-              Siga estos 3 sencillos pasos ....
+              {translate("follow_steps")}
             </h4>
 
             <div className="row ma-lr ">
@@ -79,7 +84,7 @@ class delivery extends Component {
                       src={`${process.env.PUBLIC_URL}/assets/images/select.png`}
                       alt="#"
                     />
-                    <h5>Selecciona los productos</h5>
+                    <h5>{translate("select_products")}</h5>
                   </div>
                 </div>
               </div>
@@ -93,7 +98,7 @@ class delivery extends Component {
                       }/assets/images/payment.png`}
                       alt="#"
                     />
-                    <h5>Realice el pago</h5>
+                    <h5>{translate("realize_payment")}</h5>
                   </div>
                 </div>
               </div>
@@ -107,7 +112,7 @@ class delivery extends Component {
                       }/assets/images/delivery.png`}
                       alt="#"
                     />
-                    <h5>Reciba los productos</h5>
+                    <h5>{translate("recive_products")}</h5>
                   </div>
                 </div>
               </div>
@@ -123,8 +128,8 @@ class delivery extends Component {
                 <div className="media">
                   <div dangerouslySetInnerHTML={{ __html: svgFreeShipping }} />
                   <div className="media-body">
-                    <h4>Envio gratuito</h4>
-                    <p>a partir de 30 eur</p>
+                    <h4>{translate("free_delivery")}</h4>
+                    <p>{translate("from_30")}</p>
                   </div>
                 </div>
               </div>
@@ -132,8 +137,8 @@ class delivery extends Component {
                 <div className="media">
                   <div dangerouslySetInnerHTML={{ __html: svgservice }} />
                   <div className="media-body">
-                    <h4>Servicio 24 X 7 </h4>
-                    <p>haga su pedido a cualquier hora</p>
+                    <h4>{translate("24_7")}</h4>
+                    <p>{translate("buy_whenever")}</p>
                   </div>
                 </div>
               </div>
@@ -141,8 +146,8 @@ class delivery extends Component {
                 <div className="media">
                   <div dangerouslySetInnerHTML={{ __html: svgoffer }} />
                   <div className="media-body">
-                    <h4>Reciba nuestras ofertas </h4>
-                    <p>ofertas especiales para socios</p>
+                    <h4> {translate("subscribe_sales")}</h4>
+                    <p>{translate("sales_customers")}</p>
                   </div>
                 </div>
               </div>
@@ -155,4 +160,4 @@ class delivery extends Component {
   }
 }
 
-export default delivery;
+export default withTranslate(delivery);

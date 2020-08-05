@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import NumberFormat from "react-number-format";
+import { withTranslate } from "react-redux-multilingual";
+
 import { getSpecialCollection } from "../../services/index";
 
 import {
@@ -16,6 +18,8 @@ import ProductItem from "./special-product-item";
 
 class Special extends Component {
   render() {
+    const { translate } = this.props;
+
     const {
       product,
       symbol,
@@ -56,7 +60,10 @@ class Special extends Component {
             <div className="full-box">
               <div className="container mw-90">
                 <div className="title4">
-                  <h2 className="title-inner4">special products</h2>
+                  <h2 className="title-inner4">
+                    {" "}
+                    {translate("special_products")}
+                  </h2>
                   <div className="line">
                     <span />
                   </div>
@@ -307,4 +314,4 @@ export default connect(
     decrementQty,
     removeFromCart,
   }
-)(Special);
+)(withTranslate(Special));

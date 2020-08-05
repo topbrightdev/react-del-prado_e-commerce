@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import NumberFormat from "react-number-format";
+import { withTranslate } from "react-redux-multilingual";
 import Breadcrumb from "../breadcrumb";
+import Banner from "../elements/element-banner";
+
 import {
   addToCartAndRemoveWishlist,
   removeFromWishlist,
@@ -14,6 +17,8 @@ class wishList extends Component {
   };
 
   render() {
+    const { translate } = this.props;
+
     const { Items } = this.props;
 
     return (
@@ -22,16 +27,17 @@ class wishList extends Component {
         {Items.length > 0 ? (
           <section className="wishlist-section section-b-space">
             <div className="container">
+              <Banner />
               <div className="row">
                 <div className="col-sm-12">
                   <table className="table cart-table table-responsive-xs">
                     <thead>
                       <tr className="table-head">
-                        <th scope="col">image</th>
-                        <th scope="col">product name</th>
-                        <th scope="col">price</th>
-                        <th scope="col">availability</th>
-                        <th scope="col">action</th>
+                        <th scope="col">{translate("image")}</th>
+                        <th scope="col">{translate("product_name")}</th>
+                        <th scope="col">{translate("price")}</th>
+                        <th scope="col">{translate("availability")}</th>
+                        <th scope="col">{translate("action")}</th>
                       </tr>
                     </thead>
                     {Items.map((item, index) => {
@@ -65,7 +71,9 @@ class wishList extends Component {
                               </Link>
                               <div className="mobile-cart-content row">
                                 <div className="col-xs-3">
-                                  <p className="td-color">in stock</p>
+                                  <p className="td-color">
+                                    in stock{translate("")}
+                                  </p>
                                 </div>
                                 <div className="col-xs-3">
                                   <NumberFormat
@@ -121,7 +129,9 @@ class wishList extends Component {
                               />
                             </td>
                             <td>
-                              <h3 className="td-color">in stock</h3>
+                              <h3 className="td-color">
+                                {translate("in_stock")}
+                              </h3>
                             </td>
                             <td>
                               <a
@@ -156,13 +166,13 @@ class wishList extends Component {
                     to={`${process.env.PUBLIC_URL}/left-sidebar/collection`}
                     className="btn btn-solid"
                   >
-                    continue shopping
+                    {translate("continue_shopping")}
                   </Link>
                   <Link
                     to={`${process.env.PUBLIC_URL}/checkout`}
                     className="btn btn-solid"
                   >
-                    check out
+                    {translate("check_out")}
                   </Link>
                 </div>
               </div>
@@ -171,6 +181,7 @@ class wishList extends Component {
         ) : (
           <section className="cart-section section-b-space">
             <div className="container">
+              <Banner />
               <div className="row">
                 <div className="col-sm-12">
                   <div>
@@ -183,9 +194,9 @@ class wishList extends Component {
                         alt=""
                       />
                       <h3>
-                        <strong>WhishList is Empty</strong>
+                        <strong>{translate("whishList_empty")}</strong>
                       </h3>
-                      <h4>Explore more shortlist some items.</h4>
+                      <h4>{translate("explore")}</h4>
                     </div>
                   </div>
                 </div>
@@ -208,4 +219,4 @@ export default connect(
     addToCartAndRemoveWishlist,
     removeFromWishlist,
   }
-)(wishList);
+)(withTranslate(wishList));

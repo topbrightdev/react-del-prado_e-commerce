@@ -4,6 +4,7 @@ import "react-tabs/style/react-tabs.scss";
 import { connect } from "react-redux";
 import SimpleReactValidator from "simple-react-validator";
 import { postReview, getReviews } from "../../../actions/indexO";
+import { withTranslate } from "react-redux-multilingual";
 
 class DetailsTopTabs extends Component {
   constructor(props) {
@@ -147,6 +148,8 @@ class DetailsTopTabs extends Component {
   }
 
   render() {
+    const { translate } = this.props;
+
     return (
       <section className="tab-product m-0">
         <div className="row">
@@ -156,28 +159,28 @@ class DetailsTopTabs extends Component {
                 <Tab className="nav-item">
                   <span className="nav-link ">
                     <i className="icofont icofont-man-in-glasses" />
-                    Details
+                    {translate("details")}
                   </span>
                   <div className="material-border" />
                 </Tab>
                 <Tab className="nav-item">
                   <span className="nav-link">
                     <i className="icofont icofont-contacts" />
-                    Video
+                    {translate("video")}
                   </span>
                   <div className="material-border" />
                 </Tab>
                 <Tab className="nav-item">
                   <span className="nav-link active">
                     <i className="icofont icofont-contacts" />
-                    Write Review
+                    {translate("write_review")}
                   </span>
                   <div className="material-border" />
                 </Tab>
                 <Tab className="nav-item">
                   <span className="nav-link active">
                     <i className="icofont icofont-contacts" />
-                    Reviews
+                    {translate("reviews")}
                   </span>
                   <div className="material-border" />
                 </Tab>
@@ -186,18 +189,7 @@ class DetailsTopTabs extends Component {
                 {this.props.item.description ? (
                   <p className="mt-4 p-0">{this.props.item.description}</p>
                 ) : (
-                  <p className="mt-4 p-0">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
-                  </p>
+                  <p className="mt-4 p-0">{translate("no_description")}</p>
                 )}
               </TabPanel>
               <TabPanel>
@@ -217,7 +209,7 @@ class DetailsTopTabs extends Component {
                   <div className="form-row">
                     <div className="col-md-12 ">
                       <div className="media m-0">
-                        <label>Rating</label>
+                        <label>{translate("rating")}</label>
                         <div className="media-body ml-3 ipad-max-width-content">
                           {this.state.stars.map((s, i) => (
                             <i
@@ -231,7 +223,7 @@ class DetailsTopTabs extends Component {
                       </div>
                     </div>
                     <div className="col-md-6">
-                      <label htmlFor="name">Name</label>
+                      <label htmlFor="name">{translate("name")}</label>
                       <input
                         type="text"
                         className="form-control"
@@ -244,7 +236,7 @@ class DetailsTopTabs extends Component {
                       />
                     </div>
                     <div className="col-md-6">
-                      <label htmlFor="email">Email</label>
+                      <label htmlFor="email">{translate("email")}</label>
                       <input
                         type="text"
                         className="form-control"
@@ -257,7 +249,9 @@ class DetailsTopTabs extends Component {
                       />
                     </div>
                     <div className="col-md-12">
-                      <label htmlFor="review">Review Title</label>
+                      <label htmlFor="review">
+                        {translate("review_title")}
+                      </label>
                       <input
                         type="text"
                         className="form-control"
@@ -270,7 +264,7 @@ class DetailsTopTabs extends Component {
                       />
                     </div>
                     <div className="col-md-12">
-                      <label htmlFor="review">Review </label>
+                      <label htmlFor="review"> {translate("review")}</label>
                       <textarea
                         className="form-control"
                         placeholder="Write Your Testimonial Here"
@@ -287,7 +281,7 @@ class DetailsTopTabs extends Component {
                         className="btn btn-solid"
                         onClick={this.handleSubmit}
                       >
-                        Submit Your Review
+                        {translate("submit_review")}
                       </button>
                     </div>
                   </div>
@@ -295,18 +289,7 @@ class DetailsTopTabs extends Component {
               </TabPanel>
               <TabPanel>
                 {!this.state.reviewsToLoad ? (
-                  <p className="mt-4 p-0">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book. It has survived not only five centuries,
-                    but also the leap into electronic typesetting, remaining
-                    essentially unchanged. It was popularised in the 1960s with
-                    the release of Letraset sheets containing Lorem Ipsum
-                    passages, and more recently with desktop publishing software
-                    like Aldus PageMaker including versions of Lorem Ipsum.
-                  </p>
+                  <p className="mt-4 p-0">{translate("no_reviews")}</p>
                 ) : (
                   <div className="reviews-canvas">
                     <this.Reviews />
@@ -331,4 +314,4 @@ export default connect(
     postReview,
     getReviews,
   }
-)(DetailsTopTabs);
+)(withTranslate(DetailsTopTabs));

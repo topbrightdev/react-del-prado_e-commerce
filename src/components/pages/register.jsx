@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import SimpleReactValidator from "simple-react-validator";
 import { signup } from "../../actions/indexO";
 import Breadcrumb from "../breadcrumb";
+import { withTranslate } from "react-redux-multilingual";
+import Banner from "../elements/element-banner";
 
 class Register extends Component {
   constructor(props) {
@@ -86,6 +88,7 @@ class Register extends Component {
     }
   }
   render() {
+    const { translate } = this.props;
     return (
       <div>
         <Breadcrumb title={"create account"} />
@@ -93,14 +96,15 @@ class Register extends Component {
         {/*Regsiter section*/}
         <section className="register-page section-b-space">
           <div className="container">
+            <Banner />
             <div className="row">
               <div className="col-lg-12">
-                <h3>create account</h3>
+                <h3>create account {translate("create_account")}</h3>
                 <div className="theme-card">
                   <form className="theme-form" onSubmit={this.handleSubmit}>
                     <div className="form-row">
                       <div className="col-md-6">
-                        <label htmlFor="email">User Name</label>
+                        <label htmlFor="email">{translate("user_name")}</label>
                         <input
                           id="uname"
                           type="text"
@@ -118,7 +122,7 @@ class Register extends Component {
                         )}
                       </div>
                       <div className="col-md-6">
-                        <label htmlFor="review">Password</label>
+                        <label htmlFor="review">{translate("password")}</label>
                         <input
                           id="password"
                           type="password"
@@ -160,7 +164,7 @@ class Register extends Component {
                     </div>
                     <div className="form-row">
                       <div className="col-md-6">
-                        <label htmlFor="email">First Name</label>
+                        <label htmlFor="email">{translate("name")}</label>
                         <input
                           id="fname"
                           type="text"
@@ -178,7 +182,7 @@ class Register extends Component {
                         )}
                       </div>
                       <div className="col-md-6">
-                        <label htmlFor="review">Last Name</label>
+                        <label htmlFor="review">{translate("last_name")}</label>
                         <input
                           id="lname"
                           type="text"
@@ -202,7 +206,10 @@ class Register extends Component {
                     </div>
                     <div className="form-row">
                       <div className="col-md-6">
-                        <label htmlFor="country ">country </label>
+                        <label htmlFor="country ">
+                          {" "}
+                          {translate("country")}
+                        </label>
                         <input
                           id="country"
                           type="text"
@@ -220,7 +227,7 @@ class Register extends Component {
                         )}
                       </div>
                       <div className="col-md-6">
-                        <label htmlFor="review">Phone</label>
+                        <label htmlFor="review">{translate("phone")}</label>
                         <input
                           id="phone"
                           type="tel"
@@ -242,7 +249,10 @@ class Register extends Component {
                     </div>
                     <div className="form-row">
                       <div className="col-md-6">
-                        <label htmlFor="address ">address </label>
+                        <label htmlFor="address ">
+                          {" "}
+                          {translate("address")}
+                        </label>
                         <input
                           id="address_1"
                           type="text"
@@ -260,7 +270,7 @@ class Register extends Component {
                         )}
                       </div>
                       <div className="col-md-6">
-                        <label htmlFor="review">City</label>
+                        <label htmlFor="review">{translate("city")}</label>
                         <input
                           id="city"
                           type="text"
@@ -280,7 +290,7 @@ class Register extends Component {
                     </div>
                     <div className="form-row">
                       <div className="col-md-6">
-                        <label htmlFor="state ">state / province </label>
+                        <label htmlFor="state ">{translate("state")} </label>
                         <input
                           id="state"
                           type="text"
@@ -298,7 +308,7 @@ class Register extends Component {
                         )}
                       </div>
                       <div className="col-md-6">
-                        <label htmlFor="review">Postal</label>
+                        <label htmlFor="review">{translate("postal")}</label>
                         <input
                           id="postcode"
                           type="tel"
@@ -319,7 +329,7 @@ class Register extends Component {
                       </div>
                     </div>
                     <button type="submit" className="btn btn-solid">
-                      Create Account
+                      {translate("create_account")}
                     </button>
                   </form>
                 </div>
@@ -343,4 +353,4 @@ export default connect(
   {
     signup,
   }
-)(Register);
+)(withTranslate(Register));

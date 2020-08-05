@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import SimpleReactValidator from "simple-react-validator";
+import { Helmet } from "react-helmet";
+import Banner from "../elements/element-banner";
 import { login } from "../../actions/indexO";
 import Breadcrumb from "../breadcrumb";
+import { withTranslate } from "react-redux-multilingual";
 
 class Login extends Component {
   constructor(props) {
@@ -49,16 +52,24 @@ class Login extends Component {
   }
 
   render() {
+    const { translate } = this.props;
     return (
       <div>
+        {/*SEO Support*/}
+        <Helmet>
+          <title>{translate("title_web")}</title>
+          <meta name="description" content="Del Prado Alimentacion" />
+        </Helmet>
+        {/*SEO Support End */}
         <Breadcrumb title={"Login"} />
 
         {/*Login section*/}
         <section className="login-page section-b-space">
           <div className="container">
+            <Banner />
             <div className="row">
               <div className="col-lg-6">
-                <h3>Login</h3>
+                <h3> {translate("login")}</h3>
                 <div className="theme-card">
                   <form className="theme-form" onSubmit={this.handleSubmit}>
                     <div className="form-group">
@@ -79,7 +90,7 @@ class Login extends Component {
                       )}
                     </div>
                     <div className="form-group">
-                      <label htmlFor="review">Password</label>
+                      <label htmlFor="review">{translate("password")}</label>
                       <input
                         type="password"
                         className="form-control"
@@ -97,27 +108,23 @@ class Login extends Component {
                       )}
                     </div>
                     <button type="submit" className="btn btn-solid">
-                      Login
+                      {translate("login")}
                     </button>
                   </form>
                 </div>
               </div>
               <div className="col-lg-6 right-login">
-                <h3>New Customer</h3>
+                <h3> {translate("new_customers")}</h3>
                 <div className="theme-card authentication-right">
-                  <h6 className="title-font">Create A Account</h6>
-                  <p>
-                    Sign up for a free account at our store. Registration is
-                    quick and easy. It allows you to be able to order from our
-                    shop. To start shopping click register.
-                  </p>
+                  <h6 className="title-font">{translate("create_account")}</h6>
+                  <p>{translate("create_account_text")}</p>
 
                   <Link
                     to={`${process.env.PUBLIC_URL}/pages/register`}
                     className="btn btn-solid"
                     data-lng="en"
                   >
-                    Create an Account
+                    {translate("create_account")}
                   </Link>
                 </div>
               </div>
@@ -138,4 +145,4 @@ export default connect(
   {
     login,
   }
-)(Login);
+)(withTranslate(Login));

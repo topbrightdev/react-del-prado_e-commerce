@@ -1,14 +1,18 @@
 import React, { Component } from "react";
+import { withTranslate } from "react-redux-multilingual";
+import Banner from "../elements/element-banner";
 import Breadcrumb from "../breadcrumb";
 
 class EmptySearch extends Component {
   render() {
+    const { translate } = this.props;
     return (
       <div>
         <Breadcrumb title={"Producto No Encontrado"} />
 
         <section className="p-0">
           <div className="container">
+            <Banner />
             <div className="row">
               <div className="col-sm-12">
                 <div className="error-section">
@@ -22,9 +26,9 @@ class EmptySearch extends Component {
                     />
                   </div>
                   <div className="empty-search-button">
-                    <a href="/" className="btn btn-solid">
-                      back to home
-                    </a>
+                    <button className="btn btn-solid">
+                      {translate("back_home")}
+                    </button>
                   </div>
                 </div>{" "}
               </div>
@@ -36,4 +40,4 @@ class EmptySearch extends Component {
   }
 }
 
-export default EmptySearch;
+export default withTranslate(EmptySearch);

@@ -1,6 +1,7 @@
 import {
   ADD_TO_WISHLIST,
   REMOVE_FROM_WISHLIST,
+  CLEAR_WISHLIST,
 } from "../constants/ActionTypes";
 
 export default function wishlistReducer(
@@ -31,6 +32,11 @@ export default function wishlistReducer(
     case REMOVE_FROM_WISHLIST:
       return {
         list: state.list.filter((id) => id !== action.product_id),
+      };
+
+    case CLEAR_WISHLIST:
+      return {
+        list: [],
       };
 
     default:

@@ -7,7 +7,7 @@ import Breadcrumb from "../breadcrumb";
 import FilterBar from "../products/filters/filter-bar";
 import { getAllProducts } from "../../actions/indexO";
 import PageNotFound from "../pages/404";
-
+import Banner from "../elements/element-banner";
 import "../common/index.scss";
 
 class CollectionNoSideBar extends Component {
@@ -96,23 +96,14 @@ class CollectionNoSideBar extends Component {
         <section className="section-b-space">
           <div className="collection-wrapper">
             <div className="container">
+              {" "}
+              <Banner />
               <div className="row">
                 <div className="collection-content col">
                   <div className="page-main-content">
                     <div className="container-fluid">
                       <div className="row">
                         <div className="col-sm-12">
-                          <div className="top-banner-wrapper">
-                            <a href="!#">
-                              <img
-                                src={`${
-                                  process.env.PUBLIC_URL
-                                }/assets/images/mega-menu/2.jpeg`}
-                                className="img-fluid"
-                                alt=""
-                              />
-                            </a>
-                          </div>
                           <div className="collection-product-wrapper">
                             <div className="product-top-filter">
                               <div className="container-fluid p-0">

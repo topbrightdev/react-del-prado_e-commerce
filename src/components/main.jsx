@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import "./common/index.scss";
 import Slider from "react-slick";
+import { withTranslate } from "react-redux-multilingual";
 
 // Import custom components
 import Special from "./products/special";
@@ -10,10 +11,12 @@ import ElementCategory from "./elements/element-category";
 
 class Vegetables extends Component {
   render() {
+    const { translate } = this.props;
+
     return (
       <div>
         <Helmet>
-          <title>Del Prado | Comercio Online</title>
+          <title>{translate("title_web")}</title>
         </Helmet>
 
         <ElementCategory />
@@ -26,15 +29,15 @@ class Vegetables extends Component {
                     <div className="col">
                       <div className="slider-contain">
                         <div className="items">
-                          <h4>ahorre 10%</h4>
-                          <h1>embutidos propios</h1>
+                          <h4>{translate("discount_10")}</h4>
+                          <h1>{translate("own_meat")}</h1>
                           <a
                             href={`${
                               process.env.PUBLIC_URL
                             }/left-sidebar/product/2957`}
                             className="btn btn-solid"
                           >
-                            shop now
+                            {translate("shop_now")}
                           </a>
                         </div>
                       </div>
@@ -50,13 +53,13 @@ class Vegetables extends Component {
                     <div className="col">
                       <div className="slider-contain">
                         <div className="items">
-                          <h4>descuentos de hasta el 15%</h4>
-                          <h1>recibe la compra en tu hogar</h1>
+                          <h4>{translate("discount_15")}</h4>
+                          <h1>{translate("receive_home")}</h1>
                           <a
                             href={`${process.env.PUBLIC_URL}/pages/delivery`}
                             className="btn btn-solid"
                           >
-                            consulte aqui
+                            {translate("ask_here")}
                           </a>
                         </div>
                       </div>
@@ -83,8 +86,8 @@ class Vegetables extends Component {
                       alt=""
                     />{" "}
                     <div className="media-body">
-                      <h4>Envio a domicilio</h4>
-                      <p>En compras superiores a 50 euros</p>
+                      <h4>{translate("home_delivery")}</h4>
+                      <p>{translate("more_than_50")}</p>
                     </div>
                   </div>
                 </div>
@@ -98,8 +101,8 @@ class Vegetables extends Component {
                       alt=""
                     />{" "}
                     <div className="media-body">
-                      <h4>Ganaderia Propia</h4>
-                      <p>La maxima garantia y calidad</p>
+                      <h4>{translate("own_cattle")}</h4>
+                      <p>{translate("maximum_quality")}</p>
                     </div>
                   </div>
                 </div>
@@ -113,8 +116,8 @@ class Vegetables extends Component {
                       alt=""
                     />
                     <div className="media-body">
-                      <h4>Productos organicos</h4>
-                      <p>Cultivado de la manera tradicional</p>
+                      <h4>{translate("organic_products")}</h4>
+                      <p>{translate("traditional_way")}</p>
                     </div>
                   </div>
                 </div>
@@ -131,9 +134,9 @@ class Vegetables extends Component {
               <div className="row">
                 <div className="col">
                   <div className="banner-contain">
-                    <h2>2020</h2>
-                    <h3>compra online</h3>
-                    <h4>con la confianza que da la cercania</h4>
+                    <h2>{translate("banner_date")}</h2>
+                    <h3>{translate("buy_online")}</h3>
+                    <h4>{translate("with_confidence")}</h4>
                   </div>
                 </div>
               </div>
@@ -150,4 +153,4 @@ class Vegetables extends Component {
   }
 }
 
-export default Vegetables;
+export default withTranslate(Vegetables);

@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { filterSort } from "../../../actions/indexO";
+import { withTranslate } from "react-redux-multilingual";
+
+import { filterSort, changeLayout } from "../../../actions/indexO";
 import { getVisibleproducts } from "../../../services";
 
 class FilterBar extends Component {
+  constructor(props) {
+    super(props);
+    this.gridLayout = this.gridLayout.bind(this);
+    this.listLayout = this.listLayout.bind(this);
+  }
   //List Layout View
   listLayout() {
     document.querySelector(".collection-grid-view").style = "opacity:0";
@@ -18,6 +25,8 @@ class FilterBar extends Component {
     setTimeout(function() {
       document.querySelector(".product-wrapper-grid").style = "opacity: 1";
     }, 500);
+    const grid = false;
+    this.props.changeLayout(grid);
   }
 
   //Grid Layout View
@@ -32,6 +41,8 @@ class FilterBar extends Component {
       el.className = "";
       el.classList.add("col-lg-3");
     });
+    const grid = true;
+    this.props.changeLayout(grid);
   }
 
   // Layout Column View
@@ -53,10 +64,12 @@ class FilterBar extends Component {
   };
 
   render() {
+    const { translate } = this.props;
+
     return (
       <div className="product-filter-content">
         <div className="search-count">
-          <h5>Showing Products 1-{this.props.products.length} Result</h5>
+          <h5>{translate("result")}</h5>
         </div>
         <div className="collection-view">
           <ul>
@@ -104,12 +117,12 @@ class FilterBar extends Component {
         </div>
         <div className="product-page-filter">
           <select onChange={(e) => this.props.filterSort(e.target.value)}>
-            <option value="">Sorting items</option>
-            <option value="HighToLow">Price: High to Low</option>
-            <option value="LowToHigh">Price: Low to High</option>
-            <option value="Newest">Newest Items</option>
-            <option value="AscOrder">Sort By Name: A To Z</option>
-            <option value="DescOrder">Sort By Name: Z To A</option>
+            <option value="">{translate("sorting_items")}</option>
+            <option value="HighToLow">{translate("price_high_2_low")}</option>
+            <option value="LowToHigh">{translate("price_low_2_high")}</option>
+            <option value="Newest">{translate("new_items")}</option>
+            <option value="AscOrder">{translate("sort_A_2_Z")}</option>
+            <option value="DescOrder">{translate("sort_Z_2_A")}</option>
           </select>
         </div>
       </div>
@@ -124,5 +137,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-  { filterSort }
-)(FilterBar);
+  { filterSort, changeLayout }
+)(withTranslate(FilterBar));

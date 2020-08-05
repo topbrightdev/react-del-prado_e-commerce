@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { withTranslate } from "react-redux-multilingual";
 
 var tree = [];
 var done = null;
@@ -132,6 +133,8 @@ class Breadcrumb extends Component {
   };
 
   render() {
+    const { translate } = this.props;
+
     if (this.state.tree) {
       return (
         <div className="breadcrumb-section">
@@ -144,7 +147,9 @@ class Breadcrumb extends Component {
                 <nav aria-label="breadcrumb" className="theme-breadcrumb">
                   <ol className="breadcrumb">
                     <li className="breadcrumb-item">
-                      <Link to={`${process.env.PUBLIC_URL}`}>Home</Link>
+                      <Link to={`${process.env.PUBLIC_URL}`}>
+                        {translate("home")}
+                      </Link>
                     </li>
                     {this.state.tree.map((c, i) => {
                       return (
@@ -164,4 +169,4 @@ class Breadcrumb extends Component {
   }
 }
 
-export default Breadcrumb;
+export default withTranslate(Breadcrumb);

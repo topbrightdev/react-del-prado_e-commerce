@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import Breadcrumb from "../breadcrumb";
+import { withTranslate } from "react-redux-multilingual";
+import Banner from "../elements/element-banner";
 
 class ForgetPassword extends Component {
   render() {
+    const { translate } = this.props;
+
     return (
       <div>
         <Breadcrumb title={"forget password"} />
@@ -10,9 +14,10 @@ class ForgetPassword extends Component {
         {/*Forget Password section*/}
         <section className="pwd-page section-b-space">
           <div className="container">
+            <Banner />
             <div className="row">
               <div className="col-lg-6 offset-lg-3">
-                <h2>Forget Your Password</h2>
+                <h2>{translate("forget_question")}</h2>
                 <form className="theme-form">
                   <div className="form-row">
                     <div className="col-md-12">
@@ -24,9 +29,9 @@ class ForgetPassword extends Component {
                         required=""
                       />
                     </div>
-                    <a href="!#" className="btn btn-solid">
-                      Submit
-                    </a>
+                    <button className="btn btn-solid">
+                      {translate("submit")}
+                    </button>
                   </div>
                 </form>
               </div>
@@ -38,4 +43,4 @@ class ForgetPassword extends Component {
   }
 }
 
-export default ForgetPassword;
+export default withTranslate(ForgetPassword);

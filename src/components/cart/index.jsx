@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import NumberFormat from "react-number-format";
+import { withTranslate } from "react-redux-multilingual";
 
 import Breadcrumb from "../breadcrumb";
 import { getCartTotal } from "../../services";
@@ -19,7 +20,7 @@ class cartComponent extends Component {
   }
 
   render() {
-    const { cartItems, symbol, total } = this.props;
+    const { cartItems, symbol, total, translate } = this.props;
     return (
       <div>
         {/*SEO Support*/}
@@ -35,17 +36,29 @@ class cartComponent extends Component {
         {cartItems.length > 0 ? (
           <section className="cart-section section-b-space">
             <div className="container">
+              <div className="top-banner-wrapper2">
+                <button className="invisible-button">
+                  <img
+                    src={`${
+                      process.env.PUBLIC_URL
+                    }/assets/images/mega-menu/2.jpeg`}
+                    className="img-fluid"
+                    alt=""
+                  />
+                </button>
+              </div>
+
               <div className="row">
                 <div className="col-sm-12">
                   <table className="table cart-table table-responsive-xs">
                     <thead>
                       <tr className="table-head">
-                        <th scope="col">image</th>
-                        <th scope="col">product name</th>
-                        <th scope="col">price</th>
-                        <th scope="col">quantity</th>
-                        <th scope="col">action</th>
-                        <th scope="col">total</th>
+                        <th scope="col">{translate("image")}</th>
+                        <th scope="col">{translate("product_name")}</th>
+                        <th scope="col">{translate("precio")}</th>
+                        <th scope="col">{translate("quantity")}</th>
+                        <th scope="col">{translate("action")}</th>
+                        <th scope="col">{translate("total")}</th>
                       </tr>
                     </thead>
                     {cartItems.map((item, index) => {
@@ -197,7 +210,7 @@ class cartComponent extends Component {
                   <table className="table cart-table table-responsive-md">
                     <tfoot>
                       <tr>
-                        <td>total price :</td>
+                        <td>{translate("total_price")}</td>
                         <td>
                           <h2>
                             <NumberFormat
@@ -222,7 +235,7 @@ class cartComponent extends Component {
                     to={`${process.env.PUBLIC_URL}/left-sidebar/collection`}
                     className="btn btn-solid"
                   >
-                    continue shopping
+                    {translate("continue_shopping")}
                   </Link>
                 </div>
                 <div className="col-6">
@@ -230,7 +243,7 @@ class cartComponent extends Component {
                     to={`${process.env.PUBLIC_URL}/checkout`}
                     className="btn btn-solid"
                   >
-                    check out
+                    check out{translate("check_out")}
                   </Link>
                 </div>
               </div>
@@ -251,9 +264,9 @@ class cartComponent extends Component {
                         alt=""
                       />
                       <h3>
-                        <strong>Your Cart is Empty</strong>
+                        <strong> {translate("empty_cart")}</strong>
                       </h3>
-                      <h4>Explore more shortlist some items.</h4>
+                      <h4> {translate("explore")}</h4>
                     </div>
                   </div>
                 </div>
@@ -278,4 +291,4 @@ export default connect(
     incrementQty,
     decrementQty,
   }
-)(cartComponent);
+)(withTranslate(cartComponent));

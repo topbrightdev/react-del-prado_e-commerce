@@ -155,7 +155,7 @@ class NavBar extends Component {
           <ul className="nav-menu" style={this.state.navClose}>
             <li className="back-btn" onClick={this.closeNav.bind(this)}>
               <div className="mobile-back text-right">
-                <span>Back</span>
+                <span>{translate("atras")}</span>
                 <i className="fa fa-angle-right pl-2" aria-hidden="true" />
               </div>
             </li>
@@ -191,7 +191,7 @@ class NavBar extends Component {
             <li>
               <Link to={this.newTo("Bread")} className="nav-link">
                 <Bread className="ma-lr" />
-                {translate("bakery")}
+                {translate("bread")}
               </Link>
               {loaded ? (
                 <ul className="nav-submenu">{this.handlerTree("Bread")}</ul>

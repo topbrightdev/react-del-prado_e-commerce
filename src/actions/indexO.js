@@ -1,5 +1,6 @@
 import shop from "../api/shop";
 import user from "../api/user";
+import contact from "../api/mailChimp";
 import * as types from "../constants/ActionTypes";
 
 import { toast } from "react-toastify";
@@ -137,6 +138,18 @@ export const login = (userData) => (dispatch) => {
   });
 };
 
+export const logout = () => (dispatch) => {
+  dispatch(closeConnection());
+  toast.error("User logged out");
+  dispatch(clearCart());
+  dispatch(clearWishlist());
+  dispatch(clearCompare());
+};
+
+export const closeConnection = () => ({
+  type: types.LOGOUT,
+});
+
 export const signupBegin = () => ({
   type: types.SIGNUP_BEGIN,
 });
@@ -239,10 +252,12 @@ export const addToWishlist = (product) => (dispatch) => {
   toast.success("Item Added to Wishlist");
   dispatch(addToWishlistUnsafe(product));
 };
+
 export const addToWishlistUnsafe = (product) => ({
   type: types.ADD_TO_WISHLIST,
   product,
 });
+
 export const removeFromWishlist = (product_id) => (dispatch) => {
   toast.error("Item Removed from Wishlist");
   dispatch({
@@ -250,6 +265,10 @@ export const removeFromWishlist = (product_id) => (dispatch) => {
     product_id,
   });
 };
+
+export const clearWishlist = () => ({
+  type: types.CLEAR_WISHLIST,
+});
 
 //Compare Products
 export const addToCompare = (product) => (dispatch) => {
@@ -265,6 +284,10 @@ export const addToCompareUnsafe = (product) => ({
 export const removeFromCompare = (product_id) => ({
   type: types.REMOVE_FROM_COMPARE,
   product_id,
+});
+
+export const clearCompare = () => ({
+  type: types.CLEAR_COMPARE,
 });
 
 // Filters
@@ -285,8 +308,34 @@ export const filterSort = (sort_by) => ({
   sort_by,
 });
 
+export const changeLayout = (grid) => (
+  console.log(grid),
+  {
+    type: types.CHANGE_LAYOUT,
+    grid,
+  }
+);
+
 // Currency
 export const changeCurrency = (symbol) => ({
   type: types.CHANGE_CURRENCY,
   symbol,
 });
+
+// MailChimp email newsletter subscription
+
+export const subscriptionDone = (res) => ({
+  type: types.SUBSCRIPTION_DONE,
+  res,
+});
+
+export const subscribeNewsletter = (email, firstname, lastname) => (
+  dispatch
+) => {
+  console.log(email, firstname, lastname);
+  contact(email, firstname, lastname).then((res) => {
+    toast.success("Subscribtion done successfullly");
+    console.log(res);
+    dispatch(subscriptionDone(res));
+  });
+};

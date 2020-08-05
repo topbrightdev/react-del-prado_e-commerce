@@ -3,6 +3,7 @@ import Slider from "react-slick";
 
 import Breadcrumb from "../breadcrumb";
 import { Slider2, Team4 } from "../../services/script";
+import Banner from "../elements/element-banner";
 
 class aboutUs extends Component {
   render() {
@@ -54,6 +55,7 @@ class aboutUs extends Component {
         {/*about section*/}
         <section className="about-page  section-b-space">
           <div className="container">
+            <Banner />
             <div className="row">
               <div className="col-lg-12">
                 <div className="banner-section">

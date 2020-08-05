@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { withTranslate } from "react-redux-multilingual";
 
 import {
   addToCart,
@@ -15,6 +16,7 @@ import ProductListItem from "./product-list-item";
 
 var category = null;
 var mounted = null;
+
 class ProductListing extends Component {
   constructor(props) {
     super(props);
@@ -127,7 +129,7 @@ class ProductListing extends Component {
       addToCart,
       symbol,
       addToWishlist,
-      addToCompare,
+      translate,
     } = this.props;
 
     var theProducts = products[0];
@@ -153,7 +155,7 @@ class ProductListing extends Component {
                   loader={<div className="loading-cls" />}
                   endMessage={
                     <p className="seen-cls seen-it-cls">
-                      <b>Yay! You have seen it all</b>
+                      <b>{translate("seen_all")}</b>
                     </p>
                   }
                 >
@@ -193,18 +195,13 @@ class ProductListing extends Component {
                       }/assets/images/empty-search.jpg`}
                       className="img-fluid mb-4"
                     />
-                    <h3>
-                      Sorry! Couldn't find the product you were looking For!!!{" "}
-                    </h3>
-                    <p>
-                      Please check if you have misspelt something or try
-                      searching with other words.
-                    </p>
+                    <h3>{translate("couldnt_find")}</h3>
+                    <p>{translate("check_misspelt")}</p>
                     <Link
                       to={`${process.env.PUBLIC_URL}/`}
                       className="btn btn-solid"
                     >
-                      continue shopping
+                      {translate("continue_shopping")}
                     </Link>
                   </div>
                 </div>
@@ -240,4 +237,4 @@ export default connect(
     addToCompare,
     addSelectedProducts,
   }
-)(ProductListing);
+)(withTranslate(ProductListing));

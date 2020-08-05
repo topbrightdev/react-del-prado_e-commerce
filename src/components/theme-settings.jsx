@@ -54,12 +54,17 @@ class ThemeSettings extends Component {
   }
 
   render() {
+    const { translate } = this.props;
+
     if (this.state.themeLayout) {
       document.body.classList.add("dark");
     } else {
       document.body.classList.remove("dark");
     }
     let tap_to_top = { display: "none" };
+    {
+      translate("");
+    }
 
     return (
       <div className="theme-settings">
@@ -78,7 +83,7 @@ class ThemeSettings extends Component {
             className="overlay"
             onClick={() => this.closeSetting()}
           >
-            Close
+            {translate("close")}
           </button>
           <div className="setting_box_body">
             <div onClick={() => this.closeSetting()}>
@@ -94,8 +99,8 @@ class ThemeSettings extends Component {
                 rel="noopener noreferrer"
                 className="btn btn-block purchase_btn"
               >
-                <i className="fa fa-shopping-cart" aria-hidden="true" /> Darse
-                de alta como cliente
+                <i className="fa fa-shopping-cart" aria-hidden="true" />{" "}
+                {translate("signup")}
               </a>
               <a
                 href={`${process.env.PUBLIC_URL}/pages/login`}
@@ -103,7 +108,7 @@ class ThemeSettings extends Component {
                 rel="noopener noreferrer"
                 className="btn btn-block purchase_btn"
               >
-                Comenzar sesion
+                {translate("login")}
               </a>
 
               <a
@@ -112,7 +117,7 @@ class ThemeSettings extends Component {
                 rel="noopener noreferrer"
                 className="btn btn-block purchase_btn"
               >
-                Olvido la contrasena?
+                {translate("forget_password")}
               </a>
             </div>
           </div>

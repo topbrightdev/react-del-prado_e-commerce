@@ -3,6 +3,7 @@ import { IntlActions } from "react-redux-multilingual";
 import Pace from "react-pace-progress";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { withTranslate } from "react-redux-multilingual";
 
 // Import custom components
 
@@ -115,6 +116,7 @@ class HeaderTwo extends Component {
   };
 
   render() {
+    const { translate } = this.props;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -132,7 +134,7 @@ class HeaderTwo extends Component {
                       <LogoImage logo={this.props.logoName} />
                       <h6> Del Prado</h6>
                     </div>
-                    <div className="container p-l-20 ipad-p-l-15">
+                    <div className="container p-l-20 ipad-p-l-15 navbar-container">
                       <div className="row">
                         <div className="col-lg-12">
                           <div className="main-nav-center">
@@ -185,14 +187,14 @@ class HeaderTwo extends Component {
                                 <i className="fa fa-cog" />
                               </div>
                               <div className="show-div setting">
-                                <h6>language</h6>
+                                <h6>{translate("language")}</h6>
                                 <ul>
                                   <li>
                                     <button
                                       className="setting-button"
                                       onClick={() => this.changeLanguage("es")}
                                     >
-                                      Spanish
+                                      Spanish{translate("")}
                                     </button>{" "}
                                   </li>
                                   <li>
@@ -200,11 +202,11 @@ class HeaderTwo extends Component {
                                       className="setting-button"
                                       onClick={() => this.changeLanguage("en")}
                                     >
-                                      English
+                                      English{translate("")}
                                     </button>{" "}
                                   </li>
                                 </ul>
-                                <h6>currency</h6>
+                                <h6>currency{translate("")}</h6>
                                 <ul className="list-inline">
                                   <li>
                                     <button
@@ -258,4 +260,4 @@ export default connect(
     changeCurrency,
     searchProduct,
   }
-)(withRouter(HeaderTwo));
+)(withRouter(withTranslate(HeaderTwo)));

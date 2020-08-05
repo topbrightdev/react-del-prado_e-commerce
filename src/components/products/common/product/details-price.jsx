@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NumberFormat from "react-number-format";
+import { withTranslate } from "react-redux-multilingual";
 
 class DetailsWithPrice extends Component {
   constructor(props) {
@@ -46,6 +47,8 @@ class DetailsWithPrice extends Component {
   };
 
   render() {
+    const { translate } = this.props;
+
     const {
       item,
       addToCartClicked,
@@ -94,7 +97,7 @@ class DetailsWithPrice extends Component {
 
           <div className="product-description border-product">
             <span className="instock-cls">{this.state.stock}</span>
-            <h6 className="product-title">quantity</h6>
+            <h6 className="product-title">{translate("quantity")}</h6>
             <div className="qty-box">
               <div className="input-group">
                 <span className="input-group-prepend">
@@ -134,22 +137,22 @@ class DetailsWithPrice extends Component {
               className="btn btn-solid"
               onClick={() => addToCartClicked(item, this.state.quantity)}
             >
-              add to cart
+              {translate("add_cart")}
             </button>
             <Link
               to={`${process.env.PUBLIC_URL}/cart`}
               className="btn btn-solid"
               onClick={() => BuynowClicked(item, this.state.quantity)}
             >
-              buy now
+              {translate("buy_now")}
             </Link>
           </div>
           <div className="border-product">
-            <h6 className="product-title">product details</h6>
+            <h6 className="product-title">{translate("product_details")}</h6>
             <p>{item.shortDetails}</p>
           </div>
           <div className="border-product">
-            <h6 className="product-title">share it</h6>
+            <h6 className="product-title">{translate("share_it")}</h6>
             <div className="product-icon">
               <ul className="product-social">
                 <li>
@@ -186,7 +189,7 @@ class DetailsWithPrice extends Component {
                 onClick={() => addToWishlistClicked(item)}
               >
                 <i className="fa fa-heart" />
-                <span className="title-font">Add To WishList</span>
+                <span className="title-font">{translate("add_whislist")}</span>
               </button>
             </div>
           </div>
@@ -196,4 +199,4 @@ class DetailsWithPrice extends Component {
   }
 }
 
-export default DetailsWithPrice;
+export default withTranslate(DetailsWithPrice);

@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import { withTranslate } from "react-redux-multilingual";
 
 import Breadcrumb from "../breadcrumb";
 import {
@@ -21,7 +22,9 @@ class ElementService extends Component {
               <div className="col-md-4 service-block">
                 <div className="media">
                   <img
-                    src={`${process.env.PUBLIC_URL}/assets/images/icon/service1.png`}
+                    src={`${
+                      process.env.PUBLIC_URL
+                    }/assets/images/icon/service1.png`}
                     alt=""
                   />
                   <div className="media-body">
@@ -33,7 +36,9 @@ class ElementService extends Component {
               <div className="col-md-4 service-block">
                 <div className="media">
                   <img
-                    src={`${process.env.PUBLIC_URL}/assets/images/icon/service2.png`}
+                    src={`${
+                      process.env.PUBLIC_URL
+                    }/assets/images/icon/service2.png`}
                     alt=""
                   />
                   <div className="media-body">
@@ -45,7 +50,9 @@ class ElementService extends Component {
               <div className="col-md-4 service-block">
                 <div className="media">
                   <img
-                    src={`${process.env.PUBLIC_URL}/assets/images/icon/service3.png`}
+                    src={`${
+                      process.env.PUBLIC_URL
+                    }/assets/images/icon/service3.png`}
                     alt=""
                   />
                   <div className="media-body">
@@ -63,7 +70,7 @@ class ElementService extends Component {
           <section className="service section-b-space  border-section border-top-0">
             <div className="row partition4 ">
               <div className="col-lg-3 col-md-6 service-block1">
-                <div dangerouslySetInnerHTML={{__html: svgFreeShipping}} />
+                <div dangerouslySetInnerHTML={{ __html: svgFreeShipping }} />
                 <h4>free shipping</h4>
                 <p>
                   Contrary to popular belief, Lorem Ipsum is not simply random
@@ -71,7 +78,7 @@ class ElementService extends Component {
                 </p>
               </div>
               <div className="col-lg-3 col-md-6 service-block1 ">
-                <div dangerouslySetInnerHTML={{__html: svgservice}} />
+                <div dangerouslySetInnerHTML={{ __html: svgservice }} />
                 <h4>24 X 7 service</h4>
                 <p>
                   Contrary to popular belief, Lorem Ipsum is not simply random
@@ -79,7 +86,7 @@ class ElementService extends Component {
                 </p>
               </div>
               <div className="col-lg-3 col-md-6 service-block1 border border-0">
-                <div dangerouslySetInnerHTML={{__html: svgoffer}} />
+                <div dangerouslySetInnerHTML={{ __html: svgoffer }} />
                 <h4>festival offer</h4>
                 <p>
                   Contrary to popular belief, Lorem Ipsum is not simply random
@@ -87,7 +94,7 @@ class ElementService extends Component {
                 </p>
               </div>
               <div className="col-lg-3 col-md-6 service-block1 border border-0">
-                <div dangerouslySetInnerHTML={{__html: svgpayment}} />
+                <div dangerouslySetInnerHTML={{ __html: svgpayment }} />
                 <h4>online payment</h4>
                 <p>
                   Contrary to popular belief, Lorem Ipsum is not simply random
@@ -105,7 +112,9 @@ class ElementService extends Component {
               <div className="row">
                 <div className="col-lg-3 col-sm-6 service-block">
                   <div className="media">
-                    <div dangerouslySetInnerHTML={{__html: svgFreeShipping}} />
+                    <div
+                      dangerouslySetInnerHTML={{ __html: svgFreeShipping }}
+                    />
                     <div className="media-body">
                       <h4>free shipping</h4>
                       <p>free shipping world wide</p>
@@ -114,7 +123,7 @@ class ElementService extends Component {
                 </div>
                 <div class="col-lg-3 col-sm-6 service-block">
                   <div className="media">
-                    <div dangerouslySetInnerHTML={{__html: svgservice}} />
+                    <div dangerouslySetInnerHTML={{ __html: svgservice }} />
                     <div className="media-body">
                       <h4>24 X 7 service</h4>
                       <p>online service for new customer</p>
@@ -123,7 +132,7 @@ class ElementService extends Component {
                 </div>
                 <div class="col-lg-3 col-sm-6 service-block">
                   <div className="media">
-                    <div dangerouslySetInnerHTML={{__html: svgoffer}} />
+                    <div dangerouslySetInnerHTML={{ __html: svgoffer }} />
                     <div className="media-body">
                       <h4>festival offer</h4>
                       <p>new online special festival offer</p>
@@ -132,7 +141,7 @@ class ElementService extends Component {
                 </div>
                 <div class="col-lg-3 col-sm-6 service-block">
                   <div className="media border-0 m-0">
-                    <div dangerouslySetInnerHTML={{__html: svgpayment}} />
+                    <div dangerouslySetInnerHTML={{ __html: svgpayment }} />
                     <div className="media-body">
                       <h4>online payment</h4>
                       <p>Contrary to popular belief.</p>

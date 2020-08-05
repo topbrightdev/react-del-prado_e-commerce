@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { clearCart } from "../../actions/indexO";
+import { withTranslate } from "react-redux-multilingual";
 
 class orderSuccess extends Component {
   constructor(props) {
@@ -70,7 +71,7 @@ class orderSuccess extends Component {
 
   render() {
     const { payment, items, symbol, orderTotal, order } = this.state;
-
+    const { translate } = this.props;
     var options = {
       weekday: "long",
       year: "numeric",
@@ -92,10 +93,11 @@ class orderSuccess extends Component {
               <div className="col-md-12">
                 <div className="success-text">
                   <i className="fa fa-check-circle" aria-hidden="true" />
-                  <h2>thank you</h2>
-                  <p>Payment Has Been Received Order Placed Successfully</p>
+
+                  <h2>{translate("thank_you")}</h2>
+                  <p>{translate("payment_revived")}</p>
                   <p>
-                    Transaction ID:{" "}
+                    {translate("transaction_id")}
                     {payment.paymentID ? payment.paymentID : payment.id}
                   </p>
                 </div>
@@ -109,26 +111,28 @@ class orderSuccess extends Component {
             <div className="row">
               <div className="col-lg-6">
                 <div className="product-order">
-                  <h3>your order details</h3>
+                  <h3>{translate("order_details")}</h3>
                   {items
                     ? items.map((item, index) => {
                         return (
                           <div className="row product-order-detail" key={index}>
                             <div className="col-3 order_detail">
                               <div className="w-mx">
-                                <h4>product name</h4>
+                                <h4>{translate("product_name")}</h4>
                                 <h5>{item.name}</h5>
                               </div>
                             </div>
                             <div className="col-3 order_detail ma-lr">
                               <div className="txt-center w-mx">
-                                <h4>quantity</h4>
+                                <h4>{translate("quantity")}</h4>
                                 <h5>{item.quantity}</h5>
                               </div>
                             </div>
                             <div className="col-3 order_detail w-mx">
                               <div className="w-mx">
-                                <h4 className="text-end">price</h4>
+                                <h4 className="text-end">
+                                  {translate("price")}
+                                </h4>
                                 <h5>
                                   {item.total} {symbol}
                                 </h5>
@@ -141,22 +145,22 @@ class orderSuccess extends Component {
                   <div className="total-sec">
                     <ul>
                       <li className="m-tb-2-5">
-                        subtotal
+                        {translate("subtotal")}
                         <span>
                           {orderTotal} {symbol}
                         </span>
                       </li>
                       <li className="m-tb-2-5">
-                        shipping <span>$0</span>
+                        {translate("shipping")} <span>$0</span>
                       </li>
                       <li>
-                        tax(GST) <span>$0</span>
+                        {translate("tax")} <span>$0</span>
                       </li>
                     </ul>
                   </div>
                   <div className="final-total">
                     <h3>
-                      total{" "}
+                      {translate("total")}
                       <span>
                         {symbol}
                         {orderTotal}
@@ -168,33 +172,42 @@ class orderSuccess extends Component {
               <div className="col-lg-6">
                 <div className="row order-success-sec">
                   <div className="col-sm-6 m-tb-5 w-mx55">
-                    <h4>Paymment Information</h4>
+                    <h4>{translate("payment_information")}</h4>
                     <ul className="order-detail">
                       {payment.paymentID ? (
                         <div>
                           <li>
-                            payer ID: <span>{payment.payerID}</span>
+                            {translate("payer_id")}
+                            <span>{payment.payerID}</span>
                           </li>
                           <li>
-                            payment ID: <span>{payment.paymentID}</span>
+                            {translate("payment_id")}
+                            <span>{payment.paymentID}</span>
                           </li>
                           <li>
-                            payment Token: <span>{payment.paymentToken}</span>
+                            {translate("payment_token")}{" "}
+                            <span>{payment.paymentToken}</span>
                           </li>
                         </div>
                       ) : (
-                        <li>Order ID: {payment.id}</li>
+                        <li>
+                          {translate("order_id")} {payment.id}
+                        </li>
                       )}
 
-                      <li>Order Date: {CheckDate}</li>
                       <li>
-                        Order Total:
+                        {" "}
+                        {translate("order_date")}
+                        {CheckDate}
+                      </li>
+                      <li>
+                        {translate("order_total")}
                         {orderTotal} {symbol}
                       </li>
                     </ul>
                   </div>
                   <div className="col-sm-6 m-tb-5 w-mx55">
-                    <h4>shipping address</h4>
+                    <h4>{translate("shipping_address")}</h4>
                     <ul className="order-detail">
                       <li>
                         <span>
@@ -209,20 +222,19 @@ class orderSuccess extends Component {
                           {order.billing.state} {order.billing.postcode}
                         </span>
                       </li>
-                      <li>Contact Phone: {order.billing.phone}</li>
+                      <li>
+                        {translate("contact_phone")} {order.billing.phone}
+                      </li>
                     </ul>
                   </div>
 
                   <div className="col-sm-12 payment-mode m-tb-5">
-                    <h4>payment method</h4>
-                    <p>
-                      Card/Net banking acceptance subject to device
-                      availability.
-                    </p>
+                    <h4>{translate("payment_method")}</h4>
+                    <p>{translate("banking_acceptance")}</p>
                   </div>
                   <div className="col-md-12 m-tb-5">
                     <div className="delivery-sec">
-                      <h3>expected date of delivery</h3>
+                      <h3>{translate("delivery_date")}</h3>
                       <h2>{deliveryDate}</h2>
                     </div>
                   </div>
@@ -264,4 +276,4 @@ export default connect(
   {
     clearCart,
   }
-)(orderSuccess);
+)(withTranslate(orderSuccess));

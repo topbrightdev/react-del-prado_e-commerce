@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { withTranslate } from "react-redux-multilingual";
 
 import { getBestSeller } from "../../services";
 
@@ -40,6 +41,7 @@ class NewProduct extends Component {
 
   render() {
     var arrays = [];
+    const { translate } = this.props;
 
     const { symbol } = this.props;
     var items = this.props.items;
@@ -53,7 +55,7 @@ class NewProduct extends Component {
       }
       return (
         <div className="theme-card">
-          <h5 className="title-border">new product</h5>
+          <h5 className="title-border"> {translate("new_product")}</h5>
           <Slider className="offer-slider slide-1">
             {arrays.map((products, index) => (
               <div key={index}>
@@ -104,7 +106,7 @@ class NewProduct extends Component {
         </div>
       );
     } else {
-      return <h6>Loading</h6>;
+      return <h6>{translate("loading")}</h6>;
     }
   }
 }
@@ -119,4 +121,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   null
-)(NewProduct);
+)(withTranslate(NewProduct));

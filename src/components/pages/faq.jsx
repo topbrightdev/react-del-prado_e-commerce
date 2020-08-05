@@ -6,6 +6,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
+import { withTranslate } from "react-redux-multilingual";
+import Banner from "../elements/element-banner";
 
 function NestedList(props) {
   const [open, setOpen] = React.useState(props.open);
@@ -75,9 +77,11 @@ export default class Info extends Component {
   };
 
   render() {
+    const { translate } = this.props;
     return (
       <section className="faq-section section-b-space">
         <div className="container">
+          <Banner />
           <div className="row">
             <div className="col-sm-12">
               <NestedList

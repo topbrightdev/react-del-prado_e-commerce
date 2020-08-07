@@ -67,7 +67,7 @@ class Root extends React.Component {
                     <Route
                       exact
                       path={`${process.env.PUBLIC_URL}/`}
-                      component={Vegetables}
+                      render={(props) => <Vegetables {...props} />}
                     />
                     {/*Routes For Layouts*/}
                     {/*Routes For Features (Product Collection) */}
@@ -123,11 +123,11 @@ class Root extends React.Component {
                     />
                     <Route
                       path={`${process.env.PUBLIC_URL}/pages/404`}
-                      component={PageNotFound}
+                      render={(props) => <PageNotFound {...props} />}
                     />
                     <Route
                       path={`${process.env.PUBLIC_URL}/pages/empty-search`}
-                      component={EmptySearch}
+                      render={(props) => <EmptySearch {...props} />}
                     />
                     <Route
                       path={`${process.env.PUBLIC_URL}/pages/login`}
@@ -143,11 +143,11 @@ class Root extends React.Component {
                     />
                     <Route
                       path={`${process.env.PUBLIC_URL}/pages/forget-password`}
-                      component={ForgetPassword}
+                      render={(props) => <ForgetPassword {...props} />}
                     />
                     <Route
                       path={`${process.env.PUBLIC_URL}/pages/contact`}
-                      component={Contact}
+                      render={(props) => <Contact {...props} />}
                     />
                     <Route
                       path={`${process.env.PUBLIC_URL}/pages/faq`}
@@ -155,7 +155,7 @@ class Root extends React.Component {
                     />
                     <Route
                       path={`${process.env.PUBLIC_URL}/pages/delivery`}
-                      component={Delivery}
+                      render={(props) => <Delivery {...props} />}
                     />
                     <Route
                       path={`${process.env.PUBLIC_URL}/features/element-slider`}
@@ -165,7 +165,7 @@ class Root extends React.Component {
                       path={`${
                         process.env.PUBLIC_URL
                       }/features/element-category`}
-                      component={ElementCategory}
+                      render={(props) => <ElementCategory {...props} />}
                     />
                     <Route
                       path={`${

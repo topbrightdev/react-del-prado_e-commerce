@@ -62,9 +62,6 @@ class ThemeSettings extends Component {
       document.body.classList.remove("dark");
     }
     let tap_to_top = { display: "none" };
-    {
-      translate("");
-    }
 
     return (
       <div className="theme-settings">
@@ -78,9 +75,8 @@ class ThemeSettings extends Component {
 
         <div id="setting_box" className="setting-box">
           <button
-            className="invisible-button"
+            className="invisible-button overlay"
             title="close"
-            className="overlay"
             onClick={() => this.closeSetting()}
           >
             {translate("close")}

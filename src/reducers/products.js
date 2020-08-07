@@ -14,6 +14,7 @@ const initialState = {
 const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_PRODUCTS:
+      console.log(action.products);
       return {
         ...state,
         products: action.products,

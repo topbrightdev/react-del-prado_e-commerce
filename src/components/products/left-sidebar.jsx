@@ -25,6 +25,7 @@ class LeftSideBar extends Component {
       open: false,
       nav1: null,
       nav2: null,
+      item: null,
     };
   }
 
@@ -35,6 +36,33 @@ class LeftSideBar extends Component {
       nav1: this.slider1,
       nav2: this.slider2,
     });
+    if (this.props.item) {
+      if (this.props.item !== undefined) {
+        if (this.props.item !== this.state.item) {
+          this.setState(() => {
+            return {
+              item: this.props.item,
+            };
+          });
+        }
+      }
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.item) {
+      if (this.props.item !== undefined) {
+        if (this.props.item !== this.state.item) {
+          this.setState(() => {
+            return {
+              nav1: this.slider1,
+              nav2: this.slider2,
+              item: this.props.item,
+            };
+          });
+        }
+      }
+    }
   }
 
   filterClick() {
@@ -47,11 +75,22 @@ class LeftSideBar extends Component {
   render() {
     const {
       symbol,
-      item,
+
       addToCart,
       addToCartUnsafe,
       addToWishlist,
     } = this.props;
+    var item = this.props.item;
+
+    if (item) {
+      if (item !== undefined) {
+        if (item !== this.state.item) {
+        }
+      }
+    }
+    if (!item || item !== undefined) {
+      item = this.state.item;
+    }
 
     var products = {
       slidesToShow: 1,
@@ -62,23 +101,27 @@ class LeftSideBar extends Component {
     };
 
     const { translate } = this.props;
-
     if (item) {
       return (
         <div>
-          {/*SEO Support*/}
-          <Helmet>
-            <title>
-              {translate("title_web")}| {item.category} | {item.name}
-            </title>
-            <meta name="description" content="Del Prado Alimentacion" />
-          </Helmet>
-          {/*SEO Support End */}
-
-          <Breadcrumb parent={"Product"} title={item.name} data={this.props} />
-
           {/*Section Start*/}
-          {item ? (
+
+          <div>
+            {/*SEO Support*/}
+            <Helmet>
+              <title>
+                {translate("title_web")}| {item.category} | {item.name}
+              </title>
+              <meta name="description" content="Del Prado Alimentacion" />
+            </Helmet>
+            {/*SEO Support End */}
+
+            <Breadcrumb
+              parent={"Product"}
+              title={item.name}
+              data={this.props}
+            />
+
             <section className="section-b-space">
               <div className="collection-wrapper">
                 <div className="container">
@@ -94,7 +137,7 @@ class LeftSideBar extends Component {
                     </button>
                   </div>
 
-                  <div className="row">
+                  <div className="row left-sidebar-block">
                     <div className="col-sm-3 collection-filter" id="filter">
                       <div className="collection-mobile-back pl-5">
                         <span onClick={this.backClick} className="filter-back">
@@ -136,17 +179,9 @@ class LeftSideBar extends Component {
                               ref={(slider) => (this.slider1 = slider)}
                               className="product-slick"
                             >
-                              {item.variants
-                                ? item.variants.map((vari, index) => (
-                                    <div key={index}>
-                                      <ImageZoom image={vari.images} />
-                                    </div>
-                                  ))
-                                : item.pictures.map((vari, index) => (
-                                    <div key={index}>
-                                      <ImageZoom image={vari} />
-                                    </div>
-                                  ))}
+                              <div>
+                                <ImageZoom image={item.pictures} />
+                              </div>
                             </Slider>
                           </div>
                           <DetailsWithPrice
@@ -165,7 +200,8 @@ class LeftSideBar extends Component {
                 </div>
               </div>
             </section>
-          ) : null}
+          </div>
+
           {/*Section End*/}
         </div>
       );
@@ -180,14 +216,35 @@ class LeftSideBar extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  var productId = ownProps.match.params.id;
-  var item = state.data.products.find((el) => `${el.id}` === productId);
+  var productId = parseInt(ownProps.match.params.id);
+  var item = null;
 
-  return {
-    item: item,
-    symbol: state.data.symbol,
-    state,
-  };
+  //var item = state.data.products.find((el) => el.id === productId);
+  state.data.products.map((p) => {
+    if (p.id === productId) {
+      item = p;
+      return item;
+    }
+  });
+  var test = item;
+  if (!test) {
+    test = state.data.products.find((el) => el.id === productId);
+    item = test;
+  }
+
+  if (item) {
+    return {
+      item: item,
+      symbol: state.data.symbol,
+      state,
+    };
+  } else {
+    return {
+      item: null,
+      symbol: state.data.symbol,
+      state,
+    };
+  }
 };
 
 export default connect(

@@ -46,7 +46,7 @@ const CheckoutForm = ({
 
     const order = await axios
       .post(urlCharge, {
-        amount: "2000",
+        amount: amount,
         source: token.id,
         receipt_email: email,
       })

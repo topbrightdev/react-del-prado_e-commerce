@@ -649,6 +649,14 @@ del {
   margin-top: 50px;
 }
 
+.left-sidebar-block {
+  margin-top: 5vh;
+}
+
+.new-product-box {
+  display: flex;
+}
+
 @-webkit-keyframes smoothScroll {
   0% {
     -webkit-transform: translateY(-40px);

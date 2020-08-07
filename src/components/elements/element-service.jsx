@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withTranslate } from "react-redux-multilingual";
 
 import Breadcrumb from "../breadcrumb";
 import {

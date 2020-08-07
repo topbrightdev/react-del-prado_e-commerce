@@ -72,7 +72,6 @@ class ProductListItem extends Component {
     console.log(this.props);
 
     const { open } = this.state;
-    const grid = this.props.filters.grid;
 
     let RatingStars = [];
     //console.log(product.average_rating);

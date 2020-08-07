@@ -20,6 +20,7 @@ export const getAllProducts = () => (dispatch) => {
   dispatch(fetchProductsBegin());
   shop.getProducts().then((products) => {
     dispatch(receiveProducts(products));
+
     return products;
   });
 };
@@ -308,13 +309,10 @@ export const filterSort = (sort_by) => ({
   sort_by,
 });
 
-export const changeLayout = (grid) => (
-  console.log(grid),
-  {
-    type: types.CHANGE_LAYOUT,
-    grid,
-  }
-);
+export const changeLayout = (grid) => ({
+  type: types.CHANGE_LAYOUT,
+  grid,
+});
 
 // Currency
 export const changeCurrency = (symbol) => ({

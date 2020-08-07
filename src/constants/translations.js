@@ -241,7 +241,7 @@ var module = {
       buy_online: "buy online",
       with_confidence: "with the confidence that provides buying near your",
       special_products: "Highlighted products",
-      new: "new",
+
       on_sale: "on Sale",
       product_details: "product details",
       quantity: "quantity",
@@ -268,7 +268,6 @@ var module = {
       review: "review",
       submit_review: "Submit Review",
       no_reviews: "There is no reviews",
-      quantity: "Quantity",
       buy_now: "Buy  Now !",
       share_it: "Share it !",
       add_whislist: "Add to whislist",
@@ -340,7 +339,6 @@ var module = {
 
       introduce_credit: "Input card details",
 
-      card_details: "Card details",
       expiration: "Expiration date",
       cvc: "CVC",
       pay: "Pay",
@@ -365,13 +363,11 @@ var module = {
 
       about_text:
         "Alimentacion Del Prado is for decades delivering and trading products of the highgest quality,backed for the most demanding standards. Also distributting another products ,all of them with warranted qality.",
-      my_account: "My user account",
       information: "Information",
       safe_buy: "Safe buy",
 
       address_text:
         " Del Prado Alimentacion c/ Armando Palacio Valdés , 10  (45,67 km) 33600 Mieres",
-      call_us: " Llamanos: 985 45 33 22",
 
       language: "language",
       spanish: "Spanish",
@@ -379,7 +375,6 @@ var module = {
       currency: "Currency",
 
       page_not_found: "Page not found",
-      back_home: "Back home",
 
       update_parameter: "Update account parameters",
       user_name: "User name",
@@ -536,10 +531,8 @@ var module = {
       buy_online: "compra online",
       with_confidence: "con la confianza que da la cercania",
       special_products: "productos destacados",
-      new: "nuevo",
       on_sale: "en oferta",
       product_details: "detalles del producto",
-      quantity: "cantidad",
       add_cart: "anadir al carrito",
       view_details: "ver detalles",
 
@@ -635,7 +628,6 @@ var module = {
 
       introduce_credit: "Introduce los detalles de la tarjeta",
 
-      card_details: "Detalles de la tarjeta",
       expiration: "Fecha de expiracion",
       cvc: "CVC",
       pay: "Pagar",
@@ -659,13 +651,11 @@ var module = {
       subscribe_newsletter: "Subscribete a nuestras ofertas",
       about_text:
         "Alimentacion Del Prado lleva decadas produciendo y  comercializando productos de la mas alta calidad cumpliendo  con los mal altos estandares. Ademas de distribuir otros productos avalados por sellos de   garantia.",
-      my_account: "Mi cuenta de usuario",
       information: "Informacion",
       safe_buy: "Compra segura",
 
       address_text:
         " Del Prado Alimentacion c/ Armando Palacio Valdés , 10  (45,67 km) 33600 Mieres",
-      call_us: " Llamanos: 985 45 33 22",
 
       language: "Idioma",
       spanish: "Espanol",
@@ -683,7 +673,6 @@ var module = {
       issue: "Asunto",
       message_input: "Escribe aqui tu mensage",
 
-      back_home: "Vuelta al inicio",
       buy_safely: "Realice la compra online de manera simple y segura",
       follow_steps: "Siga estos 3 sencillos pasos ....",
       select_products: "Selecciona los productos",

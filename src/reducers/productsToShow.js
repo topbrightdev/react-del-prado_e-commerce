@@ -5,7 +5,6 @@ import {
 } from "../constants/ActionTypes";
 
 const initialState = {
-  products: [],
   symbol: "$",
   product_details: [],
 };

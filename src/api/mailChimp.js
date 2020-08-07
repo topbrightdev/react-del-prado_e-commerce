@@ -9,4 +9,5 @@ export default async function contact(email, firstname, lastname) {
     .then((res) => {
       console.log(res);
     });
+  return request;
 }

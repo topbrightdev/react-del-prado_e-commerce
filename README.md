@@ -2,44 +2,30 @@
 
 ![Microverse](https://img.shields.io/website?url=https%3A%2F%2Fimg.shields.io%2Fwebsite%2Fhttp%2Fwww.waldenberginc.com%2Findex.html.svg.)
 
+ Website of a grocery store. Connected to Woocommerce offers all the possibilities that this one has, and 
+provides them to the client in a highly customizable aspect.
 
- This App is a eCommerce and blog created to promote and share the creations of
-the Taiwanese artist Ponpon.
-  
- The App design was created by me, using Figma to create the design system and using 
-SCSS to apply it. You can visit the design system and case study in the following link:
-
-[Case study](https://uxfol.io/project/034b93cd/Une-Felt-Case-Study) 
-
- The eCommerce part was created using ReactJs and Redux in the frontend and uses Wordpress
-and Woocommerce in the backend. For the payments Stripe payment was implemented.
-
- The blog part, uses Wordpress as well, in a way of giving easy access to all the advantages 
-that the environment provides out of the box.  
-
+ This is a headless Wordpress and WooCommerce backend. With a front-end developed in ReactJS / Redux and Sass created with state of the art Css animations and effects
 
 
 
 ### Deployed App
 
-[Une](https://une.waldenberginc.com/)
+[Store](https://waldenberginc.com/)
 
 =======
 
 ### Screenshots
 
-Main page
+Product Categories
 
-![https://i.imgur.com/UKrStub.png](https://i.imgur.com/UKrStub.png)
+![https://i.imgur.com/CphySaa.jpg](https://i.imgur.com/CphySaa.jpg)
 
-Gallery
+Cart
+![https://i.imgur.com/DxGa03i.jpg](https://i.imgur.com/DxGa03i.jpg)
 
-![https://i.imgur.com/kt9n4EJ.jpg](https://i.imgur.com/kt9n4EJ.jpg)
-
-Details page
-
-![https://i.imgur.com/vfnlbin.png](https://i.imgur.com/vfnlbin.png)
-
+Product Details
+![https://i.imgur.com/2E7eHlw.jpg](https://i.imgur.com/2E7eHlw.jpg)
 
 
 ### Built With 
@@ -50,7 +36,6 @@ Details page
 - Node.JS
 - Wordpress
 - WooCommerce
-- Figma
 - Scss
 - Stripe
 
@@ -58,14 +43,14 @@ Details page
 
 If you want a copy of this file go to the github repository and download it from there
 
-- [`https://github.com/Metsanpeitto/react-une-felt`](https://github.com/Metsanpeitto/react-une-felt)
+- [`https://github.com/Metsanpeitto/del_prado_e-commerce`](https://github.com/Metsanpeitto/del_prado_e-commerce)
 
 
 ### Setup
 
 ```cmd
-git clone  https://github.com/Metsanpeitto/react-une-felt.git
-cd ./react-une-felt
+git clone  https://github.com/Metsanpeitto/del_prado_e-commerce.git
+cd ./del_prado_e-commerce
 ```
 
 ### Install
@@ -100,9 +85,7 @@ npx stylelint "**/*.{css,scss}" --fix
 
 - Node.JS
 
-### Design
 
-[Case study](https://uxfol.io/project/034b93cd/Une-Felt-Case-Study) 
 
 ## Authors
 

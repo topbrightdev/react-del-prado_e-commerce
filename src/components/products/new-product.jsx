@@ -3,9 +3,6 @@ import Slider from "react-slick";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { withTranslate } from "react-redux-multilingual";
-import NumberFormat from "react-number-format";
-
-import { getBestSeller } from "../../services";
 
 class NewProduct extends Component {
   constructor() {
@@ -81,9 +78,7 @@ class NewProduct extends Component {
 
     if (this.state.open) {
       while (this.state.items.length > 0) {
-        console.log(stateItems);
         // const group = stateItems.splice(0, 3).concat(stateItems.slice(3));
-        console.log(stateItems);
         // arrays.push(group);
         var counter = 1;
         var group = [];
@@ -95,41 +90,19 @@ class NewProduct extends Component {
           }
           counter++;
         });
-        console.log(arrays);
 
         return (
-          <div className="theme-card">
-            <h5 className="title-border"> {translate("new_product")}</h5>
+          <div className="theme-card-pon">
             <Slider className="offer-slider slide-1" {...settings}>
               {arrays.map((products, index) => {
                 var index1 = index + "uno";
                 return (
-                  <div data-index={index1 + "aa"} key={index1 + "ab"}>
+                  <div
+                    data-index={index1 + "aa"}
+                    key={index1 + "ab"}
+                    className="slide-pon"
+                  >
                     {products.map((product, i) => {
-                      let RatingStars = [];
-                      for (
-                        var j = 1;
-                        j <= parseInt(product.average_rating);
-                        j++
-                      ) {
-                        RatingStars.push(
-                          <i className="fa fa-star" key={j + "starA"} />
-                        );
-                      }
-                      //console.log(RatingStars.length);
-                      if (RatingStars.length < 4) {
-                        var leftOff = 4 - RatingStars.length;
-                        //console.log(leftOff);
-                        for (j = 0; j <= leftOff; j++) {
-                          RatingStars.push(
-                            <i className="fa fa-star off" key={j + "starB"} />
-                          );
-                        }
-                      }
-                      if (RatingStars.length > 5) {
-                        RatingStars.pop();
-                        // console.log(RatingStars);
-                      }
                       return (
                         <div
                           data-index={i + "BA"}
@@ -147,33 +120,6 @@ class NewProduct extends Component {
                               src={`${product.pictures[0]}`}
                               alt=""
                             />
-
-                            <div className="media-body align-self-center">
-                              <h6>{product.name}</h6>
-
-                              <h4>
-                                <NumberFormat
-                                  value={product.price}
-                                  displayType={"text"}
-                                  thousandSeparator={true}
-                                  prefix={"€"}
-                                  renderText={(formattedValue) =>
-                                    formattedValue
-                                  } // <--- Don't forget this!
-                                />
-                              </h4>
-                              <div className="rating d-f">
-                                {RatingStars}
-                                <h6 className="rating-count">
-                                  {" "}
-                                  (
-                                  {product.rating_count > 0
-                                    ? product.rating_count + 1
-                                    : product.rating_count}
-                                  )
-                                </h6>
-                              </div>
-                            </div>
                           </Link>
                         </div>
                       );

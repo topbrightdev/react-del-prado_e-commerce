@@ -1,0 +1,239 @@
+/*-----------------------------------------------------------------------------------
+
+    Template Name:Pon-Site    
+    Description: This is an E-commerce website
+    Author: Waldenberg-Creations
+    Author URI: https://waldenberg-creations.com
+
+----------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------
+   
+   Folder Architecture
+   
+   1._style
+   |
+   |
+   |___2.header
+   |
+   |
+   |___3.home
+   |
+   |
+   |___4.Gallery
+   
+*/
+
+@import "header";
+@import "home";
+@import "last-image";
+
+/*=====================
+    1.Style CSS start
+==========================*/
+
+//   PonSocial
+.pon-social {
+  max-width: max-content;
+  position: fixed;
+  left: 10%;
+  bottom: 50%;
+  .social-item {
+    padding-top: 1rem;
+  }
+}
+
+/*=====================
+    4.Gallery start
+==========================*/
+
+.gallery {
+  background: $pon-background; // The color of the picture background
+  width: 100%;
+  min-height: 80vh;
+
+  .item {
+    display: flex;
+    max-width: 1200px;
+    min-width: 1200px;
+    max-height: 800px;
+    min-height: 800px;
+    @media (max-width: 577px) {
+      max-width: 300px;
+      min-width: 300px;
+      max-height: 390px;
+      min-height: 390px;
+    }
+
+    img {
+      min-height: 420px;
+      max-height: 420px;
+      max-width: 320px;
+      min-width: 320px;
+      position: relative;
+      @media (max-width: 577px) {
+        min-height: 180px;
+        max-height: 180px;
+        max-width: 135px;
+        min-width: 135px;
+        position: relative;
+        position: relative;
+      }
+    }
+    svg:not(:root) {
+      display: block;
+      position: relative;
+      overflow: overlay;
+      min-height: 877px;
+      max-height: 877px;
+      max-width: 850px;
+      min-width: 850px;
+
+      z-index: 2;
+      @media (max-width: 577px) {
+        min-width: 340px;
+        max-width: 340px;
+        max-height: 365px;
+        min-height: 365px;
+      }
+    }
+  }
+
+  .left {
+    img {
+      left: 20%;
+      margin-top: 20%;
+      @media (max-width: 577px) {
+        left: 28%;
+        margin-top: 40%;
+      }
+    }
+    svg:not(:root) {
+      left: -28%;
+      @media (max-width: 577px) {
+        left: -49%;
+        margin-top: 10%;
+      }
+    }
+  }
+
+  .right {
+    margin-left: 50%;
+    @media (max-width: 577px) {
+      padding-left: unset;
+      margin-left: unset;
+      margin-top: 10%;
+      margin-bottom: -25%;
+    }
+
+    img {
+      left: 19%;
+      margin-top: 20%;
+      @media (max-width: 577px) {
+        right: unset;
+        left: 50%;
+        margin-top: 15%;
+      }
+    }
+    svg:not(:root) {
+      left: -30%;
+      @media (max-width: 577px) {
+        left: -31%;
+        margin-top: -17%;
+      }
+    }
+  }
+}
+
+/*=====================
+    4.Gallery  end
+==========================*/
+
+/*=====================
+    5.Main Image start
+==========================*/
+.main-image {
+  background: $pon-background; // The color of the picture background
+  max-width: 480px;
+  min-width: 480px;
+  max-height: 600px;
+  min-height: 600px;
+
+  .item {
+    display: flex;
+    max-width: 480px;
+    min-width: 480px;
+    max-height: 600px;
+    min-height: 600px;
+
+    @media (max-width: 577px) {
+      max-width: 300px;
+      min-width: 300px;
+      max-height: 390px;
+      min-height: 390px;
+    }
+
+    img {
+      min-height: 420px;
+      max-height: 420px;
+      max-width: 320px;
+      min-width: 320px;
+      position: relative;
+      @media (max-width: 577px) {
+        min-height: 180px;
+        max-height: 180px;
+        max-width: 135px;
+        min-width: 135px;
+        position: relative;
+        position: relative;
+      }
+    }
+    svg:not(:root) {
+      display: block;
+      position: relative;
+      overflow: overlay;
+      min-height: 600px;
+      max-height: 600px;
+      max-width: 480px;
+      min-width: 480px;
+      z-index: 2;
+
+      z-index: 2;
+      @media (max-width: 577px) {
+        min-width: 340px;
+        max-width: 340px;
+        max-height: 365px;
+        min-height: 365px;
+      }
+    }
+  }
+
+  .right {
+    @media (max-width: 577px) {
+      padding-left: unset;
+      margin-left: unset;
+      margin-top: 10%;
+      margin-bottom: -25%;
+    }
+
+    img {
+      left: 19%;
+      margin-top: 20%;
+      @media (max-width: 577px) {
+        right: unset;
+        left: 50%;
+        margin-top: 15%;
+      }
+    }
+    svg:not(:root) {
+      left: -315px;
+      @media (max-width: 577px) {
+        left: -31%;
+        margin-top: -17%;
+      }
+    }
+  }
+}
+
+/*=====================
+    5.Main Image end
+==========================*/

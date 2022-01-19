@@ -24,91 +24,16 @@ class FooterFour extends Component {
 
     return (
       <footer className="">
-        <div className="white-layout">
-          <div className="container">
-            <section className="small-section">
-              <div className="row">
-                <div className="col-xl-6 offset-xl-3">
-                  <div className="subscribe">
-                    <h4>{translate("subscribe_newsletter")}</h4>
-                    <Contact />
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-        <section className="section-b-space darken-layout">
+        <section className="darken-layout">
           <div className="container  mw-90 p-b-5">
             <div className="row footer-theme partition-f">
               <div className="col-lg-4 col-md-6 responsive-w100">
-                <div className="footer-title footer-mobile-title">
-                  <h4>{translate("about_us")}</h4>
-                </div>
-                <div className="footer-contant">
-                  <div className="footer-logo ta-c">
-                    <LogoImage logo={this.props.logoName} />
-                  </div>
-                  <p className="text-center">{translate("about_text")}</p>
-                  <div className="footer-social">
-                    <ul className="m-lr-a">
-                      <li>
-                        <Link to={"https://www.facebook.com/"}>
-                          <i className="fa fa-facebook" aria-hidden="true" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={"https://plus.google.com/"}>
-                          <i className="fa fa-google-plus" aria-hidden="true" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={"https://twitter.com"}>
-                          <i className="fa fa-twitter" aria-hidden="true" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={"https://instagram.com"}>
-                          <i className="fa fa-instagram" aria-hidden="true" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={"https://rss.com/"}>
-                          <i className="fa fa-rss" aria-hidden="true" />
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
+                <div className="subscribe">
+                  <h4>{translate("subscribe_newsletter")}</h4>
+                  <Contact />
                 </div>
               </div>
-              <div className="col offset-xl-1">
-                <div className="sub-title">
-                  <div className="footer-title">
-                    <h4>{translate("my_account")}</h4>
-                  </div>
-                  <div className="footer-contant">
-                    <ul>
-                      <li>
-                        <Link to={`${process.env.PUBLIC_URL}/pages/login`}>
-                          {translate("login")}
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={`${process.env.PUBLIC_URL}/pages/register`}>
-                          {translate("signup")}
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to={`${process.env.PUBLIC_URL}/pages/forget-password`}
-                        >
-                          {translate("forget_password")}
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+
               <div className="col">
                 <div className="sub-title">
                   <div className="footer-title">
@@ -116,19 +41,20 @@ class FooterFour extends Component {
                   </div>
                   <div className="footer-contant">
                     <ul>
+                      {" "}
+                      <li>
+                        <Link to={`${process.env.PUBLIC_URL}/pages/contact`}>
+                          {translate("contact_us")}
+                        </Link>
+                      </li>
                       <li>
                         <Link to={`${process.env.PUBLIC_URL}/pages/about-us`}>
-                          {translate("about_us")}
+                          FAQ's
                         </Link>
                       </li>
                       <li>
                         <Link to={`${process.env.PUBLIC_URL}/pages/faq`}>
-                          {translate("safe_buy")}
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={`${process.env.PUBLIC_URL}/pages/contact`}>
-                          {translate("contact")}
+                          {translate("deliveryReturns")}
                         </Link>
                       </li>
                     </ul>
@@ -143,22 +69,51 @@ class FooterFour extends Component {
                   <div className="footer-contant">
                     <ul className="contact-list">
                       <li>
-                        <i className="fa fa-map-marker" />
-                        {translate("address_text")}
+                        <Link to={`${process.env.PUBLIC_URL}/pages/contact`}>
+                          {translate("our_story")}{" "}
+                        </Link>
                       </li>
                       <li>
-                        <i className="fa fa-phone" />
-                        {translate("call_us")}
-                      </li>
-                      <li>
-                        <i className="fa fa-envelope-o" />
-                        Email:{" "}
-                        <button className="invisible-button">
-                          Support@delPrado.com
-                        </button>
+                        <Link to={`${process.env.PUBLIC_URL}/pages/faq`}>
+                          {translate("privacy")}{" "}
+                        </Link>
                       </li>
                     </ul>
                   </div>
+                </div>
+              </div>
+              <div className="footer-social">
+                <div className="sub-title">
+                  <div className="footer-title">
+                    <h4>{translate("social_media")}</h4>
+                  </div>
+                  <ul className="m-lr-a d-f">
+                    <li>
+                      <Link to={"https://www.facebook.com/"}>
+                        <i className="fa fa-facebook" aria-hidden="true" />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"https://plus.google.com/"}>
+                        <i className="fa fa-google-plus" aria-hidden="true" />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"https://twitter.com"}>
+                        <i className="fa fa-twitter" aria-hidden="true" />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"https://instagram.com"}>
+                        <i className="fa fa-instagram" aria-hidden="true" />
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"https://rss.com/"}>
+                        <i className="fa fa-rss" aria-hidden="true" />
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

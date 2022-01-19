@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { withTranslate } from "react-redux-multilingual";
 
 class Banner extends Component {
   newTo = (key) => {
@@ -11,17 +13,22 @@ class Banner extends Component {
 
   render() {
     return (
-      <div className="top-banner-wrapper2">
-        <Link to={this.newTo("Drinks")}>
-          <img
-            src={`${process.env.PUBLIC_URL}/assets/images/mega-menu/2.jpeg`}
-            className="img-fluid"
-            alt=""
-          />
-        </Link>
+      <div className="last-image">
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/images/pon/workshop.jpg`}
+          className="img-fluid"
+          alt=""
+        />
       </div>
     );
   }
 }
 
-export default Banner;
+const mapStateToProps = (state) => ({
+  state: state,
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)(withTranslate(Banner));

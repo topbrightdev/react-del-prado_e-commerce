@@ -96,19 +96,18 @@ class Register extends Component {
         {/*Regsiter section*/}
         <section className="register-page section-b-space">
           <div className="container">
-            <Banner />
             <div className="row">
               <div className="col-lg-12">
-                <h3>create account {translate("create_account")}</h3>
+                <h3>{translate("create_account")}</h3>
                 <div className="theme-card">
                   <form className="theme-form" onSubmit={this.handleSubmit}>
                     <div className="form-row">
-                      <div className="col-md-6">
+                      <div className="col-md-6 form-group">
                         <label htmlFor="email">{translate("user_name")}</label>
                         <input
                           id="uname"
                           type="text"
-                          className="form-control"
+                          className="form-control shutter-in"
                           placeholder="User Name"
                           required=""
                           name="username"
@@ -121,13 +120,13 @@ class Register extends Component {
                           "required|alpha"
                         )}
                       </div>
-                      <div className="col-md-6">
+                      <div className="col-md-6 form-group">
                         <label htmlFor="review">{translate("password")}</label>
                         <input
                           id="password"
                           type="password"
                           autoComplete="on"
-                          className="form-control"
+                          className="form-control shutter-in"
                           placeholder="Password"
                           required=""
                           name="password"
@@ -143,12 +142,12 @@ class Register extends Component {
                     </div>
 
                     <div className="form-row">
-                      <div className="col-md-6">
+                      <div className="col-md-6 form-group">
                         <label htmlFor="email">email</label>
                         <input
                           id="email_register"
                           type="text"
-                          className="form-control"
+                          className="form-control shutter-in"
                           placeholder="Email"
                           required=""
                           name="email"
@@ -163,12 +162,12 @@ class Register extends Component {
                       </div>
                     </div>
                     <div className="form-row">
-                      <div className="col-md-6">
+                      <div className="col-md-6 form-group">
                         <label htmlFor="email">{translate("name")}</label>
                         <input
                           id="fname"
                           type="text"
-                          className="form-control"
+                          className="form-control shutter-in"
                           placeholder="First Name"
                           required=""
                           name="first_name"
@@ -181,12 +180,12 @@ class Register extends Component {
                           "required|alpha"
                         )}
                       </div>
-                      <div className="col-md-6">
+                      <div className="col-md-6 form-group">
                         <label htmlFor="review">{translate("last_name")}</label>
                         <input
                           id="lname"
                           type="text"
-                          className="form-control"
+                          className="form-control shutter-in"
                           placeholder="Last Name"
                           required=""
                           name="last_name"
@@ -205,7 +204,7 @@ class Register extends Component {
                       <h3>Billing Details</h3>
                     </div>
                     <div className="form-row">
-                      <div className="col-md-6">
+                      <div className="col-md-6 form-group">
                         <label htmlFor="country ">
                           {" "}
                           {translate("country")}
@@ -213,7 +212,7 @@ class Register extends Component {
                         <input
                           id="country"
                           type="text"
-                          className="form-control"
+                          className="form-control shutter-in"
                           placeholder="Country"
                           required=""
                           name="country"
@@ -226,14 +225,14 @@ class Register extends Component {
                           "required|alpha"
                         )}
                       </div>
-                      <div className="col-md-6">
+                      <div className="col-md-6 form-group">
                         <label htmlFor="review">{translate("phone")}</label>
                         <input
                           id="phone"
                           type="tel"
                           pattern="[0-9]{9}"
                           maxLength="9"
-                          className="form-control"
+                          className="form-control shutter-in"
                           required=""
                           name="phone"
                           placeholder="Enter phone number"
@@ -248,7 +247,7 @@ class Register extends Component {
                       </div>
                     </div>
                     <div className="form-row">
-                      <div className="col-md-6">
+                      <div className="col-md-6 form-group">
                         <label htmlFor="address ">
                           {" "}
                           {translate("address")}
@@ -256,7 +255,7 @@ class Register extends Component {
                         <input
                           id="address_1"
                           type="text"
-                          className="form-control"
+                          className="form-control shutter-in"
                           placeholder="Address"
                           required=""
                           name="address_1"
@@ -269,12 +268,12 @@ class Register extends Component {
                           "required|alpha"
                         )}
                       </div>
-                      <div className="col-md-6">
+                      <div className="col-md-6 form-group">
                         <label htmlFor="review">{translate("city")}</label>
                         <input
                           id="city"
                           type="text"
-                          className="form-control"
+                          className="form-control shutter-in"
                           placeholder="City"
                           required=""
                           name="city"
@@ -289,12 +288,12 @@ class Register extends Component {
                       </div>{" "}
                     </div>
                     <div className="form-row">
-                      <div className="col-md-6">
+                      <div className="col-md-6 form-group">
                         <label htmlFor="state ">{translate("state")} </label>
                         <input
                           id="state"
                           type="text"
-                          className="form-control"
+                          className="form-control shutter-in"
                           placeholder="State / Province "
                           required
                           name="state"
@@ -307,14 +306,14 @@ class Register extends Component {
                           "required|alpha"
                         )}
                       </div>
-                      <div className="col-md-6">
+                      <div className="col-md-6 form-group">
                         <label htmlFor="review">{translate("postal")}</label>
                         <input
                           id="postcode"
                           type="tel"
                           pattern="[0-9]{5}"
                           maxLength="5"
-                          className="form-control"
+                          className="form-control shutter-in"
                           placeholder="Postal"
                           required=""
                           name="postcode"

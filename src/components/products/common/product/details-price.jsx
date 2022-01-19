@@ -56,140 +56,48 @@ class DetailsWithPrice extends Component {
       addToWishlistClicked,
     } = this.props;
 
-    let RatingStars = [];
-    for (var i = 1; i <= parseInt(item.average_rating); i++) {
-      RatingStars.push(<i className="fa fa-star" key={i + 20} />);
-    }
-    if (RatingStars.length < 4) {
-      var leftOff = 4 - RatingStars.length;
-      for (i = 0; i <= leftOff; i++) {
-        RatingStars.push(<i className="fa fa-star off" key={i} />);
-      }
-    }
-    if (RatingStars.length > 5) {
-      RatingStars.pop();
-    }
-
     return (
       <div className="col-lg-6 rtl-text">
         <div className="product-right">
-          <h2> {item.name} </h2>
-          <h2>
-            <NumberFormat
-              value={item.price}
-              displayType={"text"}
-              thousandSeparator={true}
-              prefix={"€"}
-              renderText={(formattedValue) => formattedValue} // <--- Don't forget this!
-            />
-          </h2>
-          <div className="rating d-f product-detail-rating">
-            {RatingStars}
-            <h6 className="rating-count">
-              {" "}
-              (
-              {item.rating_count > 0
-                ? item.rating_count + 1
-                : item.rating_count}
-              )
-            </h6>
+          <div>Categories / Go / Here</div>
+          <div className="product-name-div">
+            <h2> {item.name} </h2>
+            <h2>
+              <NumberFormat
+                value={item.price}
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"€"}
+                renderText={(formattedValue) => formattedValue} // <--- Don't forget this!
+              />
+            </h2>
           </div>
 
-          <div className="product-description border-product">
-            <span className="instock-cls">{this.state.stock}</span>
-            <h6 className="product-title">{translate("quantity")}</h6>
-            <div className="qty-box">
-              <div className="input-group">
-                <span className="input-group-prepend">
-                  <button
-                    type="button"
-                    className="btn quantity-left-minus"
-                    onClick={this.minusQty}
-                    data-type="minus"
-                    data-field=""
-                  >
-                    <i className="fa fa-angle-left" />
-                  </button>
-                </span>
-                <input
-                  type="text"
-                  name="quantity"
-                  value={this.state.quantity}
-                  onChange={this.changeQty}
-                  className="form-control input-number"
-                />
-                <span className="input-group-prepend">
-                  <button
-                    type="button"
-                    className="btn quantity-right-plus"
-                    onClick={this.plusQty}
-                    data-type="plus"
-                    data-field=""
-                  >
-                    <i className="fa fa-angle-right" />
-                  </button>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="product-buttons">
-            <button
-              className="btn btn-solid"
-              onClick={() => addToCartClicked(item, this.state.quantity)}
-            >
-              {translate("add_cart")}
-            </button>
-            <Link
-              to={`${process.env.PUBLIC_URL}/cart`}
-              className="btn btn-solid"
-              onClick={() => BuynowClicked(item, this.state.quantity)}
-            >
-              {translate("buy_now")}
-            </Link>
-          </div>
           <div className="border-product">
             <h6 className="product-title">{translate("product_details")}</h6>
             <p>{item.shortDetails}</p>
           </div>
-          <div className="border-product">
-            <h6 className="product-title">{translate("share_it")}</h6>
-            <div className="product-icon">
-              <ul className="product-social">
-                <li>
-                  <a
-                    href="https://www.facebook.com/delpradoalimentacion/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
 
-                <li>
-                  <a
-                    href="https://twitter.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.instagram.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fa fa-instagram" />
-                  </a>
-                </li>
-              </ul>
+          <div className="product-description border-product">
+            <span className="instock-cls">{this.state.stock}</span>
+
+            <div className="qty-box">
+              <div className="input-group">
+                <p>{translate("quantity")}</p>
+                <input
+                  type="number"
+                  name="
+                  quantity"
+                  value={this.state.quantity}
+                  onChange={this.changeQty}
+                  className="form-control input-number quantity-button"
+                />
+              </div>
               <button
-                className="wishlist-btn"
-                onClick={() => addToWishlistClicked(item)}
+                className="btn btn-solid"
+                onClick={() => addToCartClicked(item, this.state.quantity)}
               >
-                <i className="fa fa-heart" />
-                <span className="title-font">{translate("add_whislist")}</span>
+                {translate("add_cart")}
               </button>
             </div>
           </div>

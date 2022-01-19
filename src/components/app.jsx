@@ -5,6 +5,7 @@ import { withTranslate } from "react-redux-multilingual";
 import Header from "./headers/header";
 import Footer from "./footers/footer";
 import ThemeSettings from "./theme-settings";
+import PonSocial from "./ponSocial/ponSocial";
 import { ToastContainer } from "react-toastify";
 
 class App extends Component {
@@ -14,8 +15,7 @@ class App extends Component {
         <ToastContainer />
         <Header logoName={"logo.png"} />
         {this.props.children}
-        <Footer logoName={"logo.png"} />
-        <ThemeSettings />
+        <Footer /> <ThemeSettings />
       </div>
     );
   }

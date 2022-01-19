@@ -1,18 +1,29 @@
-//fonts
+/*
+main-text:#d28e77;
+text:#fdbb59d;
+footer-background:#ffeee3;
+background:#fffaf0;
+*/
 
-$font_0: Lato;
+//fonts
+$font_0: "PontanoSans-Regular", arial;
 $font_1: sans-serif;
 $font-themify: themify;
 $font-awesome: FontAwesome;
 $assetspath: "/assets/images";
 //colors
-$white: #ffffff;
+$pon-main-text: #d28e77;
+$pon-text: #dbb59d;
+$pon-bottom: #ffeee3;
+$pon-background: #fffaf0;
+
+$white: #fffaf0;
 $white-dark: #eeeeee;
 $black: #000000;
 $grey01: #111111;
 $dark-font: #222222;
 $grey-dark: #2d2a25;
-$font-color: #333333;
+$font-color: #dbb59d;
 $grey: #777777;
 $grey-light: #a1a1a1;
 $border: #dddada;
@@ -32,7 +43,7 @@ $font-grey: #aaaaaa;
 $star-yellow: #ffa200;
 $border-bottom-g: #525252;
 $top-header: #f8f8f8;
-$header-font: #999999;
+$header-font: #d28e77;
 $shadow: #ededed;
 $box-border: #ecececa8;
 $grey-about: #f7f7f7;

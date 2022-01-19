@@ -12,7 +12,11 @@ import "./index.scss";
 import store from "./store";
 import translations from "./constants/translations";
 
-import { getAllProducts, getAllCategories } from "./actions/indexO";
+import {
+  getAllProducts,
+  getAllCategories,
+  getAllExtras,
+} from "./actions/indexO";
 
 // Layouts
 
@@ -50,12 +54,16 @@ import ElementSlider from "./components/elements/element-slider";
 import ElementCategory from "./components/elements/element-category";
 import ElementService from "./components/elements/element-service";
 
+// Load Pontano Sans typeface
+require("typeface-pontano-sans");
+
 const pK = "pk_test_xhI1GEX6luUTKEj2qQe8biZX00iH1jvMZe";
 
 class Root extends React.Component {
   render() {
     store.dispatch(getAllProducts());
     store.dispatch(getAllCategories());
+    store.dispatch(getAllExtras());
     return (
       <Provider store={store}>
         <IntlProvider translations={translations} locale="en">

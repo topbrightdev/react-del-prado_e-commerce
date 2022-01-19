@@ -48,10 +48,12 @@
 /*=====================
     1.General CSS start
 ==========================*/
+
 body {
-  font-family: $font_0, $font_1;
+  font-family: "PontanoSans-Regular", $font_1;
   background: $white;
-  font-size: 14px;
+  color: $font-color;
+  font-size: 1rem;
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -62,20 +64,20 @@ body {
 
 h1 {
   font-size: 60px;
-  color: $dark-font;
+  color: $header-font;
   font-weight: 700;
   text-transform: uppercase;
 
   span {
     font-size: 107px;
     font-weight: 700;
-    color: $theme-deafult;
+    color: $header-font;
   }
 }
 
 h2 {
   font-size: 36px;
-  color: $dark-font;
+  color: $header-font;
   text-transform: uppercase;
   font-weight: 700;
   line-height: 1;
@@ -85,7 +87,7 @@ h2 {
 h3 {
   font-size: 24px;
   font-weight: 400;
-  color: $grey;
+  color: $font-color;
   letter-spacing: 0.03em;
 }
 
@@ -165,7 +167,7 @@ input[type="radio"] {
 }
 
 .d-f {
-  display: flex;
+  display: flex !important;
 }
 
 .white {
@@ -202,7 +204,7 @@ input[type="radio"] {
 }
 
 .black {
-  background-color: #1b1b1b;
+  background-color: #c9917f;
 }
 
 section,
@@ -294,10 +296,6 @@ hr.style1 {
   content: "\E64A";
 }
 
-.form-control {
-  border-radius: 5px;
-}
-
 .small-section {
   padding-top: 35px;
   padding-bottom: 35px;
@@ -325,7 +323,7 @@ hr.style1 {
 }
 
 .darken-layout {
-  background-color: $grey-darken;
+  background-color: $pon-bottom;
 }
 
 .dark-layout {
@@ -369,12 +367,77 @@ hr.style1 {
   border: 1px solid $theme-deafult !important;
 }
 
-input:focus {
-  border-color: #96d627 !important;
-  box-shadow: 0 1px 1px #96d627 inset !important;
-  box-shadow: 0 0 8px #96d627 !important;
-  //outline: 0 none;
+input {
+  text-align: left;
+  border: unset;
+  background-color: unset;
+  overflow: visible;
+  border-color: unset;
+  border-bottom: 2px $pon-text solid;
+  background: transparent;
+  color: $pon-text;
 }
+
+input:focus {
+  background-color: unset;
+  border-color: unset;
+  color: $pon-text;
+}
+
+.form-control {
+  position: relative;
+  text-align: left;
+  letter-spacing: 5px;
+  font-size: 12px;
+  padding: 15px 0;
+  border-radius: 0px;
+  display: block;
+  width: 50%;
+  height: 40px;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: $pon-text;
+  background-color: unset;
+  background-clip: padding-box;
+  border-radius: 0%;
+  border: none;
+  padding: 0 10px;
+  box-shadow: none;
+  outline: none;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.form-control:focus {
+  color: $pon-text;
+  background-color: #fff;
+  border-color: unset;
+  outline: 0;
+  box-shadow: unset;
+}
+
+input::placeholder {
+  color: $pon-text !important;
+}
+
+/* Shutter */
+
+.form-control.shutter-in {
+  border-bottom: 1px solid ($pon-text);
+  background: transparent;
+  color: $pon-text;
+}
+.form-control.shutter-in:focus {
+  border-color: $pon-main-text;
+  border-bottom: 1px solid $pon-text;
+  box-shadow: 0 -50px 0 $pon-bottom inset;
+  color: $pon-text;
+}
+
 .block-price-content {
   .custom-control {
     padding-right: 1.5rem;
@@ -398,13 +461,15 @@ del {
 }
 
 .sticky {
+  background: $pon-background;
+
   &.fixed {
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 999;
     transition: all 300ms ease;
-    background: #fff;
+    background: $pon-background;
     box-shadow: 0px 0px 8px #ddd;
     animation: smoothScroll 1s forwards;
 
@@ -422,9 +487,6 @@ del {
     .pixelstrap > li > a,
     .pixelstrap > li > a:hover,
     .pixelstrap > li > a:active {
-    }
-
-    .onhover-div {
     }
 
     .top-header {
@@ -500,8 +562,8 @@ del {
 
 .styles_closeButton__20ID4 {
   position: absolute;
-  top: 0%;
-  right: 0%;
+  top: 2%;
+  right: 1%;
   border: none;
   padding: 0;
   background-color: transparent;
@@ -574,7 +636,7 @@ del {
   background-color: unset;
   box-sizing: unset;
   margin: unset;
-  font: 400 13.3333px Arial;
+  font: 400 13.3333px;
   padding: 1px 6px;
   border-width: unset;
   border-style: unset;
@@ -651,6 +713,16 @@ del {
 
 .left-sidebar-block {
   margin-top: 5vh;
+  margin-left: 5%;
+  .pictures-left {
+    text-align: center;
+    margin-top: 30%;
+    .img-left {
+      width: 40%;
+      margin-top: 2%;
+      margin-bottom: 2%;
+    }
+  }
 }
 
 .new-product-box {
@@ -867,21 +939,33 @@ button {
   color: $white !important;
   letter-spacing: 0.05em;
   border: 2px solid $theme-deafult;
+  background-color: $pon-main-text;
+  background-image: linear-gradient(30deg, $pon-main-text 50%, transparent 50%);
   background-image: -webkit-linear-gradient(
     30deg,
-    $theme-deafult 50%,
-    transparent 50%
+    transparent 50%,
+    $theme-deafult 50%
   );
-  background-image: linear-gradient(30deg, $theme-deafult 50%, transparent 50%);
   background-size: 540px;
   background-repeat: no-repeat;
   background-position: 0;
-  -webkit-transition: background 300ms ease-in-out;
-  transition: background 300ms ease-in-out;
+  -webkit-transition: background 300ms ease-in;
+  transition: background 300ms ease-in;
+  transition: border 300ms ease-in;
+  transition: font-size 300ms ease-in;
   &:hover {
     background-position: 100%;
-    color: $black !important;
-    background-color: $white;
+    color: $pon-main-text !important;
+    background-image: unset;
+    background-color: transparent;
+    border: 2px solid transparent;
+  }
+  &:active {
+    color: $pon-main-text !important;
+    font-size: 1.1rem;
+    background-color: transparent !important;
+    background-image: unset;
+    border: 2px solid $theme-deafult;
   }
   &.black-btn {
     background-image: -webkit-linear-gradient(
@@ -1178,8 +1262,33 @@ button {
 /* =====================
     2.Header CSS start
 ========================== */
+.brand-logo-pon {
+  h1 {
+    font-size: 60px;
+    color: #c5927c;
+    font-weight: 100;
+    text-transform: unset;
+    text-align: center;
+  }
+}
+.header-pon {
+  display: flex;
+  background-color: #fefaef;
+  width: 100%;
+  padding: 2%;
+  .header-logo {
+    position: absolute;
+    left: 2%;
+  }
+  .header-menu {
+    position: absolute;
+    right: 2%;
+  }
+}
 header {
-  background-color: $white;
+  background-color: #fefaef;
+  min-height: 15vh;
+  max-height: 15vh;
 }
 .container-topbar {
   max-width: 95vw !important;
@@ -1198,7 +1307,8 @@ header {
     content: "\f107";
     font-family: $font-awesome;
     position: absolute;
-    right: 3px;
+    right: -1px;
+    top: -10px;
   }
   .onhover-show-div {
     position: absolute;
@@ -1273,37 +1383,57 @@ header {
   margin-top: 3%;
 }
 .search-overlay {
-  height: 100%;
-  width: 100%;
+  min-height: 85vh;
+  max-height: 85vh;
+  width: 33vw;
   display: none;
   position: fixed;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  background-color: white; /* background-image: url("/assets/images/vegetables/theme/10.png"); */
+  z-index: 999; /* top: 0; */ /* left: 0; */
+  right: 0;
+  bottom: 0;
+  background-color: $white; /* background-image: url("/assets/images/vegetables/theme/10.png"); */
   > div {
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    display: block;
+    .invisible-button {
+      color: #dbb59d;
+      font-size: 40px;
+      cursor: pointer;
+      position: relative;
+      right: -30vw;
+    }
     .overlay-content {
       width: 100%;
+      .form-group {
+        margin-bottom: 1rem;
+        padding-left: 10%;
+        display: flex;
+      }
       .form-control {
+        width: 70%;
+        margin-top: 10vh;
         &:focus {
           box-shadow: none;
-          color: #96d627 !important;
+          color: $pon-text !important;
         }
       }
       input {
         background-color: transparent;
         border: 0;
-        border-bottom: 2px solid lighten($black, 46.5%);
+        border-color: $pon-text;
+        border-bottom: 1px solid $pon-text;
         border-radius: 0;
         padding: 20px 0;
+        transition: border-bottom 300ms ease-in;
         &:focus {
-          box-shadow: #96d627 !important;
-          color: #96d627 !important;
+          box-shadow: unset !important;
+          color: unset !important;
+          border-color: $white;
+          border-bottom: 1px solid $pon-text;
         }
         &::-webkit-input-placeholder {
           /* Chrome/Opera/Safari */
@@ -1327,24 +1457,229 @@ header {
         }
       }
       button {
-        position: absolute;
-        top: 10px;
+        position: relative;
+        top: 5vh;
         background-color: transparent;
         border: 0;
         font-size: 24px;
-        color: lighten($black, 46.5%);
-        right: 10px;
+        color: #c5927c;
+        right: 0%;
+        max-height: max-content;
+      }
+      .closebtn {
+        position: absolute;
+        top: -10px;
+        right: 25px;
+        color: #dbb59d;
+        font-size: 40px;
+        cursor: pointer;
       }
     }
     .closebtn {
-      position: fixed;
-      top: 10px;
+      position: absolute;
+      top: -10px;
       right: 25px;
-      color: lighten($black, 46.5%);
+      color: $pon-text;
       font-size: 40px;
       cursor: pointer;
     }
   }
+}
+.read-overlay {
+  min-height: 85vh;
+  max-height: 85vh;
+  width: 33vw;
+  display: none;
+  position: absolute;
+  z-index: 999;
+  padding-top: 5%;
+  padding-left: 5%;
+  right: 0;
+  bottom: 0;
+  background-color: $white;
+  &.fixed {
+    position: fixed;
+    transition: all 300ms ease;
+    background: $pon-background;
+    box-shadow: 0px 0px 8px #ddd;
+    animation: smoothScroll 1s forwards;
+  }
+  /* background-image: url("/assets/images/vegetables/theme/10.png"); */
+  > div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    .invisible-button {
+      color: #dbb59d;
+      font-size: 40px;
+      cursor: pointer;
+      position: relative;
+    }
+    .sub-title {
+      h4 {
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      li {
+        position: relative;
+        display: inherit;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        margin-top: 1rem;
+        text-transform: capitalize;
+        color: $pon-main-text;
+        button {
+          position: absolute;
+          color: $pon-text;
+          font-size: 1rem !important;
+          &:before {
+            position: absolute;
+            top: 20px;
+            margin-top: 0rem;
+            content: "";
+            height: 2px;
+            width: 0;
+            background-color: $theme-deafult;
+            transition: 0.5s ease;
+          }
+        }
+        &:hover {
+          button {
+            &:before {
+              margin-top: 0rem;
+              width: 100%;
+              height: 2px;
+              transition: 0.5s ease;
+            }
+          }
+        }
+      }
+    }
+    .overlay-content {
+      width: 100%;
+      .form-group {
+        margin-bottom: 1rem;
+        padding-left: 10%;
+        display: flex;
+      }
+      .form-control {
+        width: 70%;
+        margin-top: 10vh;
+        &:focus {
+          box-shadow: none;
+          color: $pon-text !important;
+        }
+      }
+    }
+  }
+}
+.read-overlay2 {
+  min-height: 85vh;
+  max-height: 85vh;
+  width: 33vw;
+  display: none;
+  position: absolute;
+  z-index: 999;
+  padding-top: 5%;
+  padding-left: 5%;
+  right: 33vw;
+  bottom: 0;
+  background-color: $white;
+  &.fixed {
+    position: fixed;
+    transition: all 300ms ease;
+    background: $pon-background;
+    box-shadow: 0px 0px 8px #ddd;
+    animation: smoothScroll 1s forwards;
+  }
+  /* background-image: url("/assets/images/vegetables/theme/10.png"); */
+  > div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    .invisible-button {
+      color: #dbb59d;
+      font-size: 40px;
+      cursor: pointer;
+      position: relative;
+    }
+    .sub-title {
+      h4 {
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      li {
+        position: relative;
+        display: inherit;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        margin-top: 1rem;
+        text-transform: capitalize;
+        color: $pon-main-text;
+        button {
+          position: absolute;
+          color: $pon-text;
+          font-size: 1rem !important;
+          &:before {
+            position: absolute;
+            top: 20px;
+            margin-top: 0rem;
+            content: "";
+            height: 2px;
+            width: 0;
+            background-color: $theme-deafult;
+            transition: 0.5s ease;
+          }
+        }
+        &:hover {
+          button {
+            &:before {
+              margin-top: 0rem;
+              width: 100%;
+              height: 2px;
+              transition: 0.5s ease;
+            }
+          }
+        }
+      }
+    }
+    .overlay-content {
+      width: 100%;
+      .form-group {
+        margin-bottom: 1rem;
+        padding-left: 10%;
+        display: flex;
+      }
+      .form-control {
+        width: 70%;
+        margin-top: 10vh;
+        &:focus {
+          box-shadow: none;
+          color: $pon-text !important;
+        }
+      }
+    }
+  }
+}
+.menu {
+  height: 85vh;
+  width: 33vw;
+  max-width: 33vw;
+  position: fixed;
+  right: 0;
+  top: 15vh;
+  background: $pon-background;
+}
+.menu1 {
+  right: 33vw;
 }
 .top-header {
   background-color: $top-header;
@@ -1521,7 +1856,8 @@ header {
   z-index: 9;
   max-height: max-content;
   min-height: max-content;
-  padding-top: 1%;
+  padding-top: 0%;
+  font-family: $font_0 !important;
   &.product-full-page {
     z-index: 9999;
   }
@@ -1537,7 +1873,7 @@ header {
     align-items: center;
     .navbar {
       display: inline-block;
-      padding: 40px 45px 40px 0;
+      padding: 0px 45px 0px 0;
       i {
         font-size: 28px;
         color: $dark-font;
@@ -1576,8 +1912,15 @@ header {
     min-width: max-content;
     .icon-nav {
       display: inline-block;
+      .nav-button-menu {
+        min-width: 80px;
+        max-width: 80px;
+      }
       li {
         padding-left: 20px;
+        a {
+          color: unset;
+        }
       }
       .onhover-div {
         .show-div {
@@ -1689,8 +2032,8 @@ header {
             .form-control {
               border-radius: 0;
               &:focus {
-                border: 1px solid greenyellow;
-                box-shadow: 1px solid greenyellow;
+                border: 1px solid $pon-text;
+                box-shadow: 1px solid $pon-text;
               }
             }
             .search-btn {
@@ -1706,6 +2049,10 @@ header {
               }
             }
           }
+        }
+        .close-button {
+          color: #d28e77;
+          font-size: 2.3rem;
         }
       }
       &.white-icon {
@@ -1800,17 +2147,18 @@ header {
       content: "\f104";
     }
   }
+  .home-pon1 {
+    background-image: url(/assets/images/pon/ladies.jpg);
+    background-position: right !important;
+  }
+  .home-pon2 {
+    background-image: url(/assets/images/pon/ladiesBack.jpg);
+    background-position: bottom !important;
+  }
   .home {
     background-size: cover !important;
     background-repeat: no-repeat !important;
-    background-position: right !important;
     height: 75vh !important;
-    @for $i from 1 through 56 {
-      &.home#{$i} {
-        // background-image:url("#{$assetspath}/home-banner/#{$i}.jpg");
-        background-image: url("#{$assetspath}/vegetables/theme/#{$i}.jpeg");
-      }
-    }
   }
   .container {
     min-width: 90vw !important;
@@ -1823,23 +2171,28 @@ header {
   }
   .slider-contain {
     width: 100%;
-    height: 75vh;
+    height: 30vh;
     display: flex;
     align-items: center;
-    h1 {
-      margin-bottom: 0;
-      margin-top: 10px;
-      color: $dark-font;
-    }
-    h4 {
-      font-weight: 700;
-      letter-spacing: 0.4em;
-      color: $grey;
-      margin-bottom: 0;
-    }
-    .btn-solid,
-    .btn-outline {
-      margin-top: 20px;
+    .container-text {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      h1 {
+        margin-bottom: 0;
+        margin-top: 10px;
+        color: $theme-deafult;
+      }
+      h4 {
+        font-weight: 700;
+        letter-spacing: 0.4em;
+        color: $theme-deafult;
+        margin-bottom: 0;
+      }
+      .btn-solid,
+      .btn-outline {
+        margin-top: 20px;
+      }
     }
   }
   .items {
@@ -1927,20 +2280,6 @@ header {
       background-position-y: 70%;
       .slider-contain {
         margin-top: 75px;
-        h4,
-        h1 {
-          color: $black;
-        }
-      }
-    }
-  }
-}
-.small-slider {
-  .home-slider {
-    .home {
-      height: 55vh;
-      .slider-contain {
-        height: 55vh;
         h4,
         h1 {
           color: $black;
@@ -2739,8 +3078,7 @@ header {
           }
           .details_product {
             right: -50%;
-            transition: all 0.5s ease;
-            // border-left: 1px solid white;
+            transition: all 0.5s ease; // border-left: 1px solid white;
           }
         }
       }
@@ -3089,12 +3427,14 @@ header {
       display: inline-block;
       right: 0;
       left: 0;
+      top: 20px;
+      height: 40px;
       border-radius: 50px;
       width: max-content;
       padding: 12px 15px;
-      box-shadow: 0 0 12px 0 $round-border;
+      box-shadow: 0 0 12px 0 #dbb59d80;
       bottom: 30px;
-      background-color: $white;
+      background-color: #dbb59d80;
       opacity: 0;
       transition: all 0.2s ease;
       button {
@@ -3229,6 +3569,8 @@ header {
   .product-detail,
   .product-info {
     padding-left: 0px;
+    padding-top: 5%;
+    padding-bottom: 5%;
     .rating {
       margin-top: 0px;
       &:hover {
@@ -3754,14 +4096,18 @@ header {
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
-  margin-top: -4%;
+  margin-top: 0%;
   padding-top: 190px;
   padding-bottom: 190px;
   background-position: center;
+  height: 90vh;
   @for $i from 1 through 28 {
     &.parallax-banner#{$i} {
       background-image: url("#{$assetspath}/parallax/#{$i}.jpg");
     }
+  }
+  &.parallax-bannerPon {
+    background-image: url("#{$assetspath}/pon/hug.jpg");
   }
   &.parallax-layout {
     padding-top: 350px;
@@ -4044,6 +4390,154 @@ header {
         opacity: 1;
         animation: fadeIn 500ms ease-in-out;
         transition: all 0.5s ease;
+      }
+    }
+  }
+}
+.theme-card-pon {
+  background: $font-color;
+  margin-top: 10%;
+  .slide-pon {
+    display: flex;
+    .media {
+      display: flex;
+      align-items: flex-start;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  &.center-align {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    .offer-slider {
+      margin-left: auto;
+      margin-right: auto;
+      .product-box2 {
+        .media {
+          display: flex;
+          align-items: flex-start;
+          margin-left: auto;
+          margin-right: auto;
+          .media-body {
+            margin-top: 0;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+  &.card-border {
+    border: 1px solid $round-border;
+    h5 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      padding-left: 50px;
+    }
+    .slick-prev,
+    .slick-next {
+      top: -45px;
+    }
+    .slick-next {
+      right: 30px;
+    }
+    .slick-prev {
+      right: 50px;
+    }
+    .offer-slider {
+      padding-top: 0;
+      padding-bottom: 20px;
+      img {
+        padding: 15px 15px 15px 30px;
+      }
+      .media {
+        .media-body {
+          a {
+            h6 {
+              margin-right: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+  h5 {
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    margin-top: -5px;
+    &.title-border {
+      border-bottom: 1px solid $round-border;
+    }
+  }
+  .slick-prev,
+  .slick-next {
+    top: -35px;
+    &:before {
+      font: normal normal normal 30px/1 $font-awesome;
+      color: $dark-font;
+      opacity: 0.6;
+    }
+  }
+  .slick-next {
+    right: 0;
+    &:before {
+      content: "\f105";
+    }
+  }
+  .slick-prev {
+    left: unset;
+    right: 25px;
+    &:before {
+      content: "\f104";
+    }
+  }
+  .offer-slider {
+    img {
+      height: 160px;
+      padding: 15px 15px 15px 0;
+    }
+    > div {
+      .media {
+        &:last-child {
+          .media-body {
+            margin-top: 15px;
+          }
+          img {
+            margin-bottom: -15px;
+          }
+        }
+      }
+    }
+    .media {
+      .media-body {
+        .rating {
+          margin-top: 0;
+          i {
+            padding-right: 5px;
+            &:nth-child(-n + 5) {
+              color: $star-yellow;
+              margin-top: 1% !important;
+            }
+            &:last-child {
+              color: $round-border;
+            }
+          }
+        }
+        a {
+          h6 {
+            margin-right: 61px;
+            line-height: 17px;
+            margin-top: 5px;
+            margin-bottom: 0;
+          }
+        }
+        h4 {
+          margin-top: 10px;
+          font-weight: 700;
+          color: $dark-font;
+          margin-bottom: 0;
+        }
       }
     }
   }
@@ -4880,20 +5374,6 @@ header {
     }
   }
 }
-.small-slider {
-  .home-slider {
-    .home {
-      height: 55vh;
-      .slider-contain {
-        height: 55vh;
-        h4,
-        h1 {
-          color: $black;
-        }
-      }
-    }
-  }
-}
 .banner-6 {
   .collection-banner {
     .contain-banner {
@@ -5389,37 +5869,6 @@ footer {
     background: linear-gradient(180deg, $gradient1 0%, $gradient2 99%);
   }
 }
-.banner-furniture {
-  padding-left: 15px;
-  padding-right: 15px;
-  .collection-banner {
-    .contain-banner {
-      &.banner-3 {
-        h2 {
-          color: $dark-font;
-          margin-bottom: 0;
-        }
-        h4 {
-          color: $theme-deafult;
-        }
-      }
-    }
-  }
-}
-.gym-slider {
-  .home-slider {
-    .home {
-      height: 85vh;
-      .slider-contain {
-        height: 85vh;
-        h4,
-        h1 {
-          color: $white;
-        }
-      }
-    }
-  }
-}
 .main-nav-center {
   display: flex;
   align-items: center;
@@ -5623,6 +6072,11 @@ footer {
       border-bottom: 1px dashed $round-border;
     }
     .menu-right {
+      .text-button {
+        color: $pon-main-text !important;
+        font-size: 1.5rem !important;
+        font-weight: 800 !important;
+      }
       .header-dropdown {
         > li {
           img {
@@ -6114,7 +6568,7 @@ footer {
 .sticky-footer {
   background-image: url("#{$assetspath}/tools/footer.jpg");
   .darken-layout {
-    background-color: transparent !important;
+    background-color: $pon-bottom !important;
     p {
       color: $grey8;
     }
@@ -6133,12 +6587,12 @@ footer {
     }
     .footer-social {
       i {
-        color: $grey8;
+        color: $pon-main-text;
       }
     }
   }
   .dark-subfooter {
-    background-color: #141111 !important;
+    background-color: $white !important;
     p {
       color: $grey8 !important;
     }
@@ -6461,7 +6915,11 @@ footer {
       color: $grey-font;
     }
     .sub-title {
+      .footer-contant {
+        text-align: center;
+      }
       .footer-title {
+        text-align: center;
         &.active {
           .according-menu {
             font: normal normal normal 14px/1 $font-awesome;
@@ -6472,7 +6930,7 @@ footer {
         }
       }
       h4 {
-        color: $white;
+        color: $pon-main-text;
       }
       li {
         a {
@@ -6534,7 +6992,7 @@ footer {
 .subscribe {
   text-align: center;
   h4 {
-    color: $dark-font;
+    color: $pon-main-text;
     text-transform: uppercase;
     font-weight: 700;
     display: block;
@@ -6574,16 +7032,14 @@ footer {
 }
 .footer-social,
 .social-white {
-  margin-top: 40px;
-  display: flex;
   align-items: center;
   .m-lr-a {
     margin-left: auto;
     margin-right: auto;
   }
   li {
-    display: inline-block;
-    padding-right: 45px;
+    padding-right: 20px;
+    padding-left: 20px;
   }
   i {
     font-size: 20px;
@@ -6610,7 +7066,6 @@ footer {
   }
   .sub-title {
     h4 {
-      color: $dark-font;
       margin-bottom: 25px;
       text-transform: uppercase;
       font-weight: 700;
@@ -6621,7 +7076,7 @@ footer {
       padding-top: 13px;
       text-transform: capitalize;
       font-size: 14px;
-      color: $grey;
+      color: $pon-main-text;
       a {
         position: relative;
         color: $grey;
@@ -6645,42 +7100,12 @@ footer {
         }
       }
     }
-    .contact-list {
-      i {
-        position: absolute;
-        left: 0;
-        top: 21px;
-      }
-      li {
-        position: relative;
-        padding-left: 25px;
-        line-height: 28px;
-        a {
-          &:hover {
-            color: $theme-deafult;
-            transition: all 0.5s ease;
-          }
-        }
-        &:hover {
-          color: lighten($black, 60%);
-          transition: all 0.3s ease;
-          a {
-            &:before {
-              display: none;
-            }
-          }
-        }
-        &:last-child {
-          margin-bottom: -5px;
-        }
-      }
-    }
   }
 }
 .sub-footer {
   background-color: $white;
   &.dark-subfooter {
-    background-color: $dark-footer;
+    background-color: $white;
     p {
       color: $grey-font;
     }
@@ -6779,7 +7204,7 @@ footer {
       letter-spacing: 5px;
       font-size: 12px;
       padding: 15px 0;
-      border-radius: 0;
+      border-radius: 0px;
     }
   }
   .footer-link,
@@ -8235,28 +8660,64 @@ footer {
 .login-page {
   h3 {
     margin-bottom: 20px;
-    text-transform: uppercase;
-    color: $dark-font;
+    text-transform: capitalize;
+    color: $pon-main-text;
     font-weight: 700;
     margin-top: -5px;
   }
   .theme-card {
     padding: 30px;
-    border: 1px solid $round-border;
+    padding-left: 0%;
+    border-radius: 6px;
     line-height: 1;
     .theme-form {
       label {
         text-transform: capitalize;
         color: $font-color;
-        font-size: 14px;
+        font-size: 1.2rem;
         font-weight: 600;
       }
       input {
-        border-color: $round-border;
-        font-size: 12px;
+        width: 50%;
+        border-color: $pon-text 10%;
+        color: $pon-text;
         padding: 17px 25px;
         margin-bottom: 30px;
         height: inherit;
+      }
+      .form-check {
+        position: relative;
+        width: 50%;
+        padding-left: 0%;
+        .check-group {
+          display: flex;
+          margin-left: auto;
+          position: relative;
+          p {
+            margin-bottom: 0rem;
+            margin-top: 1rem;
+            color: $pon-text;
+          }
+        }
+        display: -webkit-inline-box;
+        .MuiCheckbox-colorSecondary.Mui-checked {
+          color: $pon-main-text;
+        }
+        .MuiCheckbox-root {
+          color: $pon-main-text;
+        }
+      }
+      .forget {
+        margin-top: 3%;
+        a {
+          color: $pon-text;
+          text-decoration: none;
+          background-color: transparent;
+          -webkit-text-decoration-skip: objects;
+        }
+        a:hover {
+          color: $pon-main-text;
+        }
       }
     }
   }
@@ -8264,13 +8725,13 @@ footer {
     height: calc(100% - 48px);
     h6 {
       text-transform: uppercase;
-      color: $font-color;
+      color: $pon-text;
       font-weight: 600;
       margin-bottom: 20px;
     }
     p {
       font-size: 14px;
-      color: $grey2;
+      color: $pon-text;
       line-height: 2;
       margin-bottom: 1rem;
     }
@@ -8281,23 +8742,24 @@ footer {
   h3 {
     margin-bottom: 20px;
     text-transform: uppercase;
-    color: $dark-font;
+    color: $pon-main-text;
     font-weight: 700;
     margin-top: -5px;
   }
   .theme-card {
     padding: 30px;
-    border: 1px solid $round-border;
+    padding-left: 0%;
+    border: unset;
     line-height: 1;
     .theme-form {
       label {
         text-transform: capitalize;
-        color: $font-color;
+        color: $pon-text;
         font-size: 14px;
         font-weight: 600;
       }
       input {
-        border-color: $round-border;
+        border-color: $pon-text;
         font-size: 12px;
         padding: 17px 25px;
         margin-bottom: 30px;
@@ -8404,7 +8866,7 @@ footer {
     span {
       button {
         background: $white !important;
-        border: 1px solid #ced4da;
+        border: 1px solid $pon-text;
       }
     }
     .form-control {
@@ -8940,6 +9402,14 @@ footer {
   }
 }
 .product-right {
+  margin-top: 10%;
+  .product-name-div {
+    display: flex;
+    > h2 {
+      margin-left: 0%;
+      margin-right: 4%;
+    }
+  }
   p {
     margin-bottom: 0;
     line-height: 1.5em;
@@ -8951,6 +9421,7 @@ footer {
     margin-bottom: 0;
   }
   .border-product {
+    min-height: 300px;
     padding-top: 15px;
     padding-bottom: 20px;
     border-top: 1px dashed $round-border;
@@ -9016,9 +9487,73 @@ footer {
       .input-group {
         justify-content: unset;
         width: unset;
+        border: 2px solid;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        padding-left: 2%;
+        margin-right: 5%;
+        width: 40%;
+        min-height: 70px;
+        max-height: 70px;
+        .quantity-button {
+          position: relative;
+          right: -10%;
+          background: transparent;
+          border: 0px;
+          padding-top: 0%;
+          margin-right: auto;
+          margin-left: auto;
+        }
+        &.focus {
+          box-shadow: 2px 2px 2px 2px $pon-text;
+        }
         .form-control {
           border-right: none;
         }
+        p {
+          color: $pon-text;
+          margin-top: 5% !important;
+          margin-bottom: 5%;
+          padding-left: 5%;
+        }
+      }
+      .btn-solid {
+        min-height: 70px;
+        max-height: 70px;
+        padding: 13px 29px;
+        color: $pon-text !important;
+        letter-spacing: 0.05em;
+        border: 2px solid $pon-text;
+        background-color: transparent;
+        background-image: linear-gradient(
+          30deg,
+          transparent 50%,
+          $pon-text 50%
+        );
+        background-image: -webkit-linear-gradient(
+          30deg,
+          transparent 50%,
+          #c5927c 50%
+        );
+        background-size: 540px;
+        background-repeat: no-repeat;
+        background-position: 0;
+        transition: background 300ms ease-in;
+        transition: border 300ms ease-in;
+      }
+      .btn-solid:hover {
+        background-position: 100%;
+        color: $white !important;
+        background-image: unset;
+        background-color: $pon-text;
+        border: 2px solid transparent;
+      }
+      .btn-solid:active {
+        color: $pon-text !important;
+        font-size: 14px;
+        background-color: transparent !important;
+        background-image: unset;
+        border: 2px solid $pon-text;
       }
     }
   }
@@ -9252,6 +9787,7 @@ footer {
           text-transform: uppercase;
           border: 0;
           cursor: pointer;
+          background-color: transparent;
         }
         .material-border {
           border-bottom: 2px solid $theme-deafult;
@@ -11823,6 +12359,7 @@ body.rtl {
       text-align: center;
     }
     .footer-contant {
+      text-align: center;
       p {
         text-align: center;
       }
@@ -12299,9 +12836,9 @@ body {
   }
   .form-control {
     color: $white-5;
-    background-color: $dark-body;
+    background-color: unset;
     transition: all 0.3s ease;
-    border: 1px solid $dark-border;
+    border: 0px solid $dark-border;
   }
   .btn-solid {
     color: $white !important;
@@ -12635,13 +13172,13 @@ body {
   .footer-theme {
     .sub-title {
       li {
-        color: $white-5;
+        color: $pon-main-text;
         a {
           color: $white-5;
         }
       }
       h4 {
-        color: $white-3;
+        color: $pon-main-text;
       }
     }
   }
@@ -13900,7 +14437,7 @@ body {
   }
   .register-page {
     .theme-card {
-      border-color: $dark-border;
+      border-color: unset;
       .theme-form {
         input {
           border-color: $dark-border;
@@ -14122,13 +14659,17 @@ body {
     transition: all 0.3s ease;
   }
   .darken-layout {
-    background-color: $dark-top;
+    background-color: $white;
     transition: all 0.3s ease;
     p {
       color: $white-5;
     }
     .sub-title {
+      .footer-contant {
+        text-align: center;
+      }
       .contact-list {
+        text-align: center;
         li {
           color: $white-5;
         }
@@ -14139,7 +14680,7 @@ body {
     }
     .footer-social {
       i {
-        color: $white-5;
+        color: $pon-main-text;
       }
     }
   }
@@ -14758,8 +15299,7 @@ body {
   width: 100%;
 }
 .my-masonry-grid_column {
-  padding-left: 30px;
-  /* gutter size */
+  padding-left: 30px; /* gutter size */
   background-clip: padding-box;
 }
 /* Style your items */

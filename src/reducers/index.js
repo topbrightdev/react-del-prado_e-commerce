@@ -12,8 +12,10 @@ import categoryTreeReducer from "./categoryTree";
 import userReducer from "./user";
 import orderReducer from "./order";
 import reviewsReducer from "./reviews";
+import extras from "./extras";
 
 import { DESTROY_SESSION } from "../constants/ActionTypes";
+import extrasReducer from "./extras";
 
 // Combine all reducers.
 const appReducer = combineReducers({
@@ -27,6 +29,7 @@ const appReducer = combineReducers({
   user: userReducer,
   order: orderReducer,
   reviews: reviewsReducer,
+  extras: extrasReducer,
   Intl,
 });
 

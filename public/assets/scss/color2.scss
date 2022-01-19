@@ -1,5 +1,6 @@
-@import 'theme/variables';
-$theme-deafult: #96d627;
-@import 'theme/style';
-@import 'theme/menu';
-@import 'theme/responsive';
+@import "theme/variables";
+$theme-deafult: #c5927c;
+@import "theme/style";
+@import "pon/style";
+@import "theme/menu";
+@import "theme/responsive";

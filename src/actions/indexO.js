@@ -115,6 +115,25 @@ export const getAllCategories = () => (dispatch) => {
 
 /**      END  CATEGORYTREE ACTIONS          */
 
+/*        GET EXTRAS                        */
+export const fetchExtrasBegin = () => ({
+  type: types.FETCH_EXTRAS_BEGIN,
+});
+
+export const receiveExtras = (extras) => ({
+  type: types.RECEIVE_EXTRAS,
+  extras,
+});
+
+export const getAllExtras = () => (dispatch) => {
+  dispatch(fetchExtrasBegin());
+  shop.getExtras().then((extras) => {
+    dispatch(receiveExtras(extras));
+    return extras;
+  });
+};
+/*        GET EXTRAS    END                */
+
 /**          USER               */
 export const fetchLoginBegin = () => ({
   type: types.FETCH_LOGIN_BEGIN,

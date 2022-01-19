@@ -17,6 +17,7 @@ import {
   addToWishlist,
 } from "../../actions/indexO";
 import ImageZoom from "./common/product/image-zoom";
+import SmallImages from "./common/product/small-image";
 
 class LeftSideBar extends Component {
   constructor() {
@@ -99,6 +100,13 @@ class LeftSideBar extends Component {
       arrows: true,
       fade: true,
     };
+    var productsnav = {
+      slidesToShow: 3,
+      swipeToSlide: true,
+      arrows: false,
+      dots: false,
+      focusOnSelect: true,
+    };
 
     const { translate } = this.props;
     if (item) {
@@ -122,36 +130,37 @@ class LeftSideBar extends Component {
               data={this.props}
             />
 
-            <section className="section-b-space">
+            <section className="">
               <div className="collection-wrapper">
                 <div className="container">
-                  <div className="top-banner-wrapper2">
-                    <button className="invisible-button">
-                      <img
-                        src={`${
-                          process.env.PUBLIC_URL
-                        }/assets/images/mega-menu/2.jpeg`}
-                        className="img-fluid"
-                        alt=""
-                      />
-                    </button>
-                  </div>
-
                   <div className="row left-sidebar-block">
                     <div className="col-sm-3 collection-filter" id="filter">
-                      <div className="collection-mobile-back pl-5">
-                        <span onClick={this.backClick} className="filter-back">
-                          <i className="fa fa-angle-left" aria-hidden="true" />{" "}
-                          {translate("back")}
-                        </span>
+                      {/* leftside-pictures start */}
+                      <div className="pictures-left">
+                        {item.variants
+                          ? item.variants.map((vari, index) => (
+                              <div key={index}>
+                                <img
+                                  src={`${vari.images}`}
+                                  key={index}
+                                  alt=""
+                                  className="img-left"
+                                />
+                              </div>
+                            ))
+                          : item.pictures.map((vari, index) => (
+                              <div key={index}>
+                                <img
+                                  src={`${vari}`}
+                                  key={index}
+                                  alt=""
+                                  className="img-left"
+                                />
+                              </div>
+                            ))}
                       </div>
 
-                      {/* <BrandBlock/> */}
-                      <Service />
-                      {/*side-bar single product slider start*/}
-                      {/** <NewProduct /> */}
-                      <NewProduct />
-                      {/*side-bar single product slider end*/}
+                      {/* leftside-pictures end */}
                     </div>
                     <div className="col-lg-9 col-sm-12 col-xs-12">
                       <div className="">
@@ -172,7 +181,7 @@ class LeftSideBar extends Component {
                           </div>
                         </div>
                         <div className="row">
-                          <div className="col-lg-6 product-thumbnail p-t-5">
+                          <div className="col-lg-6 product-thumbnail">
                             <Slider
                               {...products}
                               asNavFor={this.state.nav2}
@@ -180,7 +189,7 @@ class LeftSideBar extends Component {
                               className="product-slick"
                             >
                               <div>
-                                <ImageZoom image={item.pictures} />
+                                <ImageZoom image={item.pictures[0]} />
                               </div>
                             </Slider>
                           </div>
@@ -194,11 +203,12 @@ class LeftSideBar extends Component {
                           />
                         </div>
                       </div>
-                      <DetailsTopTabs item={item} />
                     </div>
                   </div>
                 </div>
               </div>
+              {/** <NewProduct /> */}
+              <NewProduct />
             </section>
           </div>
 

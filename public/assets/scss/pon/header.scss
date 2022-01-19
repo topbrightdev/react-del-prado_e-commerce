@@ -1,0 +1,22 @@
+/* =====================
+    2.Header CSS start
+========================== */
+
+.header-pon {
+  display: flex;
+  background-color: $white;
+  width: 100%;
+  padding: 2%;
+  .header-logo {
+    position: absolute;
+    left: 2%;
+  }
+  .header-menu {
+    position: absolute;
+    right: 2%;
+  }
+}
+
+/* =====================
+    2.Header CSS end
+========================== */

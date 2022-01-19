@@ -70,6 +70,7 @@
     "react-magnific-popup": "^1.0.1",
     "react-mailchimp-subscribe": "^2.1.0",
     "react-masonry-css": "^1.0.14",
+    "react-modal-video": "^1.2.5",
     "react-number-format": "^4.4.1",
     "react-pace-progress": "^2.0.0",
     "react-paypal-express-checkout": "^1.0.5",
@@ -90,6 +91,7 @@
     "react-tabs": "^2.3.1",
     "react-toastify": "^4.5.2",
     "react-topbar-progress-indicator": "^2.0.0",
+    "react-video-tag": "0.0.10",
     "redux": "^4.0.5",
     "redux-infinite-scroll": "^1.0.9",
     "redux-logger": "^3.0.6",
@@ -101,6 +103,7 @@
     "stripe": "^8.69.0",
     "style-loader": "0.23.0",
     "terser-webpack-plugin": "1.1.0",
+    "typeface-pontano-sans": "0.0.72",
     "url-loader": "1.1.1",
     "webpack-dev-server": "3.1.9",
     "webpack-manifest-plugin": "2.0.4",
@@ -177,6 +180,5 @@
   "resolutions": {
     "**/@babel/runtime": "7.5.0"
   },
-  "proxy":"https://waldenberginc.com"
-
+  "proxy": "https://waldenberginc.com"
 }

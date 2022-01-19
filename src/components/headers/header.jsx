@@ -1,30 +1,45 @@
 import React, { Component } from "react";
-import { IntlActions } from "react-redux-multilingual";
+import { IntlActions, withTranslate } from "react-redux-multilingual";
 import Pace from "react-pace-progress";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { withTranslate } from "react-redux-multilingual";
+import { Link } from "react-router-dom";
 
 // Import custom components
-
 import store from "../../store";
-import NavBar from "./common/navbar";
-import CartContainer from "../../containers/CartContainer";
-import TopBar from "./common/topbar";
+import SideBar from "./common/sidebar";
+import CartContainer from "./../../containers/CartContainer";
+import { logout } from "../../actions/indexO";
 import LogoImage from "./common/logo";
-import { changeCurrency, searchProduct } from "../../actions/indexO";
+import { changeCurrency } from "../../actions/indexO";
 
-class HeaderTwo extends Component {
+import BlankHeart from "../../icons/BlankHeart";
+import Member from "../../icons/Member";
+
+import Search from "../../icons/Search";
+
+class HeaderOne extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       isLoading: false,
-      productName: "",
-      navigateTo: "",
+      modalOpen: null,
+      menuOpen: null,
     };
-  }
+    this.openRead = this.openRead.bind(this);
+    this.closeRead = this.closeRead.bind(this);
 
+    this.openSearch = this.openSearch.bind(this);
+    this.closeSearch = this.closeSearch.bind(this);
+
+    //this.openAbout = this.openAbout.bind(this);
+    // this.closeAbout = this.closeAbout.bind(this);
+
+    this.openMenu = this.openMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
+
+    this.closeModal = this.closeModal.bind(this);
+  }
   /*=====================
          Pre loader
          ==========================*/
@@ -33,7 +48,11 @@ class HeaderTwo extends Component {
     setTimeout(function() {
       document.querySelector(".loader-wrapper").style = "display: none";
     }, 2000);
+
+    this.setState({ open: true });
   }
+
+  componentDidUpdate() {}
 
   componentWillMount() {
     window.addEventListener("scroll", this.handleScroll);
@@ -42,52 +61,27 @@ class HeaderTwo extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  componentDidUpdate() {
-    if (this.props.data.product_details === "notFound") {
-      this.props.history.push(`${process.env.PUBLIC_URL}/pages/empty-search`);
-    } else if (this.props.data.product_details.length > 0) {
-      if (
-        this.props.data.product_details.name
-          .toUpperCase()
-          .includes(this.state.productName.toUpperCase())
-      ) {
-        this.props.history.push(
-          `${process.env.PUBLIC_URL}/left-sidebar/product/${
-            this.props.data.product_details.id
-          }`
-        );
-      }
-
-      //    this.props.history.push(
-      //      `${process.env.PUBLIC_URL}/left-sidebar/product/${this.props.data.product_details.id}`
-      //    );
-    }
-  }
-
   handleScroll = () => {
     let number =
       window.pageXOffset ||
       document.documentElement.scrollTop ||
       document.body.scrollTop ||
       0;
-
     if (number >= 300) {
       if (window.innerWidth < 576) {
         document.getElementById("sticky").classList.remove("fixed");
-      } else document.getElementById("sticky").classList.add("fixed");
+        if (this.state.modalOpen === true) {
+          document.getElementById("sticky").classList.add("fixed");
+        }
+      } else {
+        document.getElementById("sticky").classList.add("fixed");
+      }
     } else {
       document.getElementById("sticky").classList.remove("fixed");
+      if (this.state.modalOpen === true) {
+        document.getElementById("sticky").classList.add("fixed");
+      }
     }
-  };
-
-  handleChange = (e) => {
-    var obj = {};
-    obj[e.target.name] = e.target.value;
-    this.setState(obj);
-  };
-
-  handleSubmit = () => {
-    return this.props.searchProduct(this.state.productName);
   };
 
   changeLanguage(lang) {
@@ -98,14 +92,78 @@ class HeaderTwo extends Component {
     var openmyslide = document.getElementById("mySidenav");
     if (openmyslide) {
       openmyslide.classList.add("open-side");
+      document.getElementById("sticky").classList.add("fixed");
     }
   }
+  closeNav() {
+    var closemyslide = document.getElementById("mySidenav");
+    if (closemyslide) closemyslide.classList.remove("open-side");
+  }
+
   openSearch() {
+    this.closeModal();
     document.getElementById("search-overlay").style.display = "block";
+    document.getElementById("sticky").classList.add("fixed");
+    this.setState(() => {
+      return { modalOpen: true };
+    });
   }
 
   closeSearch() {
     document.getElementById("search-overlay").style.display = "none";
+    this.setState(() => {
+      return { modalOpen: false };
+    });
+  }
+
+  openRead() {
+    this.setState(() => {
+      return { menuOpen: true, modalOpen: true };
+    });
+  }
+
+  closeRead() {
+    this.setState(() => {
+      return { menuOpen: false };
+    });
+  }
+
+  openInspiration() {
+    this.setState(() => {
+      return { menu1Open: true };
+    });
+  }
+
+  openAbout() {
+    this.setState(() => {
+      return { menu1Open: true };
+    });
+  }
+
+  openTutorial() {
+    this.setState(() => {
+      return { menu1Open: true };
+    });
+  }
+
+  openMenu() {
+    this.setState(() => {
+      return { menu1Open: true };
+    });
+  }
+
+  closeMenu() {
+    this.setState(() => {
+      return { menu1Open: false };
+    });
+  }
+
+  closeModal() {
+    //  this.closeNav();
+    document.getElementById("search-overlay").style.display = "none";
+    this.setState(() => {
+      return { menuOpen: false, menu2Open: false, modalOpen: false };
+    });
   }
 
   load = () => {
@@ -118,147 +176,224 @@ class HeaderTwo extends Component {
 
   render() {
     const { translate } = this.props;
+    var wishes = null;
+    if (this.props.state.wishlist.list.length > 0) {
+      wishes = true;
+    }
+
+    var name = null;
+    if (this.props.state.user.log) {
+      if (this.props.state.user.log.username) {
+        name = this.props.state.user.log.username;
+      }
+    }
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <header id="sticky" className="sticky">
-            {this.state.isLoading ? <Pace color="#27ae60" /> : null}
-            <div className="mobile-fix-option" />
-            {/*Top Header Component*/}
-            <TopBar />
+        <header id="sticky" className="sticky">
+          {this.state.isLoading ? <Pace color="#27ae60" /> : null}
+          <div className="mobile-fix-option" />
+          {/*Top Header Component*/}
 
-            <div className="container-navbar">
-              <div className="row">
-                <div className="col-sm-12">
-                  <div className="main-menu border-section border-top-0">
-                    <div className="brand-logo layout2-logo">
-                      <LogoImage logo={this.props.logoName} />
-                      <h6> Del Prado</h6>
-                    </div>
-                    <div className="container p-l-20 navbar-container">
-                      <div className="row">
-                        <div className="col-lg-12">
-                          <div className="main-nav-center">
-                            <NavBar />
-                          </div>
-                        </div>
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="main-menu">
+                  <div className="menu-left">
+                    <div className="navbar">
+                      <div className="brand-logo-pon">
+                        <LogoImage logo={this.props.logoName} />{" "}
+                        <div className="bar-style" />
+                        <p>certains détails</p>
                       </div>
+                      {/*SideBar Navigation Component*/}
                     </div>
-                    <div className="menu-right pull-right">
-                      <div>
-                        <div className="icon-nav">
-                          <ul>
-                            <li className="onhover-div mobile-search">
-                              <div className="form-search">
-                                <input
-                                  type="text"
-                                  className="form-control"
-                                  id="productName"
-                                  name="productName"
-                                  placeholder="Search a Product"
-                                  value={this.state.productName}
-                                  onChange={this.handleChange}
-                                />{" "}
-                                <button
-                                  className="invisible-button"
-                                  type="submit"
-                                >
-                                  {" "}
-                                  <img
-                                    src={`${
-                                      process.env.PUBLIC_URL
-                                    }/assets/images/icon/search.png`}
-                                    type="submit"
-                                    className="img-fluid search-img"
-                                    alt=""
-                                  />
-                                  <i className="fa fa-search img-fluid search-img-mobile" />
-                                </button>
-                              </div>
-                            </li>
-                            <li className="onhover-div mobile-setting">
-                              <div>
-                                <img
-                                  src={`${
-                                    process.env.PUBLIC_URL
-                                  }/assets/images/icon/setting.png`}
-                                  className="img-fluid"
-                                  alt=""
-                                />
-                                <i className="fa fa-cog" />
-                              </div>
-                              <div className="show-div setting">
-                                <h6>{translate("language")}</h6>
-                                <ul>
-                                  <li>
-                                    <button
-                                      className="setting-button"
-                                      onClick={() => this.changeLanguage("es")}
-                                    >
-                                      Spanish{translate("")}
-                                    </button>{" "}
-                                  </li>
-                                  <li>
-                                    <button
-                                      className="setting-button"
-                                      onClick={() => this.changeLanguage("en")}
-                                    >
-                                      English{translate("")}
-                                    </button>{" "}
-                                  </li>
-                                </ul>
-                                <h6>currency{translate("")}</h6>
-                                <ul className="list-inline">
-                                  <li>
-                                    <button
-                                      className="setting-button"
-                                      onClick={() =>
-                                        this.props.changeCurrency("€")
-                                      }
-                                    >
-                                      euro
-                                    </button>{" "}
-                                  </li>
+                  </div>
+                  <div className="menu-right pull-right">
+                    {/*Top Navigation Bar Component*/}
+                    {/* <NavBar /> */}
 
-                                  <li>
-                                    <button
-                                      className="setting-button"
-                                      onClick={() =>
-                                        this.props.changeCurrency("$")
-                                      }
-                                    >
-                                      dollar
-                                    </button>{" "}
-                                  </li>
-                                </ul>
-                              </div>
-                            </li>
-                            {/*Header Cart Component */}
-                            <CartContainer />
-                          </ul>
-                        </div>
+                    <div>
+                      <div className="icon-nav">
+                        <ul>
+                          <li className="onhover-div mobile-search">
+                            <div>
+                              {" "}
+                              <button
+                                className="invisible-button"
+                                onClick={this.openRead}
+                              >
+                                <h3 className="text-button">Shop</h3>
+                              </button>
+                            </div>
+                          </li>
+                          <li className="onhover-div mobile-search">
+                            <div>
+                              <button
+                                className="invisible-button"
+                                onClick={this.openRead}
+                              >
+                                <h3 className="text-button">Read</h3>
+                              </button>
+                            </div>
+                          </li>
+
+                          {/*Header Search Component */}
+                          <li className="onhover-div mobile-search">
+                            <button
+                              className="invisible-button"
+                              onClick={this.openSearch}
+                            >
+                              <Search />
+                            </button>
+                          </li>
+
+                          {/*Header Cart Component */}
+                          <CartContainer />
+
+                          {/*Header WishList Component */}
+                          <li className="mobile-wishlist">
+                            <Link to={`${process.env.PUBLIC_URL}/wishlist`}>
+                              {!wishes ? (
+                                <BlankHeart />
+                              ) : (
+                                <i
+                                  className=" fa-heart icon-green"
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </Link>
+                          </li>
+
+                          {/*Header Member Component */}
+                          <li className="onhover-dropdown mobile-account">
+                            {name ? <Member /> : <Member />}
+                            {name ? (
+                              <ul className="onhover-show-div">
+                                <li>
+                                  <Link
+                                    to={`${
+                                      process.env.PUBLIC_URL
+                                    }/pages/account`}
+                                    data-lng="en"
+                                  >
+                                    {translate("my_account")}
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link
+                                    to={`${process.env.PUBLIC_URL}/`}
+                                    data-lng="en"
+                                    onClick={() => {
+                                      this.props.logout();
+                                    }}
+                                  >
+                                    {translate("logout")}
+                                  </Link>
+                                </li>
+                              </ul>
+                            ) : (
+                              <ul className="onhover-show-div">
+                                <li>
+                                  <Link
+                                    to={`${process.env.PUBLIC_URL}/pages/login`}
+                                    data-lng="en"
+                                  >
+                                    Login
+                                  </Link>
+                                </li>
+                                <li>
+                                  <Link
+                                    to={`${
+                                      process.env.PUBLIC_URL
+                                    }/pages/register`}
+                                    data-lng="en"
+                                  >
+                                    Register
+                                  </Link>
+                                </li>
+                              </ul>
+                            )}
+                          </li>
+
+                          <li className="onhover-div mobile-setting ">
+                            <div className="nav-button-menu">
+                              {this.state.modalOpen ? (
+                                <div className="close-button-div">
+                                  <button
+                                    className="invisible-button close-button "
+                                    onClick={this.closeModal}
+                                    title="Close Overlay"
+                                  >
+                                    ×
+                                  </button>
+                                  {/*SideBar Navigation Component*/}
+                                  <SideBar />
+                                </div>
+                              ) : (
+                                <div className="navbar">
+                                  <button
+                                    className="invisible-button close-button "
+                                    onClick={this.openNav}
+                                    title="Open Menu"
+                                  >
+                                    <img
+                                      src={`${
+                                        process.env.PUBLIC_URL
+                                      }/assets/images/icon/menu.png`}
+                                      className="img-fluid"
+                                      alt=""
+                                    />
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </header>
-        </form>
+          </div>
+        </header>
+
+        <div id="search-overlay" className="search-overlay">
+          <div className="close-button">
+            <div className="overlay-content">
+              <div className="container">
+                <div className="row">
+                  <div className="col-xl-12">
+                    <form>
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleInputPassword1"
+                          placeholder="Search a Product"
+                        />{" "}
+                        <button type="submit" className="btn btn-primary">
+                          <i className="fa fa-search" />
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-//export default connect(null, {changeCurrency, searchProduct})(HeaderTwo);
+//export default withTranslate(TopBar);
 const mapStateToProps = (state) => ({
-  ...state,
+  state,
 });
 
 export default connect(
   mapStateToProps,
-  {
-    changeCurrency,
-    searchProduct,
-  }
-)(withRouter(withTranslate(HeaderTwo)));
+  { changeCurrency, logout }
+)(withTranslate(HeaderOne));

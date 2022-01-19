@@ -7,6 +7,7 @@ import Banner from "../elements/element-banner";
 import { login } from "../../actions/indexO";
 import Breadcrumb from "../breadcrumb";
 import { withTranslate } from "react-redux-multilingual";
+import Checkbox from "@material-ui/core/Checkbox";
 
 class Login extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
+      checked: false,
     };
     this.validator = new SimpleReactValidator();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,14 +31,28 @@ class Login extends Component {
   handleChange = (e) => {
     const n = e.currentTarget.value;
     const name = e.currentTarget.name;
+
     if (name === "password") {
       this.setState(() => {
         return { password: n };
       });
-    } else {
+    }
+    if (name === "name") {
       this.setState(() => {
-        return { username: n };
+        return { name: n };
       });
+    }
+
+    if (name === undefined) {
+      if (this.state.checked === true) {
+        this.setState(() => {
+          return { checked: false };
+        });
+      } else {
+        this.setState(() => {
+          return { checked: true };
+        });
+      }
     }
   };
 
@@ -66,7 +82,6 @@ class Login extends Component {
         {/*Login section*/}
         <section className="login-page section-b-space">
           <div className="container">
-            <Banner />
             <div className="row">
               <div className="col-lg-6">
                 <h3> {translate("login")}</h3>
@@ -75,26 +90,25 @@ class Login extends Component {
                     <div className="form-group">
                       <input
                         id="fname"
-                        type="text"
-                        className="form-control"
-                        placeholder="NickName"
+                        className="form-control shutter-in"
+                        type="email"
+                        placeholder="Email"
                         required=""
-                        name="first_name"
-                        value={this.state.username}
+                        name="email"
+                        value={this.state.email}
                         onChange={this.handleChange}
                       />
                       {this.validator.message(
-                        "first_name",
+                        "email",
                         this.state.username,
-                        "required|alpha"
+                        "required|email"
                       )}
                     </div>
                     <div className="form-group">
-                      <label htmlFor="review">{translate("password")}</label>
                       <input
                         type="password"
-                        className="form-control"
-                        placeholder="Enter your password"
+                        className="form-control shutter-in"
+                        placeholder="Password"
                         autoComplete="on"
                         required=""
                         name="password"
@@ -107,9 +121,30 @@ class Login extends Component {
                         "required|alpha"
                       )}
                     </div>
-                    <button type="submit" className="btn btn-solid">
-                      {translate("login")}
-                    </button>
+
+                    <div className="form-check">
+                      <button type="submit" className="btn btn-solid">
+                        {translate("login")}
+                      </button>
+                      <div className="check-group">
+                        <Checkbox
+                          name="checked"
+                          onClick={this.handleChange}
+                          checked={this.state.checked}
+                          inputProps={{ "aria-label": "primary checkbox" }}
+                        />
+                        <p>{translate("remember_me")}</p>
+                      </div>
+                    </div>
+                    <div className="forget">
+                      <Link
+                        to={`${process.env.PUBLIC_URL}/pages/register`}
+                        className=""
+                        data-lng="en"
+                      >
+                        {translate("forget_question")}
+                      </Link>
+                    </div>
                   </form>
                 </div>
               </div>

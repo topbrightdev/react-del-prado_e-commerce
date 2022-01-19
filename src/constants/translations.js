@@ -224,7 +224,7 @@ var module = {
       bread: "bread",
       drinks: "drinks",
 
-      title_web: "Del Prado |  Online Store",
+      title_web: "Une |  Online Store",
       discount_10: "save 10%",
       own_meat: "Own butchery",
       shop_now: "Buy Now !",
@@ -359,11 +359,11 @@ var module = {
 
       submit: "Submit",
 
-      subscribe_newsletter: "Subscribe to our sales",
+      subscribe_newsletter: "Subscribe",
 
       about_text:
         "Alimentacion Del Prado is for decades delivering and trading products of the highgest quality,backed for the most demanding standards. Also distributting another products ,all of them with warranted qality.",
-      information: "Information",
+      information: "Support",
       safe_buy: "Safe buy",
 
       address_text:
@@ -380,6 +380,7 @@ var module = {
       user_name: "User name",
 
       contact_us: "Contact us",
+      deliveryReturns: "Delivery and returns",
       electronic_contact: "Electronic address",
       issue: "Issue",
       message_input: "Write here your message",
@@ -392,11 +393,21 @@ var module = {
       recive_products: "Recibae your products",
 
       new_customers: "New customers",
-      create_account: "Create A Account",
+      create_account: "Register",
       create_account_text:
         " Sign up for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop. To start shopping click register.",
       password: "Contrasena",
       forget_question: "Forgot password?",
+      our_story: "Our story",
+      privacy: "Privacy",
+      social_media: "Social media",
+
+      remember_me: "Remember me",
+      tutorial: "Tutorial",
+      inspiration: "Inspiration",
+      our_phylosophy: "Our phylosophy",
+      needle_felting: "Needle felting",
+      wet_felting: "Wet felting",
     },
   },
 
@@ -514,7 +525,7 @@ var module = {
 
       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: "////////////////////////",
 
-      title_web: "Del Prado | Comercio Online",
+      title_web: "Une | Comercio Online",
       discount_10: "ahorre 10%",
       own_meat: "embutidos propios",
       shop_now: "compre ya !",
@@ -648,10 +659,10 @@ var module = {
 
       submit: "enviar",
 
-      subscribe_newsletter: "Subscribete a nuestras ofertas",
+      subscribe_newsletter: "Subscribete",
       about_text:
         "Alimentacion Del Prado lleva decadas produciendo y  comercializando productos de la mas alta calidad cumpliendo  con los mal altos estandares. Ademas de distribuir otros productos avalados por sellos de   garantia.",
-      information: "Informacion",
+      information: "Support",
       safe_buy: "Compra segura",
 
       address_text:
@@ -669,6 +680,7 @@ var module = {
       user_name: "Nombre del usuario",
 
       contact_us: "Contactanos",
+      deliveryReturns: "Envio y devoluciones",
       electronic_contact: "Direccion electronica",
       issue: "Asunto",
       message_input: "Escribe aqui tu mensage",
@@ -685,6 +697,18 @@ var module = {
         " Sign up for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop. To start shopping click register.",
       password: "Contrasena",
       forget_question: "Olvidaste la contrasena?",
+      our_story: "Nuestra historia",
+      privacy: "Privacidad",
+      social_media: "Redes sociales",
+
+      remember_me: "Recordarme",
+
+      tutorial: "Tutorial",
+      inspiration: "Inspiration",
+
+      our_phylosophy: "Nuestra filosofia",
+      needle_felting: "Fieltro y aguja",
+      wet_felting: "Fieltro humedo",
     },
   },
 };

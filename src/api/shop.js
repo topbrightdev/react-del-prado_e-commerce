@@ -23,7 +23,7 @@ const removeString = (res) => {
 };
 
 const getProducts = () => {
-  return WooCommerce.getAsync(`products?per_page=30`)
+  return WooCommerce.getAsync(`products?per_page=30&category=53`)
     .then((res) => {
       return res.toJSON().body;
     })
@@ -92,12 +92,46 @@ const getProducts = () => {
     });
 };
 
+const getExtras = () => {
+  return WooCommerce.getAsync(`products?per_page=5&category=62&category=63`)
+    .then((res) => {
+      return res.toJSON().body;
+    })
+    .then((json) => {
+      var data = json;
+      Object.json1 = JSON.parse(data);
+      var items = Object.json1;
+      var extras = [];
+
+      items.map(({ id, name, images, description }) => {
+        var img;
+        var newImages = [];
+        images.map((data) => {
+          img = data.src;
+          return newImages.push(img);
+        });
+
+        var stringDescription = removeString(description);
+        const items = {
+          description: stringDescription,
+          id: id,
+          name: name,
+          pictures: newImages,
+        };
+
+        return extras.push(items);
+      });
+
+      return extras;
+    })
+    .catch((error) => {
+      return error;
+    });
+};
+
 const getCategoryTree = async () => {
-  var root = `&parent=16`; // <-- This is the Id of the product
-  //    category. Get it from getTheCategories
-
+  var root = `&parent=19`;
   var level = 1;
-
   return await getTheCategories(root, level).then((res) => {
     console.log(res);
     return res;
@@ -105,6 +139,8 @@ const getCategoryTree = async () => {
 };
 
 const getTheCategories = (parent, level) => {
+  getExtras();
+
   return WooCommerce.getAsync(
     `products/categories?hide_empty=false&per_page=100`
   ).then((res) => {
@@ -118,7 +154,7 @@ const getTheCategories = (parent, level) => {
 
 const postReview = (data) => {
   return WooCommerce.postAsync("products/reviews", data)
-    .then((response) => {})
+    .then((response) => { })
     .catch((error) => {
       console.log(error.response.data);
     });
@@ -142,6 +178,7 @@ export default {
   getCategoryTree,
   postReview,
   getReview,
+  getExtras,
   buyProducts: (payload, cb, timeout) =>
     setTimeout(() => cb(), timeout || TIMEOUT),
 };

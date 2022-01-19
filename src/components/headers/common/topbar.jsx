@@ -33,6 +33,7 @@ class TopBar extends Component {
                 </ul>
               </div>
             </div>
+
             <div className="col-lg-6 text-right">
               <ul className="header-dropdown">
                 <li className="mobile-wishlist compare-mobile">

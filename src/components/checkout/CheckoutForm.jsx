@@ -34,6 +34,7 @@ const CheckoutForm = ({
   email,
   doOrder,
   clientData,
+  translate,
 }) => {
   if (selectedProduct === null) history.push("/");
 
@@ -54,7 +55,6 @@ const CheckoutForm = ({
         console.log(e);
       });
     var receiptUrl = "";
-    console.log(clientData);
     receiptUrl = order.data;
     //history.push(`${process.env.PUBLIC_URL}/order-success`);
     //this.props.placeOrder(this.createOrderData());
@@ -66,36 +66,34 @@ const CheckoutForm = ({
   return (
     <div className="checkout-details">
       <div className="checkout-form farm-19">
-        <h6 className="checkout-text">
-          {this.props.translate("introduce_credit")}
-        </h6>
+        <h6 className="checkout-text">{translate("introduce_credit")}</h6>
         <p>
           {" "}
-          {this.props.translate("total")}
+          {translate("total")}
           {total} ${" "}
         </p>
 
         <div className="checkout-number">
           <label className="checkout-label-number">
-            {this.props.translate("card_details")}
+            {translate("card_details")}
             <CardNumberElement />
           </label>
         </div>
         <div className="checkout-card-details">
           <label className="checkout-label">
-            {this.props.translate("expiration_date")}
+            {translate("expiration_date")}
             <CardExpiryElement />
           </label>
 
           <label className="checkout-label cvc">
-            {this.props.translate("cvc")}
+            {translate("cvc")}
             <CardCVCElement />
           </label>
         </div>
       </div>
       <div className="checkout-div-button">
         <button type="button" className="btn-solid btn" onClick={handleSubmit}>
-          {this.props.translate("pay")}
+          {translate("pay")}
         </button>
       </div>
     </div>

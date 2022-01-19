@@ -30,7 +30,7 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <Link to={this.newTo("Meat")}>
+                    <Link to={this.newTo("meat")}>
                       <h2>{translate("meat")}</h2>
                     </Link>
                   </div>
@@ -48,7 +48,7 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <Link to={this.newTo("Fish")}>
+                    <Link to={this.newTo("fish")}>
                       <h2>{translate("fish")}</h2>
                     </Link>
                   </div>
@@ -66,7 +66,7 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <Link to={this.newTo("Bread")}>
+                    <Link to={this.newTo("bread")}>
                       <h2>{translate("bread")}</h2>
                     </Link>
                   </div>
@@ -86,7 +86,7 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <Link to={this.newTo("FruitsVegetables")}>
+                    <Link to={this.newTo("fruitsvegetables")}>
                       <h2>{translate("fruits_vegetables")}</h2>
                     </Link>
                   </div>
@@ -104,7 +104,7 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <Link to={this.newTo("Meal")}>
+                    <Link to={this.newTo("meal")}>
                       <h2>{translate("dishes")}</h2>
                     </Link>
                   </div>
@@ -122,7 +122,7 @@ class ElementCategory extends Component {
                     />
                   </div>
                   <div className="category-box">
-                    <Link to={this.newTo("Drinks")}>
+                    <Link to={this.newTo("drinks")}>
                       <h2>{translate("drinks")}</h2>
                     </Link>
                   </div>

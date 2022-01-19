@@ -582,6 +582,7 @@ class checkOut extends Component {
                                     email={this.state.email}
                                     doOrder={this.doOrder}
                                     clientData={this.state}
+                                    translate={translate}
                                   />
                                 </Elements>
                               ) : (

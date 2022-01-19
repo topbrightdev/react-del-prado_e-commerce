@@ -163,7 +163,6 @@ export const receiveSignup = (log) => ({
 export const signup = (userData) => (dispatch) => {
   dispatch(signupBegin());
   user.signup(userData).then((log) => {
-    console.log(log);
     toast.success("Account created successfully");
     dispatch(receiveSignup(log));
     return log;
@@ -330,10 +329,8 @@ export const subscriptionDone = (res) => ({
 export const subscribeNewsletter = (email, firstname, lastname) => (
   dispatch
 ) => {
-  console.log(email, firstname, lastname);
   contact(email, firstname, lastname).then((res) => {
     toast.success("Subscribtion done successfullly");
-    console.log(res);
     dispatch(subscriptionDone(res));
   });
 };

@@ -160,59 +160,59 @@ class NavBar extends Component {
               </div>
             </li>
             <li>
-              <Link to={this.newTo("Meat")} className="nav-link">
+              <Link to={this.newTo("meat")} className="nav-link">
                 <Meat className="ma-lr" />
                 {translate("meat")}
               </Link>
               {loaded ? (
-                <ul className="nav-submenu">{this.handlerTree("Meat")}</ul>
+                <ul className="nav-submenu">{this.handlerTree("meat")}</ul>
               ) : null}
             </li>
             <li>
-              <Link to={this.newTo("Fish")} className="nav-link">
+              <Link to={this.newTo("fish")} className="nav-link">
                 <Fish className="ma-lr" />
                 {translate("fish")}
               </Link>
               {loaded ? (
-                <ul className="nav-submenu">{this.handlerTree("Fish")}</ul>
+                <ul className="nav-submenu">{this.handlerTree("fish")}</ul>
               ) : null}
             </li>
             <li>
-              <Link to={this.newTo("FruitsVegetables")} className="nav-link">
+              <Link to={this.newTo("fruitsvegetables")} className="nav-link">
                 <Fruits className="ma-lr" />
                 {translate("fruits_vegetables")}
               </Link>
               {loaded ? (
                 <ul className="nav-submenu">
-                  {this.handlerTree("FruitsVegetables")}
+                  {this.handlerTree("fruitsvegetables")}
                 </ul>
               ) : null}
             </li>
             <li>
-              <Link to={this.newTo("Bread")} className="nav-link">
+              <Link to={this.newTo("bread")} className="nav-link">
                 <Bread className="ma-lr" />
                 {translate("bread")}
               </Link>
               {loaded ? (
-                <ul className="nav-submenu">{this.handlerTree("Bread")}</ul>
+                <ul className="nav-submenu">{this.handlerTree("bread")}</ul>
               ) : null}
             </li>
             <li>
-              <Link to={this.newTo("Meal")} className="nav-link">
+              <Link to={this.newTo("meal")} className="nav-link">
                 <Meal className="ma-lr" />
                 {translate("dishes")}
               </Link>
               {loaded ? (
-                <ul className="nav-submenu">{this.handlerTree("Meal")}</ul>
+                <ul className="nav-submenu">{this.handlerTree("meal")}</ul>
               ) : null}
             </li>
             <li>
-              <Link to={this.newTo("Drinks")} className="nav-link">
+              <Link to={this.newTo("drinks")} className="nav-link">
                 <Drinks className="ma-lr" />
                 {translate("drinks")}
               </Link>
               {loaded ? (
-                <ul className="nav-submenu">{this.handlerTree("Drinks")}</ul>
+                <ul className="nav-submenu">{this.handlerTree("drinks")}</ul>
               ) : null}
             </li>
           </ul>

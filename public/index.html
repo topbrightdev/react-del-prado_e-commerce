@@ -10,7 +10,7 @@
 
     <title>Del Prado - Comercio OnLine</title>
 
-    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json"> -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
     <!-- google font -->
     <!--
@@ -26,6 +26,9 @@
     <!--
       <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/assets/css/color2.css" media="screen" id="color">
     -->
+  </head>
+  <body>
+    <div id="root"></div>
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"
@@ -36,13 +39,8 @@
       })();
     </script>
     <script id="stripe-js" src="https://js.stripe.com/v3/"></script>
-  </head>
-  <body onunload="localStorage.clear()">
-    <div class="loader-wrapper"><div class="loader"></div></div>
-
-    <div id="root"></div>
-
-    <!-- <script src="https://checkout.stripe.com/checkout.js"></script> -->
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <!---->
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

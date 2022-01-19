@@ -174,7 +174,7 @@ class Root extends React.Component {
                       component={ElementService}
                     />
                     {/*Product Elements*/}
-                  </Layout>{" "}
+                  </Layout>
                 </Switch>
               </ScrollContext>
             </BrowserRouter>

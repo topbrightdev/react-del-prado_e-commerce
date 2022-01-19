@@ -47,7 +47,6 @@ const productReducer = (state = initialState, action) => {
       });
 
       if (item.name) {
-        console.log(item);
         return {
           ...state,
           product_details: item,

@@ -1,9 +1,9 @@
 {
+  "homepage": "https://waldenberginc.com",
   "name": "delprado",
+  "main": "src/index.js",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://waldenberginc.com",
-  "main": "src/index.js",
   "basename": "/",
   "dependencies": {
     "@babel/core": "7.1.0",
@@ -177,5 +177,6 @@
   "resolutions": {
     "**/@babel/runtime": "7.5.0"
   },
-  "proxy": "https://waldenberginc.com:7000"
+  "proxy":"https://waldenberginc.com"
+
 }

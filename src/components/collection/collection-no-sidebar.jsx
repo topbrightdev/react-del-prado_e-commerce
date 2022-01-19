@@ -43,7 +43,9 @@ class CollectionNoSideBar extends Component {
   componentDidMount() {
     if (this.props.location.category !== undefined) {
       if (this.props.location.category !== this.state.category) {
-        const category = this.props.location.category;
+        var category = this.props.location.category;
+        category = category.toLowerCase();
+        console.log(category);
         this.setState(() => {
           return { category: category };
         });

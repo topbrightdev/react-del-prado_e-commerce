@@ -29,6 +29,7 @@ class HeaderTwo extends Component {
          Pre loader
          ==========================*/
   componentDidMount() {
+    console.log(this.props);
     setTimeout(function() {
       document.querySelector(".loader-wrapper").style = "display: none";
     }, 2000);
@@ -134,7 +135,7 @@ class HeaderTwo extends Component {
                       <LogoImage logo={this.props.logoName} />
                       <h6> Del Prado</h6>
                     </div>
-                    <div className="container p-l-20 ipad-p-l-15 navbar-container">
+                    <div className="container p-l-20 navbar-container">
                       <div className="row">
                         <div className="col-lg-12">
                           <div className="main-nav-center">

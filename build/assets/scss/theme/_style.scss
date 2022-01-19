@@ -230,6 +230,10 @@ section,
   padding-top: 5%;
 }
 
+.p-b-5 {
+  padding-bottom: 5%;
+}
+
 .margin-t-10 {
   margin-top: 10% !important;
 }
@@ -630,6 +634,27 @@ del {
 .subscribe-box {
   margin-left: auto;
   margin-right: auto;
+}
+
+.theme-settings {
+  position: absolute;
+  bottom: -5%;
+}
+
+.product-box-list {
+  min-width: unset !important;
+  max-width: unset !important;
+  min-height: 200px !important;
+  max-height: 200px !important;
+  margin-top: 50px;
+}
+
+.left-sidebar-block {
+  margin-top: 5vh;
+}
+
+.new-product-box {
+  display: flex;
 }
 
 @-webkit-keyframes smoothScroll {
@@ -1494,8 +1519,8 @@ header {
   justify-content: space-between;
   align-items: center;
   z-index: 9;
-  max-height: 10vh;
-  min-height: 12vh;
+  max-height: max-content;
+  min-height: max-content;
   padding-top: 1%;
   &.product-full-page {
     z-index: 9999;
@@ -7741,6 +7766,13 @@ footer {
     width: 100%;
   }
 }
+.top-banner-wrapper2 {
+  margin-bottom: 10vh;
+  margin-top: 0vh;
+  max-width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+}
 .top-banner-wrapper {
   .top-banner-content {
     h4 {
@@ -12245,6 +12277,12 @@ body {
   }
   a {
     color: $dark-link;
+  }
+  .price-right {
+    position: absolute;
+    right: 15%;
+    color: #cfd4da !important;
+    font-weight: 600 !important;
   }
   .page-link {
     background-color: $dark-body;

@@ -93,11 +93,13 @@ const getProducts = () => {
 };
 
 const getCategoryTree = async () => {
-  var root = `&parent=19`;
+  var root = `&parent=16`; // <-- This is the Id of the product
+  //    category. Get it from getTheCategories
 
   var level = 1;
 
   return await getTheCategories(root, level).then((res) => {
+    console.log(res);
     return res;
   });
 };
@@ -109,6 +111,7 @@ const getTheCategories = (parent, level) => {
     var data = res.toJSON().body;
     Object.json1 = JSON.parse(data);
     var items = Object.json1;
+    console.log(items);
     return items;
   });
 };

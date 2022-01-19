@@ -13,6 +13,8 @@ import {
   decrementQty,
 } from "../../actions/indexO";
 
+import Banner from "../elements/element-banner";
+
 class cartComponent extends Component {
   constructor(props) {
     super(props);
@@ -36,17 +38,7 @@ class cartComponent extends Component {
         {cartItems.length > 0 ? (
           <section className="cart-section section-b-space">
             <div className="container">
-              <div className="top-banner-wrapper2">
-                <button className="invisible-button">
-                  <img
-                    src={`${
-                      process.env.PUBLIC_URL
-                    }/assets/images/mega-menu/2.jpeg`}
-                    className="img-fluid"
-                    alt=""
-                  />
-                </button>
-              </div>
+              <Banner />
 
               <div className="row">
                 <div className="col-sm-12">
@@ -243,7 +235,7 @@ class cartComponent extends Component {
                     to={`${process.env.PUBLIC_URL}/checkout`}
                     className="btn btn-solid"
                   >
-                    check out{translate("check_out")}
+                    {translate("check_out")}
                   </Link>
                 </div>
               </div>
@@ -252,6 +244,7 @@ class cartComponent extends Component {
         ) : (
           <section className="cart-section section-b-space">
             <div className="container">
+              <Banner />
               <div className="row">
                 <div className="col-sm-12">
                   <div>

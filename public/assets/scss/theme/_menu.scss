@@ -1369,8 +1369,7 @@ header {
       width: 0;
       height: 0;
       overflow: hidden;
-      border-width: 8px;
-      // tweak size of the arrow
+      border-width: 8px; // tweak size of the arrow
       border-style: dashed dashed solid dashed;
       border-color: transparent transparent
         $theme-deafult__desktop-sub-item-color transparent;
@@ -1667,7 +1666,6 @@ header {
     .main-navbar {
       position: relative !important;
       left: 15vw !important;
-      top: 13vh !important;
       .nav-menu {
         position: fixed;
         background-color: #fff;
@@ -2150,7 +2148,7 @@ header {
           position: absolute;
           z-index: 99;
           right: -20vw;
-          top: -21.5vh;
+          top: 0vh;
           .sidebar-name {
             font-size: 18px;
             padding-left: 5px;
@@ -2164,8 +2162,6 @@ header {
     .toggle-nav {
       position: relative;
       z-index: 99;
-      right: 14vw;
-      top: -12.5vh;
     }
   }
   .layout3-menu {
@@ -2277,8 +2273,11 @@ header {
   }
   .main-nav-center {
     .toggle-nav {
-      right: -7vw;
-      top: -14vh;
+      right: 0vw;
+      top: 0vh;
+      margin-top: 2vh;
+      padding-top: 0%;
+      padding-bottom: 0%;
     }
   }
   .mobile-fix-option {
@@ -2462,7 +2461,7 @@ header {
     left: 50%;
     margin-right: -50%;
     transform: translateX(-50%);
-    padding-top: 6vh !important;
+    padding-top: 12vh !important;
     padding-bottom: 30px !important;
   }
   .toggle-nav {

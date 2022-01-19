@@ -85,9 +85,8 @@ class Root extends React.Component {
                     />
                     {/*Routes For Single Product*/}
                     <Route
-                      path={`${
-                        process.env.PUBLIC_URL
-                      }/left-sidebar/product/:id`}
+                      path={`${process.env.PUBLIC_URL
+                        }/left-sidebar/product/:id`}
                       component={LeftSideBar}
                     />
                     {/*Routes For custom Features*/}
@@ -107,11 +106,6 @@ class Root extends React.Component {
                       path={`${process.env.PUBLIC_URL}/Checkout`}
                       component={checkOut}
                     />
-                    {/*   <Route
-                    path={`${process.env.PUBLIC_URL}/StripeCheckout`}
-                    component={stripeCheckout}
-                  />
-               */}
                     <Route
                       path={`${process.env.PUBLIC_URL}/checkoutForm`}
                       component={checkoutForm}
@@ -170,15 +164,13 @@ class Root extends React.Component {
                       component={ElementSlider}
                     />
                     <Route
-                      path={`${
-                        process.env.PUBLIC_URL
-                      }/features/element-category`}
+                      path={`${process.env.PUBLIC_URL
+                        }/features/element-category`}
                       render={(props) => <ElementCategory {...props} />}
                     />
                     <Route
-                      path={`${
-                        process.env.PUBLIC_URL
-                      }/features/element-service`}
+                      path={`${process.env.PUBLIC_URL
+                        }/features/element-service`}
                       component={ElementService}
                     />
                     {/*Product Elements*/}
